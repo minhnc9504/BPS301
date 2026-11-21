@@ -36,6 +36,8 @@ export type PracticeFilters = { exam: string; chapter: string; topic: string; on
 export type Session = {
   id: string; title: string; started: number; deadline: number; index: number
   examId?: string | null
+  unlimited?: boolean
+  autoSubmit?: boolean
   questions: Question[]; selections: Record<string, string[]>; flags: string[]
   ended?: number
 }

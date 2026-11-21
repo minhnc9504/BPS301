@@ -364,3 +364,15 @@ mark { color: #412b03; background: #ffe38a; padding-inline: .08em; border-radius
 .route-links { margin-bottom: .85rem; }
 .report-row { padding: .6rem 0; border-top: 1px solid var(--border); }
 .theory-reading :is(h2, h3, h4) { scroll-margin-top: 8rem; }
+.settings-grid { display: flex; flex-wrap: wrap; align-items: end; gap: .7rem; }
+.settings-grid label { flex: 1 1 210px; max-width: 360px; }
+.settings-switches { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr)); gap: .5rem .8rem; }
+.setting-switch { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .75rem; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; }
+.setting-switch input { flex: none; }
+.settings-preview { border: 1px solid var(--accent-border); border-radius: 12px; padding: 1rem; background: var(--accent-soft); }
+.settings-storage, .settings-reset { border-top: 1px solid var(--border); padding-top: .8rem; }
+.settings-reset .row { gap: .55rem 1rem; }
+.settings-reset .danger-button { color: #9f1239; border-color: #dc96a7; }
+.app[data-theme="dark"] .settings-reset .danger-button { color: #ffc3d0; }
+.app[data-text-size="small"] :is(.prompt, .choices .rich, .feedback .rich) { font-size: .88rem; }
+.app[data-text-size="large"] :is(.prompt, .choices .rich, .feedback .rich) { font-size: 1.22rem; }

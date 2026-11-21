@@ -220,7 +220,10 @@ function parseSession(value: unknown): Session {
   const flags = list(entry.flags).map(id)
   if (flags.some((key) => !questions.some((q) => q.id === key))) throw new Error('Cờ trong phiên thi không hợp lệ')
   const examId = entry.examId == null ? entry.examId : id(entry.examId)
-  return { id: id(entry.id), title: str(entry.title), examId, questions, index, started, deadline, ended, selections, flags }
+  if ((entry.unlimited !== undefined && typeof entry.unlimited !== 'boolean') ||
+      (entry.autoSubmit !== undefined && typeof entry.autoSubmit !== 'boolean')) throw new Error('Cấu hình phiên thi không hợp lệ')
+  return { id: id(entry.id), title: str(entry.title), examId, questions, index, started, deadline, ended, selections, flags,
+    unlimited: entry.unlimited, autoSubmit: entry.autoSubmit }
 }
 export function parseSave(value: unknown): Save {
   const root = record(value)

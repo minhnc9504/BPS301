@@ -1,8 +1,9 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Check, ClipboardCheck, Flag, Timer } from 'lucide-react'
 import { Progress } from '../components/Progress'
 import { Choices, Feedback, Rich } from '../components/Question'
-import { entireBank, examScope, isCorrect, shuffle, uniqueQuestions, type Exam as ExamData, type Session } from '../data/model'
+import { entireBank, examScope, isCorrect, shuffle, uniqueQuestions, type Exam as ExamData, type Session, type Theory } from '../data/model'
+import type { Preferences } from '../data/preferences'
 import { examSlug, findExam, position, useRoute } from '../routes'
 
 function balancedSample(pool: Session['questions'], count: number) {
@@ -22,21 +23,24 @@ function balancedSample(pool: Session['questions'], count: number) {
   return shuffle([...picked, ...shuffle(pool.filter((q) => !included.has(q.id))).slice(0, count - picked.length)])
 }
 
-export function Exam({ exams, sessions, history, now, save, submit, reset, slide }: {
+export function Exam({ exams, sessions, history, now, save, submit, reset, slide, preferences, chapters }: {
   exams: ExamData[]; sessions: Session[]; history: Session[]; now: number
   save: (session: Session, starting?: boolean) => boolean; submit: (id: string) => boolean
   reset: (scope: string | null, kind: 'sessions' | 'history') => boolean
   slide: (id: string, page: number) => void
+  preferences: Preferences
+  chapters: Theory[]
 }) {
   const route = useRoute()
   const [source, phase, questionNumber] = route.segments
   const preset = source === 'random_50' ? { count: 50, minutes: 45 } : source === 'quick_15' ? { count: 15, minutes: 15 } : undefined
   const [count, setCount] = useState<number | ''>('')
-  const [minutes, setMinutes] = useState<number | ''>(30)
-  const [mixQuestions, setMixQuestions] = useState(true)
-  const [mixOptions, setMixOptions] = useState(true)
+  const [minutes, setMinutes] = useState<number | '' | 'unlimited'>(preferences.minutes)
+  const [mixQuestions, setMixQuestions] = useState(preferences.mixQuestions)
+  const [mixOptions, setMixOptions] = useState(preferences.mixOptions)
   const [matrixFilter, setMatrixFilter] = useState<'all' | 'unanswered' | 'flagged'>('all')
   const submitDialog = useRef<HTMLDialogElement>(null)
+  const questionPanel = useRef<HTMLElement>(null)
   const selectedExam = findExam(exams, source)
   const scopeId = selectedExam?.id ?? (preset ? source : null)
   const sessionKey = route.query.get('session')
@@ -58,18 +62,39 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
   function submitSession(item: Session) {
     if (submit(item.id)) route.go(sessionPath(item, true), true)
   }
+  useEffect(() => {
+    if (!preferences.shortcuts || !session) return
+    const shortcut = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.isComposing || event.repeat || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey ||
+        (!session.unlimited && Date.now() >= session.deadline) || document.querySelector('dialog[open]') ||
+        (event.target instanceof Element && event.target.closest('input, select, textarea, [contenteditable], [role="textbox"]'))) return
+      if (/^[1-4a-d]$/i.test(event.key)) {
+        const index = /^[1-4]$/.test(event.key) ? Number(event.key) - 1 : event.key.toLowerCase().charCodeAt(0) - 97
+        const option = questionPanel.current?.querySelectorAll<HTMLInputElement>('.choices input')[index]
+        if (option) { event.preventDefault(); option.click() }
+      } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        const index = session.index + (event.key === 'ArrowLeft' ? -1 : 1)
+        if (index >= 0 && index < session.questions.length) {
+          event.preventDefault()
+          move(session, index)
+        }
+      }
+    }
+    window.addEventListener('keydown', shortcut)
+    return () => window.removeEventListener('keydown', shortcut)
+  })
   if (session) {
     const question = session.questions[session.index]
     const seconds = Math.max(0, Math.ceil((session.deadline - now) / 1000))
     const flagged = session.flags.includes(question.id)
     const answered = session.questions.filter((q) => session.selections[q.id]?.length).length
-    const elapsed = seconds === 0
-    const warning = seconds <= 300
+    const elapsed = !session.unlimited && seconds === 0
+    const warning = !session.unlimited && preferences.warning && seconds <= 300
     return <>
       <div className="row spread"><h1>Thi thử · {session.title}</h1>
         <button onClick={() => route.go('/mock_exam')}>Chọn bộ đề khác</button></div>
       <div className="exam-grid">
-        <section className="panel task">
+        <section className="panel task" ref={questionPanel}>
           <div className="row spread">
             <span className="tag">Câu {session.index + 1} / {session.questions.length}</span>
             <button disabled={elapsed} aria-pressed={flagged} onClick={() => save({ ...session, flags: flagged
@@ -77,9 +102,11 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
               <Flag size={16} /> {flagged ? 'Đã đánh dấu' : 'Xem lại'}
             </button>
           </div>
+          {preferences.questionMeta && <p className="mono muted">{question.id} · {chapters.find((item) => item.id === question.chapterId)?.title ??
+            (question.chapterId ? 'Chương ' + question.chapterId : 'Chưa phân chương')}</p>}
           <div className="prompt"><Rich content={question.prompt} /></div>
           <p className="muted">{question.type === 'single' ? 'Chọn một đáp án.' : 'Có thể chọn nhiều đáp án.'}</p>
-          <Choices key={question.id} question={question} selected={session.selections[question.id] ?? []} reveal={false}
+          <Choices key={question.id} question={question} selected={session.selections[question.id] ?? []} reveal={false} disabled={elapsed}
             change={(selection) => save({ ...session, selections: { ...session.selections, [question.id]: selection } })} />
           <div className="row spread">
             <button disabled={elapsed || session.index === 0} onClick={() => move(session, session.index - 1)}>Câu trước</button>
@@ -87,10 +114,11 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
           </div>
         </section>
         <aside className="panel exam-side">
-          <div className={'timer-box' + (warning ? ' timer-warning' : '')}>
-            <div className="row"><Timer size={18} /> <span>Thời gian còn lại</span></div>
-            <strong className="timer">{String(Math.floor(seconds / 60)).padStart(2, '0')}:{String(seconds % 60).padStart(2, '0')}</strong>
-            {warning && <span className="timer-message" role="status">{elapsed ? 'Đã hết giờ' : 'Sắp hết giờ'}</span>}
+          <div className={'timer-box' + (warning || elapsed ? ' timer-warning' : '')}>
+            <div className="row"><Timer size={18} /> <span>{session.unlimited ? 'Thời gian làm bài' : 'Thời gian còn lại'}</span></div>
+            <strong className={session.unlimited ? 'mono' : 'timer'}>{session.unlimited ? 'Không giới hạn' :
+              String(Math.floor(seconds / 60)).padStart(2, '0') + ':' + String(seconds % 60).padStart(2, '0')}</strong>
+            {(warning || elapsed) && <span className="timer-message" role="status">{elapsed ? 'Đã hết giờ' : 'Sắp hết giờ'}</span>}
           </div>
           <p className="mono">{answered}/{session.questions.length} đã trả lời</p>
           <Progress value={answered} total={session.questions.length} label="Số câu đã trả lời" />
@@ -198,13 +226,15 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
       if (pending) { resume(pending); return }
       const wanted = preset ? Math.min(preset.count, pool.length) : count === '' ? pool.length : count
       const duration = preset?.minutes ?? minutes
-      if (duration === '' || !Number.isInteger(duration) || duration < 1 || duration > 1440 || !Number.isInteger(wanted) || wanted < 1 || wanted > pool.length) return
+      if ((duration !== 'unlimited' && (duration === '' || !Number.isInteger(duration) || duration < 1 || duration > 1440)) ||
+        !Number.isInteger(wanted) || wanted < 1 || wanted > pool.length) return
       const started = Date.now()
       const questions = (preset ? balancedSample(pool, wanted) : (mixQuestions ? shuffle(pool) : pool).slice(0, wanted))
         .map((q) => ({ ...q, options: mixOptions ? shuffle(q.options) : q.options }))
       const id = crypto.randomUUID()
       const item = { id, examId: scopeId, title: selectedExam?.title ?? (preset ? 'Đề ngẫu nhiên · ' + preset.count + ' câu' : entireBank),
-        started, deadline: started + duration * 60000, index: 0, questions, flags: [], selections: {} }
+        started, deadline: duration === 'unlimited' ? 8_640_000_000_000_000 : started + duration * 60000,
+        unlimited: duration === 'unlimited', autoSubmit: preferences.autoSubmit, index: 0, questions, flags: [], selections: {} }
       if (save(item, true)) route.go(sessionPath(item))
     }}>
       <h2>Cấu hình bài thi</h2>
@@ -221,8 +251,11 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
       {!pending && !preset && <><div className="filters">
         <label>Số câu<input type="number" min={1} max={pool.length} value={count === '' ? pool.length : count}
           onChange={(event) => setCount(event.target.value === '' ? '' : Number(event.target.value))} /></label>
-        <label>Thời gian (phút)<input required type="number" min={1} max={1440} value={minutes}
+        {minutes !== 'unlimited' && <label>Thời gian (phút)<input required type="number" min={1} max={1440} value={minutes}
           onChange={(event) => setMinutes(event.target.value === '' ? '' : Number(event.target.value))} /></label>
+        }
+        <label className="check"><input type="checkbox" checked={minutes === 'unlimited'} onChange={(event) => setMinutes(event.target.checked ? 'unlimited' :
+          preferences.minutes === 'unlimited' ? 30 : preferences.minutes)} /> Không giới hạn thời gian</label>
       </div>
       <div className="row">
         <label className="check"><input type="checkbox" checked={mixQuestions} onChange={(event) => setMixQuestions(event.target.checked)} /> Trộn câu hỏi</label>

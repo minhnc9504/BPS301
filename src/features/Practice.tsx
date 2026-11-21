@@ -3,10 +3,12 @@ import { Bookmark, RotateCcw } from 'lucide-react'
 import { Choices, Feedback, Rich } from '../components/Question'
 import { isCorrect, uniqueQuestions, type Exam, type PracticeFilters, type Study, type Subject } from '../data/model'
 import { examSlug, findExam, findQuestion, position, useRoute } from '../routes'
+import type { Preferences } from '../data/preferences'
 
-export function Practice({ subject, exams, study, setStudy, slide }: {
+export function Practice({ subject, exams, study, setStudy, slide, preferences }: {
   subject: Subject; exams: Exam[]; study: Study; setStudy: (change: (study: Study) => Study) => boolean
   slide: (id: string, page: number) => void
+  preferences: Preferences
 }) {
   const route = useRoute()
   const [mode, value] = route.segments
@@ -37,6 +39,8 @@ export function Practice({ subject, exams, study, setStudy, slide }: {
   const nextQuestion = questions[index + 1]
   const previousQuestion = questions[index - 1]
   const task = useRef<HTMLElement>(null)
+  const advanceTimer = useRef<number | undefined>(undefined)
+  useEffect(() => () => window.clearTimeout(advanceTimer.current), [question?.id, exam, chapter, topic, review])
   const response = question && study.practice[question.id]
   const draft = response?.selected ?? []
   const graded = response?.correct !== undefined
@@ -66,20 +70,32 @@ export function Practice({ subject, exams, study, setStudy, slide }: {
     route.go(filterPath(next))
   }
   function move(id: string) {
+    window.clearTimeout(advanceTimer.current)
     setStudy((current) => ({ ...current, practiceFilters: filters, resume: id }))
     route.go(filterPath(filters, id))
   }
+  function toggleBookmark() {
+    if (!question) return
+    const id = question.id
+    setStudy((current) => ({ ...current, resume: id, bookmarks: current.bookmarks.includes(id)
+      ? current.bookmarks.filter((item) => item !== id) : [...current.bookmarks, id] }))
+  }
   useEffect(() => {
+    if (!preferences.shortcuts) return
     function shortcut(event: KeyboardEvent) {
-      if (event.defaultPrevented || event.isComposing || event.repeat || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey ||
+      if (event.defaultPrevented || event.isComposing || event.repeat || event.ctrlKey || event.metaKey || event.altKey || (event.shiftKey && event.key !== 'B') ||
         document.querySelector('dialog[open]') ||
         (event.target instanceof Element && event.target.closest('input, select, textarea, [contenteditable], [role="textbox"]'))) return
       const destination = event.key === 'ArrowLeft' ? previousQuestion : event.key === 'ArrowRight' ? nextQuestion : undefined
       if (destination) {
         event.preventDefault()
         move(destination.id)
-      } else if (!graded && /^[1-4]$/.test(event.key)) {
-        const option = task.current?.querySelectorAll<HTMLInputElement>('.choices input')[Number(event.key) - 1]
+      } else if (question && (event.key === 'B' || (graded && event.key === 'b'))) {
+        event.preventDefault()
+        toggleBookmark()
+      } else if (!graded && /^[1-4a-d]$/i.test(event.key)) {
+        const index = /^[1-4]$/.test(event.key) ? Number(event.key) - 1 : event.key.toLowerCase().charCodeAt(0) - 97
+        const option = task.current?.querySelectorAll<HTMLInputElement>('.choices input')[index]
         if (option) { event.preventDefault(); option.click() }
       }
     }
@@ -88,21 +104,27 @@ export function Practice({ subject, exams, study, setStudy, slide }: {
   })
   function saveAnswer(selected: string[], check: boolean) {
     if (!question) return
+    window.clearTimeout(advanceTimer.current)
     const id = question.id
     const correct = check ? isCorrect(question, selected) : undefined
-    setStudy((current) => {
+    const saved = setStudy((current) => {
       const practice = { ...current.practice }
       if (selected.length) practice[id] = { selected, correct }
       else delete practice[id]
       return { ...current, practiceFilters: filters, resume: id, practice, attempts: correct === undefined ? current.attempts :
         [...current.attempts, { questionId: id, correct, at: Date.now() }] }
     })
+    if (!saved) return
     if (onlyWrong && !direct) route.go(filterPath(filters, id), true)
+    if (correct && preferences.autoAdvance && nextQuestion) {
+      advanceTimer.current = window.setTimeout(() => move(nextQuestion.id), preferences.delay * 1000)
+    }
   }
   function resetScope() {
     const label = [selectedExam?.title, chapter && 'chương ' + chapter, topic && 'chủ đề ' + topic]
       .filter(Boolean).join(' · ')
     if (!window.confirm('Xóa đáp án và lượt ôn trong phạm vi đang chọn' + (label ? ' (' + label + ')' : '') + '?')) return
+    window.clearTimeout(advanceTimer.current)
     if (setStudy((current) => ({
       ...current,
       practice: Object.fromEntries(Object.entries(current.practice).filter(([id]) => !scopeIds.has(id))),
@@ -150,16 +172,17 @@ export function Practice({ subject, exams, study, setStudy, slide }: {
     {!question ? <div className="panel empty">Không có câu hỏi phù hợp với bộ lọc.</div> :
       <section className="panel task" ref={task}>
         <div className="row spread"><span className="tag">{index < 0 ? question.id : 'Câu ' + (index + 1) + ' / ' + questions.length}</span>
-          <button type="button" aria-pressed={study.bookmarks.includes(question.id)} onClick={() => {
-            setStudy((current) => ({ ...current, resume: question.id, bookmarks: current.bookmarks.includes(question.id)
-              ? current.bookmarks.filter((id) => id !== question.id) : [...current.bookmarks, question.id] }))
-          }}><Bookmark size={16} /> {study.bookmarks.includes(question.id) ? 'Đã đánh dấu khó' : 'Đánh dấu khó'}</button>
+          <button type="button" aria-pressed={study.bookmarks.includes(question.id)} onClick={toggleBookmark}>
+            <Bookmark size={16} /> {study.bookmarks.includes(question.id) ? 'Đã đánh dấu khó' : 'Đánh dấu khó'}</button>
         </div>
+        {preferences.questionMeta && <p className="mono muted">{question.id} · {subject.theory.find((item) => item.id === question.chapterId)?.title ??
+          (question.chapterId ? 'Chương ' + question.chapterId : 'Chưa phân chương')}</p>}
         <div className="prompt"><Rich content={question.prompt} /></div>
         <p className="muted">{question.type === 'single' ? 'Chọn một đáp án.' : 'Chọn tất cả đáp án đúng.'}</p>
         <Choices question={question} selected={draft} reveal={graded} change={(answers) => saveAnswer(answers, question.type === 'single')} />
-        <p className="muted shortcut-hint"><kbd>1</kbd>–<kbd>4</kbd> chọn đáp án · <kbd>←</kbd> <kbd>→</kbd> chuyển câu</p>
-        {graded && <Feedback question={question} selected={draft} correct={response?.correct} slide={slide} />}
+        {preferences.shortcuts && <p className="muted shortcut-hint"><kbd>1</kbd>–<kbd>4</kbd> hoặc <kbd>A</kbd>–<kbd>D</kbd> chọn đáp án · <kbd>←</kbd> <kbd>→</kbd> chuyển câu · <kbd>Shift+B</kbd> đánh dấu khó</p>}
+        {graded && <Feedback question={question} selected={draft} correct={response?.correct} slide={slide}
+          explanations={preferences.explanations} tips={preferences.tips} />}
         <div className="row spread"><div className="row">
           <button disabled={index <= 0} onClick={() => move(questions[index - 1].id)}>Câu trước</button>
           <button disabled={!nextQuestion} onClick={() => nextQuestion && move(nextQuestion.id)}>Câu tiếp</button>

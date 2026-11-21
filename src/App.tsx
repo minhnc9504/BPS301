@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { BookOpen, ClipboardList, Database, Download, GraduationCap, LayoutDashboard, Menu, Moon, Search, Settings, Sun, Upload, X, Zap } from 'lucide-react'
 import { Bank } from './features/Bank'
 import { Exam } from './features/Exam'
@@ -9,6 +9,9 @@ import { emptyStudy, examScope, type Exam as ExamData, type Save, type Session, 
 import { downloadJson, loadSubjects, message, parseSave, storageKey } from './data/storage'
 import { examSlug, href, paths, readRoute, RouteContext, type Section } from './routes'
 import { LearningReport } from './features/LearningReport'
+import { SettingsPage, type ResetScope } from './features/Settings'
+import { makeBackup, readBackup, restoreBackup, storageEstimate, type Backup, type BackupScope, type RestoreMode } from './data/backup'
+import { defaultPreferences, preferencesKey, readPreferences, type Preferences } from './data/preferences'
 
 const sections = [
   { id: 'overview', label: 'Tổng quan', icon: LayoutDashboard },
@@ -68,10 +71,13 @@ export function App() {
   const { section } = route
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButton = useRef<HTMLButtonElement>(null)
-  const [dark, setDark] = useState(() => {
-    try { return localStorage.getItem('smart-exam-theme') === 'dark' }
-    catch { return false }
-  })
+  const [preferences, setPreferences] = useState(readPreferences)
+  const bytes = useMemo(() => section === 'settings' ? storageEstimate() : undefined, [data, preferences, section])
+  const [systemDark, setSystemDark] = useState(() => matchMedia('(prefers-color-scheme: dark)').matches)
+  const dark = preferences.theme === 'dark' || (preferences.theme === 'system' && systemDark)
+  const [backup, setBackup] = useState<Backup>()
+  const restoreInput = useRef<HTMLInputElement>(null)
+  const restoreRead = useRef(0)
   const [commandQuery, setCommandQuery] = useState('')
   const command = useRef<HTMLDialogElement>(null)
   const [now, setNow] = useState(Date.now)
@@ -87,6 +93,7 @@ export function App() {
   }, [])
   useEffect(() => {
     const sync = (event: StorageEvent) => {
+      if (event.key === preferencesKey || event.key === null) setPreferences(readPreferences())
       if (event.key !== storageKey && event.key !== null) return
       try {
         const next = readSave()
@@ -106,18 +113,24 @@ export function App() {
     return () => { window.removeEventListener('popstate', sync); window.removeEventListener('hashchange', sync) }
   }, [])
   useEffect(() => {
-    try { localStorage.setItem('smart-exam-theme', dark ? 'dark' : 'light') } catch { /* Theme remains available. */ }
-  }, [dark])
+    const media = matchMedia('(prefers-color-scheme: dark)')
+    const sync = () => setSystemDark(media.matches)
+    media.addEventListener('change', sync)
+    return () => media.removeEventListener('change', sync)
+  }, [])
   useEffect(() => {
     function handleShortcut(event: KeyboardEvent) {
-      if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'k' || dialog.current?.open) return
+      if (!preferences.shortcuts || event.repeat || event.isComposing || !(event.ctrlKey || event.metaKey) ||
+        event.key.toLowerCase() !== 'k' || (!command.current?.open && document.querySelector('dialog[open]')) ||
+        (event.target instanceof Element && !command.current?.contains(event.target) &&
+          event.target.closest('input, textarea, select, [contenteditable], [role="textbox"]'))) return
       event.preventDefault()
       if (command.current?.open) command.current.close()
       else command.current?.showModal()
     }
     window.addEventListener('keydown', handleShortcut)
     return () => window.removeEventListener('keydown', handleShortcut)
-  }, [])
+  }, [preferences.shortcuts])
 
   function persist(next: Save, restore = false) {
     try {
@@ -136,7 +149,7 @@ export function App() {
   }
 
   useEffect(() => {
-    if (!Object.values(data.subjects).some((item) => item.sessions.length)) return
+    if (!Object.values(data.subjects).some((item) => item.sessions.some((session) => !session.unlimited))) return
     function tick() {
       const time = Date.now()
       setNow(time)
@@ -144,7 +157,7 @@ export function App() {
       const subjects = { ...current.subjects }
       let changed = false
       for (const [key, item] of Object.entries(current.subjects)) {
-        const expired = item.sessions.filter((session) => time >= session.deadline)
+        const expired = item.sessions.filter((session) => !session.unlimited && session.autoSubmit !== false && time >= session.deadline)
         if (!expired.length) continue
         subjects[key] = finish(item, expired, time)
         changed = true
@@ -195,6 +208,54 @@ export function App() {
     go('practice')
     if (chapterId || wrong) navigate(chapterId ? '/trainning/chapter/' + encodeURIComponent(chapterId) : '/trainning?review=needed', true)
   }
+  function savePreferences(next: Preferences) {
+    try {
+      localStorage.setItem(preferencesKey, JSON.stringify(next))
+      setPreferences(next)
+      return true
+    } catch (error) {
+      setStorageError('Không lưu được tùy chọn: ' + message(error))
+      return false
+    }
+  }
+  function exportData(scope: BackupScope) {
+    const date = new Date()
+    const timestamp = date.toLocaleString('sv-SE', { timeZone: 'Asia/Ho_Chi_Minh' }).replace(' ', '-').replaceAll(':', '')
+    const name = 'smart-exam-bps301-' + timestamp + (readError ? '-du-lieu-tho' : scope === 'progress' ? '-tien-do' : '') + '.json'
+    downloadJson(name, readError ? safeRawBackup() : makeBackup(dataRef.current, scope, preferences, date))
+  }
+  function applyBackup(mode: RestoreMode) {
+    if (!backup) return
+    if (readError && mode === 'merge') {
+      setStorageError('Dữ liệu hiện tại không đọc được. Hãy chọn ghi đè để khôi phục.')
+      return
+    }
+    const next = restoreBackup(dataRef.current, backup, mode, subjectId)
+    if (!persist(next, true)) return
+    const preferencesSaved = mode !== 'replace' || !backup.preferences || savePreferences(backup.preferences)
+    setBackup(undefined)
+    setNotice(preferencesSaved ? 'Đã khôi phục dữ liệu.' : 'Đã khôi phục dữ liệu học. Tùy chọn chưa được lưu.')
+  }
+  function resetData(scope: ResetScope) {
+    const descriptions = {
+      activity: 'Xóa lượt ôn, các phiên đang làm và lịch sử thi? Dấu câu khó vẫn được giữ.',
+      bookmarks: 'Xóa toàn bộ dấu câu khó?',
+      all: 'Xóa mọi dữ liệu học, câu hỏi và giáo trình đã thêm, cùng tùy chọn ứng dụng?',
+    }
+    if (!window.confirm(descriptions[scope])) return
+    if (scope === 'all') {
+      if (!window.confirm('Xác nhận lần cuối: tiến độ và dữ liệu tự thêm trên trình duyệt này sẽ bị xóa.')) return
+      if (persist({ version: 1, subjects: {} }, true)) {
+        const preferencesSaved = savePreferences({ ...defaultPreferences })
+        setBackup(undefined)
+        setNotice(preferencesSaved ? 'Đã khôi phục gốc Smart Exam.' : 'Đã xóa dữ liệu học. Tùy chọn chưa được đặt lại.')
+      }
+      return
+    }
+    if (update((current) => scope === 'bookmarks' ? { ...current, bookmarks: [] } : {
+      ...current, attempts: [], practice: {}, sessions: [], history: [], resume: undefined, practiceFilters: undefined,
+    })) setNotice(scope === 'bookmarks' ? 'Đã xóa dấu câu khó.' : 'Đã đặt lại lượt ôn và thi.')
+  }
   const openSlide = (id: string, page: number) => setSlide({ id, page })
 
   const commands = [
@@ -211,7 +272,7 @@ export function App() {
     .filter((question) => latestAttempts.get(question.id) === false || study.bookmarks.includes(question.id))
     .map((question) => question.id)).size
 
-  return <RouteContext.Provider value={{ ...route, go: navigate }}><div className="app" data-section={section} data-theme={dark ? 'dark' : 'light'}>
+  return <RouteContext.Provider value={{ ...route, go: navigate }}><div className="app" data-section={section} data-theme={dark ? 'dark' : 'light'} data-text-size={preferences.textSize}>
     <header className="mobile-header">
       <div className="row"><Brand openOverview={() => go('overview')} /><span className="tag">BPS301</span></div>
       <button ref={menuButton} aria-label={menuOpen ? 'Đóng menu' : 'Mở menu'} aria-expanded={menuOpen}
@@ -237,18 +298,24 @@ export function App() {
         {id === 'practice' && reviewCount > 0 && <span className="review-count" aria-hidden="true">{reviewCount}</span>}
       </button>)}</nav>
       <div className="backup">
-        <button onClick={() => downloadJson('smart-exam-sao-luu.json', readError
-          ? safeRawBackup() : dataRef.current)}><Download size={17} /> Sao lưu</button>
-        <label className="button restore"><Upload size={17} /> Khôi phục<input type="file" accept=".json,application/json"
+        <button onClick={() => exportData('full')}><Download size={17} /> Sao lưu</button>
+        <label className="button restore"><Upload size={17} /> Khôi phục<input ref={restoreInput} type="file" accept=".json,application/json"
           onChange={async (event) => {
             const file = event.target.files?.[0]
             event.target.value = ''
             if (!file) return
+            const request = ++restoreRead.current
             try {
-              const next = parseSave(JSON.parse(await file.text()))
-              if (!window.confirm('Thay dữ liệu học hiện tại bằng bản sao lưu này?')) return
-              if (persist(next, true)) { setNotice('Đã khôi phục dữ liệu.'); go('overview') }
-            } catch (error) { setStorageError(message(error)) }
+              const text = await file.text()
+              if (request !== restoreRead.current) return
+              setBackup(readBackup(JSON.parse(text)))
+              setStorageError('')
+            } catch (error) {
+              if (request !== restoreRead.current) return
+              setBackup(undefined)
+              setStorageError(message(error))
+            }
+            go('settings')
           }} /></label>
       </div>
     </aside>
@@ -258,7 +325,7 @@ export function App() {
         <div className="studio-actions">
           <span className="tag context-subject">BPS301 · BPM &amp; Process Mining</span>
           <button onClick={() => { setMenuOpen(false); command.current?.showModal() }} aria-label="Tìm nhanh"><Search size={17} /><span>Tìm nhanh</span><kbd>Ctrl K</kbd></button>
-          <button onClick={() => setDark((value) => !value)} aria-label={dark ? 'Bật giao diện sáng' : 'Bật giao diện tối'}>
+          <button onClick={() => savePreferences({ ...preferences, theme: dark ? 'light' : 'dark' })} aria-label={dark ? 'Bật giao diện sáng' : 'Bật giao diện tối'}>
             {dark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
         </div>
@@ -294,12 +361,12 @@ export function App() {
               }
             }}
             practice={openPractice} library={() => go('library')} />)}
-          {section === 'practice' && <Practice subject={subject} exams={exams} study={study} setStudy={update} slide={openSlide} />}
-          {section === 'exam' && <Exam exams={exams} sessions={study.sessions} history={study.history} now={now}
+          {section === 'practice' && <Practice subject={subject} exams={exams} study={study} setStudy={update} slide={openSlide} preferences={preferences} />}
+          {section === 'exam' && <Exam exams={exams} sessions={study.sessions} history={study.history} now={now} preferences={preferences} chapters={subject.theory}
             save={(session, starting) => {
               const time = Date.now()
               setNow(time)
-              if (session.deadline <= time) return false
+              if (!session.unlimited && session.deadline <= time) return false
               const sessions = dataRef.current.subjects[subject.id]?.sessions ?? []
               if (starting ? sessions.some((item) => examScope(item, exams) === session.examId) :
                 !sessions.some((item) => item.id === session.id)) return false
@@ -314,17 +381,6 @@ export function App() {
             upload={(material) => update((current) => ({ ...current, materials: [...current.materials, material] }))}
             practice={openPractice} />}
           {section === 'bank' && <Bank subject={subject} exams={exams} study={study} save={update} />}
-          {section === 'settings' && <section className="panel task">
-            <h1>Cài đặt &amp; Dữ liệu</h1>
-            <div className="row"><button onClick={() => downloadJson('smart-exam-sao-luu.json', readError ? safeRawBackup() : dataRef.current)}><Download size={17} /> Sao lưu</button>
-              <button onClick={() => document.querySelector<HTMLInputElement>('.restore input')?.click()}><Upload size={17} /> Khôi phục</button></div>
-            <p>Đặt lại lượt ôn, dấu câu khó, phiên thi và lịch sử BPS301. Ngân hàng và giáo trình đã thêm vẫn được giữ.</p>
-            <button onClick={() => {
-              if (window.confirm('Đặt lại toàn bộ tiến độ BPS301?') && update((current) => ({
-                ...emptyStudy, exams: current.exams, edits: current.edits, materials: current.materials,
-              }))) setNotice('Đã đặt lại tiến độ BPS301.')
-            }}>Đặt lại tiến độ</button>
-          </section>}
           {!section && <section className="panel task"><h1>Không tìm thấy trang</h1><button onClick={() => go('overview')}>Về tổng quan</button></section>}
           <dialog ref={dialog} onClose={() => setSlide(undefined)}>
             <div className="row spread"><h2>Giáo trình liên quan</h2><button aria-label="Đóng giáo trình" onClick={() => dialog.current?.close()}><X size={18} /></button></div>
@@ -332,6 +388,9 @@ export function App() {
               <p>Chưa có tài liệu {slide.id} trong thư viện.</p>)}
           </dialog>
         </>}
+        {section === 'settings' && <SettingsPage preferences={preferences} change={(patch) => savePreferences({ ...preferences, ...patch })}
+          backup={backup} dismiss={() => setBackup(undefined)} bytes={bytes}
+          load={() => restoreInput.current?.click()} exportData={exportData} restore={applyBackup} reset={resetData} />}
       </div>
       </main>
     </div>

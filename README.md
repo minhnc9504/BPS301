@@ -1,87 +1,115 @@
 # Smart Exam Preparation System
 
-Smart Exam là ứng dụng ôn tập và thi thử trắc nghiệm chạy trên trình duyệt, dùng React, TypeScript và Vite. Giao diện bằng tiếng Việt, còn câu hỏi và tài liệu giữ ngôn ngữ gốc. Ứng dụng đọc dữ liệu JSON tĩnh và lưu tiến độ trong `localStorage`, nên có thể chạy trên GitHub Pages.
+[![Live Demo](https://shields.io)](https://minhnc9504.github.io/BPS301/home)
+![React](https://shields.io)
+![Vite](https://shields.io)
 
-## Chạy trên máy
+**Smart Exam** là ứng dụng web ôn tập và thi thử trắc nghiệm được xây dựng bằng **React**, **TypeScript** và **Vite**. Ứng dụng sử dụng giao diện tiếng Việt, giữ nguyên ngôn ngữ gốc của câu hỏi và tài liệu, đọc dữ liệu từ các tệp JSON tĩnh và lưu toàn bộ tiến độ học tập trên `localStorage` của trình duyệt.
 
-Dùng **Node.js 22.12+** và npm. Tại thư mục dự án, chạy:
+> **Trải nghiệm trực tuyến:** [https://minhnc9504.github.io/BPS301/home](https://minhnc9504.github.io/BPS301/home)
 
-```sh
+---
+
+## Chạy dự án trên máy (Local)
+
+**Yêu cầu:** Node.js `22.12+` và `npm`.
+
+```bash
+# Cài đặt thư viện
 npm ci
+
+# Chạy môi trường phát triển
 npm run dev
 ```
 
-Mở địa chỉ Vite hiện trong terminal. Để kiểm tra bản production:
+Mở địa chỉ hiển thị trên terminal (thường là `http://localhost:5173`).
 
-```sh
-npm run build
-npm run preview
+**Kiểm tra bản đóng gói (Production):**
+
+```bash
+npm run build   # Kiểm tra TypeScript và xuất tệp ra thư mục dist/
+npm run preview # Xem trước bản build trên máy
 ```
 
-Lệnh build kiểm tra TypeScript và tạo thư mục `dist/`.
+---
 
-## Sử dụng ứng dụng
+## Tính năng chính
 
 | Mục | Chức năng |
-| --- | --- |
-| **Tổng quan** | Xem thống kê, lịch sử học và tiếp tục từ vị trí đang làm. |
-| **Ôn tập** | Lọc theo đề, chương, chủ đề hoặc câu cần ôn lại. Đáp án và phản hồi được lưu khi chuyển câu hoặc tải lại. **Làm lại** xóa đáp án của câu hiện tại. **Reset tiến độ** xóa đáp án và lượt ôn trong phạm vi đề, chương và chủ đề đang lọc sau khi xác nhận. Dấu câu khó được giữ lại. |
-| **Thi thử** | Chọn đề, số câu, thời lượng và cách trộn câu hỏi hoặc lựa chọn. Mỗi đề có thể có một lượt thi đang làm. Đồng hồ tiếp tục chạy khi chuyển đề hoặc đóng tab. Lượt hết giờ được nộp khi ứng dụng chạy lại. Có thể reset lượt đang làm hoặc xóa lịch sử theo từng đề. |
-| **Giáo trình** | Đọc lý thuyết, tìm theo tên hoặc nội dung đã khai báo và mở PDF hay ảnh slide. PPTX dùng PDF hoặc ảnh đi kèm để xem trước. |
-| **Ngân hàng** | Nhập một hoặc nhiều JSON, xem lỗi và ID trùng, chọn bỏ qua, cập nhật hoặc tạo bản sao. Có thể sửa câu hỏi, gắn trang giáo trình và xuất ngân hàng của môn. |
+| :--- | :--- |
+| **Tổng quan** | Xem thống kê tiến độ, lịch sử học tập và tiếp tục nhanh tại vị trí đang làm dở. |
+| **Ôn tập** | Lọc câu hỏi theo đề, chương, chủ đề hoặc danh sách câu cần ôn lại. Tự động lưu đáp án và phản hồi khi chuyển câu/tải lại trang. Hỗ trợ **Làm lại** từng câu hoặc **Reset tiến độ** theo bộ lọc (vẫn giữ dấu câu khó). |
+| **Thi thử** | Tùy chỉnh đề thi, số lượng câu, thời gian làm bài và chế độ trộn câu hỏi/đáp án. Đồng hồ đếm ngược chạy ngầm ngay cả khi chuyển đề hoặc đóng tab; tự động nộp bài nếu hết giờ khi mở lại ứng dụng. |
+| **Giáo trình** | Đọc lý thuyết, tìm kiếm theo tiêu đề hoặc nội dung trang đã khai báo; hỗ trợ xem PDF, ảnh slide (tệp `.pptx` sử dụng PDF hoặc bộ ảnh đi kèm để xem trước). |
+| **Ngân hàng** | Nhập một hoặc nhiều tệp JSON, tự động kiểm tra lỗi cú pháp và trùng lặp ID (cho phép bỏ qua, cập nhật hoặc tạo bản sao). Hỗ trợ chỉnh sửa trực tiếp câu hỏi, gắn trang giáo trình và xuất dữ liệu. |
 
-**Sao lưu** xuất tiến độ ôn tập, các lượt thi đang làm, lịch sử, câu khó và dữ liệu đã thêm hoặc chỉnh sửa trong trình duyệt. **Khôi phục** kiểm tra JSON rồi yêu cầu xác nhận trước khi thay dữ liệu hiện tại. Dùng hai nút này khi chuyển từ localhost sang GitHub Pages hoặc sang thiết bị khác. **Xuất ngân hàng** xuất dữ liệu bộ đề BPS301.
+### Tiện ích & Sao lưu dữ liệu
+* **Phím tắt & Giao diện:** Nhấn **Tìm nhanh** hoặc `Ctrl + K` (`⌘ + K` trên macOS) để mở nhanh màn hình/chương; chuyển đổi giao diện Sáng/Tối ở góc thanh điều hướng.
+* **Sao lưu & Khôi phục:** Xuất toàn bộ dữ liệu hoặc chỉ tiến độ. Mở bản xem trước rồi chọn gộp hoặc ghi đè theo phạm vi tệp. Khi gộp, ứng dụng ưu tiên dữ liệu trên máy ở các ID trùng và hợp nhất lịch sử. **Xuất ngân hàng** tải riêng bộ đề BPS301.
+* **Đặt lại & tùy chọn:** Có thể đặt lại lượt ôn và thi, xóa riêng dấu câu khó hoặc khôi phục gốc qua hai lần xác nhận. Tùy chọn tự nộp áp dụng khi tạo phiên thi. Khi tắt tự nộp, bài bị khóa lúc hết giờ và người học nộp thủ công. Dùng `Shift+B` để đánh dấu câu khó và `B` để chọn đáp án B.
 
-Trên thanh điều hướng, **Tìm nhanh** hoặc `Ctrl+K` (`⌘K` trên Mac) mở danh sách màn hình và chương. Nút mặt trăng hoặc mặt trời đổi giao diện sáng/tối và ghi nhớ lựa chọn trong trình duyệt.
+---
 
 ## Dữ liệu BPS301 đi kèm
 
-Danh mục hiện có **11 chương lý thuyết** và **260 câu hỏi** trong năm bộ đề:
+Hệ thống tích hợp sẵn **11 chương lý thuyết** và **260 câu hỏi** thuộc 5 bộ đề:
 
-| Đề hiển thị | Tệp JSON | Số câu |
-| --- | --- | ---: |
-| FA25 | `FA26.json` | 59 |
-| Đề 2 · SU26 FE | `SU26.json` | 48 |
-| FE Mock | `FE_Mock.json` | 3 |
-| BPS301 — FA26 FINAL EXAM 805603 | `BPS301_FA26_FE_805603.json` | 50 |
-| Ngân hàng 100 câu hỏi ôn tập | `bonus_100c.json` | 100 |
+| Tên đề hiển thị | Tệp JSON | Số câu | Ghi chú |
+| :--- | :--- | :---: | :--- |
+| FA25 | `FA26.json` | 59 | |
+| Đề 2 · SU26 FE | `SU26.json` | 48 | |
+| FE Mock | `FE_Mock.json` | 3 | |
+| BPS301 — FA26 FINAL EXAM 805603 | `BPS301_FA26_FE_805603.json` | 50 | Đáp án, phân tích & mẹo mang tính suy luận tham khảo |
+| Ngân hàng 100 câu hỏi ôn tập | `bonus_100c.json` | 100 | |
 
-Tên đề hiển thị lấy từ trường `title` hoặc `exam_title` trong JSON. Bộ đề 805603 đánh dấu đáp án, phân tích và mẹo là nội dung suy luận tham khảo.
+*(Tên đề hiển thị được lấy từ trường `title` hoặc `exam_title` trong tệp JSON).*
 
-## Thêm bộ đề và giáo trình BPS301
+---
+
+## Cấu trúc thư mục
 
 ```text
 public/
-  data/catalog.json          # Danh mục môn và đường dẫn đến từng subject.json
-  data/bps301/
-    subject.json             # Danh sách đề, đường dẫn lý thuyết, chủ đề và giáo trình
-    theory.json
-    exams/
-  materials/                 # PDF, PPTX và ảnh slide đi kèm dự án
-  smartexam.png              # Logo và favicon
+├── data/
+│   ├── catalog.json          # Danh mục môn học và đường dẫn tới từng subject.json
+│   └── bps301/
+│       ├── subject.json      # Khai báo danh sách đề, lý thuyết, chủ đề và giáo trình
+│       ├── theory.json       # Nội dung lý thuyết các chương
+│       └── exams/            # Các tệp JSON chứa bộ đề trắc nghiệm
+├── materials/                # Tài liệu PDF, PPTX và ảnh slide đi kèm dự án
+└── smartexam.png             # Logo và favicon
+
 src/
-  features/                  # Các màn hình
-  data/                      # Kiểu dữ liệu, kiểm tra JSON và lưu tiến độ
-  components/                # Hiển thị câu hỏi và nội dung
+├── components/               # Các component hiển thị câu hỏi và nội dung
+├── data/                     # Định nghĩa kiểu dữ liệu, kiểm tra JSON và quản lý localStorage
+└── features/                 # Các màn hình chức năng chính
 ```
 
-### Thêm bộ đề cho mọi người
+---
 
-1. Đặt JSON trong `public/data/<mon>/exams/`.
-2. Thêm đường dẫn dạng `data/<mon>/exams/<ten-de>.json` vào mảng `exams` của `subject.json`.
-3. Tải lại trang khi chạy dev. Với GitHub Pages, commit và push để tạo bản build mới.
+## Hướng dẫn mở rộng dữ liệu
 
-Ứng dụng mở trực tiếp BPS301. Các đường dẫn dữ liệu được khai báo trong [cấu hình BPS301](public/data/bps301/subject.json). Để thêm đề cho riêng trình duyệt đang dùng, nhập tệp qua **Ngân hàng**.
+### 1. Thêm bộ đề mới
+* **Dành riêng cho trình duyệt cá nhân:** Vào mục **Ngân hàng** trên giao diện web và nhập tệp JSON.
+* **Tích hợp mặc định cho mọi người dùng:**
+  1. Đặt tệp JSON vào thư mục `public/data/<ma-mon>/exams/`.
+  2. Khai báo đường dẫn `"data/<ma-mon>/exams/<ten-de>.json"` vào mảng `exams` trong tệp `subject.json`.
+  3. Tải lại trang (nếu đang chạy `dev`) hoặc `commit` & `push` lên GitHub để cập nhật bản build.
 
-JSON chuẩn gồm `version: 1`, `subjectId` và mảng `exams`. Mỗi đề có `id`, `title`, `questions` và có thể có `note`. Mỗi câu có `id`, `type` (`single` hoặc `multiple`), `prompt`, `options` (cặp `id` và `content`) và `answers` (mảng ID lựa chọn đúng). Có thể bổ sung `chapterId`, `topics`, `explanation`, `tip`, `formulas` và `slides`. Nội dung nhận chuỗi văn bản hoặc đối tượng `{ "format": "html", "value": "..." }`; HTML được làm sạch trước khi hiển thị. Dùng **Xuất ngân hàng** để lấy mẫu JSON đầy đủ.
+**Quy chuẩn định dạng JSON:**
+* **Cấu trúc chuẩn:** Gồm `version: 1`, `subjectId` và mảng `exams`. Mỗi đề chứa `id`, `title`, `questions` (tùy chọn `note`). Mỗi câu hỏi gồm `id`, `type` (`single` hoặc `multiple`), `prompt`, `options` (`id`, `content`) và `answers` (mảng ID đáp án đúng); có thể bổ sung `chapterId`, `topics`, `explanation`, `tip`, `formulas` và `slides`.
+* **Hỗ trợ HTML:** Các trường nội dung chấp nhận chuỗi thuần hoặc đối tượng `{ "format": "html", "value": "..." }` (HTML được làm sạch tự động trước khi hiển thị). Có thể dùng tính năng **Xuất ngân hàng** để lấy tệp mẫu đầy đủ.
+* **Định dạng tương thích cũ:** Hỗ trợ cấu trúc `exam_title` với `options` dạng object và `type` là `SINGLECHOICE` / `MULTIPLECHOICE` (ID câu được ghép từ tên tệp và ID gốc). *Lưu ý giữ nguyên tên tệp và ID câu hỏi khi cập nhật để không làm mất tiến độ cũ của người dùng.*
 
-Ứng dụng cũng đọc định dạng `exam_title` với `options` dạng đối tượng và `type` là `SINGLECHOICE` hoặc `MULTIPLECHOICE`. Định dạng này lấy ID đề từ tên tệp và ghép với ID gốc để tạo ID câu. Giữ tên tệp và ID ổn định khi cập nhật để tiến độ cũ tiếp tục khớp.
+### 2. Thêm giáo trình hoặc liên kết slide
+1. Đặt tài liệu vào `public/materials/<ma-mon>/<ten-tai-lieu>/`.
+2. Khai báo trong mảng `materials` của `subject.json` với các trường: `id`, `title`, `kind` (`pdf`, `pptx` hoặc `images`), `file` (tệp gốc), `preview` (PDF xem trước) và `pages` (`page` bắt đầu từ `1`, `image`, `text` dùng để tìm kiếm từ khóa).
+3. Trong câu hỏi JSON, gắn liên kết tới trang tài liệu bằng cú pháp:
+   ```json
+   "slides": [{ "materialId": "bpm-slides", "page": 1 }]
+   ```
 
-### Thêm giáo trình hoặc liên kết slide
-
-Đặt tài liệu trong `public/materials/<mon>/<tai-lieu>/`, rồi thêm mục vào mảng `materials` của `subject.json`. Mục cần `id`, `title` và `kind` (`pdf`, `pptx` hoặc `images`). Dùng `file` cho tệp gốc, `preview` cho PDF xem trước và `pages` cho từng trang có `page`, `image` hoặc `text`. Số trang bắt đầu từ 1. Trường `text` cho phép tìm từ khóa theo trang.
-
-Trong câu hỏi, dùng `"slides": [{ "materialId": "bpm-slides", "page": 1 }]` để mở đúng trang. Tệp thêm qua giao diện có giới hạn **1,5 MB mỗi tệp** và dùng dung lượng lưu trữ của trình duyệt.
-
-
-Vite dùng `base: './'` để tài nguyên tải được khi site nằm dưới đường dẫn repository như `/BPS301/`. Khi triển khai, JSON trong `public/` được phục vụ cùng website, bao gồm đáp án. Chế độ thi thử ẩn đáp án trên giao diện đến khi nộp bài.
+> [!NOTE]
+> * Tệp tải lên trực tiếp qua giao diện trình duyệt giới hạn tối đa **1,5 MB/tệp** do giới hạn bộ nhớ trình duyệt.
+> * Cấu hình Vite sử dụng `base: './'` để chạy ổn định dưới đường dẫn con trên GitHub Pages (`/BPS301/`).
+> * Vì ứng dụng chạy hoàn toàn phía client, toàn bộ tệp JSON trong `public/` (bao gồm cả đáp án) đều được phục vụ công khai trên mạng; chế độ **Thi thử** chỉ ẩn đáp án trên giao diện cho đến khi nộp bài.

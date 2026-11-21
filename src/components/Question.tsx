@@ -55,11 +55,12 @@ export function Rich({ content, query = '', theory = false }: { content: Content
       __html: renderHtml(content.value, query, theory),
     }} />
 }
-export function Choices({ question, selected, reveal, change }: {
+export function Choices({ question, selected, reveal, change, disabled = false }: {
   question: Question; selected: string[]; reveal: boolean
   change: (answers: string[]) => void
+  disabled?: boolean
 }) {
-  return <fieldset className="choices" disabled={reveal}>
+  return <fieldset className="choices" disabled={reveal || disabled}>
     <legend className="sr-only">Lựa chọn trả lời</legend>
     {question.options.map((option, index) => {
       const checked = selected.includes(option.id)
@@ -79,15 +80,21 @@ export function Choices({ question, selected, reveal, change }: {
     })}
   </fieldset>
 }
-export function Feedback({ question, selected, slide, correct }: {
+export function Feedback({ question, selected, slide, correct, explanations = true, tips = true }: {
   question: Question; selected: string[]; slide: (materialId: string, page: number) => void
   correct?: boolean
+  explanations?: boolean
+  tips?: boolean
 }) {
   const right = correct ?? isCorrect(question, selected)
   return <div className={'feedback ' + (right ? 'right' : 'wrong')} aria-live="polite">
     <strong className="row">{right ? <CircleCheck size={20} /> : <CircleX size={20} />}{right ? 'Chính xác!' : selected.length ? 'Chưa chính xác' : 'Chưa trả lời'}</strong>
-    {question.explanation && <div className="feedback-content"><b className="row"><BookOpen size={16} /> Giải thích</b><Rich content={question.explanation} /></div>}
-    {question.tip && <div className="feedback-content memory-tip"><b className="row"><Lightbulb size={16} /> Mẹo ghi nhớ</b><Rich content={question.tip} /></div>}
+    {question.explanation && (explanations
+      ? <div className="feedback-content"><b className="row"><BookOpen size={16} /> Giải thích</b><Rich content={question.explanation} /></div>
+      : <details className="feedback-content"><summary>Giải thích</summary><Rich content={question.explanation} /></details>)}
+    {question.tip && (tips
+      ? <div className="feedback-content memory-tip"><b className="row"><Lightbulb size={16} /> Mẹo ghi nhớ</b><Rich content={question.tip} /></div>
+      : <details className="feedback-content memory-tip"><summary>Mẹo ghi nhớ</summary><Rich content={question.tip} /></details>)}
     {question.formulas?.map((formula, index) => <code className="formula" key={index}>{formula}</code>)}
     {question.slides?.map((ref, index) => <button type="button" key={index} onClick={() => slide(ref.materialId, ref.page)}>
       {ref.materialId} · Trang {ref.page}
