@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "subjectId": "bps301",
+  "exams": [
+    {
+      "id": "FE_Mock",
+      "title": "FE Mock",
+      "questions": [
+        {
+          "id": "FE_Mock_01",
+          "chapterId": "8",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Which dashboard level links process performance metrics with the Balanced Scorecard and executive goals?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Operational dashboard"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Tactical dashboard"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Strategic dashboard"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Workflow dashboard"
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Mẹo: Strategic dashboard gắn liền với mục tiêu chiến lược và Balanced Scorecard cho cấp lãnh đạo[cite: 11]."
+          }
+        },
+        {
+          "id": "FE_Mock_02",
+          "chapterId": "10",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Performance mining allows analysts to overlay which metrics onto a process discovery map?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Time, cost, and frequencies"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Employee names and salaries"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Customer satisfaction scores only"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Hardware server utilization"
+              }
+            }
+          ],
+          "answers": [
+            "A"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Mẹo: Performance mining tích hợp thông tin thời gian, chi phí và tần suất (time, cost, frequencies) lên bản đồ quy trình[cite: 11]."
+          }
+        },
+        {
+          "id": "FE_Mock_03",
+          "chapterId": "9",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Which of the following is NOT required in a standard event log?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Case ID"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Activity Name"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Timestamp"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Employee GPS Location"
+              }
+            }
+          ],
+          "answers": [
+            "D"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Mẹo: Event log bắt buộc cần Case ID, Activity Name, Timestamp; không cần GPS location."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2262 @@
+{
+  "version": 1,
+  "subjectId": "bps301",
+  "exams": [
+    {
+      "id": "SU26_FE",
+      "title": "Đề 2 · SU26 FE",
+      "questions": [
+        {
+          "id": "SU26_FE_01",
+          "chapterId": "6",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "An analyst discovers that late-payment fees cost a company $10,000 annually and also annoy suppliers, weakening future negotiations. In which Issue Register field should that annoyance and negotiation effect be documented?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Quantitative Impact"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Qualitative Impact"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Data and Assumptions"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Priority Analysis"
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Chi phí $10.000/năm là tác động định lượng. Mất thiện cảm của nhà cung cấp và suy giảm quan hệ đàm phán là tác động định tính, vì đề không gán cho chúng một thước đo số cụ thể.\nLoại trừ: A. Quantitative là tác động đo được bằng con số. Còn tình huống này cần: Qualitative Impact. | C. \"Data and Assumptions\" mô tả hướng khác; câu này cần Qualitative Impact. Lý do: Chi phí $10.000/năm là tác động định lượng. | D. \"Priority Analysis\" mô tả hướng khác; câu này cần Qualitative Impact. Lý do: Chi phí $10.000/năm là tác động định lượng.\nMẹo: Tiền có số = Quantitative; uy tín, quan hệ = Qualitative.\nNguồn: Book Chapter 6 · Issue Register · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_02",
+          "chapterId": "3",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "In a rework loop or repetition block, an Exclusive (XOR) join is typically used to reconnect the loopback branch. Why is a Parallel (AND) join unsuitable for this purpose?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. It would wait for a token from both branches, causing a deadlock."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. It would execute the repetition block twice for each loop."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. It cannot be connected to a sequence flow originating from a split."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. It only allows tokens from start events to enter the cycle."
+              }
+            }
+          ],
+          "answers": [
+            "A"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "AND-join cần token ở tất cả nhánh đầu vào. Trong vòng lặp, lần đầu vào thường chỉ có token từ luồng vào; token từ nhánh loopback không có → deadlock. XOR-join cho luồng đến được đi tiếp ngay.\nLoại trừ: B. \"It would execute the repetition block twice for each loop.\" mô tả hướng khác; câu này cần It would wait for a token from both branches, causing a deadlock.. Lý do: AND-join cần token ở tất cả nhánh đầu vào. | C. Sequence flow chỉ nối bên trong cùng pool. Còn tình huống này cần: It would wait for a token from both branches, causing a deadlock.. | D. \"It only allows tokens from start events to enter the cycle.\" khẳng định quá tuyệt đối; tình huống có điều kiện: AND-join cần token ở tất cả nhánh đầu vào.\nMẹo: Loopback dùng XOR-join; AND-join đợi đủ nên có thể kẹt.\nNguồn: Book Chapter 3 · Branching/Merging · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_03",
+          "chapterId": "2",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Process selection involves evaluating processes based on Strategic Importance, Health, and Feasibility. How is process 'Health' typically assessed when quantitative data is unavailable?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. By measuring the total annual revenue of the company"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. By relying on qualitative perceptions of participants"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. By ignoring the process until a failure occurs"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. By checking if the process uses an ERP system"
+              }
+            },
+            {
+              "id": "E",
+              "content": {
+                "format": "text",
+                "value": "E. By counting the number of steps in the BPMN model"
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Khi chưa có KPI hay thống kê, có thể đánh giá sức khỏe quy trình bằng phản ánh, phỏng vấn và nhận định định tính của những người thực thi. Đây là nhận định sơ bộ, cần kiểm chứng khi có dữ liệu.\nLoại trừ: A. \"By measuring the total annual revenue of the company\" mô tả hướng khác; câu này cần By relying on qualitative perceptions of participants. Lý do: Khi chưa có KPI hay thống kê, có thể đánh giá sức khỏe quy trình bằng phản ánh, phỏng vấn và nhận định định tính của những người thực thi. | C. \"By ignoring the process until a failure occurs\" mô tả hướng khác; câu này cần By relying on qualitative perceptions of participants. Lý do: Khi chưa có KPI hay thống kê, có thể đánh giá sức khỏe quy trình bằng phản ánh, phỏng vấn và nhận định định tính của những người thực thi. | D. ERP quản lý nguồn lực/nghiệp vụ tổng hợp. Còn tình huống này cần: By relying on qualitative perceptions of participants. | E. \"By counting the number of steps in the BPMN model\" mô tả hướng khác; câu này cần By relying on qualitative perceptions of participants. Lý do: Khi chưa có KPI hay thống kê, có thể đánh giá sức khỏe quy trình bằng phản ánh, phỏng vấn và nhận định định tính của những người thực thi.\nMẹo: Health chưa có số → hỏi người trực tiếp làm, rồi kiểm chứng.\nNguồn: Book Chapter 2 · Process Identification · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_04",
+          "chapterId": "7",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "An M/M/1 queueing model has particular assumptions about arrivals, service times and servers. Which scenario best describes an M/M/3 system?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Three independent queues each leading to one single server."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. One single queue leading to three parallel servers."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. A process with three tasks performed in a sequential line."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. A system where arrivals happen in fixed batches of three."
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "M/M/3 là mô hình hàng đợi với đầu vào Poisson, thời gian phục vụ hàm mũ và 3 máy/người phục vụ song song, thường cùng dùng một hàng đợi.\nLoại trừ: A. \"Three independent queues each leading to one single server.\" mô tả hướng khác; câu này cần One single queue leading to three parallel servers.. Lý do: M/M/3 là mô hình hàng đợi với đầu vào Poisson, thời gian phục vụ hàm mũ và 3 máy/người phục vụ song song, thường cùng dùng một hàng đợi. | C. \"A process with three tasks performed in a sequential line.\" mô tả hướng khác; câu này cần One single queue leading to three parallel servers.. Lý do: M/M/3 là mô hình hàng đợi với đầu vào Poisson, thời gian phục vụ hàm mũ và 3 máy/người phục vụ song song, thường cùng dùng một hàng đợi. | D. \"A system where arrivals happen in fixed batches of three.\" mô tả hướng khác; câu này cần One single queue leading to three parallel servers.. Lý do: M/M/3 là mô hình hàng đợi với đầu vào Poisson, thời gian phục vụ hàm mũ và 3 máy/người phục vụ song song, thường cùng dùng một hàng đợi.\nMẹo: M/M/c: chữ c = số server, không phải số queue hay số task.\nNguồn: Book Chapter 7 · Quantitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_05",
+          "chapterId": "9",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Which domain-specific Process-Aware Information System supports engineering processes throughout a product's conception, design and manufacturing phases?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Customer Relationship Management (CRM) systems"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Enterprise Resource Planning (ERP) systems"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Product Lifecycle Management (PLM) systems"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Supply Chain Management (SCM) systems"
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "PLM quản lý vòng đời sản phẩm, từ ý tưởng, thiết kế, thay đổi kỹ thuật đến sản xuất. CRM quản lý khách hàng; SCM chuỗi cung ứng; ERP nghiệp vụ tổng hợp.\nLoại trừ: A. CRM quản lý khách hàng và lead. Còn tình huống này cần: Product Lifecycle Management (PLM) systems. | B. ERP quản lý nguồn lực/nghiệp vụ tổng hợp. Còn tình huống này cần: Product Lifecycle Management (PLM) systems. | D. SCM quản lý chuỗi cung ứng. Còn tình huống này cần: Product Lifecycle Management (PLM) systems.\nMẹo: Product Life → PLM.\nNguồn: Book Chapters 9–10 · PAIS & Implementation · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_06",
+          "chapterId": "2",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A Process Portfolio helps visualize processes to prioritize for improvement. According to Davenport's advice, if this is the organization's first BPM project, which process should be selected?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. The most strategically important and least healthy one"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. A process that is feasible and creates a success story"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. A process that has no strategic importance at all"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. The one with the highest number of manual tasks"
+              }
+            },
+            {
+              "id": "E",
+              "content": {
+                "format": "text",
+                "value": "E. The most complex process in the entire architecture"
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Dự án BPM đầu tiên nên cân bằng tác động và tính khả thi, ưu tiên cơ hội thắng sớm để tạo niềm tin thay vì chọn quy trình khó nhất rồi dễ thất bại.\nLoại trừ: A. \"The most strategically important and least healthy one\" mô tả hướng khác; câu này cần A process that is feasible and creates a success story. Lý do: Dự án BPM đầu tiên nên cân bằng tác động và tính khả thi, ưu tiên cơ hội thắng sớm để tạo niềm tin thay vì chọn quy trình khó nhất rồi dễ thất bại. | C. \"A process that has no strategic importance at all\" mô tả hướng khác; câu này cần A process that is feasible and creates a success story. Lý do: Dự án BPM đầu tiên nên cân bằng tác động và tính khả thi, ưu tiên cơ hội thắng sớm để tạo niềm tin thay vì chọn quy trình khó nhất rồi dễ thất bại. | D. \"The one with the highest number of manual tasks\" mô tả hướng khác; câu này cần A process that is feasible and creates a success story. Lý do: Dự án BPM đầu tiên nên cân bằng tác động và tính khả thi, ưu tiên cơ hội thắng sớm để tạo niềm tin thay vì chọn quy trình khó nhất rồi dễ thất bại. | E. \"The most complex process in the entire architecture\" mô tả hướng khác; câu này cần A process that is feasible and creates a success story. Lý do: Dự án BPM đầu tiên nên cân bằng tác động và tính khả thi, ưu tiên cơ hội thắng sớm để tạo niềm tin thay vì chọn quy trình khó nhất rồi dễ thất bại.\nMẹo: First BPM = Quick win có ý nghĩa, không phải 'hardest first'.\nNguồn: Book Chapter 2 · Process Identification · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_07",
+          "chapterId": "9",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "When specifying execution properties, an analyst chooses separate Send and Receive tasks rather than one Synchronous Service task for a long-running interaction. What is the main reason?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Send and receive tasks require less memory than service tasks."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Service tasks are strictly limited to simple internal scripts."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Service tasks block the process execution branch until finished."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Send and receive tasks automatically handle XSD data types."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Trong tương tác kéo dài, mô hình gửi yêu cầu rồi chờ phản hồi phù hợp hơn một lời gọi synchronous vì luồng không phải giữ một service invocation đồng bộ chờ đến lúc hoàn tất.\nLoại trừ: A. \"Send and receive tasks require less memory than service tasks.\" mô tả hướng khác; câu này cần Service tasks block the process execution branch until finished.. Lý do: Trong tương tác kéo dài, mô hình gửi yêu cầu rồi chờ phản hồi phù hợp hơn một lời gọi synchronous vì luồng không phải giữ một service invocation đồng | B. \"Service tasks are strictly limited to simple internal scripts.\" mô tả hướng khác; câu này cần Service tasks block the process execution branch until finished.. Lý do: Trong tương tác kéo dài, mô hình gửi yêu cầu rồi chờ phản hồi phù hợp hơn một lời gọi synchronous vì luồng không phải giữ một service invocation đồng | D. \"Send and receive tasks automatically handle XSD data types.\" mô tả hướng khác; câu này cần Service tasks block the process execution branch until finished.. Lý do: Trong tương tác kéo dài, mô hình gửi yêu cầu rồi chờ phản hồi phù hợp hơn một lời gọi synchronous vì luồng không phải giữ một service invocation đồng\nMẹo: Long-running request → Send now, Receive later; đừng giữ synchronous call.\nLưu ý: Mô tả 'service tasks block' là cách diễn giải bài giảng về synchronous invocation. Tùy engine, cơ chế chờ có thể được tối ưu/asynchronous ở tầng triển khai.\nNguồn: Book Chapters 9–10 · PAIS & Implementation · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_08",
+          "chapterId": "4",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A business rule states: 'Replenish stock every time the level drops below a threshold.' Which BPMN event type should be used to trigger the flow once that condition is met?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Message event."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Timer event."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Conditional event."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Signal event."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Đây là điều kiện trên dữ liệu tồn kho, không phải chờ một khoảng thời gian hay nhận tin từ bên ngoài. BPMN Conditional Event kích hoạt khi biểu thức điều kiện đúng.\nLoại trừ: A. \"Message event.\" mô tả hướng khác; câu này cần Conditional event.. Lý do: Đây là điều kiện trên dữ liệu tồn kho, không phải chờ một khoảng thời gian hay nhận tin từ bên ngoài. | B. Timer event kích hoạt theo thời gian. Còn tình huống này cần: Conditional event.. | D. \"Signal event.\" mô tả hướng khác; câu này cần Conditional event.. Lý do: Đây là điều kiện trên dữ liệu tồn kho, không phải chờ một khoảng thời gian hay nhận tin từ bên ngoài.\nMẹo: IF stock < threshold → Conditional Event.\nNguồn: Book Chapter 4 · Events · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_09",
+          "chapterId": "11",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A discovered process model can replay 100% of the traces in an event log but permits many task sequences never observed in reality (a 'flower pattern'). Which quality dimension is most critical?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Fitness"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Precision"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Generalization"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Complexity"
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Fitness cao vì log được phát lại hết, nhưng Precision thấp vì mô hình chấp nhận quá nhiều hành vi không có trong log. Flower model thường over-generalized.\nLoại trừ: A. Fitness xem mô hình phát lại được bao nhiêu trace trong log. Còn tình huống này cần: Precision. | C. \"Generalization\" mô tả hướng khác; câu này cần Precision. Lý do: Fitness cao vì log được phát lại hết, nhưng Precision thấp vì mô hình chấp nhận quá nhiều hành vi không có trong log. | D. \"Complexity\" mô tả hướng khác; câu này cần Precision. Lý do: Fitness cao vì log được phát lại hết, nhưng Precision thấp vì mô hình chấp nhận quá nhiều hành vi không có trong log.\nMẹo: Fitness = replay log; Precision = không cho phép quá nhiều hành vi thừa.\nNguồn: Book Chapter 11 · Process Mining · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_10",
+          "chapterId": "7",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "What is λ (lambda) in the occupational rate?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. The average number of process instances active at a given point in time."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. The arrival rate per time unit."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. The average number of customers that can be served per time unit."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. The number of servers."
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "λ là số case đến trung bình mỗi đơn vị thời gian. Service rate của một server thường ký hiệu μ; utilization khi một server là ρ = λ/μ.\nLoại trừ: A. \"The average number of process instances active at a given point in time.\" mô tả hướng khác; câu này cần The arrival rate per time unit.. Lý do: λ là số case đến trung bình mỗi đơn vị thời gian. | C. \"The average number of customers that can be served per time unit.\" mô tả hướng khác; câu này cần The arrival rate per time unit.. Lý do: λ là số case đến trung bình mỗi đơn vị thời gian. | D. \"The number of servers.\" mô tả hướng khác; câu này cần The arrival rate per time unit.. Lý do: λ là số case đến trung bình mỗi đơn vị thời gian.\nMẹo: Lambda = arrivals; Mu = service.\nNguồn: Book Chapter 7 · Quantitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_11",
+          "chapterId": "6",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A process analyst identifies an activity that does not directly satisfy the end customer but is strictly required by national financial regulation to minimize business-loss risk. How should it be classified in Value-Added Analysis?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Non-Value Adding (NVA)"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Business Value Adding (BVA)"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Value Adding (VA)"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Necessary Waste (NW)"
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "BVA là bước cần thiết cho vận hành, kiểm soát rủi ro hoặc tuân thủ pháp luật, dù khách hàng không trực tiếp trả tiền riêng cho nó.\nLoại trừ: A. NVA không tạo giá trị; cần giảm hoặc bỏ. Còn tình huống này cần: Business Value Adding (BVA). | C. VA trực tiếp tạo giá trị khách hàng. Còn tình huống này cần: Business Value Adding (BVA). | D. \"Necessary Waste (NW)\" mô tả hướng khác; câu này cần Business Value Adding (BVA). Lý do: BVA là bước cần thiết cho vận hành, kiểm soát rủi ro hoặc tuân thủ pháp luật, dù khách hàng không trực tiếp trả tiền riêng cho nó.\nMẹo: Required by regulation → BVA; không tự động là NVA.\nNguồn: Book Chapter 6 · Qualitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_12",
+          "chapterId": "1",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Analyzing the causes of long cycle times or high error rates is the primary objective of which phase?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Process redesign"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Process discovery"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Process analysis"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Process monitoring"
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Process Analysis tìm nguyên nhân của thời gian dài, lỗi, waste và bottleneck. Discovery ghi nhận As-Is, Redesign đề xuất To-Be, Monitoring tiếp tục đo lường khi vận hành.\nLoại trừ: A. Process redesign cải tiến quy trình. Còn tình huống này cần: Process analysis. | B. Process discovery tìm hiểu và mô tả quy trình AS-IS. Còn tình huống này cần: Process analysis. | D. Process monitoring theo dõi hiệu suất/thực thi. Còn tình huống này cần: Process analysis.\nMẹo: Why slow? Why wrong? → Analysis.\nNguồn: Book Chapter 1 · BPM Lifecycle · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_13",
+          "chapterId": "3",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "When comparing the behavior of an XOR-join in a process model with its execution in a BPMS engine, what does the engine do when a token arrives on one input branch?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. It synchronizes with other branches before proceeding."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. It acts as a passthrough and sends it to the output arc."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. It waits for the participant to manually trigger the next task."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. It destroys the token to prevent multiple process instances."
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "XOR-join là simple merge: một token đến thì đi tiếp, không chờ các nhánh còn lại. Điều này khác AND-join và OR-join.\nLoại trừ: A. \"It synchronizes with other branches before proceeding.\" mô tả hướng khác; câu này cần It acts as a passthrough and sends it to the output arc.. Lý do: XOR-join là simple merge: một token đến thì đi tiếp, không chờ các nhánh còn lại. | C. \"It waits for the participant to manually trigger the next task.\" mô tả hướng khác; câu này cần It acts as a passthrough and sends it to the output arc.. Lý do: XOR-join là simple merge: một token đến thì đi tiếp, không chờ các nhánh còn lại. | D. \"It destroys the token to prevent multiple process instances.\" mô tả hướng khác; câu này cần It acts as a passthrough and sends it to the output arc.. Lý do: XOR-join là simple merge: một token đến thì đi tiếp, không chờ các nhánh còn lại.\nMẹo: XOR-join = merge không đợi.\nNguồn: Book Chapter 3 · Branching/Merging · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_14",
+          "chapterId": "7",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "In an AND-block with two parallel branches, Branch A takes 10 hours and Branch B takes 15 hours. What is the cycle time of the block?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. 10 hours"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. 12.5 hours"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. 15 hours"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. 25 hours"
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Nếu hai nhánh chạy song song và bắt đầu cùng lúc, block chỉ kết thúc khi nhánh chậm nhất xong: CT = max(10,15) = 15 giờ.\nLoại trừ: A. Con số 10 hours không ra từ phép tính: Nếu hai nhánh chạy song song và bắt đầu cùng lúc, block chỉ kết thúc khi nhánh chậm nhất xong: CT = max(10,15) = 15 giờ. | B. Con số 12.5 hours không ra từ phép tính: Nếu hai nhánh chạy song song và bắt đầu cùng lúc, block chỉ kết thúc khi nhánh chậm nhất xong: CT = max(10,15) = 15 giờ. | D. Con số 25 hours không ra từ phép tính: Nếu hai nhánh chạy song song và bắt đầu cùng lúc, block chỉ kết thúc khi nhánh chậm nhất xong: CT = max(10,15) = 15 giờ.\nMẹo: Parallel AND = MAX, không phải cộng.\nNguồn: Book Chapter 7 · Quantitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_16",
+          "chapterId": "3",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "An Exclusive (XOR) split gateway is used to diverge into branches based on conditions. What is its defining behavior?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. It allows all branches with true conditions to execute."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. It routes the token to exactly one outgoing branch."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. It generates one token for each available outgoing arc."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. It waits for external triggers to determine the path."
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "XOR chọn chính xác một nhánh. OR có thể chọn một hoặc nhiều; AND kích hoạt tất cả. Event-based gateway chọn theo sự kiện đến trước.\nLoại trừ: A. \"It allows all branches with true conditions to execute.\" mô tả hướng khác; câu này cần It routes the token to exactly one outgoing branch.. Lý do: XOR chọn chính xác một nhánh. | C. \"It generates one token for each available outgoing arc.\" mô tả hướng khác; câu này cần It routes the token to exactly one outgoing branch.. Lý do: XOR chọn chính xác một nhánh. | D. \"It waits for external triggers to determine the path.\" mô tả hướng khác; câu này cần It routes the token to exactly one outgoing branch.. Lý do: XOR chọn chính xác một nhánh.\nMẹo: XOR = exactly ONE.\nNguồn: Book Chapter 3 · Branching/Merging · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_17",
+          "chapterId": "6",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "In a Cause-Effect (Fishbone) diagram, which of the '6 Ms' focuses on environmental factors, such as suppliers or external actors?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Machine"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Measurement"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Milieu"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Method"
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Milieu/Mother Nature chỉ bối cảnh và môi trường bên ngoài ảnh hưởng đến quy trình, gồm các yếu tố ngoại cảnh mà doanh nghiệp không trực tiếp kiểm soát.\nLoại trừ: A. \"Machine\" mô tả hướng khác; câu này cần Milieu. Lý do: Milieu/Mother Nature chỉ bối cảnh và môi trường bên ngoài ảnh hưởng đến quy trình, gồm các yếu tố ngoại cảnh mà doanh nghiệp không trực tiếp kiểm soát | B. \"Measurement\" mô tả hướng khác; câu này cần Milieu. Lý do: Milieu/Mother Nature chỉ bối cảnh và môi trường bên ngoài ảnh hưởng đến quy trình, gồm các yếu tố ngoại cảnh mà doanh nghiệp không trực tiếp kiểm soát | D. \"Method\" mô tả hướng khác; câu này cần Milieu. Lý do: Milieu/Mother Nature chỉ bối cảnh và môi trường bên ngoài ảnh hưởng đến quy trình, gồm các yếu tố ngoại cảnh mà doanh nghiệp không trực tiếp kiểm soát\nMẹo: Milieu = môi trường (môi trường xung quanh).\nNguồn: Book Chapter 6 · Qualitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_18",
+          "chapterId": "2",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "How does the textbook distinguish between 'core processes' and 'support processes'?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Support processes provide the strategic vision, while core processes handle IT infrastructure."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Core processes are only found in manufacturing, while support processes are for services."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Core processes create essential value for customers, while support processes enable them."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Support processes are those that customers are most willing to pay for in a primary value chain."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Core tạo ra sản phẩm/dịch vụ và giá trị cho khách hàng; Support cung cấp năng lực/tài nguyên để Core hoạt động; Management định hướng và quản trị.\nLoại trừ: A. \"Support processes provide the strategic vision, while core processes handle IT infrastructure.\" mô tả hướng khác; câu này cần Core processes create essential value for customers, while support processes enable them.. Lý do: Core tạo ra sản phẩm/dịch vụ và giá trị cho khách hàng; Support cung cấp năng lực/tài nguyên để Core hoạt động; Management định hướng và quản trị. | B. \"Core processes are only found in manufacturing, while support processes are for services.\" khẳng định quá tuyệt đối; tình huống có điều kiện: Core tạo ra sản phẩm/dịch vụ và giá trị cho khách hàng; Support cung cấp năng lực/tài nguyên để Core hoạt động; Management định hướng và quản trị. | D. \"Support processes are those that customers are most willing to pay for in a primary value chain.\" mô tả hướng khác; câu này cần Core processes create essential value for customers, while support processes enable them.. Lý do: Core tạo ra sản phẩm/dịch vụ và giá trị cho khách hàng; Support cung cấp năng lực/tài nguyên để Core hoạt động; Management định hướng và quản trị.\nMẹo: Core = create value; Support = enable Core.\nNguồn: Book Chapter 2 · Process Identification · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_19",
+          "chapterId": "3",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "When modeling a message exchange between two pools, which case creates a potential 'Deadlock' risk in advanced modeling?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Sending a message to a black-box pool."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Using a data-based XOR split to react to a message."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Matching an internal choice with another internal choice."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Connecting a message flow to a start event."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Nếu hai bên tự chọn nhánh độc lập mà không phối hợp thông điệp, mỗi bên có thể chờ thông điệp mà bên kia không gửi. Cần dùng event-based choice ở bên nhận để khớp lựa chọn bên gửi.\nLoại trừ: A. \"Sending a message to a black-box pool.\" mô tả hướng khác; câu này cần Matching an internal choice with another internal choice.. Lý do: Nếu hai bên tự chọn nhánh độc lập mà không phối hợp thông điệp, mỗi bên có thể chờ thông điệp mà bên kia không gửi. | B. XOR-split chọn một nhánh. Còn tình huống này cần: Matching an internal choice with another internal choice.. | D. Message flow chỉ liên lạc giữa các pool. Còn tình huống này cần: Matching an internal choice with another internal choice..\nMẹo: Two independent internal choices → possible deadlock; receiver follows message.\nNguồn: Book Chapters 3–4 · Collaboration · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_20",
+          "chapterId": "3",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "In Step 4 of Process Modeling (Identify the Control Flow), which BPMN element reacts to decisions taken outside the process by external parties?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Data-based Exclusive (XOR) split gateway."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Parallel (AND) join gateway for synchronization."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Event-based XOR split gateway for deferred choice."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Inclusive (OR) split gateway for multiple paths."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Event-based gateway định tuyến theo sự kiện/thông điệp xảy ra trước, phù hợp khi quyết định nằm ở bên ngoài hoặc chưa biết tại thời điểm đến gateway.\nLoại trừ: A. \"Data-based Exclusive (XOR) split gateway.\" mô tả hướng khác; câu này cần Event-based XOR split gateway for deferred choice.. Lý do: Event-based gateway định tuyến theo sự kiện/thông điệp xảy ra trước, phù hợp khi quyết định nằm ở bên ngoài hoặc chưa biết tại thời điểm đến gateway. | B. \"Parallel (AND) join gateway for synchronization.\" mô tả hướng khác; câu này cần Event-based XOR split gateway for deferred choice.. Lý do: Event-based gateway định tuyến theo sự kiện/thông điệp xảy ra trước, phù hợp khi quyết định nằm ở bên ngoài hoặc chưa biết tại thời điểm đến gateway. | D. \"Inclusive (OR) split gateway for multiple paths.\" mô tả hướng khác; câu này cần Event-based XOR split gateway for deferred choice.. Lý do: Event-based gateway định tuyến theo sự kiện/thông điệp xảy ra trước, phù hợp khi quyết định nằm ở bên ngoài hoặc chưa biết tại thời điểm đến gateway.\nMẹo: External decides → Event-based gateway; internal data decides → XOR.\nNguồn: Book Chapters 3–4 · Collaboration · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_21",
+          "chapterId": "6",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A clerk selects incorrect equipment from a catalog because the catalog description is inaccurate. In a Fishbone diagram's 6 Ms, where should the 'Inaccurate Equipment Description' be classified?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Machine"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Method"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Material"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Measurement"
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Thông tin mô tả thiết bị trong catalog là đầu vào bị lỗi/không chính xác, nên có thể xem như chất lượng Material (vật liệu/thông tin đầu vào), không phải máy móc hay thao tác của clerk.\nLoại trừ: A. \"Machine\" mô tả hướng khác; câu này cần Material. Lý do: Thông tin mô tả thiết bị trong catalog là đầu vào bị lỗi/không chính xác, nên có thể xem như chất lượng Material (vật liệu/thông tin đầu vào), không p | B. \"Method\" mô tả hướng khác; câu này cần Material. Lý do: Thông tin mô tả thiết bị trong catalog là đầu vào bị lỗi/không chính xác, nên có thể xem như chất lượng Material (vật liệu/thông tin đầu vào), không p | D. \"Measurement\" mô tả hướng khác; câu này cần Material. Lý do: Thông tin mô tả thiết bị trong catalog là đầu vào bị lỗi/không chính xác, nên có thể xem như chất lượng Material (vật liệu/thông tin đầu vào), không p\nMẹo: Thông tin đầu vào sai = lỗi input/Material, không vội đổ cho người chọn.\nLưu ý: Giáo trình Chapter 6 đặt chính ví dụ 'Inaccurate equipment description in provider's catalogue' vào nhóm Material, tức dữ liệu đầu vào sai.\nNguồn: Book Chapter 6 · Qualitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_23",
+          "chapterId": "4",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "What is the key functional difference between a 'Condition on a Flow' (after a split) and an 'Intermediate Conditional Event'?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Flow conditions are for parallel paths only."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Conditional events are only for start triggers."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. The event is tested until the rule is satisfied."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Flow conditions are tested multiple times."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Flow condition thường được đánh giá khi luồng rẽ nhánh; Conditional Event chờ và liên tục xem xét điều kiện cho đến khi thỏa mãn.\nLoại trừ: A. \"Flow conditions are for parallel paths only.\" khẳng định quá tuyệt đối; tình huống có điều kiện: Flow condition thường được đánh giá khi luồng rẽ nhánh; Conditional Event chờ và liên tục xem xét điều kiện cho đến khi thỏa mãn. | B. Conditional event chờ điều kiện đúng. Còn tình huống này cần: The event is tested until the rule is satisfied.. | D. \"Flow conditions are tested multiple times.\" mô tả hướng khác; câu này cần The event is tested until the rule is satisfied.. Lý do: Flow condition thường được đánh giá khi luồng rẽ nhánh; Conditional Event chờ và liên tục xem xét điều kiện cho đến khi thỏa mãn.\nMẹo: Flow = check at gateway; Event = wait until true.\nNguồn: Book Chapter 4 · Events · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_24",
+          "chapterId": "7",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A process has an XOR-split with Branch A (CT = 5 days, probability 0.8) and Branch B (CT = 10 days, probability 0.2). What is the CT for the XOR-block?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. 6 days"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. 7.5 days"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. 12.5 days"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. 15 days"
+              }
+            }
+          ],
+          "answers": [
+            "A"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "CT kỳ vọng = 0.8×5 + 0.2×10 = 4+2 = 6 ngày. XOR là trung bình có trọng số theo xác suất.\nLoại trừ: B. Con số 7.5 days không ra từ phép tính: CT kỳ vọng = 0.8×5 + 0.2×10 = 4+2 = 6 ngày. | C. Con số 12.5 days không ra từ phép tính: CT kỳ vọng = 0.8×5 + 0.2×10 = 4+2 = 6 ngày. | D. Con số 15 days không ra từ phép tính: CT kỳ vọng = 0.8×5 + 0.2×10 = 4+2 = 6 ngày.\nMẹo: XOR = SUM(probability × duration).\nNguồn: Book Chapter 7 · Quantitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_25",
+          "chapterId": "8",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "In a PICK chart, an issue has very high potential payoff but is extremely difficult to implement due to political sensitivities and major IT investment. Which quadrant applies?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Implement"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Possible"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Challenge"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Kill"
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "PICK: high payoff và khó thực hiện nằm ở ô Challenge. High payoff + easy = Implement; low payoff + easy = Possible; low payoff + hard = Kill.\nLoại trừ: A. \"Implement\" mô tả hướng khác; câu này cần Challenge. Lý do: PICK: high payoff và khó thực hiện nằm ở ô Challenge. | B. \"Possible\" mô tả hướng khác; câu này cần Challenge. Lý do: PICK: high payoff và khó thực hiện nằm ở ô Challenge. | D. \"Kill\" mô tả hướng khác; câu này cần Challenge. Lý do: PICK: high payoff và khó thực hiện nằm ở ô Challenge.\nMẹo: PICK: Easy+High = Implement; Hard+High = Challenge.\nLưu ý: PICK cần cả payoff và mức khó. Đề cho mức khó cao và payoff cao nên là Challenge.\nNguồn: Book Chapter 8 · Process Redesign · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_26",
+          "chapterId": "5",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "During process discovery interviews, an analyst works backwards from process outcomes to triggers. What is the benefit of this 'upstream' interviewing strategy?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. It naturally follows the order of how process logic unfolds."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. It prevents the domain expert from describing 'rainy-day' cases."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. It helps identify what is required to achieve a specific outcome."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. It is the only way to avoid the fragmented knowledge challenge."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Đi ngược từ outcome giúp phát hiện điều kiện, dữ liệu và những công việc tiền nhiệm cần có để tạo ra kết quả. Cách này làm lộ ra các phụ thuộc ít được kể đến.\nLoại trừ: A. Đi thuận từ trigger đến outcome là downstream/forward interviewing, trái với đi ngược. | B. Hỏi upstream không loại bỏ ngoại lệ (rainy-day); vẫn cần khai thác trường hợp hiếm. | D. Fragmented knowledge không có cách giải duy nhất: còn workshop, quan sát, tài liệu.\nMẹo: Bắt đầu ở đích → hỏi: phải có gì trước đó?\nNguồn: Book Chapter 5 · Process Discovery · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_27",
+          "chapterId": "5",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "What is the primary advantage of Automated Process Discovery using event logs compared with traditional interview-based discovery?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. It allows domain experts to resolve inconsistent views immediately."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. It provides a rich history of the personal agendas of stakeholders."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. It generates an objective representation of the process."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. It ensures that the resulting model is always at a high level."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Event logs phản ánh những sự kiện đã được ghi nhận khi chạy thực tế, làm mô hình khám phá ít phụ thuộc vào ký ức hoặc lời kể. Tuy nhiên log cũng có thể thiếu hoặc sai.\nLoại trừ: A. \"It allows domain experts to resolve inconsistent views immediately.\" mô tả hướng khác; câu này cần It generates an objective representation of the process.. Lý do: Event logs phản ánh những sự kiện đã được ghi nhận khi chạy thực tế, làm mô hình khám phá ít phụ thuộc vào ký ức hoặc lời kể. | B. \"It provides a rich history of the personal agendas of stakeholders.\" mô tả hướng khác; câu này cần It generates an objective representation of the process.. Lý do: Event logs phản ánh những sự kiện đã được ghi nhận khi chạy thực tế, làm mô hình khám phá ít phụ thuộc vào ký ức hoặc lời kể. | D. \"It ensures that the resulting model is always at a high level.\" khẳng định quá tuyệt đối; tình huống có điều kiện: Event logs phản ánh những sự kiện đã được ghi nhận khi chạy thực tế, làm mô hình khám phá ít phụ thuộc vào ký ức hoặc lời kể.\nMẹo: Discovery from LOG = dựa vào dấu vết thực tế, không chỉ lời kể.\nLưu ý: Event logs chỉ khách quan trong phạm vi dữ liệu được thu thập; chúng vẫn có thể chứa noise/missing events.\nNguồn: Book Chapter 5 · Process Discovery · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_28",
+          "chapterId": "5",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "During an interview, a warehouse manager says: 'Every order is unique; you cannot generalize our steps into a fixed model.' He can describe Order A but cannot describe the general procedure. Which challenge is illustrated?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Thinking in cases rather than abstracting general process rules."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Using outdated documentation to describe current internal operations."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Fragmented knowledge resulting from excessive organizational silos."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Technical faults in systems used to record process execution."
+              }
+            }
+          ],
+          "answers": [
+            "A"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Domain expert chỉ kể tình huống cụ thể thay vì rút ra quy tắc tổng quát. Đây là Thinking in Cases, một trong ba thách thức của Process Discovery.\nLoại trừ: B. \"Using outdated documentation to describe current internal operations.\" mô tả hướng khác; câu này cần Thinking in cases rather than abstracting general process rules.. Lý do: Domain expert chỉ kể tình huống cụ thể thay vì rút ra quy tắc tổng quát. | C. \"Fragmented knowledge resulting from excessive organizational silos.\" mô tả hướng khác; câu này cần Thinking in cases rather than abstracting general process rules.. Lý do: Domain expert chỉ kể tình huống cụ thể thay vì rút ra quy tắc tổng quát. | D. \"Technical faults in systems used to record process execution.\" mô tả hướng khác; câu này cần Thinking in cases rather than abstracting general process rules.. Lý do: Domain expert chỉ kể tình huống cụ thể thay vì rút ra quy tắc tổng quát.\nMẹo: Kể chuyện từng case nhưng không nêu rule → Thinking in Cases.\nNguồn: Book Chapter 5 · Process Discovery · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_29",
+          "chapterId": "7",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A bank wants to measure the percentage of times that loan application deadlines are met. Which performance dimension is being measured?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Cost"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Quality"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Flexibility"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Time"
+              }
+            },
+            {
+              "id": "E",
+              "content": {
+                "format": "text",
+                "value": "E. Reliability"
+              }
+            }
+          ],
+          "answers": [
+            "D"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Tỷ lệ hồ sơ hoàn thành trước deadline là một chỉ số on-time delivery/timeliness, thuộc nhóm Time performance measures.\nLoại trừ: A. \"Cost\" mô tả hướng khác; câu này cần Time. Lý do: Tỷ lệ hồ sơ hoàn thành trước deadline là một chỉ số on-time delivery/timeliness, thuộc nhóm Time performance measures. | B. \"Quality\" mô tả hướng khác; câu này cần Time. Lý do: Tỷ lệ hồ sơ hoàn thành trước deadline là một chỉ số on-time delivery/timeliness, thuộc nhóm Time performance measures. | C. \"Flexibility\" mô tả hướng khác; câu này cần Time. Lý do: Tỷ lệ hồ sơ hoàn thành trước deadline là một chỉ số on-time delivery/timeliness, thuộc nhóm Time performance measures. | E. \"Reliability\" mô tả hướng khác; câu này cần Time. Lý do: Tỷ lệ hồ sơ hoàn thành trước deadline là một chỉ số on-time delivery/timeliness, thuộc nhóm Time performance measures.\nMẹo: Deadline, cycle, waiting, on-time → TIME.\nLưu ý: Sách Chapter 2 quy ước KPI có nội dung thời gian (ví dụ phần trăm trễ deadline) được xếp vào Time, dù cũng phản ánh chất lượng dịch vụ.\nNguồn: Book Chapter 7 · Quantitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_30",
+          "chapterId": "5",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Guideline G5 of the 7PMG suggests avoiding OR gateways where possible. What is the primary reason regarding model quality?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. OR gateways always lead to structural deadlocks in BPMN."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. The semantics of the OR-join is complex and hinders understanding."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. OR gateways cannot be used in block-structured process models."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. BPMN 2.0 has deprecated the OR gateway in favor of XOR."
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Inclusive OR-join phải xác định nhánh nào thực sự còn hoạt động để chờ đồng bộ. Ngữ nghĩa này phức tạp hơn XOR và AND nên 7PMG khuyên tránh khi có thể.\nLoại trừ: A. Deadlock là kẹt token vì không đủ điều kiện đi tiếp. Còn tình huống này cần: The semantics of the OR-join is complex and hinders understanding.. | C. \"OR gateways cannot be used in block-structured process models.\" mô tả hướng khác; câu này cần The semantics of the OR-join is complex and hinders understanding.. Lý do: Inclusive OR-join phải xác định nhánh nào thực sự còn hoạt động để chờ đồng bộ. | D. \"BPMN 2.0 has deprecated the OR gateway in favor of XOR.\" mô tả hướng khác; câu này cần The semantics of the OR-join is complex and hinders understanding.. Lý do: Inclusive OR-join phải xác định nhánh nào thực sự còn hoạt động để chờ đồng bộ.\nMẹo: OR-join = đợi các nhánh ACTIVE → khó hiểu hơn AND/XOR.\nNguồn: Book Chapter 5 · Quality Assurance · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_31",
+          "chapterId": "8",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A company spends $50,000 annually fixing errors from manual data entry. Removing the manual step costs $10,000 once. On a PICK chart, this fix is:"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Possible"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Implement"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Challenge"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Kill"
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Đề gợi ý khoản tiết kiệm lớn hằng năm so với chi phí thay đổi một lần nhỏ hơn nên kỳ vọng high payoff + easy → Implement.\nLoại trừ: A. \"Possible\" mô tả hướng khác; câu này cần Implement. Lý do: Đề gợi ý khoản tiết kiệm lớn hằng năm so với chi phí thay đổi một lần nhỏ hơn nên kỳ vọng high payoff + easy → Implement. | C. \"Challenge\" mô tả hướng khác; câu này cần Implement. Lý do: Đề gợi ý khoản tiết kiệm lớn hằng năm so với chi phí thay đổi một lần nhỏ hơn nên kỳ vọng high payoff + easy → Implement. | D. \"Kill\" mô tả hướng khác; câu này cần Implement. Lý do: Đề gợi ý khoản tiết kiệm lớn hằng năm so với chi phí thay đổi một lần nhỏ hơn nên kỳ vọng high payoff + easy → Implement.\nMẹo: PICK: Easy + High payoff = Implement.\nLưu ý: Chi phí đầu tư $10,000 không tự chứng minh 'easy' về mặt kỹ thuật/chính trị; đáp án Implement dựa trên hàm ý sửa dễ và lợi ích lớn của đề.\nNguồn: Book Chapter 8 · Process Redesign · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_32",
+          "chapterId": "4",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "An analyst must handle an event that may occur at any time during the whole process, such as a status inquiry, rather than only during a specific task. Which construct is most appropriate?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. A boundary event attached to every task in the pool."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. A global call activity with an error handler."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. An event sub-process with an appropriate start event."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. A terminate end event triggered by a signal."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Event Sub-process có thể bắt sự kiện xảy ra trong toàn phạm vi enclosing process/sub-process. Boundary Event chỉ gắn với một activity cụ thể.\nLoại trừ: A. \"A boundary event attached to every task in the pool.\" khẳng định quá tuyệt đối; tình huống có điều kiện: Event Sub-process có thể bắt sự kiện xảy ra trong toàn phạm vi enclosing process/sub-process. | B. \"A global call activity with an error handler.\" mô tả hướng khác; câu này cần An event sub-process with an appropriate start event.. Lý do: Event Sub-process có thể bắt sự kiện xảy ra trong toàn phạm vi enclosing process/sub-process. | D. \"A terminate end event triggered by a signal.\" mô tả hướng khác; câu này cần An event sub-process with an appropriate start event.. Lý do: Event Sub-process có thể bắt sự kiện xảy ra trong toàn phạm vi enclosing process/sub-process.\nMẹo: Event bất cứ lúc nào trong process → Event Sub-process.\nNguồn: Book Chapter 4 · Events · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_33",
+          "chapterId": "6",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "If 15% of equipment rental requests are rejected because the site engineer supplied wrong specifications, which 'Overdo' waste category applies?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Overprocessing"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Overproduction"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Motion"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Waiting"
+              }
+            },
+            {
+              "id": "E",
+              "content": {
+                "format": "text",
+                "value": "E. Defect (Redo)"
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Trường hợp request bị từ chối vì thông số sai có thể phát hiện ngay từ đầu: cả process instance được khởi tạo nhưng kết thúc không mang lại giá trị → Overproduction. Nếu đề mô tả sửa hồ sơ rồi xử lý lại, khi ấy mới rõ là Defect/Rework.\nLoại trừ: A. Overprocessing là xử lý quá mức cần thiết. Còn tình huống này cần: Overproduction. | C. Motion là thao tác/di chuyển thừa của người. Còn tình huống này cần: Overproduction. | D. Waiting là thời gian chờ. Còn tình huống này cần: Overproduction. | E. \"Defect (Redo)\" mô tả hướng khác; câu này cần Overproduction. Lý do: Trường hợp request bị từ chối vì thông số sai có thể phát hiện ngay từ đầu: cả process instance được khởi tạo nhưng kết thúc không mang lại giá trị →\nMẹo: Cả CASE bị tạo rồi bị loại vì lỗi biết trước → Overproduction; phải SỬA/LÀM LẠI → Defect.\nLưu ý: Đề không nói rõ có rework hay không. Theo định nghĩa sách, negative outcome có thể biết trước khi mở case là Overproduction; nếu bắt phải sửa và nhập lại thì Defect cũng có cơ sở.\nNguồn: Book Chapter 6 · Qualitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_34",
+          "chapterId": "11",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "An analyst prepares an event log for import into a process mining tool. What is the minimum set of attributes for each event record to enable standard mining techniques?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Case ID, event class, and timestamp."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Resource ID, task cost, and case ID."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Activity name, role, and completion state."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Start time, end time, and event ID."
+              }
+            }
+          ],
+          "answers": [
+            "A"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Tối thiểu cần Case ID để nhóm sự kiện theo case, Activity/Event Class để biết chuyện gì xảy ra, và Timestamp để sắp thứ tự theo thời gian.\nLoại trừ: B. \"Resource ID, task cost, and case ID.\" mô tả hướng khác; câu này cần Case ID, event class, and timestamp.. Lý do: Tối thiểu cần Case ID để nhóm sự kiện theo case, Activity/Event Class để biết chuyện gì xảy ra, và Timestamp để sắp thứ tự theo thời gian. | C. \"Activity name, role, and completion state.\" mô tả hướng khác; câu này cần Case ID, event class, and timestamp.. Lý do: Tối thiểu cần Case ID để nhóm sự kiện theo case, Activity/Event Class để biết chuyện gì xảy ra, và Timestamp để sắp thứ tự theo thời gian. | D. \"Start time, end time, and event ID.\" mô tả hướng khác; câu này cần Case ID, event class, and timestamp.. Lý do: Tối thiểu cần Case ID để nhóm sự kiện theo case, Activity/Event Class để biết chuyện gì xảy ra, và Timestamp để sắp thứ tự theo thời gian.\nMẹo: Event Log = WHO case + WHAT activity + WHEN timestamp.\nNguồn: Book Chapter 11 · Process Mining · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_35",
+          "chapterId": "6",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Both Six Sigma and Lean improve organizational performance but differ in analytical focus. According to the text, which statement correctly identifies the core difference?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Six Sigma focuses on waste while Lean focuses on statistical process models."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Lean focuses on statistical deviation while Six Sigma focuses on work flow."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Six Sigma focuses on minimizing defects while Lean focuses on waste."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Six Sigma focuses on innovation while Lean focuses on accounting tasks."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Lean tập trung loại bỏ lãng phí và tối đa giá trị cho khách hàng. Six Sigma tập trung giảm sai lệch và defect rate qua công cụ thống kê và quản trị chất lượng.\nLoại trừ: A. \"Six Sigma focuses on waste while Lean focuses on statistical process models.\" mô tả hướng khác; câu này cần Six Sigma focuses on minimizing defects while Lean focuses on waste.. Lý do: Lean tập trung loại bỏ lãng phí và tối đa giá trị cho khách hàng. | B. \"Lean focuses on statistical deviation while Six Sigma focuses on work flow.\" mô tả hướng khác; câu này cần Six Sigma focuses on minimizing defects while Lean focuses on waste.. Lý do: Lean tập trung loại bỏ lãng phí và tối đa giá trị cho khách hàng. | D. \"Six Sigma focuses on innovation while Lean focuses on accounting tasks.\" mô tả hướng khác; câu này cần Six Sigma focuses on minimizing defects while Lean focuses on waste.. Lý do: Lean tập trung loại bỏ lãng phí và tối đa giá trị cho khách hàng.\nMẹo: Lean = WASTE; Six Sigma = DEFECT/VARIATION.\nNguồn: Book Chapter 6 · Qualitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_36",
+          "chapterId": "8",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Why is process redesign generally easier to apply to informational products than to physical products?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Physical products are always more expensive to transport across regions."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Informational products have fewer physical and technical layout constraints."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. It is impossible to accurately measure the quality of any physical product."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Labor costs in manufacturing are always lower than in service industries."
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Quy trình sản phẩm thông tin thường không bị ràng buộc nặng bởi mặt bằng, máy móc, dòng vật liệu hay vận chuyển vật lý như sản phẩm hữu hình.\nLoại trừ: A. \"Physical products are always more expensive to transport across regions.\" khẳng định quá tuyệt đối; tình huống có điều kiện: Quy trình sản phẩm thông tin thường không bị ràng buộc nặng bởi mặt bằng, máy móc, dòng vật liệu hay vận chuyển vật lý như sản phẩm hữu hình. | C. \"It is impossible to accurately measure the quality of any physical product.\" mô tả hướng khác; câu này cần Informational products have fewer physical and technical layout constraints.. Lý do: Quy trình sản phẩm thông tin thường không bị ràng buộc nặng bởi mặt bằng, máy móc, dòng vật liệu hay vận chuyển vật lý như sản phẩm hữu hình. | D. \"Labor costs in manufacturing are always lower than in service industries.\" khẳng định quá tuyệt đối; tình huống có điều kiện: Quy trình sản phẩm thông tin thường không bị ràng buộc nặng bởi mặt bằng, máy móc, dòng vật liệu hay vận chuyển vật lý như sản phẩm hữu hình.\nMẹo: Information flows are easier to reroute than physical materials.\nNguồn: Book Chapter 8 · Process Redesign · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_37",
+          "chapterId": "5",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A process model contains 45 activities, gateways and events. According to the modeling 'Rule of Thumb', what should the analyst do to improve understandability?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Combine all gateways into a single complex gateway."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Decompose the model into multiple sub-processes."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Remove all data objects to reduce visual clutter."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Replace all pools with a single lane structure."
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Mô hình quá nhiều flow objects có thể khó đọc. Hướng dẫn trong sách khuyên phân rã thành các sub-process để tạo các mức trừu tượng rõ hơn.\nLoại trừ: A. \"Combine all gateways into a single complex gateway.\" mô tả hướng khác; câu này cần Decompose the model into multiple sub-processes.. Lý do: Mô hình quá nhiều flow objects có thể khó đọc. | C. Data object là thông tin, không điều khiển đường đi. Còn tình huống này cần: Decompose the model into multiple sub-processes.. | D. \"Replace all pools with a single lane structure.\" mô tả hướng khác; câu này cần Decompose the model into multiple sub-processes.. Lý do: Mô hình quá nhiều flow objects có thể khó đọc.\nMẹo: Model quá lớn (~30+ flow objects) → cân nhắc sub-process.\nNguồn: Book Chapter 5 · Quality Assurance · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_38",
+          "chapterId": "3",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Sequence and message flows have strict rules regarding pool boundaries. Which is a valid rule for using message flows in a collaboration model?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. They can connect two activities within the same lane."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. They can cross pool boundaries to connect different parties."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. They represent the temporal order of tasks in a lane."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. They are used to synchronize parallel activities in a pool."
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Message Flow dùng để mô tả trao đổi giữa các participants/pools. Sequence Flow mô tả thứ tự công việc trong một pool, có thể vượt qua lane nhưng không vượt qua pool.\nLoại trừ: A. \"They can connect two activities within the same lane.\" mô tả hướng khác; câu này cần They can cross pool boundaries to connect different parties.. Lý do: Message Flow dùng để mô tả trao đổi giữa các participants/pools. | C. \"They represent the temporal order of tasks in a lane.\" mô tả hướng khác; câu này cần They can cross pool boundaries to connect different parties.. Lý do: Message Flow dùng để mô tả trao đổi giữa các participants/pools. | D. \"They are used to synchronize parallel activities in a pool.\" mô tả hướng khác; câu này cần They can cross pool boundaries to connect different parties.. Lý do: Message Flow dùng để mô tả trao đổi giữa các participants/pools.\nMẹo: Message = BETWEEN pools; Sequence = WITHIN pool.\nNguồn: Book Chapters 3–4 · Collaboration · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_39",
+          "chapterId": "8",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "In the NESTT redesign method, a dedicated room is utilized where participants visualize different horizons of change. If a group is currently using the \"Future\" wall to brainstorm where the process should be in 20 months and 3 years, what is the primary perspective they are assuming according to the Redesign Orbit?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Inward-looking"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Outward-looking"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Transactional"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Analytical"
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Đáp án B theo ảnh đề. “Future” wall nhìn ra viễn cảnh thay đổi trong 20 tháng đến 3 năm → Outward-looking, thay vì chỉ tập trung vào vận hành hiện tại.\nLoại trừ: A. Inward-looking: nhìn vào hiện trạng, nguồn lực và hoạt động nội bộ; không phải hướng khám phá viễn cảnh tương lai. | C. Transactional: tập trung vào giao dịch/công việc vận hành hằng ngày; không phải tầm nhìn 20 tháng–3 năm. | D. Analytical: phân tích dữ liệu, nguyên nhân và hiệu suất; không phải góc nhìn định hình tương lai.\nMẹo: Future wall → Outward-looking. Hướng tương lai ≠ công việc hiện tại.\nLưu ý: Đáp án B được ghi trong ảnh Question 39 bạn cung cấp.\nNguồn: BPS301_SU26_FE · Question 39 · ảnh nguồn người dùng gửi · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_40",
+          "chapterId": "9",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A service task in an executable model invokes an external inventory system. The system requires a request message and replies with a response message. What type of operation is this?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Asynchronous in-only operation"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Synchronous in-out operation"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Publish-subscribe signal event"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Data-based exclusive XOR-split"
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Tương tác request–response đồng bộ là In–Out: gửi một request và nhận response tương ứng. Khác In-only chỉ nhận/gửi một chiều không có phản hồi.\nLoại trừ: A. \"Asynchronous in-only operation\" khẳng định quá tuyệt đối; tình huống có điều kiện: Tương tác request–response đồng bộ là In–Out: gửi một request và nhận response tương ứng. | C. \"Publish-subscribe signal event\" mô tả hướng khác; câu này cần Synchronous in-out operation. Lý do: Tương tác request–response đồng bộ là In–Out: gửi một request và nhận response tương ứng. | D. XOR-split chọn một nhánh. Còn tình huống này cần: Synchronous in-out operation.\nMẹo: Request + Response ngay trong lời gọi → In-Out (synchronous).\nNguồn: Book Chapters 9–10 · PAIS & Implementation · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_41",
+          "chapterId": "12",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Practitioners may confuse perceived BPM success with actual business success. Which scenario exemplifies a common cause of failure of an enterprise-wide BPM program?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Integrating the BPM program with existing ISO project management standards."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Choosing to roll out Six Sigma training when the corporate goal is innovation."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Assigning a dedicated Process Owner to manage an order-to-cash lifecycle."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Using an open-source BPMS instead of a high-cost proprietary software suite."
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Triển khai công cụ/phương pháp không gắn với mục tiêu kinh doanh là thắng về hình thức nhưng không tạo kết quả. Nếu mục tiêu chiến lược là đổi mới, đào tạo Six Sigma đại trà có thể không phải đòn bẩy phù hợp.\nLoại trừ: A. \"Integrating the BPM program with existing ISO project management standards.\" mô tả hướng khác; câu này cần Choosing to roll out Six Sigma training when the corporate goal is innovation.. Lý do: Triển khai công cụ/phương pháp không gắn với mục tiêu kinh doanh là thắng về hình thức nhưng không tạo kết quả. | C. \"Assigning a dedicated Process Owner to manage an order-to-cash lifecycle.\" mô tả hướng khác; câu này cần Choosing to roll out Six Sigma training when the corporate goal is innovation.. Lý do: Triển khai công cụ/phương pháp không gắn với mục tiêu kinh doanh là thắng về hình thức nhưng không tạo kết quả. | D. BPMS điều phối và thực thi quy trình. Còn tình huống này cần: Choosing to roll out Six Sigma training when the corporate goal is innovation..\nMẹo: BPM success ≠ number of certificates; phải khớp business strategy.\nLưu ý: Đây là tình huống minh họa mismatch giữa sáng kiến BPM và chiến lược, không có nghĩa Six Sigma luôn xung đột đổi mới.\nNguồn: Book Chapter 12 · BPM as Enterprise Capability · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_42",
+          "chapterId": "3",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "The Inclusive (OR) join gateway has complex synchronization logic. When does it allow a token to pass to its output arc?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. When at least one token arrives from any branch."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. When all incoming branches have delivered a token."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. When all active incoming branches have completed."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. When the preceding OR-split sends a signal to it."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "OR-join chờ những nhánh đang thực sự hoạt động, không đợi nhánh đã không được kích hoạt. XOR-join chỉ nhận một token là đi, AND-join yêu cầu token ở mọi nhánh.\nLoại trừ: A. \"When at least one token arrives from any branch.\" mô tả hướng khác; câu này cần When all active incoming branches have completed.. Lý do: OR-join chờ những nhánh đang thực sự hoạt động, không đợi nhánh đã không được kích hoạt. | B. \"When all incoming branches have delivered a token.\" mô tả hướng khác; câu này cần When all active incoming branches have completed.. Lý do: OR-join chờ những nhánh đang thực sự hoạt động, không đợi nhánh đã không được kích hoạt. | D. OR-split kích hoạt một hoặc nhiều nhánh. Còn tình huống này cần: When all active incoming branches have completed..\nMẹo: OR-join = ALL ACTIVE, không phải ALL POSSIBLE.\nNguồn: Book Chapter 3 · Branching/Merging · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_43",
+          "chapterId": "2",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "In an order management value chain, when analyzing the relationship between Order Booking and Shipment, Order Booking is referred to as:"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. A downstream process"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. A specialization variant"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. An upstream process"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. A support function"
+              }
+            },
+            {
+              "id": "E",
+              "content": {
+                "format": "text",
+                "value": "E. A management layer"
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Order Booking tạo order làm đầu vào cho Shipment, nên Order Booking nằm upstream và Shipment là downstream trong quan hệ sequence/producer-consumer.\nLoại trừ: A. Downstream là bên nhận kết quả: Shipment nhận đơn từ Order Booking. | B. Specialization là biến thể cùng quy trình, không phải hai quy trình nối tiếp. | D. Support function như HR/IT hỗ trợ vận hành; Order Booking trực tiếp tạo đơn hàng. | E. Management layer đặt định hướng/kiểm soát; Order Booking xử lý đơn thực tế.\nMẹo: Upstream = cung cấp output; Downstream = nhận output.\nNguồn: Book Chapter 2 · Process Identification · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_44",
+          "chapterId": "1",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "A university admissions process begins when a student submits an application and ends when the student is admitted or rejected. How is this process classified?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Order-to-cash"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Procure-to-pay"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Application-to-approval"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Issue-to-resolution"
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Process application-to-approval bắt đầu từ nộp đơn yêu cầu và kết thúc bằng quyết định approve/reject. Tuyển sinh đúng kiểu này.\nLoại trừ: A. \"Order-to-cash\" mô tả hướng khác; câu này cần Application-to-approval. Lý do: Process application-to-approval bắt đầu từ nộp đơn yêu cầu và kết thúc bằng quyết định approve/reject. | B. \"Procure-to-pay\" mô tả hướng khác; câu này cần Application-to-approval. Lý do: Process application-to-approval bắt đầu từ nộp đơn yêu cầu và kết thúc bằng quyết định approve/reject. | D. \"Issue-to-resolution\" mô tả hướng khác; câu này cần Application-to-approval. Lý do: Process application-to-approval bắt đầu từ nộp đơn yêu cầu và kết thúc bằng quyết định approve/reject.\nMẹo: Submit application → approve/reject → Application-to-Approval.\nNguồn: Book Chapter 1 · Business Process Types · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_45",
+          "chapterId": "2",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "What is the primary objective of Process Identification management activities?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. To automate as many manual activities as possible"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. To define the process set and establish selection criteria"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. To create detailed BPMN models for every department"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. To replace human participants with software systems"
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Identification tạo danh mục/quy mô các quy trình và đánh giá quy trình nên ưu tiên. Chi tiết As-Is là Discovery; automation thuộc Implementation.\nLoại trừ: A. \"To automate as many manual activities as possible\" mô tả hướng khác; câu này cần To define the process set and establish selection criteria. Lý do: Identification tạo danh mục/quy mô các quy trình và đánh giá quy trình nên ưu tiên. | C. \"To create detailed BPMN models for every department\" khẳng định quá tuyệt đối; tình huống có điều kiện: Identification tạo danh mục/quy mô các quy trình và đánh giá quy trình nên ưu tiên. | D. \"To replace human participants with software systems\" mô tả hướng khác; câu này cần To define the process set and establish selection criteria. Lý do: Identification tạo danh mục/quy mô các quy trình và đánh giá quy trình nên ưu tiên.\nMẹo: Identification = WHAT PROCESSES + WHICH FIRST.\nNguồn: Book Chapter 2 · Process Identification · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_46",
+          "chapterId": "6",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "When performing Value-Added Analysis on a Check Invoice task, an analyst finds retrieving the PO, checking amounts and verifying delivery. The customer would not pay for these internal verification steps, but removing them would not decrease the product's final value. Yet they are essential to prevent overpayment. What is the best strategy?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Classify as VA and keep the steps to ensure customer trust."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Classify as BVA and seek the minimum work to satisfy the goal."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Classify as NVA and eliminate them immediately through automation."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Classify as BVA and increase the number of checks to reduce risk."
+              }
+            }
+          ],
+          "answers": [
+            "B"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Các bước kiểm tra hóa đơn cần thiết để bảo vệ doanh nghiệp/đúng quy định thường là BVA; nên tối thiểu hóa công sức vẫn bảo đảm mức kiểm soát, không xóa toàn bộ.\nLoại trừ: A. VA trực tiếp tạo giá trị khách hàng. Còn tình huống này cần: Classify as BVA and seek the minimum work to satisfy the goal.. | C. NVA không tạo giá trị; cần giảm hoặc bỏ. Còn tình huống này cần: Classify as BVA and seek the minimum work to satisfy the goal.. | D. BVA cần thiết cho doanh nghiệp/tuân thủ. Còn tình huống này cần: Classify as BVA and seek the minimum work to satisfy the goal..\nMẹo: BVA = Necessary but MINIMIZE, không phải MAXIMIZE.\nLưu ý: Nên giữ các bước BVA cần thiết và tối thiểu hóa chúng, không xóa bằng mọi giá.\nNguồn: Book Chapter 6 · Qualitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_47",
+          "chapterId": "6",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "In a university admission process, an external Academic Recognition Agency takes three weeks to verify degrees. The factor originates from an external actor outside university control. Which 6M category applies?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Milieu"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Method"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Man"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Measurement"
+              }
+            }
+          ],
+          "answers": [
+            "A"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Sự phụ thuộc vào cơ quan bên ngoài là yếu tố môi trường/đối tác ngoài kiểm soát trực tiếp của trường, phù hợp nhóm Milieu trong sơ đồ Fishbone 6M.\nLoại trừ: B. \"Method\" mô tả hướng khác; câu này cần Milieu. Lý do: Sự phụ thuộc vào cơ quan bên ngoài là yếu tố môi trường/đối tác ngoài kiểm soát trực tiếp của trường, phù hợp nhóm Milieu trong sơ đồ Fishbone 6M. | C. \"Man\" mô tả hướng khác; câu này cần Milieu. Lý do: Sự phụ thuộc vào cơ quan bên ngoài là yếu tố môi trường/đối tác ngoài kiểm soát trực tiếp của trường, phù hợp nhóm Milieu trong sơ đồ Fishbone 6M. | D. \"Measurement\" mô tả hướng khác; câu này cần Milieu. Lý do: Sự phụ thuộc vào cơ quan bên ngoài là yếu tố môi trường/đối tác ngoài kiểm soát trực tiếp của trường, phù hợp nhóm Milieu trong sơ đồ Fishbone 6M.\nMẹo: Outside organization → Milieu / Environment.\nNguồn: Book Chapter 6 · Qualitative Process Analysis · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_48",
+          "chapterId": "12",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "In BPM Governance, a BPM Methodologist advises analysts on methods and tools. How does this role differ from the BPM Steering Committee?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. The Methodologist sets technical standards while the Committee provides direction."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. The Methodologist manages the budget while the Committee defines process roles."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. The Committee enforces XPATH expressions while the Methodologist sets KPIs."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. The Committee audits individual tasks while the Methodologist hires employees."
+              }
+            }
+          ],
+          "answers": [
+            "A"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "BPM Methodologist hỗ trợ phương pháp, công cụ, chuẩn mô hình; BPM Steering Committee định hướng và bảo trợ quản trị BPM cấp tổ chức.\nLoại trừ: B. \"The Methodologist manages the budget while the Committee defines process roles.\" mô tả hướng khác; câu này cần The Methodologist sets technical standards while the Committee provides direction.. Lý do: BPM Methodologist hỗ trợ phương pháp, công cụ, chuẩn mô hình; BPM Steering Committee định hướng và bảo trợ quản trị BPM cấp tổ chức. | C. \"The Committee enforces XPATH expressions while the Methodologist sets KPIs.\" mô tả hướng khác; câu này cần The Methodologist sets technical standards while the Committee provides direction.. Lý do: BPM Methodologist hỗ trợ phương pháp, công cụ, chuẩn mô hình; BPM Steering Committee định hướng và bảo trợ quản trị BPM cấp tổ chức. | D. \"The Committee audits individual tasks while the Methodologist hires employees.\" mô tả hướng khác; câu này cần The Methodologist sets technical standards while the Committee provides direction.. Lý do: BPM Methodologist hỗ trợ phương pháp, công cụ, chuẩn mô hình; BPM Steering Committee định hướng và bảo trợ quản trị BPM cấp tổ chức.\nMẹo: Methodologist = HOW; Steering Committee = DIRECTION.\nNguồn: Book Chapter 12 · BPM as Enterprise Capability · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_49",
+          "chapterId": "5",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "Under the 'Option to Complete' rule, a model contains an infinite loop (livelock) where a token can never reach an end event. Which quality assurance activity detects this flaw?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Pragmatic Certification through layout review."
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Semantic Validation using document analysis."
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Syntactic Verification of behavioral correctness."
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Observation of the process in a remote environment."
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Livelock vi phạm soundness/option to complete. Đây là thuộc tính behavioral correctness được kiểm tra bằng Verification, nằm trong syntactic quality của process model.\nLoại trừ: A. Pragmatic quality là mức người xem hiểu mô hình. Còn tình huống này cần: Syntactic Verification of behavioral correctness.. | B. Semantic quality kiểm tra mô hình phản ánh đúng nghiệp vụ. Còn tình huống này cần: Syntactic Verification of behavioral correctness.. | D. \"Observation of the process in a remote environment.\" mô tả hướng khác; câu này cần Syntactic Verification of behavioral correctness.. Lý do: Livelock vi phạm soundness/option to complete.\nMẹo: Infinite loop no end → soundness → Verification.\nNguồn: Book Chapter 5 · Quality Assurance · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        },
+        {
+          "id": "SU26_FE_50",
+          "chapterId": "2",
+          "type": "single",
+          "prompt": {
+            "format": "text",
+            "value": "In a process architecture, three relationships are sequence, decomposition and specialization. Which relation describes one process providing an output used as input by another?"
+          },
+          "options": [
+            {
+              "id": "A",
+              "content": {
+                "format": "text",
+                "value": "A. Specialization"
+              }
+            },
+            {
+              "id": "B",
+              "content": {
+                "format": "text",
+                "value": "B. Vertical relationship"
+              }
+            },
+            {
+              "id": "C",
+              "content": {
+                "format": "text",
+                "value": "C. Sequence"
+              }
+            },
+            {
+              "id": "D",
+              "content": {
+                "format": "text",
+                "value": "D. Hierarchical relationship"
+              }
+            },
+            {
+              "id": "E",
+              "content": {
+                "format": "text",
+                "value": "E. Functional alignment"
+              }
+            }
+          ],
+          "answers": [
+            "C"
+          ],
+          "explanation": {
+            "format": "text",
+            "value": "Sequence (producer-consumer) liên kết hai quy trình theo dòng output → input. Decomposition là phân rã cấp cha-con, còn Specialization là biến thể của quy trình.\nLoại trừ: A. Specialization là biến thể cụ thể của quy trình. Còn tình huống này cần: Sequence. | B. \"Vertical relationship\" mô tả hướng khác; câu này cần Sequence. Lý do: Sequence (producer-consumer) liên kết hai quy trình theo dòng output → input. | D. \"Hierarchical relationship\" mô tả hướng khác; câu này cần Sequence. Lý do: Sequence (producer-consumer) liên kết hai quy trình theo dòng output → input. | E. \"Functional alignment\" mô tả hướng khác; câu này cần Sequence. Lý do: Sequence (producer-consumer) liên kết hai quy trình theo dòng output → input.\nMẹo: A OUTPUT → B INPUT = Sequence.\nNguồn: Book Chapter 2 · Process Identification · Đáp án tham khảo, không phải answer key chính thức."
+          }
+        }
+      ]
+    }
+  ]
+}

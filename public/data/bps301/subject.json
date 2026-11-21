@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "bps301",
+  "code": "BPS301",
+  "title": "Business Process Management & Process Mining",
+  "theory": "data/bps301/theory.json",
+  "exams": [
+    "data/bps301/exams/FA26.json",
+    "data/bps301/exams/SU26.json",
+    "data/bps301/exams/FE_Mock.json",
+    "data/bps301/exams/BPS301_FA26_FE_805603.json"
+  ],
+  "topics": [],
+  "materials": []
+}
