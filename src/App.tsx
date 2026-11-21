@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { BookOpen, ClipboardList, Database, Download, GraduationCap, LayoutDashboard, Menu, Moon, Search, Sun, Upload, X, Zap } from 'lucide-react'
+import { BookOpen, ClipboardList, Database, Download, GraduationCap, LayoutDashboard, Menu, Moon, Search, Settings, Sun, Upload, X, Zap } from 'lucide-react'
 import { Bank } from './features/Bank'
 import { Exam } from './features/Exam'
 import { Library, MaterialViewer } from './features/Library'
@@ -7,6 +7,8 @@ import { Overview } from './features/Overview'
 import { Practice } from './features/Practice'
 import { emptyStudy, examScope, type Exam as ExamData, type Save, type Session, type Study, type Subject } from './data/model'
 import { downloadJson, loadSubjects, message, parseSave, storageKey } from './data/storage'
+import { examSlug, href, paths, readRoute, RouteContext, type Section } from './routes'
+import { LearningReport } from './features/LearningReport'
 
 const sections = [
   { id: 'overview', label: 'Tổng quan', icon: LayoutDashboard },
@@ -14,8 +16,8 @@ const sections = [
   { id: 'exam', label: 'Thi thử', icon: ClipboardList },
   { id: 'library', label: 'Giáo trình', icon: BookOpen },
   { id: 'bank', label: 'Ngân hàng', icon: Database },
+  { id: 'settings', label: 'Cài đặt', icon: Settings },
 ] as const
-type Section = typeof sections[number]['id']
 const subjectId = 'bps301'
 
 function Brand({ openOverview }: { openOverview: () => void }) {
@@ -48,12 +50,6 @@ function finish(study: Study, sessions: Session[], at: number): Study {
       ...session, ended: Math.max(session.started, Math.min(at, session.deadline)),
     }))] }
 }
-function readView() {
-  try {
-    const section = sessionStorage.getItem('smart-exam-view')?.split('/').at(-1)
-    return sections.find((item) => item.id === section)?.id ?? 'overview'
-  } catch { return 'overview' as const }
-}
 
 export function App() {
   const [subject, setSubject] = useState<Subject>()
@@ -68,7 +64,8 @@ export function App() {
   const [data, setData] = useState(initial.data)
   const [readError, setReadError] = useState(initial.error)
   const dataRef = useRef(data)
-  const [section, setSection] = useState<Section>(readView)
+  const [route, setRoute] = useState(readRoute)
+  const { section } = route
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButton = useRef<HTMLButtonElement>(null)
   const [dark, setDark] = useState(() => {
@@ -76,7 +73,6 @@ export function App() {
     catch { return false }
   })
   const [commandQuery, setCommandQuery] = useState('')
-  const [chapterJump, setChapterJump] = useState<{ id: string }>()
   const command = useRef<HTMLDialogElement>(null)
   const [now, setNow] = useState(Date.now)
   const [slide, setSlide] = useState<{ id: string; page: number }>()
@@ -104,8 +100,11 @@ export function App() {
   }, [])
   useEffect(() => { if (slide && !dialog.current?.open) dialog.current?.showModal() }, [slide])
   useEffect(() => {
-    try { sessionStorage.setItem('smart-exam-view', subjectId + '/' + section) } catch { /* Navigation still works. */ }
-  }, [section])
+    const sync = () => { setRoute(readRoute()); setMenuOpen(false) }
+    window.addEventListener('popstate', sync)
+    window.addEventListener('hashchange', sync)
+    return () => { window.removeEventListener('popstate', sync); window.removeEventListener('hashchange', sync) }
+  }, [])
   useEffect(() => {
     try { localStorage.setItem('smart-exam-theme', dark ? 'dark' : 'light') } catch { /* Theme remains available. */ }
   }, [dark])
@@ -179,16 +178,22 @@ export function App() {
     const next = typeof change === 'function' ? change(current) : change
     return next === current || persist({ ...latest, subjects: { ...latest.subjects, [subject.id]: next } })
   }
+  function navigate(path: string, replace = false) {
+    const url = href(path)
+    if (location.pathname + location.search + location.hash !== url) {
+      if (replace) history.replaceState(null, '', url)
+      else history.pushState(null, '', url)
+    }
+    setRoute(readRoute())
+  }
   function go(next: Section) {
     setMenuOpen(false)
-    setChapterJump(undefined)
-    setSection(next)
+    navigate(paths[next])
     window.scrollTo(0, 0)
   }
   function openPractice(chapterId?: string, wrong?: boolean) {
-    if (update((current) => ({ ...current, resume: undefined,
-      practiceFilters: { exam: '', chapter: chapterId ?? '', topic: '', onlyWrong: Boolean(wrong) },
-    }))) go('practice')
+    go('practice')
+    if (chapterId || wrong) navigate(chapterId ? '/trainning/chapter/' + encodeURIComponent(chapterId) : '/trainning?review=needed', true)
   }
   const openSlide = (id: string, page: number) => setSlide({ id, page })
 
@@ -197,7 +202,7 @@ export function App() {
     { key: 'review', label: 'Ôn lại câu sai và câu khó', action: () => openPractice(undefined, true) },
     ...(subject?.theory ?? []).map((chapter) => ({
       key: 'chapter-' + chapter.id, label: chapter.title,
-      action: () => { go('library'); setChapterJump({ id: chapter.id }) },
+      action: () => { go('library'); navigate('/curriculum/chapter/' + encodeURIComponent(chapter.id), true) },
     })),
   ].filter(({ label }) => label.toLowerCase().includes(commandQuery.trim().toLowerCase()))
   const navigationLabel = sections.find((item) => item.id === section)?.label
@@ -206,7 +211,7 @@ export function App() {
     .filter((question) => latestAttempts.get(question.id) === false || study.bookmarks.includes(question.id))
     .map((question) => question.id)).size
 
-  return <div className="app" data-section={section} data-theme={dark ? 'dark' : 'light'}>
+  return <RouteContext.Provider value={{ ...route, go: navigate }}><div className="app" data-section={section} data-theme={dark ? 'dark' : 'light'}>
     <header className="mobile-header">
       <div className="row"><Brand openOverview={() => go('overview')} /><span className="tag">BPS301</span></div>
       <button ref={menuButton} aria-label={menuOpen ? 'Đóng menu' : 'Mở menu'} aria-expanded={menuOpen}
@@ -270,9 +275,25 @@ export function App() {
         </div>}
         {!loadError && !subject && <p role="status">Đang tải dữ liệu BPS301…</p>}
         {subject && <>
-          {section === 'overview' && <Overview subject={subject} exams={exams} study={study} materials={materials}
-            resume={() => go(study.sessions.length ? 'exam' : 'practice')}
-            practice={openPractice} library={() => go('library')} />}
+          {section === 'overview' && (route.segments.length ? <LearningReport subject={subject} exams={exams} study={study} /> : <Overview subject={subject} exams={exams} study={study} materials={materials}
+            resume={() => {
+              const session = study.sessions[0]
+              if (session) {
+                go('exam')
+                navigate('/mock_exam/' + encodeURIComponent(session.examId ? examSlug(session.examId) : 'all') + '/q/' + (session.index + 1) + '?session=' + encodeURIComponent(session.id), true)
+              } else {
+                go('practice')
+                const filters = study.practiceFilters
+                const query = new URLSearchParams()
+                if (filters?.exam) query.set('exam', examSlug(filters.exam))
+                if (filters?.chapter) query.set('chapter', filters.chapter)
+                if (filters?.topic) query.set('topic', filters.topic)
+                if (filters?.onlyWrong) query.set('review', 'needed')
+                if (study.resume) query.set('question', study.resume)
+                if (query.size) navigate('/trainning?' + query, true)
+              }
+            }}
+            practice={openPractice} library={() => go('library')} />)}
           {section === 'practice' && <Practice subject={subject} exams={exams} study={study} setStudy={update} slide={openSlide} />}
           {section === 'exam' && <Exam exams={exams} sessions={study.sessions} history={study.history} now={now}
             save={(session, starting) => {
@@ -289,10 +310,22 @@ export function App() {
               ...current,
               [kind]: current[kind].filter((item) => examScope(item, exams) !== scope),
             }))} slide={openSlide} />}
-          {section === 'library' && <Library subject={subject} materials={materials} jumpTo={chapterJump}
+          {section === 'library' && <Library subject={subject} materials={materials}
             upload={(material) => update((current) => ({ ...current, materials: [...current.materials, material] }))}
             practice={openPractice} />}
           {section === 'bank' && <Bank subject={subject} exams={exams} study={study} save={update} />}
+          {section === 'settings' && <section className="panel task">
+            <h1>Cài đặt &amp; Dữ liệu</h1>
+            <div className="row"><button onClick={() => downloadJson('smart-exam-sao-luu.json', readError ? safeRawBackup() : dataRef.current)}><Download size={17} /> Sao lưu</button>
+              <button onClick={() => document.querySelector<HTMLInputElement>('.restore input')?.click()}><Upload size={17} /> Khôi phục</button></div>
+            <p>Đặt lại lượt ôn, dấu câu khó, phiên thi và lịch sử BPS301. Ngân hàng và giáo trình đã thêm vẫn được giữ.</p>
+            <button onClick={() => {
+              if (window.confirm('Đặt lại toàn bộ tiến độ BPS301?') && update((current) => ({
+                ...emptyStudy, exams: current.exams, edits: current.edits, materials: current.materials,
+              }))) setNotice('Đã đặt lại tiến độ BPS301.')
+            }}>Đặt lại tiến độ</button>
+          </section>}
+          {!section && <section className="panel task"><h1>Không tìm thấy trang</h1><button onClick={() => go('overview')}>Về tổng quan</button></section>}
           <dialog ref={dialog} onClose={() => setSlide(undefined)}>
             <div className="row spread"><h2>Giáo trình liên quan</h2><button aria-label="Đóng giáo trình" onClick={() => dialog.current?.close()}><X size={18} /></button></div>
             {slide && (activeMaterial ? <MaterialViewer key={slide.id + ':' + slide.page} material={activeMaterial} start={slide.page} /> :
@@ -314,7 +347,7 @@ export function App() {
         }}>{label}</button>) : <p className="muted">Không tìm thấy kết quả.</p>}
       </div>
     </dialog>
-  </div>
+  </div></RouteContext.Provider>
 }
 
 function safeRawBackup() {

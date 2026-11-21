@@ -361,3 +361,6 @@ mark { color: #412b03; background: #ffe38a; padding-inline: .08em; border-radius
   .studio-hero .hero-copy { max-width: none; }
   .feedback { grid-template-columns: minmax(0, 1fr); }
 }
+.route-links { margin-bottom: .85rem; }
+.report-row { padding: .6rem 0; border-top: 1px solid var(--border); }
+.theory-reading :is(h2, h3, h4) { scroll-margin-top: 8rem; }

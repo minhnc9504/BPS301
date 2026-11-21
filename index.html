@@ -10,6 +10,14 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      const base = '%BASE_URL%';
+      const route = new URLSearchParams(location.search).get('__spa');
+      if (route && location.pathname === base && /^[\w-][^\\]*$/.test(route)) {
+        const target = new URL(base + route, location.origin);
+        if (target.pathname.startsWith(base)) history.replaceState(null, '', target);
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

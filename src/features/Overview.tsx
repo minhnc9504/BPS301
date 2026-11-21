@@ -1,11 +1,13 @@
 import { BookOpen, ClipboardList, GraduationCap, Layers, Target, Bookmark, Play } from 'lucide-react'
 import { isCorrect, uniqueQuestions, type Exam, type Material, type Study, type Subject } from '../data/model'
 import { Progress } from '../components/Progress'
+import { useRoute } from '../routes'
 
 export function Overview({ subject, exams, study, materials, resume, practice, library }: {
   subject: Subject; exams: Exam[]; study: Study; materials: Material[]
   resume: () => void; practice: (chapterId?: string, wrong?: boolean) => void; library: () => void
 }) {
+  const route = useRoute()
   const questions = uniqueQuestions(exams)
   const marks = new Map(study.attempts.map((attempt) => [attempt.questionId, attempt.correct]))
   const completed = questions.filter((question) => marks.has(question.id)).length
@@ -27,6 +29,10 @@ export function Overview({ subject, exams, study, materials, resume, practice, l
   ].sort((a, b) => b.at - a.at).slice(0, 5)
   return <>
     <h1>Tổng quan môn học</h1>
+    <div className="row route-links">
+      <button onClick={() => route.go('/home/analytics')}>Phân tích kết quả</button>
+      <button onClick={() => route.go('/home/history')}>Lịch sử học tập</button>
+    </div>
     <section className="panel hero studio-hero">
       <div className="hero-copy">
         <span className="hero-code">{subject.code}</span>

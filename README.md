@@ -36,7 +36,7 @@ Trên thanh điều hướng, **Tìm nhanh** hoặc `Ctrl+K` (`⌘K` trên Mac) 
 
 ## Dữ liệu BPS301 đi kèm
 
-Danh mục hiện có **11 chương lý thuyết** và **160 câu hỏi** trong bốn bộ đề:
+Danh mục hiện có **11 chương lý thuyết** và **260 câu hỏi** trong năm bộ đề:
 
 | Đề hiển thị | Tệp JSON | Số câu |
 | --- | --- | ---: |
@@ -44,6 +44,7 @@ Danh mục hiện có **11 chương lý thuyết** và **160 câu hỏi** trong 
 | Đề 2 · SU26 FE | `SU26.json` | 48 |
 | FE Mock | `FE_Mock.json` | 3 |
 | BPS301 — FA26 FINAL EXAM 805603 | `BPS301_FA26_FE_805603.json` | 50 |
+| Ngân hàng 100 câu hỏi ôn tập | `bonus_100c.json` | 100 |
 
 Tên đề hiển thị lấy từ trường `title` hoặc `exam_title` trong JSON. Bộ đề 805603 đánh dấu đáp án, phân tích và mẹo là nội dung suy luận tham khảo.
 
@@ -88,4 +89,20 @@ Trong câu hỏi, dùng `"slides": [{ "materialId": "bpm-slides", "page": 1 }]` 
 2. Commit mã nguồn, `package-lock.json`, dữ liệu trong `public/` và [workflow Pages](.github/workflows/pages.yml), rồi push lên `main`. Workflow chạy `npm ci`, build và xuất bản `dist/`.
 3. Mở **Actions → Build and deploy GitHub Pages** để xem kết quả. Có thể bấm **Run workflow** để chạy thủ công. Môi trường `github-pages` hiển thị URL sau khi triển khai thành công.
 
-Vite dùng `base: './'` để tài nguyên tải được khi site nằm dưới đường dẫn repository như `/BPS301/`. Khi triển khai, JSON trong `public/` được phục vụ cùng website, bao gồm đáp án. Chế độ thi thử ẩn đáp án trên giao diện đến khi nộp bài.
+Vite dùng `/BPS301/` cho bản build và `/` khi chạy dev. Khi preview bản build, mở đường dẫn `/BPS301/`. GitHub Pages phục vụ `404.html` cho đường dẫn lồng nhau, rồi trình duyệt khôi phục URL, tham số và anchor gốc. Vì Pages phục vụ tệp tĩnh, URL gốc chuyển sang `/home` ở phía trình duyệt.
+
+### Đường dẫn có thể lưu hoặc chia sẻ
+
+| Màn hình | Ví dụ sau tiền tố `/BPS301` |
+| --- | --- |
+| Tổng quan, phân tích, lịch sử | `/home`, `/home/analytics`, `/home/history` |
+| Ôn theo đề, chương, trạng thái | `/trainning/exam/fa26_fe`, `/trainning/chapter/10?q=3`, `/trainning/review/wrong` |
+| Mở một câu | `/trainning/question/BPS301_FA26_FE_01` |
+| Thi thử | `/mock_exam/fa25_fe`, `/mock_exam/random_50`, `/mock_exam/fa25_fe/result?filter=wrong` |
+| Giáo trình | `/curriculum/chapter/6`, `/curriculum?search=deadlock`, `/curriculum/formulas`, `/curriculum/pitfalls` |
+| Ngân hàng | `/question_bank/detail/BPS301_FA26_FE_01`, `/question_bank?chapter=5&status=wrong` |
+| Sao lưu, khôi phục, đặt lại tiến độ | `/settings` |
+
+`/training` được chuẩn hóa thành `/trainning`. Đường dẫn có thể chia sẻ bộ đề, chương, vị trí câu và tiêu chí lọc. Đáp án đã chọn, danh sách câu sai, câu đánh dấu, phiên thi và kết quả được đọc từ trình duyệt đang mở.
+
+JSON trong `public/` được phục vụ cùng website, bao gồm đáp án. Chế độ thi thử ẩn đáp án trên giao diện đến khi nộp bài.

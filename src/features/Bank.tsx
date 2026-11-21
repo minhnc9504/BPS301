@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Download, Upload, Pencil } from 'lucide-react'
 import { downloadJson, message, parseBank, parseQuestion } from '../data/storage'
 import { uniqueQuestions, type Exam, type Question, type Study, type Subject } from '../data/model'
+import { findQuestion, useRoute } from '../routes'
+import { Choices, Feedback, Rich } from '../components/Question'
 
 export function Bank({ subject, exams, study, save }: {
   subject: Subject; exams: Exam[]; study: Study; save: (state: Study) => boolean
@@ -10,9 +12,18 @@ export function Bank({ subject, exams, study, save }: {
   const [status, setStatus] = useState('')
   const [strategy, setStrategy] = useState<'skip' | 'update' | 'new'>('skip')
   const [edit, setEdit] = useState<Question>()
-  const [query, setQuery] = useState('')
-  const [chapter, setChapter] = useState('')
-  const [statusFilter, setStatusFilter] = useState('')
+  const route = useRoute()
+  const query = route.query.get('search') ?? ''
+  const chapter = route.query.get('chapter') ?? ''
+  const statusFilter = route.query.get('status') ?? ''
+  const detail = route.segments[0] === 'detail'
+  const detailQuestion = findQuestion(uniqueQuestions(exams), route.segments[1])
+  function filter(key: string, value: string) {
+    const query = new URLSearchParams(route.query)
+    if (value) query.set(key, value)
+    else query.delete(key)
+    route.go('/question_bank' + (query.size ? '?' + query : ''), key === 'search')
+  }
   const latest = new Map(study.attempts.map((attempt) => [attempt.questionId, attempt.correct]))
   const questions = uniqueQuestions(exams)
   const chapters = Array.from(new Set([...subject.theory.map((item) => item.id), ...questions.flatMap((q) => q.chapterId ? [q.chapterId] : [])]))
@@ -75,6 +86,16 @@ export function Bank({ subject, exams, study, save }: {
       setPending([...merged.values()])
     } catch (error) { setStatus(message(error)) }
   }
+  if (detail) return <section className="panel task">
+    <h1>Chi tiết câu hỏi</h1><button onClick={() => route.go('/question_bank')}>Về ngân hàng</button>
+    {detailQuestion ? <>
+      <span className="tag">{detailQuestion.id}</span>
+      <div className="prompt"><Rich content={detailQuestion.prompt} /></div>
+      <Choices question={detailQuestion} selected={detailQuestion.answers} reveal change={() => {}} />
+      <Feedback question={detailQuestion} selected={detailQuestion.answers} slide={(id, page) =>
+        route.go('/curriculum?' + new URLSearchParams({ material: id, page: String(page) }))} />
+    </> : <p>Không tìm thấy câu hỏi.</p>}
+  </section>
   return <>
     <h1>Ngân hàng câu hỏi</h1>
     <section className="panel task">
@@ -144,11 +165,11 @@ export function Bank({ subject, exams, study, save }: {
     </section>}
     <section className="panel task">
       <div className="filters">
-        <label>Tìm câu hỏi<input value={query} placeholder="Nhập ID hoặc nội dung" onChange={(event) => setQuery(event.target.value)} /></label>
-        <label>Chương<select value={chapter} onChange={(event) => setChapter(event.target.value)}>
+        <label>Tìm câu hỏi<input value={query} placeholder="Nhập ID hoặc nội dung" onChange={(event) => filter('search', event.target.value)} /></label>
+        <label>Chương<select value={chapter} onChange={(event) => filter('chapter', event.target.value)}>
           <option value="">Tất cả chương</option>{chapters.map((id) => <option key={id} value={id}>{subject.theory.find((item) => item.id === id)?.title ?? id}</option>)}
         </select></label>
-        <label>Trạng thái<select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}>
+        <label>Trạng thái<select value={statusFilter} onChange={(event) => filter('status', event.target.value)}>
           <option value="">Tất cả trạng thái</option><option value="unanswered">Chưa làm</option>
           <option value="correct">Trả lời đúng</option><option value="wrong">Trả lời sai</option><option value="hard">Đánh dấu khó</option>
         </select></label>
@@ -156,7 +177,8 @@ export function Bank({ subject, exams, study, save }: {
       {matchingQuestions.length === 0 && <p className="muted">Không tìm thấy câu hỏi phù hợp.</p>}
       {matchingQuestions.map((q) =>
         <div className="bank-row" key={q.id}><div><span className="muted">{q.id}</span><p>{q.prompt.format === 'html' ? q.id : q.prompt.value}</p></div>
-          <button onClick={() => { setEdit(q); setStatus(''); window.scrollTo({ top: 0, behavior: 'smooth' }) }}><Pencil size={15} /> Sửa</button></div>)}
+          <div className="row"><button onClick={() => route.go('/question_bank/detail/' + encodeURIComponent(q.id))}>Xem chi tiết</button>
+            <button onClick={() => { setEdit(q); setStatus(''); window.scrollTo({ top: 0, behavior: 'smooth' }) }}><Pencil size={15} /> Sửa</button></div></div>)}
     </section>
   </>
 }
