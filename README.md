@@ -83,26 +83,5 @@ JSON chuẩn gồm `version: 1`, `subjectId` và mảng `exams`. Mỗi đề có
 
 Trong câu hỏi, dùng `"slides": [{ "materialId": "bpm-slides", "page": 1 }]` để mở đúng trang. Tệp thêm qua giao diện có giới hạn **1,5 MB mỗi tệp** và dùng dung lượng lưu trữ của trình duyệt.
 
-## Triển khai GitHub Pages
 
-1. Trong repository, vào **Settings → Pages → Build and deployment → Source**, chọn **GitHub Actions**.
-2. Commit mã nguồn, `package-lock.json`, dữ liệu trong `public/` và [workflow Pages](.github/workflows/pages.yml), rồi push lên `main`. Workflow chạy `npm ci`, build và xuất bản `dist/`.
-3. Mở **Actions → Build and deploy GitHub Pages** để xem kết quả. Có thể bấm **Run workflow** để chạy thủ công. Môi trường `github-pages` hiển thị URL sau khi triển khai thành công.
-
-Vite dùng `/BPS301/` cho bản build và `/` khi chạy dev. Khi preview bản build, mở đường dẫn `/BPS301/`. GitHub Pages phục vụ `404.html` cho đường dẫn lồng nhau, rồi trình duyệt khôi phục URL, tham số và anchor gốc. Vì Pages phục vụ tệp tĩnh, URL gốc chuyển sang `/home` ở phía trình duyệt.
-
-### Đường dẫn có thể lưu hoặc chia sẻ
-
-| Màn hình | Ví dụ sau tiền tố `/BPS301` |
-| --- | --- |
-| Tổng quan, phân tích, lịch sử | `/home`, `/home/analytics`, `/home/history` |
-| Ôn theo đề, chương, trạng thái | `/trainning/exam/fa26_fe`, `/trainning/chapter/10?q=3`, `/trainning/review/wrong` |
-| Mở một câu | `/trainning/question/BPS301_FA26_FE_01` |
-| Thi thử | `/mock_exam/fa25_fe`, `/mock_exam/random_50`, `/mock_exam/fa25_fe/result?filter=wrong` |
-| Giáo trình | `/curriculum/chapter/6`, `/curriculum?search=deadlock`, `/curriculum/formulas`, `/curriculum/pitfalls` |
-| Ngân hàng | `/question_bank/detail/BPS301_FA26_FE_01`, `/question_bank?chapter=5&status=wrong` |
-| Sao lưu, khôi phục, đặt lại tiến độ | `/settings` |
-
-`/training` được chuẩn hóa thành `/trainning`. Đường dẫn có thể chia sẻ bộ đề, chương, vị trí câu và tiêu chí lọc. Đáp án đã chọn, danh sách câu sai, câu đánh dấu, phiên thi và kết quả được đọc từ trình duyệt đang mở.
-
-JSON trong `public/` được phục vụ cùng website, bao gồm đáp án. Chế độ thi thử ẩn đáp án trên giao diện đến khi nộp bài.
+Vite dùng `base: './'` để tài nguyên tải được khi site nằm dưới đường dẫn repository như `/BPS301/`. Khi triển khai, JSON trong `public/` được phục vụ cùng website, bao gồm đáp án. Chế độ thi thử ẩn đáp án trên giao diện đến khi nộp bài.
