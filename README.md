@@ -82,10 +82,4 @@ JSON chuẩn gồm `version: 1`, `subjectId` và mảng `exams`. Mỗi đề có
 
 Trong câu hỏi, dùng `"slides": [{ "materialId": "bpm-slides", "page": 1 }]` để mở đúng trang. Tệp thêm qua giao diện có giới hạn **1,5 MB mỗi tệp** và dùng dung lượng lưu trữ của trình duyệt.
 
-## Triển khai GitHub Pages
 
-1. Trong repository, vào **Settings → Pages → Build and deployment → Source**, chọn **GitHub Actions**.
-2. Commit mã nguồn, `package-lock.json`, dữ liệu trong `public/` và [workflow Pages](.github/workflows/pages.yml), rồi push lên `main`. Workflow chạy `npm ci`, build và xuất bản `dist/`.
-3. Mở **Actions → Build and deploy GitHub Pages** để xem kết quả. Có thể bấm **Run workflow** để chạy thủ công. Môi trường `github-pages` hiển thị URL sau khi triển khai thành công.
-
-Vite dùng `base: './'` để tài nguyên tải được khi site nằm dưới đường dẫn repository như `/BPS301/`. Khi triển khai, JSON trong `public/` được phục vụ cùng website, bao gồm đáp án. Chế độ thi thử ẩn đáp án trên giao diện đến khi nộp bài.
