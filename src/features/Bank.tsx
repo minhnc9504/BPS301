@@ -11,6 +11,18 @@ export function Bank({ subject, exams, study, save }: {
   const [strategy, setStrategy] = useState<'skip' | 'update' | 'new'>('skip')
   const [edit, setEdit] = useState<Question>()
   const [query, setQuery] = useState('')
+  const [chapter, setChapter] = useState('')
+  const [statusFilter, setStatusFilter] = useState('')
+  const latest = new Map(study.attempts.map((attempt) => [attempt.questionId, attempt.correct]))
+  const questions = uniqueQuestions(exams)
+  const chapters = Array.from(new Set([...subject.theory.map((item) => item.id), ...questions.flatMap((q) => q.chapterId ? [q.chapterId] : [])]))
+  const matchingQuestions = questions.filter((q) => {
+    const result = latest.get(q.id)
+    const status = result === undefined ? 'unanswered' : result ? 'correct' : 'wrong'
+    return (!chapter || q.chapterId === chapter) &&
+      (!statusFilter || (statusFilter === 'hard' ? study.bookmarks.includes(q.id) : status === statusFilter)) &&
+      (q.id + ' ' + q.prompt.value).toLowerCase().includes(query.trim().toLowerCase())
+  })
   const known = new Set(uniqueQuestions(exams).map((q) => q.id))
   const incoming = pending.flatMap((e) => e.questions)
   const matches = incoming.filter((q) => known.has(q.id)).length
@@ -131,8 +143,18 @@ export function Bank({ subject, exams, study, save }: {
       </form>
     </section>}
     <section className="panel task">
-      <label>Tìm câu hỏi<input value={query} placeholder="Nhập ID hoặc nội dung" onChange={(event) => setQuery(event.target.value)} /></label>
-      {uniqueQuestions(exams).filter((q) => (q.id + ' ' + q.prompt.value).toLowerCase().includes(query.trim().toLowerCase())).map((q) =>
+      <div className="filters">
+        <label>Tìm câu hỏi<input value={query} placeholder="Nhập ID hoặc nội dung" onChange={(event) => setQuery(event.target.value)} /></label>
+        <label>Chương<select value={chapter} onChange={(event) => setChapter(event.target.value)}>
+          <option value="">Tất cả chương</option>{chapters.map((id) => <option key={id} value={id}>{subject.theory.find((item) => item.id === id)?.title ?? id}</option>)}
+        </select></label>
+        <label>Trạng thái<select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}>
+          <option value="">Tất cả trạng thái</option><option value="unanswered">Chưa làm</option>
+          <option value="correct">Trả lời đúng</option><option value="wrong">Trả lời sai</option><option value="hard">Đánh dấu khó</option>
+        </select></label>
+      </div>
+      {matchingQuestions.length === 0 && <p className="muted">Không tìm thấy câu hỏi phù hợp.</p>}
+      {matchingQuestions.map((q) =>
         <div className="bank-row" key={q.id}><div><span className="muted">{q.id}</span><p>{q.prompt.format === 'html' ? q.id : q.prompt.value}</p></div>
           <button onClick={() => { setEdit(q); setStatus(''); window.scrollTo({ top: 0, behavior: 'smooth' }) }}><Pencil size={15} /> Sửa</button></div>)}
     </section>

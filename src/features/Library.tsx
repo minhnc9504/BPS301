@@ -1,18 +1,36 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BookOpen, FileText } from 'lucide-react'
-import { Rich } from '../components/Question'
+import { Highlight, Rich } from '../components/Question'
 import { asset, message, parseMaterial } from '../data/storage'
 import type { Material, Subject } from '../data/model'
 
-export function Library({ subject, materials, upload, practice }: {
+function openChapter(chapter?: HTMLDetailsElement) {
+  if (!chapter) return
+  chapter.open = true
+  chapter.querySelector('summary')?.focus({ preventScroll: true })
+  chapter.scrollIntoView({ block: 'start' })
+}
+
+export function Library({ subject, materials, upload, practice, jumpTo }: {
   subject: Subject; materials: Material[]; upload: (material: Material) => boolean; practice: (chapterId: string) => void
+  jumpTo?: { id: string }
 }) {
   const [query, setQuery] = useState('')
   const [error, setError] = useState('')
   const [selected, setSelected] = useState<{ id: string; page: number }>()
-  const normalized = query.trim().toLowerCase()
+  const [visibleJump, setVisibleJump] = useState(jumpTo)
+  const keyword = visibleJump === jumpTo ? query.trim() : ''
+  const normalized = keyword.toLowerCase()
   const matches = (text: string) => text.toLowerCase().includes(normalized)
   const viewed = materials.find((material) => material.id === selected?.id)
+  const chapters = subject.theory.filter((chapter) => matches(chapter.title + ' ' + (chapter.summary ?? '') + ' ' + chapter.content.value))
+  const chapterNodes = useRef(new Map<string, HTMLDetailsElement>())
+  useEffect(() => {
+    if (!jumpTo) return
+    setVisibleJump(jumpTo)
+    setQuery('')
+    openChapter(chapterNodes.current.get(jumpTo.id))
+  }, [jumpTo])
   return <>
     <h1>Lý thuyết và giáo trình</h1>
     <div className="panel task">
@@ -53,24 +71,40 @@ export function Library({ subject, materials, upload, practice }: {
       {materials.filter((m) => matches(m.title) || m.pages?.some((page) => matches(page.text ?? ''))).map((material) =>
         <div className="row" key={material.id}>
           <button onClick={() => setSelected({ id: material.id, page: material.pages?.find((page) =>
-            normalized && matches(page.text ?? ''))?.page ?? material.pages?.[0]?.page ?? 1 })}>{material.title}</button>
+            normalized && matches(page.text ?? ''))?.page ?? material.pages?.[0]?.page ?? 1 })}><Highlight text={material.title} query={keyword} /></button>
           {normalized && material.pages?.filter((page) => matches(page.text ?? '')).map((page) => <button key={page.page}
             onClick={() => setSelected({ id: material.id, page: page.page })}>Trang {page.page}</button>)}
         </div>)}
-      {viewed && selected && <MaterialViewer material={viewed} start={selected.page} key={selected.id + ':' + selected.page} />}
+      {viewed && selected && <MaterialViewer material={viewed} start={selected.page} query={keyword} key={selected.id + ':' + selected.page} />}
     </section>
     <section className="panel task"><h2><BookOpen size={18} /> Lý thuyết theo chương</h2>
-      {subject.theory.filter((chapter) => matches(chapter.title + ' ' + chapter.summary + ' ' + chapter.content.value)).map((chapter) =>
-        <details key={chapter.id}><summary>{chapter.title}</summary>
-          {chapter.summary && <p className="muted">{chapter.summary}</p>}
-          <Rich content={chapter.content} />
-          <button className="theory-button" onClick={() => practice(chapter.id)}>Ôn chương này</button>
+      {chapters.length > 0 ? <label>Đến chương<select value="" onChange={(event) => {
+        openChapter(chapterNodes.current.get(event.target.value))
+      }}>
+        <option value="">Chọn chương</option>
+        {chapters.map((chapter) => <option key={chapter.id} value={chapter.id}>{chapter.title}</option>)}
+      </select></label> : <p className="muted">{keyword ? 'Không tìm thấy chương phù hợp.' : 'Chưa có lý thuyết theo chương.'}</p>}
+      {chapters.length > 0 && <div className="reader-index" role="group" aria-label="Mục lục chương">
+        {chapters.map((chapter) => <button key={chapter.id} aria-label={chapter.title} title={chapter.title} onClick={() => openChapter(chapterNodes.current.get(chapter.id))}>
+          Chương {chapter.id}
+        </button>)}
+      </div>}
+      {chapters.map((chapter) =>
+        <details className="theory-chapter" key={chapter.id} ref={(node) => {
+          if (node) chapterNodes.current.set(chapter.id, node)
+          else chapterNodes.current.delete(chapter.id)
+        }}><summary><Highlight text={chapter.title} query={keyword} /></summary>
+          <div className="theory-reading">
+            {chapter.summary && <aside className="theory-summary"><strong>Tóm tắt chương</strong><p><Highlight text={chapter.summary} query={keyword} /></p></aside>}
+            <Rich content={chapter.content} query={keyword} theory />
+            <button className="theory-button" onClick={() => practice(chapter.id)}>Ôn chương này</button>
+          </div>
         </details>)}
     </section>
   </>
 }
 
-export function MaterialViewer({ material, start }: { material: Material; start: number }) {
+export function MaterialViewer({ material, start, query = '' }: { material: Material; start: number; query?: string }) {
   const [page, setPage] = useState(start)
   const [localPdf, setLocalPdf] = useState('')
   const item = material.pages?.find((entry) => entry.page === page)
@@ -100,6 +134,6 @@ export function MaterialViewer({ material, start }: { material: Material; start:
         <iframe className="pdf" title={material.title} src={pageUrl} />
       </div> :
         <p className="muted">{material.kind === 'pptx' ? 'PPTX chưa có PDF hoặc ảnh xem trước ở trang này.' : 'Chưa có ảnh cho trang này.'}</p>}
-    {item?.text && <p>{item.text}</p>}
+    {item?.text && <p><Highlight text={item.text} query={query} /></p>}
   </div>
 }

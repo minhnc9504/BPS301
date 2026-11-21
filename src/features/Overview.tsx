@@ -1,5 +1,6 @@
-import { BookOpen, ClipboardList, GraduationCap, Layers, Target, Bookmark } from 'lucide-react'
+import { BookOpen, ClipboardList, GraduationCap, Layers, Target, Bookmark, Play } from 'lucide-react'
 import { isCorrect, uniqueQuestions, type Exam, type Material, type Study, type Subject } from '../data/model'
+import { Progress } from '../components/Progress'
 
 export function Overview({ subject, exams, study, materials, resume, practice, library }: {
   subject: Subject; exams: Exam[]; study: Study; materials: Material[]
@@ -7,9 +8,11 @@ export function Overview({ subject, exams, study, materials, resume, practice, l
 }) {
   const questions = uniqueQuestions(exams)
   const marks = new Map(study.attempts.map((attempt) => [attempt.questionId, attempt.correct]))
+  const completed = questions.filter((question) => marks.has(question.id)).length
   const scores = study.history.map((item) => item.questions.filter((q) => isCorrect(q, item.selections[q.id])).length * 10 / item.questions.length)
   const needsReview = questions.filter((q) => marks.get(q.id) === false || study.bookmarks.includes(q.id)).length
-  const rate = study.attempts.length ? Math.round(study.attempts.filter((item) => item.correct).length * 100 / study.attempts.length) + '%' : '—'
+  const accuracy = study.attempts.length ? Math.round(study.attempts.filter((item) => item.correct).length * 100 / study.attempts.length) : undefined
+  const rate = accuracy === undefined ? '—' : accuracy + '%'
   const stats = [
     { label: 'Tổng câu hỏi', value: questions.length, icon: Layers, color: 'blue' },
     { label: 'Bộ đề', value: exams.length, icon: ClipboardList, color: 'purple' },
@@ -24,13 +27,17 @@ export function Overview({ subject, exams, study, materials, resume, practice, l
   ].sort((a, b) => b.at - a.at).slice(0, 5)
   return <>
     <h1>Tổng quan môn học</h1>
-    <section className="hero">
+    <section className="panel hero studio-hero">
       <div className="hero-copy">
         <span className="hero-code">{subject.code}</span>
         <h2>{subject.title}</h2>
-        <div className="row"><button className="hero-primary" onClick={resume}>Tiếp tục học</button><button className="hero-secondary" onClick={library}>Xem lý thuyết</button></div>
+        <div className="hero-progress">
+          <div className="row spread"><span>Tiến độ ôn tập</span><strong className="mono">{completed}/{questions.length} câu{questions.length > 0 && ' · ' + Math.round(completed * 100 / questions.length) + '%'}</strong></div>
+          <Progress value={completed} total={questions.length} label="Tiến độ ôn tập của môn" />
+        </div>
+        <div className="row"><button className="hero-primary" onClick={resume}><Play size={16} /> Tiếp tục học</button><button className="hero-secondary" onClick={library}><BookOpen size={16} /> Xem lý thuyết</button></div>
       </div>
-      <div className="hero-art" aria-hidden="true"><BookOpen strokeWidth={1.15} /></div>
+      <div className="hero-art" aria-hidden="true"><span><BookOpen strokeWidth={1.4} /></span></div>
     </section>
     <div className="stats">{stats.map(({ label, value, icon: Icon, color }) =>
       <div className="stat" key={label}><span className={'stat-icon ' + color}><Icon size={19} /></span><div><strong>{value}</strong><span>{label}</span></div></div>)}</div>
@@ -38,10 +45,16 @@ export function Overview({ subject, exams, study, materials, resume, practice, l
       <section className="panel task">
         <div className="row spread"><h2>Lộ trình học</h2><span className="muted">{subject.theory.length} chương</span></div>
         {subject.theory.length === 0 && <p className="muted">Môn này chưa có lý thuyết theo chương.</p>}
-        {subject.theory.map((chapter) => <div className="chapter" key={chapter.id}>
-          <div><strong>{chapter.title}</strong>{chapter.summary && <p className="muted">{chapter.summary}</p>}</div>
+        {subject.theory.map((chapter) => {
+          const items = questions.filter((q) => q.chapterId === chapter.id)
+          const done = items.filter((q) => marks.has(q.id)).length
+          return <div className="chapter" key={chapter.id}>
+          <div className="chapter-body"><strong>{chapter.title}</strong>{chapter.summary && <p className="muted">{chapter.summary}</p>}
+            <span className="mono muted">{done}/{items.length} câu đã ôn</span>
+            <Progress value={done} total={items.length} label={'Tiến độ ' + chapter.title} />
+          </div>
           <button onClick={() => practice(chapter.id)}>Ôn chương</button>
-        </div>)}
+        </div>})}
       </section>
       <div className="side-stack">
         <section className="panel task"><h2>Cần ôn lại</h2>

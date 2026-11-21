@@ -1,0 +1,2007 @@
+{
+"exam_title": "BPS301 — NGÂN HÀNG 100 CÂU HỎI ÔN TẬP TRẮC NGHIỆM (LECTURES 1–11)",
+"note": "Bộ đề gồm 100 câu hỏi trắc nghiệm bám sát 11 bài giảng (Lectures 1–11). Câu hỏi và 4 phương án A/B/C/D giữ nguyên thuật ngữ tiếng Anh theo slide; phần Đáp án đúng, Giải thích – Loại trừ và Mẹo ghi nhớ được trình bày bằng tiếng Việt để ôn thi nhanh.",
+"total_questions": 100,
+"questions": [
+{
+"id": 1,
+"code": "BPS301 · Lectures 1–11 · Question 1",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What are the three primary performance dimensions used to evaluate a business process?",
+"options": {
+"A": "Speed, automation, and compliance",
+"B": "Time, cost, and quality",
+"C": "Revenue, headcount, and customer satisfaction",
+"D": "Flexibility, standardization, and scalability"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Một quy trình nghiệp vụ biến đổi nhu cầu khách hàng thành kết quả có giá trị và được đánh giá chủ yếu qua 3 chiều hiệu năng: Time (thời gian), Cost (chi phí) và Quality (chất lượng). Loại trừ: A, C, D nêu các yếu tố phái sinh hoặc thuộc khung khác (như Devil's Quadrangle thêm Flexibility ở phần Redesign), không phải 3 chiều cơ bản ở bài mở đầu.",
+"tip": "3 chữ vàng đánh giá quy trình: Time – Cost – Quality.",
+"source_image": "Lecture 1 – Introduction"
+},
+{
+"id": 2,
+"code": "BPS301 · Lectures 1–11 · Question 2",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which sequence correctly represents the six phases of the BPM lifecycle?",
+"options": {
+"A": "Process discovery, identification, modeling, redesign, monitoring, automation",
+"B": "Process identification, discovery, analysis, redesign, implementation, monitoring",
+"C": "Process modeling, analysis, identification, execution, controlling, optimization",
+"D": "Process selection, simulation, automation, testing, deployment, auditing"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Vòng đời BPM chuẩn gồm 6 giai đoạn lặp lại: Identification (xác định) → Discovery (khám phá/mô hình hóa hiện trạng) → Analysis (phân tích) → Redesign (tái thiết kế) → Implementation (triển khai/tự động hóa) → Monitoring (giám sát). Loại trừ: A, C, D đảo lộn thứ tự hoặc thay thế bằng các thuật ngữ không thuộc 6 pha chuẩn của vòng đời BPM.",
+"tip": "Nhớ chuỗi: I-D-A-R-I-M (Identify → Discover → Analyze → Redesign → Implement → Monitor).",
+"source_image": "Lecture 1 – Introduction"
+},
+{
+"id": 3,
+"code": "BPS301 · Lectures 1–11 · Question 3",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In the process identification phase, what are the two main steps?",
+"options": {
+"A": "Process modeling and process simulation",
+"B": "Designation step and prioritization step",
+"C": "Value-added analysis and waste analysis",
+"D": "As-is analysis and to-be design"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Xác định quy trình (Process Identification) gồm 2 bước: Designation step (liệt kê các quy trình chính, xác định phạm vi) và Prioritization step (ưu tiên/lựa chọn quy trình). Loại trừ: A thuộc pha Modeling/Analysis; C thuộc pha Qualitative Analysis; D thuộc pha Redesign.",
+"tip": "Identification = Gọi tên (Designation) + Chọn lọc ưu tiên (Prioritization).",
+"source_image": "Lectures 1–2 – Process Identification"
+},
+{
+"id": 4,
+"code": "BPS301 · Lectures 1–11 · Question 4",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What are the two concrete outputs produced by the process identification phase?",
+"options": {
+"A": "BPMN collaboration diagram and event log",
+"B": "Process architecture and prioritized process portfolio",
+"C": "Issue register and fishbone diagram",
+"D": "Executable process model and simulation report"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Đầu ra của pha Process Identification là Process Architecture (kiến trúc quy trình) từ bước Designation và Prioritized Process Portfolio (danh mục quy trình ưu tiên) từ bước Prioritization. Loại trừ: A là đầu ra của Modeling/Execution; C thuộc Qualitative Analysis; D thuộc Automation/Quantitative Analysis.",
+"tip": "2 bước Identification cho ra 2 sản phẩm: Architecture (bản đồ) + Portfolio (danh sách ưu tiên).",
+"source_image": "Lectures 1–2 – Process Identification"
+},
+{
+"id": 5,
+"code": "BPS301 · Lectures 1–11 · Question 5",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "According to Porter's classification of business processes, what are the three types of processes in an organization?",
+"options": {
+"A": "Strategic, operational, and tactical processes",
+"B": "Core, support, and management processes",
+"C": "Manual, semi-automated, and automated processes",
+"D": "Internal, external, and cross-functional processes"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Kiến trúc quy trình phân loại hoạt động doanh nghiệp thành 3 nhóm: Core processes (quy trình cốt lõi tạo giá trị trực tiếp cho khách hàng), Support processes (hỗ trợ) và Management processes (quản lý). Loại trừ: A là cấp độ ra quyết định; C là mức độ tự động hóa; D không phải phân loại chuẩn trong bài giảng.",
+"tip": "Kim tự tháp 3 tầng: Management (đỉnh) – Core (giữa) – Support (đáy).",
+"source_image": "Lecture 2 – Process Identification"
+},
+{
+"id": 6,
+"code": "BPS301 · Lectures 1–11 · Question 6",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "According to Geary Rummler, most businesses have just three core processes. Which of the following is NOT one of them?",
+"options": {
+"A": "Sell stuff",
+"B": "Deliver stuff",
+"C": "Making sure you have stuff to sell and deliver",
+"D": "Manage employee payroll and HR"
+},
+"answer": "D",
+"answers_list": [
+"D"
+],
+"explanation": "Rummler chỉ ra 3 quy trình cốt lõi của hầu hết doanh nghiệp là: Sell stuff (bán hàng), Deliver stuff (giao hàng) và Making sure you have stuff to sell and deliver (đảm bảo có hàng để bán và giao). HR/Payroll thuộc nhóm Support processes. Loại trừ: A, B, C chính là 3 quy trình cốt lõi được trích dẫn nguyên văn trong bài giảng.",
+"tip": "Core = Bán hàng + Giao hàng + Chuẩn bị hàng; HR/IT/Finance là Support.",
+"source_image": "Lecture 2 – Process Identification"
+},
+{
+"id": 7,
+"code": "BPS301 · Lectures 1–11 · Question 7",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In a grocery wholesaler's process architecture, which of the following belongs to Support processes?",
+"options": {
+"A": "Direct procurement and Distribution",
+"B": "Strategic Management and Demand Management",
+"C": "Finance, Indirect procurement, IT, and HR",
+"D": "Sales and Marketing"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Trong ví dụ kiến trúc quy trình của nhà bán sỉ thực phẩm, Support processes gồm Finance, Indirect procurement (mua sắm gián tiếp), IT và HR. Loại trừ: A và D (Direct procurement, Distribution, Sales, Marketing) thuộc Core processes; B thuộc Management processes.",
+"tip": "Mua sắm trực tiếp (Direct) là Core; mua sắm gián tiếp (Indirect), IT, HR, Finance là Support.",
+"source_image": "Lecture 2 – Process Identification"
+},
+{
+"id": 8,
+"code": "BPS301 · Lectures 1–11 · Question 8",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which three criteria are used in the prioritization step (process selection) to build a prioritized process portfolio?",
+"options": {
+"A": "Budget, headcount, and technology readiness",
+"B": "Importance, health (or dysfunction), and feasibility",
+"C": "Cycle time, waiting time, and error rate",
+"D": "Risk, compliance, and customer complaints"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Bước Prioritization đánh giá quy trình dựa trên 3 tiêu chí: Importance (tầm quan trọng chiến lược), Health/Dysfunction (sức khỏe/mức độ trục trặc hiện tại) và Feasibility (tính khả thi khi cải tiến). Loại trừ: A, C, D là các chỉ số chi tiết hoặc yếu tố phụ, không phải bộ 3 tiêu chí chọn lọc quy trình của Davenport/Hammer & Champy.",
+"tip": "Chọn quy trình để sửa: Quan trọng (Importance) + Đang bệnh nặng (Health kém) + Sửa được (Feasibility cao).",
+"source_image": "Lectures 1–2 – Process Identification"
+},
+{
+"id": 9,
+"code": "BPS301 · Lectures 1–11 · Question 9",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In process selection, what does the 'Health (or Dysfunction)' criterion specifically ask?",
+"options": {
+"A": "Which processes have the greatest impact on strategic objectives?",
+"B": "Which processes are in deepest trouble?",
+"C": "Which processes are most susceptible to successful process management?",
+"D": "Which processes have the lowest IT infrastructure cost?"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Tiêu chí Health (Dysfunction) đặt câu hỏi: 'Which processes are in deepest trouble?' (Quy trình nào đang gặp trục trặc/yếu kém nghiêm trọng nhất?). Loại trừ: A là định nghĩa của Importance; C là định nghĩa của Feasibility; D không phải tiêu chí trong bộ 3.",
+"tip": "Health = Sức khỏe kém (deepest trouble); Importance = Tác động chiến lược; Feasibility = Dễ thành công.",
+"source_image": "Lecture 2 – Process Identification"
+},
+{
+"id": 10,
+"code": "BPS301 · Lectures 1–11 · Question 10",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which criterion in process selection asks: 'Which processes are most susceptible to successful process management?'",
+"options": {
+"A": "Importance",
+"B": "Health",
+"C": "Feasibility",
+"D": "Strategic fit"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Feasibility (tính khả thi) đánh giá xem quy trình nào có khả năng áp dụng quản trị quy trình thành công cao nhất (ít rào cản văn hóa, chính trị, kỹ thuật). Loại trừ: A (Importance) xét tác động mục tiêu chiến lược; B (Health) xét mức độ trục trặc; D chỉ là một yếu tố gợi ý phụ.",
+"tip": "Susceptible to success = Dễ thành công = Feasibility.",
+"source_image": "Lecture 2 – Process Identification"
+},
+{
+"id": 11,
+"code": "BPS301 · Lectures 1–11 · Question 11",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "When using a Prioritized Process Portfolio matrix (Importance vs. Health vs. Feasibility), which processes should be targeted for immediate short-term action?",
+"options": {
+"A": "Low importance, good health, low feasibility",
+"B": "High importance, poor health, high feasibility",
+"C": "High importance, good health, medium feasibility",
+"D": "Low importance, poor health, low feasibility"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Những quy trình có Importance cao (quan trọng), Health kém (đang trục trặc) và Feasibility cao (khả thi để cải tiến) là ứng viên hàng đầu cho hành động ngắn hạn. Loại trừ: A và D có tầm quan trọng thấp hoặc khả thi thấp; C đang có sức khỏe tốt (Good health) nên chưa cấp bách.",
+"tip": "Ưu tiên số 1: Quan trọng (High) + Đang bệnh (Poor) + Dễ chữa (High Feasibility).",
+"source_image": "Lecture 2 – Process Identification"
+},
+{
+"id": 12,
+"code": "BPS301 · Lectures 1–11 · Question 12",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which industry-standard reference framework is commonly used to structure and enumerate a process architecture?",
+"options": {
+"A": "BPMN 2.0 Poster",
+"B": "APQC Process Classification Framework",
+"C": "M/M/c Queueing Framework",
+"D": "Six Ms Fishbone Framework"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Khung phân loại quy trình APQC (APQC Process Classification Framework) là mô hình tham chiếu chuẩn ngành giúp xây dựng kiến trúc quy trình đa cấp. Loại trừ: A là chuẩn ký pháp vẽ mô hình; C là mô hình toán học hàng đợi; D là công cụ phân tích nguyên nhân gốc.",
+"tip": "Xây Process Architecture chuẩn ngành = nhớ ngay APQC.",
+"source_image": "Lecture 2 – Process Identification"
+},
+{
+"id": 13,
+"code": "BPS301 · Lectures 1–11 · Question 13",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which of the following is classified under Management processes in a typical enterprise process architecture?",
+"options": {
+"A": "Order-to-Cash",
+"B": "Procure-to-Pay",
+"C": "Risk Assessment & Management and Investor Relations",
+"D": "IT Helpdesk Support"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Trong kiến trúc quy trình mẫu, Strategic Management, Corporate Development, Investor Relations và Risk Assessment & Management thuộc nhóm Management processes. Loại trừ: A và B là các quy trình cốt lõi (Core); D là quy trình hỗ trợ (Support).",
+"tip": "Quản trị rủi ro, chiến lược, quan hệ nhà đầu tư = Management processes.",
+"source_image": "Lecture 2 – Process Identification"
+},
+{
+"id": 14,
+"code": "BPS301 · Lectures 1–11 · Question 14",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "How is a business process defined in the introductory BPM framework?",
+"options": {
+"A": "A static organizational chart showing reporting lines",
+"B": "An interconnected sequence of events, activities, and decisions transforming a need into a valuable outcome",
+"C": "A standalone software application used by a single department",
+"D": "A financial budget allocated to annual operations"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Quy trình nghiệp vụ là tập hợp các sự kiện (events), hoạt động (activities/tasks) và quyết định (decisions) liên kết nhau nhằm biến đổi nhu cầu khách hàng thành kết quả có giá trị. Loại trừ: A là sơ đồ tổ chức; C là hệ thống phần mềm; D là ngân sách tài chính.",
+"tip": "Định nghĩa Business Process = Events + Activities + Decisions → Outcome có giá trị.",
+"source_image": "Lecture 1 – Introduction"
+},
+{
+"id": 15,
+"code": "BPS301 · Lectures 1–11 · Question 15",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In the BPM lifecycle, which phase immediately follows Process Analysis?",
+"options": {
+"A": "Process Identification",
+"B": "Process Discovery",
+"C": "Process Redesign",
+"D": "Process Monitoring"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Sau khi phân tích định tính và định lượng ở pha Process Analysis để tìm điểm nghẽn và nguyên nhân, bước tiếp theo là Process Redesign (tái thiết kế quy trình). Loại trừ: A và B diễn ra trước pha Analysis; D diễn ra sau pha Implementation.",
+"tip": "Phân tích (Analysis) tìm ra bệnh → Tái thiết kế (Redesign) để kê đơn.",
+"source_image": "Lecture 1 – Introduction"
+},
+{
+"id": 16,
+"code": "BPS301 · Lectures 1–11 · Question 16",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which BPMN gateway splits a flow into multiple outgoing branches where ONLY ONE branch is chosen based on data conditions?",
+"options": {
+"A": "Parallel Gateway (AND-split)",
+"B": "Exclusive Gateway (XOR-split)",
+"C": "Inclusive Gateway (OR-split)",
+"D": "Event-based Gateway"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Exclusive Gateway (XOR-split) chọn duy nhất một nhánh đầu ra dựa trên điều kiện dữ liệu được đánh giá ngay tại thời điểm token đến cổng. Loại trừ: A kích hoạt tất cả nhánh; C kích hoạt 1 hoặc nhiều nhánh (n out of m); D chờ sự kiện xảy ra thay vì đánh giá dữ liệu.",
+"tip": "XOR (dấu X) = Chọn đúng 1 nhánh (eXclusive).",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 17,
+"code": "BPS301 · Lectures 1–11 · Question 17",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "How does an AND-join (Parallel merge) gateway behave when synchronizing incoming branches?",
+"options": {
+"A": "It proceeds as soon as the first incoming branch arrives",
+"B": "It proceeds when all active incoming branches have completed",
+"C": "It proceeds only when ALL incoming branches have completed",
+"D": "It evaluates a boolean expression before merging"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "AND-join (cổng +) bắt buộc phải đợi TẤT CẢ các nhánh đầu vào hoàn tất thì luồng mới đi tiếp. Loại trừ: A mô tả XOR-join; B mô tả OR-join (chỉ đợi các nhánh đang active); D là chức năng của split chứ không phải AND-join.",
+"tip": "AND-join (+) = Đợi đủ 100% tất cả các nhánh đầu vào.",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 18,
+"code": "BPS301 · Lectures 1–11 · Question 18",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In an order distribution process where an order can contain Amsterdam products, Hamburg products, or both, which gateway models 'one or more branches' (n out of m) cleanly?",
+"options": {
+"A": "XOR Gateway",
+"B": "AND Gateway",
+"C": "Inclusive Gateway (OR Gateway)",
+"D": "Event-based Gateway"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "OR Gateway (Inclusive) dùng để tách và đồng bộ n trên m nhánh song song (chọn 1 hoặc nhiều nhánh tùy điều kiện thỏa mãn). OR-join sẽ đợi tất cả các nhánh đang active hoàn thành. Loại trừ: A chỉ chọn được 1 nhánh (nếu dùng XOR phải vẽ thêm nhánh kết hợp phức tạp); B luôn chạy cả 2 nhánh; D dùng cho cuộc đua sự kiện.",
+"tip": "OR (hình tròn O) = 1 hoặc nhiều nhánh (n out of m).",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 19,
+"code": "BPS301 · Lectures 1–11 · Question 19",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What happens if an AND-split is followed by an XOR-split on one branch that can terminate early, and the two main branches later meet at an AND-join?",
+"options": {
+"A": "The process completes faster",
+"B": "A deadlock occurs because the AND-join waits indefinitely for the terminated branch",
+"C": "The AND-join automatically converts into an OR-join",
+"D": "The second token is discarded silently"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Đây là lỗi kinh điển (Beginner's Mistake / Deadlock): nếu một nhánh từ AND-split rẽ vào nhánh kết thúc sớm (XOR), nhánh đó không bao giờ tới AND-join, khiến AND-join chờ vô tận. Loại trừ: A, C, D đều sai vì BPMN không tự chuyển đổi gateway và AND-join không thể đi tiếp nếu thiếu token.",
+"tip": "AND-split mà có nhánh bỏ cuộc giữa chừng → Không được dùng AND-join (dễ Deadlock), phải cân nhắc OR-join hoặc cấu trúc lại.",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 20,
+"code": "BPS301 · Lectures 1–11 · Question 20",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which BPMN naming convention is recommended for Tasks (Activities)?",
+"options": {
+"A": "Noun + past participle (e.g., 'Invoice received')",
+"B": "Verb + business object (+ optional complement), avoiding generic verbs like 'Handle'",
+"C": "Question format ending with a question mark",
+"D": "Department name + noun"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Quy tắc đặt tên Task trong BPMN: Động từ (Verb) + Đối tượng nghiệp vụ (Business Object) + Bổ ngữ nếu cần (ví dụ: 'Issue Driver Licence'), tránh động từ chung chung như 'Handle', 'Record'. Loại trừ: A là quy tắc đặt tên cho Message Event (ví dụ: 'Invoice received'); C dùng cho điều kiện/câu hỏi; D không phải chuẩn BPMN.",
+"tip": "Task = Hành động (Verb + Object); Event = Trạng thái đã xảy ra (Object + Past Participle).",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 21,
+"code": "BPS301 · Lectures 1–11 · Question 21",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "How should a Message Event (e.g., receiving an invoice or settling a claim) be named according to BPMN guidelines?",
+"options": {
+"A": "Verb + business object (e.g., 'Receive invoice')",
+"B": "Object + past participle (e.g., 'Invoice received', 'Claim settled')",
+"C": "Imperative verb only",
+"D": "Condition expression"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Sự kiện (Event) là thứ tức thời đã xảy ra, nên đặt tên theo mẫu: Object + past participle (ví dụ: 'Invoice received', 'Claim settled'). Loại trừ: A là cách đặt tên Task; C và D sai chuẩn đặt tên Event.",
+"tip": "Event = Đã xong/đã nhận (Object + V-ed/V3).",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 22,
+"code": "BPS301 · Lectures 1–11 · Question 22",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In BPMN organizational modeling, what is the difference between a Pool and a Lane?",
+"options": {
+"A": "A Pool models a software system, while a Lane models a whole company",
+"B": "A Pool represents a business party (resource class), while a Lane is a sub-class within a Pool (departments, roles, systems)",
+"C": "Sequence flows can cross Pools, while Message flows only stay inside a Lane",
+"D": "Pools are optional for B2B collaboration, while Lanes are mandatory"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Pool đại diện cho một thực thể/tổ chức độc lập (resource class, ví dụ cả công ty). Lane là phân vùng con bên trong Pool (resource sub-class) dùng cho phòng ban, vai trò hoặc hệ thống (ERP, CRM). Loại trừ: A đảo ngược khái niệm; C sai vì Sequence flow KHÔNG được vượt qua ranh giới Pool (phải dùng Message flow giữa các Pool); D sai.",
+"tip": "Pool = Công ty/Bên tham gia (ngoài Pool dùng Message Flow); Lane = Phòng ban/Vai trò bên trong Pool (nối bằng Sequence Flow).",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 23,
+"code": "BPS301 · Lectures 1–11 · Question 23",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which BPMN element provides additional descriptive text for model readers without affecting the flow of tokens?",
+"options": {
+"A": "Data Object",
+"B": "Data Store",
+"C": "Text Annotation",
+"D": "Message Flow"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Text Annotation là chú thích văn bản cung cấp thông tin bổ sung cho người đọc và hoàn toàn không ảnh hưởng đến luồng di chuyển của token. Loại trừ: A và B mô hình hóa dữ liệu vào/ra và kho dữ liệu; D thể hiện trao đổi thông điệp giữa các Pool.",
+"tip": "Chú thích cho người đọc, không ảnh hưởng token = Text Annotation.",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 24,
+"code": "BPS301 · Lectures 1–11 · Question 24",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What does 'modeling in blocks' (block-structured modeling) mean in BPMN guidelines?",
+"options": {
+"A": "Placing all tasks inside a single Pool without Lanes",
+"B": "Pairing each AND-split with an AND-join and each XOR-split with an XOR-join whenever possible",
+"C": "Using only collapsed sub-processes at Level 2",
+"D": "Replacing all gateways with text annotations"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Nguyên tắc 'Model in blocks' khuyến nghị ghép cặp đối xứng: mỗi AND-split đi với một AND-join, mỗi XOR-split đi với một XOR-join bất cứ khi nào có thể để mô hình rõ ràng, tránh lỗi deadlock. Loại trừ: A, C, D không phải ý nghĩa của block-structured modeling.",
+"tip": "Model in blocks = Mở cổng nào đóng cổng nấy (AND-AND, XOR-XOR).",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 25,
+"code": "BPS301 · Lectures 1–11 · Question 25",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In multi-level process modeling, what characterizes a Level 1 model (Value Chain)?",
+"options": {
+"A": "Full execution properties and API endpoints",
+"B": "Simple linear description of process phases with no gateways, where each chain is a sub-process",
+"C": "Detailed exception handling with boundary error events",
+"D": "Swimlanes showing every internal software system"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Level 1 (Value chain) mô tả tuyến tính đơn giản các giai đoạn của quy trình, không có gateways, mỗi khối là một sub-process. Các chi tiết (decisions, lanes, events, data) được thêm dần từ Level 2+. Loại trừ: A thuộc bước Process Automation; C và D thuộc Level 2 trở lên.",
+"tip": "Level 1 = Value Chain tuyến tính, NO gateways.",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 26,
+"code": "BPS301 · Lectures 1–11 · Question 26",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What is the key difference between a Loop Activity marker and a Parallel Multi-Instance Activity marker in BPMN?",
+"options": {
+"A": "Loop repeats sequentially until a condition is met; Parallel Multi-Instance executes multiple instances concurrently (e.g., for all items/suppliers)",
+"B": "Loop runs instances in parallel; Multi-Instance runs them sequentially one by one",
+"C": "Loop can only be used on sub-processes; Multi-Instance only on pools",
+"D": "There is no semantic difference; they are visual synonyms"
+},
+"answer": "A",
+"answers_list": [
+"A"
+],
+"explanation": "Loop marker (mũi tên vòng) lặp tuần tự một hoạt động cho đến khi thỏa điều kiện. Parallel Multi-Instance marker (ba vạch đứng |||) thực thi đồng thời nhiều bản sao của hoạt động (ví dụ: gửi yêu cầu báo giá cho cả 5 nhà cung cấp cùng lúc). Loại trừ: B đảo ngược ngữ nghĩa; C và D sai về quy chuẩn BPMN.",
+"tip": "Vòng tròn = Lặp tuần tự (Loop); 3 vạch đứng ||| = Chạy song song nhiều bản sao (Parallel Multi-Instance).",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 27,
+"code": "BPS301 · Lectures 1–11 · Question 27",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In the procurement example where quotes must be obtained from 5 preferred suppliers simultaneously and evaluated after all quotes arrive, which BPMN construct is most compact?",
+"options": {
+"A": "An XOR-split with 5 branches",
+"B": "A Parallel Multi-Instance activity with cardinality = 5",
+"C": "A sequential Loop activity",
+"D": "A Terminate End Event"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Hoạt động đa thực thể song song (Parallel Multi-Instance activity) với cardinality = 5 cho phép gửi và nhận báo giá từ 5 nhà cung cấp đồng thời một cách gọn gàng, chỉ chuyển tiếp khi tất cả hoàn tất. Loại trừ: A chỉ chọn 1 nhánh; C chạy tuần tự gây chậm; D hủy toàn bộ quy trình.",
+"tip": "Làm cùng lúc cho N đối tượng (N nhà cung cấp) = Parallel Multi-Instance.",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 28,
+"code": "BPS301 · Lectures 1–11 · Question 28",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "When should you use an Event-based Gateway instead of a data-driven XOR-split gateway?",
+"options": {
+"A": "When the decision can be made immediately using internal process data",
+"B": "When the choice must be delayed until an external event happens (a 'race between events' outside our control)",
+"C": "When all outgoing branches must execute in parallel",
+"D": "When a task needs to be repeated 5 times"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "XOR-split đánh giá biểu thức dữ liệu có sẵn ngay lập tức. Ngược lại, Event-based Gateway trì hoãn quyết định cho đến khi một trong các sự kiện xảy ra trước ('race between events' ngoài tầm kiểm soát của quy trình, ví dụ: nhận phản hồi trước vs. hết hạn thứ Sáu). Loại trừ: A là XOR-split; C là AND-split; D là Multi-instance/Loop.",
+"tip": "Data-driven XOR = Hỏi dữ liệu ngay; Event-based = Đứng đợi xem sự kiện nào tới trước.",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 29,
+"code": "BPS301 · Lectures 1–11 · Question 29",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In the restaurant chain replenishment example (submit PO on Thursday; expect PO Response, Error message, or timeout by Friday afternoon), what follows the Event-based Gateway?",
+"options": {
+"A": "Tasks directly without intermediate events",
+"B": "Intermediate catching events (Message events for PO Response / Error, and Timer event for Friday afternoon)",
+"C": "A Parallel AND-join",
+"D": "A Terminate end event immediately"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Ngay sau Event-based Gateway phải là các sự kiện bắt (catching events) hoặc Receive Task đang chờ kích hoạt — trong ví dụ là Message events (Order response / Error message) và Timer event (Friday afternoon). Loại trừ: A, C, D vi phạm cú pháp và ngữ nghĩa của Event-based Gateway.",
+"tip": "Sau Event-based Gateway = Các sự kiện chờ (Message / Timer).",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 30,
+"code": "BPS301 · Lectures 1–11 · Question 30",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What is the exact effect of a Terminate End Event (solid black circle inside a thick border) when reached in a BPMN process?",
+"options": {
+"A": "It pauses the current branch until a manager approves",
+"B": "It forces the entire process instance to abort immediately and 'wipes off' all remaining tokens",
+"C": "It only ends the current branch while parallel branches keep running",
+"D": "It triggers a non-interrupting notification"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Terminate End Event cưỡng bức hủy toàn bộ tiến trình đang chạy và xóa sạch ('wipes off') mọi token còn sót lại ở các nhánh song song khác. Loại trừ: A sai; C là hành vi của None End Event thông thường; D là non-interrupting event.",
+"tip": "Terminate End Event (chấm đen đặc) = 'Rút phích cắm', xóa sạch mọi token của cả process.",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 31,
+"code": "BPS301 · Lectures 1–11 · Question 31",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In BPMN exception handling for an activity, which boundary event is used to handle an EXTERNAL exception where something goes wrong outside the process?",
+"options": {
+"A": "Boundary Timer Event",
+"B": "Boundary Error Event",
+"C": "Boundary Message Event",
+"D": "Terminate End Event"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Bài giảng phân biệt 3 loại ngoại lệ gắn biên: External (lỗi từ bên ngoài quy trình) → Message Event; Internal (lỗi bên trong hoạt động) → Error Event; Timeout (quá thời gian) → Timer Event. Loại trừ: A dùng cho Timeout; B dùng cho lỗi nội bộ (Internal); D dùng ở cuối luồng để hủy toàn bộ process.",
+"tip": "3 cặp ngoại lệ: External = Message | Internal = Error | Timeout = Timer.",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 32,
+"code": "BPS301 · Lectures 1–11 · Question 32",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which boundary event handles an INTERNAL exception (something goes wrong inside a task or sub-process) so its execution is interrupted?",
+"options": {
+"A": "Boundary Error Event",
+"B": "Boundary Message Event",
+"C": "Non-interrupting Timer Event",
+"D": "Conditional Start Event"
+},
+"answer": "A",
+"answers_list": [
+"A"
+],
+"explanation": "Internal exception (sự cố phát sinh ngay bên trong hoạt động/sub-process) được ném ra (throw) và bắt (catch) bằng Boundary Error Event (biểu tượng tia sét) gắn trên biên hoạt động. Loại trừ: B dùng cho ngoại lệ từ bên ngoài; C không ngắt luồng chính; D không phải xử lý ngoại lệ nội bộ.",
+"tip": "Lỗi nội bộ (Internal) = Tia sét (Error Event).",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 33,
+"code": "BPS301 · Lectures 1–11 · Question 33",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "When a customer sends a request for an address change after PO registration, and we want to register it WITHOUT stopping the ongoing order fulfillment, which BPMN element should be used?",
+"options": {
+"A": "Interrupting Boundary Message Event",
+"B": "Non-interrupting Boundary Message Event (dashed border)",
+"C": "Terminate End Event",
+"D": "Boundary Error Event"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Non-interrupting boundary event (viền nét đứt) gắn trên biên hoạt động/sub-process cho phép kích hoạt một nhánh xử lý song song (ghi nhận đổi địa chỉ) mà KHÔNG làm gián đoạn luồng chính đang chạy. Loại trừ: A và D (viền nét liền) sẽ ngắt hoạt động chính; C hủy toàn bộ quy trình.",
+"tip": "Không ngắt luồng chính = Viền nét đứt (Non-interrupting boundary event).",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 34,
+"code": "BPS301 · Lectures 1–11 · Question 34",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What does a Boundary Timer Event (interrupting, solid double border) attached to a sub-process with '48 hours' do if the sub-process finishes in 30 hours?",
+"options": {
+"A": "It still fires at 48 hours and sends a timeout notification",
+"B": "It is canceled/disarmed when the sub-process completes normally, and the process follows the normal outgoing flow",
+"C": "It restarts the sub-process",
+"D": "It causes a deadlock"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Boundary Timer Event chỉ kích hoạt nếu hoạt động/sub-process chưa kịp hoàn thành khi hết thời gian (48h). Nếu sub-process xong sớm (30h), token rời khỏi sub-process theo luồng bình thường và timer tự động bị hủy. Loại trừ: A là lỗi hiểu nhầm timer chạy độc lập; C và D sai ngữ nghĩa BPMN.",
+"tip": "Xong trước giờ G → Timer biên tự hủy; Quá giờ G → Timer biên ngắt luồng chính.",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 35,
+"code": "BPS301 · Lectures 1–11 · Question 35",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Evaluate the use of an 'Intermediate Conditional Event' vs. a 'Sequence Flow Condition'. What is the key advantage of the event?",
+"options": {
+"A": "It can only be used within ad hoc sub-processes",
+"B": "It is visually simpler than sequence flows",
+"C": "It is tested continuously until the rule is satisfied",
+"D": "It allows for parallel execution of tasks"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Conditional Event tiếp tục đứng chờ và kiểm tra liên tục cho đến khi business rule thỏa mãn; trong khi điều kiện trên Sequence Flow chỉ được kiểm tra tại thời điểm rẽ nhánh. Loại trừ: A khẳng định quá tuyệt đối; B sai về mục đích; D mô tả AND gateway.",
+"tip": "Event = đứng đợi (kiểm tra liên tục); Flow condition = kiểm tra tại ngã rẽ.",
+"source_image": "Lectures 3–4 – Process Modeling"
+},
+{
+"id": 36,
+"code": "BPS301 · Lectures 1–11 · Question 36",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Why is it incorrect to connect two Pools with a solid Sequence Flow arrow in BPMN?",
+"options": {
+"A": "Sequence flows can only connect elements within the same Pool; communication across Pools must use dashed Message Flows",
+"B": "Sequence flows are only used for data objects",
+"C": "Pools cannot exchange any information in BPMN",
+"D": "Solid arrows are reserved for Error events"
+},
+"answer": "A",
+"answers_list": [
+"A"
+],
+"explanation": "Trong BPMN, Sequence Flow (nét liền) chỉ dùng để nối các phần tử bên trong cùng một Pool. Mọi trao đổi giữa các Pool khác nhau phải dùng Message Flow (nét đứt có đầu mũi tên hở và vòng tròn ở đuôi). Loại trừ: B dùng Data Association; C sai vì các Pool giao tiếp qua Message Flow; D sai.",
+"tip": "Trong nhà (cùng Pool) = Sequence Flow (nét liền); Ra ngoài (khác Pool) = Message Flow (nét đứt).",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 37,
+"code": "BPS301 · Lectures 1–11 · Question 37",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In BPMN, what is the purpose of a Sub-process?",
+"options": {
+"A": "To replace all gateways in a diagram",
+"B": "To decompose large, complex models into smaller, manageable hierarchical components",
+"C": "To eliminate the need for Start and End events",
+"D": "To automatically execute code without a BPMS"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Sub-process giúp phân rã mô hình quy trình lớn, phức tạp thành các khối nhỏ có tính phân cấp (hierarchical), giúp dễ đọc, dễ hiểu và dễ bảo trì. Loại trừ: A sai vì bên trong sub-process vẫn có gateways; C sai vì sub-process vẫn cần Start/End event bên trong; D sai.",
+"tip": "Mô hình quá to → Gom vào Sub-process (dấu + ở đáy) để dễ đọc.",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 38,
+"code": "BPS301 · Lectures 1–11 · Question 38",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "When using a Boundary Error Event on a sub-process, how is the error typically triggered inside the sub-process?",
+"options": {
+"A": "By a Throwing Error End Event inside the sub-process",
+"B": "By a Message Start Event",
+"C": "By a Data Store",
+"D": "By a Text Annotation"
+},
+"answer": "A",
+"answers_list": [
+"A"
+],
+"explanation": "Trong mô hình Throw–Catch của BPMN, một Throwing Error End Event (biểu tượng tia sét tô đen) bên trong sub-process ném ra lỗi, và Boundary Error Event (tia sét rỗng) gắn trên biên sub-process sẽ bắt lấy lỗi đó để xử lý ngoại lệ. Loại trừ: B, C, D không thể ném lỗi nội bộ (Internal Error).",
+"tip": "Trong ném (Throw - tia sét đen) → Ngoài biên bắt (Catch - tia sét trắng).",
+"source_image": "Lecture 4 – Process Modeling 2"
+},
+{
+"id": 39,
+"code": "BPS301 · Lectures 1–11 · Question 39",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In BPMN, what is an 'implicit gateway' vs. an 'explicit gateway'?",
+"options": {
+"A": "Explicit gateways use diamond symbols; implicit gateways occur when multiple flows enter/leave a task directly without a diamond",
+"B": "Implicit gateways are only for OR logic",
+"C": "Explicit gateways cannot have labels",
+"D": "Implicit gateways are mandatory in BPMN 2.0"
+},
+"answer": "A",
+"answers_list": [
+"A"
+],
+"explanation": "Explicit gateway dùng hình thoi rõ ràng (XOR/AND/OR). Implicit gateway là khi nhiều luồng đi vào hoặc đi ra trực tiếp từ một Activity mà không vẽ hình thoi — thường không được khuyến khích vì dễ gây hiểu nhầm ngữ nghĩa. Loại trừ: B, C, D đều sai với quy chuẩn trình bày BPMN.",
+"tip": "Nên vẽ rõ hình thoi (Explicit) thay vì nối thẳng nhiều mũi tên vào Task (Implicit).",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 40,
+"code": "BPS301 · Lectures 1–11 · Question 40",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which BPMN element represents a persistent repository of information (e.g., a database or filing cabinet) that survives beyond a single process instance?",
+"options": {
+"A": "Data Object",
+"B": "Data Store",
+"C": "Text Annotation",
+"D": "Lane"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Data Store (hình trụ cơ sở dữ liệu) lưu trữ dữ liệu bền vững, tồn tại độc lập ngoài vòng đời của một process instance. Ngược lại, Data Object chỉ tồn tại trong phạm vi một instance đang chạy. Loại trừ: A chỉ tồn tại theo từng case; C là chú thích; D là phân vùng vai trò/hệ thống.",
+"tip": "Tồn tại lâu dài (DB) = Data Store; Đi theo từng đơn hàng = Data Object.",
+"source_image": "Lecture 3 – Process Modeling 1"
+},
+{
+"id": 41,
+"code": "BPS301 · Lectures 1–11 · Question 41",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In Value-Added Analysis, how are process steps classified?",
+"options": {
+"A": "High-cost, medium-cost, and low-cost",
+"B": "Value-adding (VA), Business value-adding (BVA), and Non-value-adding (NVA)",
+"C": "Automated, semi-automated, and manual",
+"D": "Core, support, and management"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Phân tích giá trị gia tăng (Value-Added Analysis) chia nhỏ các bước quy trình thành 3 loại: Value-adding (VA - tạo giá trị cho khách hàng), Business value-adding (BVA - cần thiết cho doanh nghiệp/pháp lý) và Non-value-adding (NVA - lãng phí). Loại trừ: A theo chi phí; C theo tự động hóa; D là phân loại kiến trúc quy trình ở Lecture 2.",
+"tip": "VA (khách trả tiền) – BVA (công ty cần) – NVA (vứt bỏ).",
+"source_image": "Lecture 5 – Qualitative Analysis"
+},
+{
+"id": 42,
+"code": "BPS301 · Lectures 1–11 · Question 42",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which of the following is the best example of a Business Value-Adding (BVA) step?",
+"options": {
+"A": "Waiting 3 days for a manager's signature",
+"B": "Performing a mandatory regulatory compliance or credit check to protect the business",
+"C": "Re-entering the same customer address into three different systems",
+"D": "Delivering the final product to the customer"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "BVA là bước khách hàng không trực tiếp muốn trả tiền nhưng cần thiết để doanh nghiệp vận hành, kiểm soát rủi ro hoặc tuân thủ pháp luật (như kiểm tra tín dụng, kiểm tra tuân thủ). Loại trừ: A và C là NVA (chờ đợi, làm lại/thao tác thừa); D là VA.",
+"tip": "Khách không thích nhưng luật/công ty bắt buộc = BVA.",
+"source_image": "Lecture 5 – Qualitative Analysis"
+},
+{
+"id": 43,
+"code": "BPS301 · Lectures 1–11 · Question 43",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "When decomposing a task for Value-Added Analysis, what three sub-parts should be examined?",
+"options": {
+"A": "Inputs, outputs, and databases",
+"B": "Steps performed before the task (handoff/setup), the task itself, and steps performed after the task",
+"C": "Pools, lanes, and gateways",
+"D": "Arrival rate, service rate, and queue length"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Kỹ thuật 'decorticate' (bóc tách) phân tích: (1) các bước chuẩn bị trước task, (2) bản thân task (có thể chia nhỏ hơn), và (3) các bước sau task để chuẩn bị cho task kế tiếp. Loại trừ: A, C thuộc mô hình hóa; D thuộc lý thuyết hàng đợi.",
+"tip": "Bóc tách 1 task = Trước task + Trong task + Sau task.",
+"source_image": "Lecture 5 – Qualitative Analysis"
+},
+{
+"id": 44,
+"code": "BPS301 · Lectures 1–11 · Question 44",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which category of the 'Six Ms' in a Cause-Effect (Fishbone) diagram covers 'Poor UI design' and 'Lack of integration between systems'?",
+"options": {
+"A": "Method",
+"B": "Material",
+"C": "Machine",
+"D": "Man"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Trong biểu đồ xương cá 6Ms, Machine (công nghệ/máy móc/phần mềm) bao gồm thiếu chức năng phần mềm, giao diện (UI) kém và thiếu tích hợp giữa các hệ thống. Loại trừ: A (Method) liên quan đến cách thiết kế/phân công/hướng dẫn quy trình; B (Material) liên quan dữ liệu/vật tư đầu vào; D (Man) liên quan con người.",
+"tip": "Phần mềm, UI, tích hợp hệ thống = Machine.",
+"source_image": "Lecture 5 – Qualitative Analysis"
+},
+{
+"id": 45,
+"code": "BPS301 · Lectures 1–11 · Question 45",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In a Fishbone (Cause-Effect) diagram, 'Unclear assignments of responsibilities' and 'Insufficient training' belong to which 'M' category?",
+"options": {
+"A": "Machine",
+"B": "Material",
+"C": "Method",
+"D": "Measurement"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Method bao gồm các yếu tố xuất phát từ cách quy trình được thiết kế, hiểu và thực hiện: phân công trách nhiệm không rõ, hướng dẫn mù mờ, thiếu đào tạo, thiếu giao tiếp kịp thời. Loại trừ: A là công nghệ; B là nguyên liệu/dữ liệu; D là đo lường.",
+"tip": "Cách làm, phân công, hướng dẫn, đào tạo = Method.",
+"source_image": "Lecture 5 – Qualitative Analysis"
+},
+{
+"id": 46,
+"code": "BPS301 · Lectures 1–11 · Question 46",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Missing, incorrect, or outdated input data in a Fishbone diagram falls under which category?",
+"options": {
+"A": "Material",
+"B": "Milieu",
+"C": "Machine",
+"D": "Method"
+},
+"answer": "A",
+"answers_list": [
+"A"
+],
+"explanation": "Material trong 6Ms đại diện cho nguyên vật liệu đầu vào hoặc dữ liệu đầu vào (missing, incorrect, or outdated data). Loại trừ: B (Milieu) là môi trường làm việc; C là công cụ/hệ thống; D là phương pháp.",
+"tip": "Dữ liệu/vật tư đầu vào lỗi = Material.",
+"source_image": "Lecture 5 – Qualitative Analysis"
+},
+{
+"id": 47,
+"code": "BPS301 · Lectures 1–11 · Question 47",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What is the primary purpose of the 'Five Why's' (Why-why diagram) in qualitative process analysis?",
+"options": {
+"A": "To calculate the exact cycle time of a rework loop",
+"B": "To drill down recursively through levels of causation to find the root cause of an issue",
+"C": "To classify tasks into Core and Support processes",
+"D": "To convert a conceptual BPMN model into executable code"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Biểu đồ Why-why (Five Why's) hỏi 'Tại sao?' qua nhiều tầng (thường 5 cấp) để truy tìm nguyên nhân gốc rễ (root cause) đằng sau triệu chứng bề mặt. Loại trừ: A là Flow Analysis; C là Process Architecture; D là Process Automation.",
+"tip": "Hỏi Tại sao 5 lần = Tìm gốc rễ vấn đề (Root-cause).",
+"source_image": "Lecture 5 – Qualitative Analysis"
+},
+{
+"id": 48,
+"code": "BPS301 · Lectures 1–11 · Question 48",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which tool is used to prioritize issues (or redesign options) by plotting Potential Impact against Ease of Implementation?",
+"options": {
+"A": "APQC Framework",
+"B": "PICK Chart",
+"C": "Little's Law",
+"D": "Split Miner"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "PICK Chart (Possible, Implement, Challenge, Kill) giúp ưu tiên các vấn đề trong Issue Register hoặc ý tưởng tái thiết kế dựa trên 2 trục: mức độ tác động (Impact) và độ khó triển khai (Difficulty/Ease). Loại trừ: A là khung kiến trúc quy trình; C là công thức định lượng WIP; D là thuật toán khai phá quy trình.",
+"tip": "Ưu tiên theo Tác động vs. Độ khó = PICK Chart.",
+"source_image": "Lectures 5 & 9 – Analysis & Redesign"
+},
+{
+"id": 49,
+"code": "BPS301 · Lectures 1–11 · Question 49",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In Flow Analysis, what is the formula for the average Cycle Time (CT) of a sequence of N tasks with times T1, T2, ..., TN?",
+"options": {
+"A": "CT = max(T1, T2, ..., TN)",
+"B": "CT = T1 + T2 + ... + TN",
+"C": "CT = (T1 + T2 + ... + TN) / N",
+"D": "CT = T1 * T2 * ... * TN"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Với một chuỗi tuần tự (Sequence), thời gian chu kỳ tổng bằng tổng thời gian của từng hoạt động thành phần: CT = T1 + T2 + ... + TN. Loại trừ: A là công thức cho nhánh song song (AND); C là trung bình cộng; D sai về thứ nguyên.",
+"tip": "Tuần tự (Sequence) = Cộng dồn (Sum).",
+"source_image": "Lecture 6 – Quantitative Analysis 1"
+},
+{
+"id": 50,
+"code": "BPS301 · Lectures 1–11 · Question 50",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In Flow Analysis, what is the average Cycle Time (CT) of a parallel block (AND-split to AND-join) with N branches of durations T1, T2, ..., TN?",
+"options": {
+"A": "CT = T1 + T2 + ... + TN",
+"B": "CT = min(T1, T2, ..., TN)",
+"C": "CT = max(T1, T2, ..., TN)",
+"D": "CT = p1T1 + p2T2 + ... + pNTN"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Vì AND-join phải đợi nhánh chậm nhất hoàn tất, thời gian chu kỳ của khối song song bằng giá trị lớn nhất: CT = max(T1, T2, ..., TN). Loại trừ: A là công thức tuần tự; B là nhánh nhanh nhất (sai vì AND phải đợi tất cả); D là công thức rẽ nhánh XOR.",
+"tip": "Song song (AND) = Chờ thằng chậm nhất = max(...).",
+"source_image": "Lecture 6 – Quantitative Analysis 1"
+},
+{
+"id": 51,
+"code": "BPS301 · Lectures 1–11 · Question 51",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In Flow Analysis, an XOR-split leads to branch B (duration 20) with probability 50% and branch C (duration 10) with probability 50%. What is the average Cycle Time of this XOR block?",
+"options": {
+"A": "30",
+"B": "20",
+"C": "15",
+"D": "10"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Công thức khối rẽ nhánh XOR là trung bình có trọng số theo xác suất: CT = p1T1 + p2T2 = 0.520 + 0.510 = 10 + 5 = 15. Loại trừ: A là tổng (nhầm sang tuần tự); B là max (nhầm sang AND); D chỉ tính 1 nhánh.",
+"tip": "Rẽ nhánh XOR = Xác suất * Thời gian rồi cộng lại (p1T1 + p2*T2).",
+"source_image": "Lecture 6 – Quantitative Analysis 1"
+},
+{
+"id": 52,
+"code": "BPS301 · Lectures 1–11 · Question 52",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In a rework loop where task B takes 20 minutes and has a rework probability r = 20% (so 80% exit the loop), what is the average Cycle Time spent in B?",
+"options": {
+"A": "24 minutes",
+"B": "25 minutes",
+"C": "16 minutes",
+"D": "100 minutes"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Theo công thức vòng lặp Flow Analysis: CT = T / (1 - r) = 20 / (1 - 0.20) = 20 / 0.8 = 25 phút. Loại trừ: A tính nhầm 20 * 1.2; C tính 20 * 0.8; D tính 20 / 0.2.",
+"tip": "Vòng lặp (Rework) = T / (1 - r), với r là xác suất phải làm lại.",
+"source_image": "Lecture 6 – Quantitative Analysis 1"
+},
+{
+"id": 53,
+"code": "BPS301 · Lectures 1–11 · Question 53",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What happens to the average Cycle Time of a rework loop CT = T / (1 - r) if the rework probability r approaches 100% (e.g., r = 99%)?",
+"options": {
+"A": "CT approaches 0",
+"B": "CT equals T",
+"C": "CT grows dramatically (e.g., 100 * T)",
+"D": "CT becomes negative"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Khi r = 99% (1 - r = 0.01), mẫu số cực nhỏ làm CT = T / 0.01 = 100 * T (trong ví dụ slide: 20 / 0.01 = 2010 khi cộng thêm A=10). Tỷ lệ làm lại cao làm thời gian chu kỳ phình to khủng khiếp. Loại trừ: A, B, D sai toán học của hàm T/(1-r).",
+"tip": "Làm lại 99% = Lặp 100 lần = Thời gian nhân 100!",
+"source_image": "Lecture 6 – Quantitative Analysis 1"
+},
+{
+"id": 54,
+"code": "BPS301 · Lectures 1–11 · Question 54",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "According to Little's Law, how are Work-In-Progress (WIP), arrival rate (λ), and Cycle Time (CT) related?",
+"options": {
+"A": "WIP = λ / CT",
+"B": "WIP = λ · CT",
+"C": "CT = WIP · λ",
+"D": "λ = WIP · CT"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Định luật Little phát biểu: WIP = λ · CT (số lượng case đang xử lý trung bình bằng tốc độ đến nhân với thời gian chu kỳ trung bình). Loại trừ: A, C, D biến đổi sai công thức Little's Law.",
+"tip": "Nhớ mẹo: WIP = Lambda * CT (hoặc L = λW trong hàng đợi).",
+"source_image": "Lectures 6–7 – Quantitative Analysis"
+},
+{
+"id": 55,
+"code": "BPS301 · Lectures 1–11 · Question 55",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "A fast-food restaurant receives 900 customers during a 6-hour peak period (λ = 150 customers/hour), and on average 90 customers are in the restaurant (WIP = 90). Using Little's Law, what is the average time a customer spends in the restaurant?",
+"options": {
+"A": "0.6 hours (36 minutes)",
+"B": "1.67 hours",
+"C": "10 hours",
+"D": "0.1 hours (6 minutes)"
+},
+"answer": "A",
+"answers_list": [
+"A"
+],
+"explanation": "Áp dụng Little's Law: CT = WIP / λ = 90 / 150 = 0.6 giờ = 36 phút. Loại trừ: B là λ/WIP; C là 900/90; D là 90/900.",
+"tip": "CT = WIP / λ = 90 / (900/6) = 0.6 giờ.",
+"source_image": "Lecture 6 – Quantitative Analysis 1"
+},
+{
+"id": 56,
+"code": "BPS301 · Lectures 1–11 · Question 56",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What are two key limitations of basic Flow Analysis for cycle time calculation?",
+"options": {
+"A": "It cannot handle sequential flows and requires simulation software",
+"B": "Not all models are block-structured, and it ignores arrival rate and fixed resource capacity (queueing/contention)",
+"C": "It only works for automated processes and ignores costs",
+"D": "It requires M/M/c negative exponential assumptions"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Flow Analysis có 2 hạn chế lớn: (1) Không phải mô hình nào cũng có cấu trúc khối (structured) để áp công thức trực tiếp, và (2) Bỏ qua tốc độ đến (arrival rate) cũng như giới hạn năng lực tài nguyên (resource contention → thời gian chờ tăng). Loại trừ: A sai vì Flow Analysis xử lý tốt sequential flows; C sai; D là giả định của Queueing Theory.",
+"tip": "Flow Analysis = Không xét tắc nghẽn tài nguyên (WIP/Arrival rate) + Khó khi mô hình không structured.",
+"source_image": "Lecture 6 – Quantitative Analysis 1"
+},
+{
+"id": 57,
+"code": "BPS301 · Lectures 1–11 · Question 57",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In Queueing Theory, what does an M/M/c queue represent?",
+"options": {
+"A": "Multiple models with deterministic arrival and fixed service times",
+"B": "Markovian (negative exponential) inter-arrival and service times with c parallel servers",
+"C": "Manual/Machine/Cost optimization model",
+"D": "Maximum/Minimum capacity scheduling"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Trong ký hiệu Kendall của lý thuyết hàng đợi, M/M/c chỉ hệ thống có thời gian giữa các lần đến (inter-arrival) và thời gian phục vụ (service time) tuân theo phân phối mũ âm (Markovian/Negative Exponential), với c server chạy song song. Loại trừ: A sai vì M là ngẫu nhiên theo phân phối mũ, không phải deterministic; C và D là viết tắt bịa đặt.",
+"tip": "M = Markovian (phân phối mũ âm); c = số nhân viên/server song song.",
+"source_image": "Lecture 7 – Quantitative Analysis 2"
+},
+{
+"id": 58,
+"code": "BPS301 · Lectures 1–11 · Question 58",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In an M/M/1 queueing system with arrival rate λ and service rate μ (where λ < μ), how is resource utilization (ρ) defined?",
+"options": {
+"A": "ρ = μ / λ",
+"B": "ρ = λ / μ",
+"C": "ρ = λ · μ",
+"D": "ρ = 1 / (μ - λ)"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Hệ số sử dụng tài nguyên (utilization) bằng tỷ số giữa tốc độ đến và tốc độ phục vụ: ρ = λ / μ (với c server thì ρ = λ / (c·μ)). Loại trừ: A là nghịch đảo; C là tích; D là công thức thời gian W trong hệ thống M/M/1.",
+"tip": "Mức độ bận rộn (ρ) = Lượng việc đến (λ) / Sức làm (μ).",
+"source_image": "Lecture 7 – Quantitative Analysis 2"
+},
+{
+"id": 59,
+"code": "BPS301 · Lectures 1–11 · Question 59",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In an M/M/1 queue, what happens to the average waiting time in the queue (Wq) and queue length (Lq) as resource utilization (ρ) approaches 100%?",
+"options": {
+"A": "They decrease linearly to zero",
+"B": "They grow exponentially toward infinity",
+"C": "They remain constant regardless of ρ",
+"D": "They equal exactly 1/μ"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Do công thức L = ρ / (1 - ρ) và Lq = ρ² / (1 - ρ), khi ρ tiến gần 1 (100% công suất), mẫu số (1 - ρ) tiến về 0 khiến hàng đợi và thời gian chờ tăng vọt theo hàm phi tuyến tiến tới vô cùng. Loại trừ: A, C, D trái ngược hoàn toàn với hành vi phi tuyến của hàng đợi khi quá tải.",
+"tip": "Đừng để nhân viên bận 100% (ρ → 1): hàng đợi nổ tung lên vô cực!",
+"source_image": "Lecture 7 – Quantitative Analysis 2"
+},
+{
+"id": 60,
+"code": "BPS301 · Lectures 1–11 · Question 60",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In queueing theory, what is the relationship between total time in the system (W), waiting time in the queue (Wq), and mean service rate (μ)?",
+"options": {
+"A": "W = Wq - (1/μ)",
+"B": "W = Wq + (1/μ)",
+"C": "W = Wq · μ",
+"D": "Wq = W + μ"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Tổng thời gian trong hệ thống (Cycle time W) bằng thời gian chờ trong hàng đợi (Wq) cộng với thời gian xử lý trung bình (1/μ): W = Wq + 1/μ. Loại trừ: A trừ ngược; C và D sai thứ nguyên.",
+"tip": "Cycle time (W) = Chờ (Wq) + Làm (1/μ).",
+"source_image": "Lecture 7 – Quantitative Analysis 2"
+},
+{
+"id": 61,
+"code": "BPS301 · Lectures 1–11 · Question 61",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which of the following is NOT a core input element required to build a Business Process Simulation model?",
+"options": {
+"A": "Processing times of activities (fixed or probability distribution)",
+"B": "Conditional branching probabilities and arrival rate with arrival calendar",
+"C": "Resource pools (size and cost per time unit)",
+"D": "Employee personal hobbies and annual leave preferences"
+},
+"answer": "D",
+"answers_list": [
+"D"
+],
+"explanation": "Một mô hình mô phỏng quy trình gồm: thời gian xử lý của các hoạt động, xác suất rẽ nhánh, tốc độ đến (thường phân phối mũ) + lịch đến (arrival calendar), và các nhóm tài nguyên (resource pools kèm số lượng & chi phí). Loại trừ: A, B, C đều là các thành phần bắt buộc được liệt kê trong Lecture 7.",
+"tip": "Simulation cần 4 thứ: Task time + Branching prob + Arrival rate/calendar + Resource pools.",
+"source_image": "Lecture 7 – Quantitative Analysis 2"
+},
+{
+"id": 62,
+"code": "BPS301 · Lectures 1–11 · Question 62",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Why is Business Process Simulation particularly valuable for 'what-if' analysis compared to static Flow Analysis?",
+"options": {
+"A": "Simulation guarantees zero stochasticity in results",
+"B": "Simulation models dynamic resource contention, queues, calendars, and probability distributions across thousands of artificial instances",
+"C": "Simulation does not require any input data",
+"D": "Simulation automatically rewrites BPMN models"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Mô phỏng chạy hàng nghìn instance giả lập có xét đến tranh chấp tài nguyên, hàng đợi, lịch làm việc và phân phối xác suất, giúp dự báo chính xác tác động của các kịch bản thay đổi (what-if analysis). Loại trừ: A sai vì simulation có tính ngẫu nhiên (stochasticity); C sai vì cần dữ liệu đầu vào chất lượng; D sai.",
+"tip": "Flow Analysis = Tĩnh; Simulation = Động (chạy thử kịch bản What-if).",
+"source_image": "Lecture 7 – Quantitative Analysis 2"
+},
+{
+"id": 63,
+"code": "BPS301 · Lectures 1–11 · Question 63",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What are the three main pitfalls of Business Process Simulation highlighted in Lecture 7?",
+"options": {
+"A": "Syntax errors, deadlocks, and pool naming",
+"B": "Stochasticity, data quality, and simplifying assumptions",
+"C": "Core, support, and management misclassification",
+"D": "Cost, time, and flexibility trade-offs"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "3 cạm bẫy chính khi mô phỏng: Stochasticity (tính ngẫu nhiên giữa các lần chạy), Data quality (dữ liệu đầu vào rác → đầu ra rác) và Simplifying assumptions (giả định đơn giản hóa quá mức). Loại trừ: A thuộc BPMN modeling; C thuộc Identification; D thuộc Devil's Quadrangle.",
+"tip": "3 bẫy Simulation: Ngẫu nhiên (Stochasticity) + Dữ liệu dở (Data quality) + Giả định quá đơn giản (Assumptions).",
+"source_image": "Lecture 7 – Quantitative Analysis 2"
+},
+{
+"id": 64,
+"code": "BPS301 · Lectures 1–11 · Question 64",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "How should a practitioner address the 'Stochasticity' pitfall when running a process simulation?",
+"options": {
+"A": "Run the simulation only once for 1 hour",
+"B": "Use a sufficiently long timeframe and average results across multiple simulation runs with confidence intervals",
+"C": "Remove all probability distributions and use zero waiting times",
+"D": "Ignore seasonal variability"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Để khắc phục tính ngẫu nhiên (Stochasticity), cần chọn khung thời gian đủ dài (bao phủ biến động tuần/mùa), chạy mô phỏng nhiều lần, lấy trung bình và tính khoảng tin cậy (confidence intervals). Loại trừ: A cho kết quả lệch; C và D làm mất tính thực tế của mô phỏng.",
+"tip": "Chống ngẫu nhiên: Chạy đủ dài + Chạy nhiều lần + Tính khoảng tin cậy.",
+"source_image": "Lecture 7 – Quantitative Analysis 2"
+},
+{
+"id": 65,
+"code": "BPS301 · Lectures 1–11 · Question 65",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Why is Work-In-Progress (WIP) considered a form of waste in process analysis?",
+"options": {
+"A": "Because WIP increases resource utilization above 100%",
+"B": "Because active, unfilled cases tie up capital/resources and lengthen queues without delivering immediate value",
+"C": "Because WIP eliminates all non-value-adding steps",
+"D": "Because WIP reduces cycle time"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "WIP (các hồ sơ/đơn hàng đã mở nhưng chưa hoàn thành) nằm trong nhóm 7+1 nguồn lãng phí vì làm ứ đọng nguồn lực, tăng hàng đợi và kéo dài thời gian chu kỳ mà chưa tạo ra kết quả bàn giao. Loại trừ: A, C, D đều sai về bản chất của WIP.",
+"tip": "Hàng tồn dở dang (WIP) = Lãng phí vì kẹt vốn, kẹt hàng đợi.",
+"source_image": "Lectures 5–6 – Process Analysis"
+},
+{
+"id": 66,
+"code": "BPS301 · Lectures 1–11 · Question 66",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In Business Process Redesign, what is the fundamental difference between an 'As-Is' model and a 'To-Be' model?",
+"options": {
+"A": "As-Is is prescriptive modeling; To-Be is descriptive modeling",
+"B": "As-Is is descriptive modeling of the current real world; To-Be is prescriptive modeling of the redesigned target process",
+"C": "As-Is is executable in BPMS; To-Be is only a value chain",
+"D": "As-Is contains only Value-Adding tasks"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Mô hình As-Is mang tính mô tả (descriptive) thực trạng hiện tại đang vận hành; mô hình To-Be mang tính định chuẩn/đề xuất (prescriptive) cho quy trình tương lai sau tái thiết kế. Loại trừ: A đảo ngược khái niệm; C và D sai.",
+"tip": "As-Is = Mô tả cái đang có (Descriptive); To-Be = Đề xuất cái sẽ làm (Prescriptive).",
+"source_image": "Lecture 8 – Process Redesign 1"
+},
+{
+"id": 67,
+"code": "BPS301 · Lectures 1–11 · Question 67",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What famous principle did Michael Hammer (1990) coin based on the Ford Accounts Payable case study?",
+"options": {
+"A": "'Automate every manual step first'",
+"B": "'Don't Automate, Obliterate!'",
+"C": "'Maximize specialization at all costs'",
+"D": "'Always separate information processing from real work'"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Qua case study Ford (giảm 75% nhân sự Accounts Payable nhờ Evaluated Receipts Settlement), Hammer rút ra bài học nổi tiếng: 'Don't Automate, Obliterate!' — đừng tự động hóa những việc không cần thiết phải làm, hãy xóa bỏ chúng. Loại trừ: A, C, D đi ngược lại hoàn toàn triết lý BPR của Hammer.",
+"tip": "Đừng tự động hóa sự lãng phí — Hãy xóa bỏ nó ('Don't Automate, Obliterate!').",
+"source_image": "Lecture 8 – Process Redesign 1"
+},
+{
+"id": 68,
+"code": "BPS301 · Lectures 1–11 · Question 68",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In the redesigned Ford procurement process (Evaluated Receipts Settlement), how was the invoice matching bottleneck eliminated?",
+"options": {
+"A": "By hiring 500 more clerks in Accounts Payable",
+"B": "By capturing goods receipt data directly into a shared database at the Receiving dock and paying automatically without waiting for vendor invoices",
+"C": "By requiring paper invoices to be faxed three times",
+"D": "By outsourcing the Receiving department"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Ford triển khai cơ sở dữ liệu dùng chung: bộ phận Receiving nhập dữ liệu nhận hàng ngay tại nguồn (source), hệ thống tự đối chiếu với PO trong DB và thanh toán tự động, loại bỏ hoàn toàn bước đối chiếu hóa đơn thủ công. Loại trừ: A, C, D không phải giải pháp của Ford trong bài giảng.",
+"tip": "Ford BPR: Nhập dữ liệu tại nguồn (Receiving) → Chia sẻ DB → Bỏ hóa đơn giấy.",
+"source_image": "Lecture 8 – Process Redesign 1"
+},
+{
+"id": 69,
+"code": "BPS301 · Lectures 1–11 · Question 69",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which BPR principle is illustrated when a worker at the Receiving dock enters shipment data directly into the shared database instead of sending paper forms to another department?",
+"options": {
+"A": "Back-loaded processing",
+"B": "Capture information once and at the source",
+"C": "Task specialization",
+"D": "Sequential re-checking"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Một trong các nguyên tắc cốt lõi của BPR là 'Capture information once and at the source' (thu thập thông tin một lần duy nhất ngay tại nơi phát sinh) và lồng ghép xử lý thông tin vào công việc thực tế. Loại trừ: A gây trễ; C và D là đặc trưng của quy trình cũ phân mảnh.",
+"tip": "Ghi nhận ngay tại chỗ phát sinh = Capture once and at the source.",
+"source_image": "Lecture 8 – Process Redesign 1"
+},
+{
+"id": 70,
+"code": "BPS301 · Lectures 1–11 · Question 70",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which BPR principle states: 'Put the decision point where the work is performed, empower workers to decide, and build control into the process'?",
+"options": {
+"A": "Centralizing all approvals under top executives",
+"B": "Empowering frontline workers and integrating decision-making with execution",
+"C": "Increasing handoffs between departments",
+"D": "Adding multiple post-execution audit layers"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "BPR khuyến khích đặt điểm ra quyết định ngay tại nơi thực hiện công việc, trao quyền cho nhân viên tuyến đầu và tích hợp sẵn kiểm soát vào trong quy trình thay vì tách rời thành tầng phê duyệt riêng. Loại trừ: A, C, D làm tăng chờ đợi và quan liêu.",
+"tip": "Ai làm người đó quyết, tích hợp kiểm soát vào luồng.",
+"source_image": "Lecture 8 – Process Redesign 1"
+},
+{
+"id": 71,
+"code": "BPS301 · Lectures 1–11 · Question 71",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What are the four competing dimensions of the 'Devil's Quadrangle' in Heuristic Process Redesign?",
+"options": {
+"A": "Speed, Automation, Security, Compliance",
+"B": "Cost, Time, Quality, Flexibility",
+"C": "Revenue, Profit, Market Share, Growth",
+"D": "Scope, Schedule, Budget, Risk"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Devil's Quadrangle (Tứ giác Ác quỷ) gồm 4 chiều đo lường hiệu năng thường đánh đổi lẫn nhau khi tái thiết kế quy trình: Cost (Chi phí), Time (Thời gian), Quality (Chất lượng) và Flexibility (Tính linh hoạt). Loại trừ: A, C, D không phải 4 đỉnh của Devil's Quadrangle.",
+"tip": "4 đỉnh Tứ giác Ác quỷ: Cost – Time – Quality – Flexibility.",
+"source_image": "Lecture 9 – Process Redesign 2"
+},
+{
+"id": 72,
+"code": "BPS301 · Lectures 1–11 · Question 72",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Why is it called the 'Devil's Quadrangle'?",
+"options": {
+"A": "Because process redesign always fails",
+"B": "Because improving one dimension (e.g., Time or Quality) often degrades another dimension (e.g., Cost or Flexibility), requiring trade-offs",
+"C": "Because it only applies to four industries",
+"D": "Because it forbids using IT automation"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Gọi là 'Tứ giác Ác quỷ' vì cải thiện một chiều (ví dụ giảm thời gian hoặc tăng chất lượng) thường kéo theo chi phí tăng hoặc giảm tính linh hoạt — người thiết kế phải cân bằng đánh đổi (trade-offs). Loại trừ: A, C, D không đúng với ý nghĩa của khái niệm.",
+"tip": "Kéo góc này thì góc kia co lại = Trade-offs trong Devil's Quadrangle.",
+"source_image": "Lecture 9 – Process Redesign 2"
+},
+{
+"id": 73,
+"code": "BPS301 · Lectures 1–11 · Question 73",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In Heuristic Process Redesign, which three levels of flexibility are needed to handle a sudden 10x surge in insurance claims after a natural disaster?",
+"options": {
+"A": "Hardware, software, and network levels",
+"B": "Resource level, Process level, and Management level",
+"C": "Strategic, tactical, and operational levels",
+"D": "Pool, lane, and gateway levels"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Lecture 9 nêu 3 cấp độ linh hoạt khi ứng phó biến động lớn: Resource level (điều chuyển nhân sự), Process level (thực hiện task khác đi để tăng tốc đầu vào), và Management level (nới lỏng quy tắc/kiểm soát khi cần). Loại trừ: A, C, D không phải 3 cấp độ linh hoạt được nêu trong ví dụ bão lũ/bảo hiểm.",
+"tip": "3 cấp Flexibility: Resource (người) – Process (cách làm) – Management (nới luật).",
+"source_image": "Lecture 9 – Process Redesign 2"
+},
+{
+"id": 74,
+"code": "BPS301 · Lectures 1–11 · Question 74",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which task-level redesign heuristic involves splitting a general task into specialized variants (e.g., separate approvals for small, medium, and large purchases)?",
+"options": {
+"A": "Task elimination",
+"B": "Triage (Specialization)",
+"C": "Parallelism enhancement",
+"D": "Communication optimization"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Triage (phân loại/chuyên biệt hóa) có 2 hướng: Specialization (tách thành các nhánh chuyên biệt như phê duyệt đơn nhỏ/vừa/lớn) và Generalization (gộp chung). Loại trừ: A là xóa bỏ task thừa; C thuộc flow-level; D thuộc communication-level.",
+"tip": "Chia luồng nhỏ/vừa/lớn để xử lý đúng cỡ = Triage (Specialization).",
+"source_image": "Lecture 9 – Process Redesign 2"
+},
+{
+"id": 75,
+"code": "BPS301 · Lectures 1–11 · Question 75",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What is the typical Devil's Quadrangle trade-off of 'Specialization' under the Triage heuristic?",
+"options": {
+"A": "Time improves (T+), Flexibility decreases (F-)",
+"B": "Time worsens (T-), Flexibility increases (F+)",
+"C": "Quality always drops to zero",
+"D": "Cost is always eliminated"
+},
+"answer": "A",
+"answers_list": [
+"A"
+],
+"explanation": "Theo slide Lecture 9, Specialization giúp giảm thời gian nhờ xử lý đúng loại (T+), chi phí có thể tăng hoặc giảm (C+/-), nhưng làm giảm tính linh hoạt (F-) vì nhân sự bị chuyên biệt hóa hẹp. Ngược lại, Generalization (T-, C+/-, F+). Loại trừ: B là kết quả của Generalization; C và D sai tuyệt đối.",
+"tip": "Chuyên biệt (Specialization): Nhanh hơn (T+) nhưng Kém linh hoạt hơn (F-).",
+"source_image": "Lecture 9 – Process Redesign 2"
+},
+{
+"id": 76,
+"code": "BPS301 · Lectures 1–11 · Question 76",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which flow-level heuristic converts sequential independent tasks (e.g., 'Prepare production plan' and 'Estimate costs') into concurrent branches using an AND-split?",
+"options": {
+"A": "Task elimination",
+"B": "Re-sequencing",
+"C": "Parallelism enhancement",
+"D": "Triage"
+},
+"answer": "C",
+"answers_list": [
+"C"
+],
+"explanation": "Parallelism enhancement (tăng cường song song) đưa các tác vụ độc lập đang chạy nối tiếp sang chạy song song (qua cổng AND) để rút ngắn mạnh thời gian chu kỳ. Loại trừ: A xóa task; B đổi thứ tự tuần tự; D phân loại task.",
+"tip": "Xếp hàng dọc → Chạy hàng ngang (AND) = Parallelism enhancement.",
+"source_image": "Lecture 9 – Process Redesign 2"
+},
+{
+"id": 77,
+"code": "BPS301 · Lectures 1–11 · Question 77",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What is the typical Devil's Quadrangle impact of 'Parallelism enhancement' (H5)?",
+"options": {
+"A": "Time improves (T+), Cost increases/worsens or requires more coordination (C- or C+ depending on rework/complexity)",
+"B": "Time improves (T+) and Cost improves (C+) as shown in Lecture 9's summary for simple parallelization, or reduces cycle time",
+"C": "Time worsens (T-) and Quality worsens",
+"D": "Only Flexibility changes"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Trong slide Lecture 9 (H4/H5), Parallelism enhancement được đánh dấu giảm thời gian chu kỳ rõ rệt (T+, và giảm chi phí chờ/tồn đọng C+ trong bối cảnh rút ngắn thời gian chu kỳ; lưu ý ở góc độ rộng có thể tốn thêm chi phí phối hợp nếu phức tạp). Loại trừ: A diễn đạt mập mờ; C và D sai vì mục tiêu chính của Parallelism là giảm Time (T+).",
+"tip": "Chạy song song = Rút ngắn Cycle Time (T+) là chắc chắn nhất!",
+"source_image": "Lecture 9 – Process Redesign 2"
+},
+{
+"id": 78,
+"code": "BPS301 · Lectures 1–11 · Question 78",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What does the 'Complete-Kit Concept' under Communication Optimization (H8) state?",
+"options": {
+"A": "Start work immediately even if half the required documents are missing",
+"B": "Work should not begin until all pieces necessary to complete the job are available",
+"C": "Always send paper documents by postal mail",
+"D": "Delay all communication until the very end of the process"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Complete-Kit Concept (gắn với quy trình front-loaded) khẳng định: không nên bắt đầu thực hiện công việc cho đến khi đầy đủ mọi thông tin/tài liệu cần thiết để hoàn tất công việc đó, tránh làm dở dang rồi chờ bổ sung. Loại trừ: A, C, D trái ngược với khái niệm Complete-Kit và front-loaded process.",
+"tip": "Đủ bộ hồ sơ mới bấm nút chạy = Complete-Kit Concept.",
+"source_image": "Lecture 9 – Process Redesign 2"
+},
+{
+"id": 79,
+"code": "BPS301 · Lectures 1–11 · Question 79",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In the Equipment Rental Process example, how was Heuristic 8 (Communication optimization) applied?",
+"options": {
+"A": "By removing all communication with the Site Engineer",
+"B": "By informing the Site Engineer when equipment is dispatched and adding a timer interaction (2 days before expiry) to handle rental extensions",
+"C": "By replacing the Clerk with a physical notice board",
+"D": "By doubling the rental price"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Ở quy trình thuê thiết bị, H8 được áp dụng bằng cách gửi thông báo 'equipment dispatched' cho Site Engineer và thêm sự kiện hẹn giờ (2 ngày trước khi hết hạn) để quyết định gia hạn thuê. Loại trừ: A, C, D không phải giải pháp trong ví dụ Equipment Rental.",
+"tip": "Báo khi giao hàng + Nhắc hẹn trước 2 ngày hết hạn = Communication optimization.",
+"source_image": "Lecture 9 – Process Redesign 2"
+},
+{
+"id": 80,
+"code": "BPS301 · Lectures 1–11 · Question 80",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "How does a 'front-loaded process' differ from a 'back-loaded process'?",
+"options": {
+"A": "Front-loaded processes push all approvals to the final step",
+"B": "Front-loaded processes perform the bulk of information exchange and validation upfront, whereas back-loaded processes defer it downstream",
+"C": "Back-loaded processes always use BPMN pools",
+"D": "Front-loaded processes never use databases"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Front-loaded process tập trung trao đổi và kiểm tra đầy đủ thông tin ngay ở đầu quy trình (theo tinh thần Complete-Kit), giúp tránh tắc nghẽn và làm lại ở cuối như back-loaded process (ví dụ Ford cũ). Loại trừ: A mô tả ngược; C và D sai.",
+"tip": "Front-loaded = Xong xuôi thông tin ngay đầu vào; Back-loaded = Để dồn rắc rối xuống cuối.",
+"source_image": "Lecture 9 – Process Redesign 2"
+},
+{
+"id": 81,
+"code": "BPS301 · Lectures 1–11 · Question 81",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What is the main goal of Process Automation in the BPM lifecycle?",
+"options": {
+"A": "To draw high-level value chains for executives",
+"B": "To transform a conceptual process model into an executable model that a BPMS can run",
+"C": "To conduct qualitative interviews with stakeholders",
+"D": "To replace BPMN with Fishbone diagrams"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Tự động hóa quy trình (Process Automation) chuyển đổi mô hình quy trình khái niệm (conceptual/to-be) thành mô hình thực thi được (executable) để hệ thống BPMS điều phối chạy trực tiếp. Loại trừ: A thuộc Identification; C thuộc Discovery/Qualitative Analysis; D sai.",
+"tip": "Automation = Biến sơ đồ vẽ tay (Conceptual) thành quy trình chạy được (Executable).",
+"source_image": "Lecture 10 – Process Automation"
+},
+{
+"id": 82,
+"code": "BPS301 · Lectures 1–11 · Question 82",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which sequence correctly lists the five-step method to transform a conceptual process model into an executable one?",
+"options": {
+"A": "Specify execution properties → Review manual tasks → Complete model → Adjust granularity → Identify boundaries",
+"B": "Identify automation boundaries → Review manual tasks → Complete the process model → Adjust task granularity → Specify execution properties",
+"C": "Adjust task granularity → Identify boundaries → Deploy BPMS → Mine event logs → Redesign",
+"D": "Complete model → Remove all human tasks → Write SQL → Run simulation → Monitor"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Phương pháp 5 bước chuẩn để chuyển sang mô hình thực thi gồm: (1) Identify the automation boundaries, (2) Review manual tasks, (3) Complete the process model, (4) Adjust task granularity, (5) Specify execution properties. Loại trừ: A đảo lộn thứ tự; C và D chứa các bước không thuộc phương pháp 5 bước.",
+"tip": "5 bước Automation: Ranh giới (Boundaries) → Việc tay chân (Manual) → Bổ sung chi tiết (Complete) → Chỉnh độ mịn (Granularity) → Thuộc tính chạy (Execution properties).",
+"source_image": "Lecture 10 – Process Automation"
+},
+{
+"id": 83,
+"code": "BPS301 · Lectures 1–11 · Question 83",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In Step 1 of process automation ('Identify the automation boundaries'), what are we determining?",
+"options": {
+"A": "Which tasks can be automated, which require human-system interaction, and which are purely manual outside the BPMS",
+"B": "The exact SQL schema of the corporate ERP",
+"C": "The color palette of the BPMN diagram",
+"D": "The annual salary of each employee"
+},
+"answer": "A",
+"answers_list": [
+"A"
+],
+"explanation": "Bước 1 xác định ranh giới tự động hóa: phân loại tác vụ nào tự động hoàn toàn (Service/Script task), tác vụ nào người dùng thao tác qua hệ thống (User task) và tác vụ nào thủ công hoàn toàn ngoài hệ thống. Loại trừ: B, C, D không phải mục tiêu của bước xác định ranh giới tự động hóa.",
+"tip": "Automation boundaries = Phân rõ việc Máy tự làm vs. Người làm qua máy vs. Việc tay chân ngoài máy.",
+"source_image": "Lecture 10 – Process Automation"
+},
+{
+"id": 84,
+"code": "BPS301 · Lectures 1–11 · Question 84",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In Step 5 ('Specify execution properties'), which technical details are added to make the BPMN model executable?",
+"options": {
+"A": "Only swimlane colors and font sizes",
+"B": "Process variables, data mappings, API/service endpoints, participant assignment rules, UI forms, and flow expressions",
+"C": "Qualitative issue registers",
+"D": "APQC process hierarchies"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Bước 5 bổ sung các thuộc tính thực thi máy đọc được: biến quy trình (process variables), ánh xạ dữ liệu, gọi API/dịch vụ ngoài, quy tắc phân công người tham gia, giao diện form nhập liệu và biểu thức điều kiện rẽ nhánh. Loại trừ: A là thẩm mỹ; C và D thuộc các pha phân tích/xác định trước đó.",
+"tip": "Execution properties = Biến + API + Form UI + Luật phân công + Biểu thức điều kiện.",
+"source_image": "Lecture 10 – Process Automation"
+},
+{
+"id": 85,
+"code": "BPS301 · Lectures 1–11 · Question 85",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In a Business Process Management System (BPMS) architecture, what is the primary responsibility of the 'Execution Engine'?",
+"options": {
+"A": "Designing the company's strategic roadmap",
+"B": "Instantiating executable process models (cases), orchestrating work distribution, and logging execution data",
+"C": "Drawing Fishbone diagrams for root-cause analysis",
+"D": "Acting as the sole human inbox UI"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Execution Engine là trái tim của BPMS: khởi tạo các case từ mô hình thực thi, điều phối phân phát work item cho người tham gia và dịch vụ phần mềm từ đầu đến cuối, đồng thời ghi nhận log thực thi. Loại trừ: A là quản trị chiến lược; C thuộc Qualitative Analysis; D là vai trò của Worklist Handler.",
+"tip": "Execution Engine = Bộ não điều phối chạy case + gọi dịch vụ + ghi log.",
+"source_image": "Lecture 10 – Process Automation"
+},
+{
+"id": 86,
+"code": "BPS301 · Lectures 1–11 · Question 86",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which BPMS component acts like an 'inbox' that offers work items to human workers, lets them pick items, and manages work queues and priorities?",
+"options": {
+"A": "Process Model Repository",
+"B": "Worklist Handler",
+"C": "External API Endpoint",
+"D": "Execution Logs"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Worklist Handler đóng vai trò như hộp thư đến (inbox) cho nhân viên, hiển thị danh sách công việc (work items), cho phép nhân viên nhận việc (pick) và quản lý hàng đợi/độ ưu tiên. Loại trừ: A lưu trữ mô hình; C kết nối hệ thống ngoài; D lưu nhật ký lịch sử.",
+"tip": "Inbox giao việc cho nhân viên = Worklist Handler.",
+"source_image": "Lecture 10 – Process Automation"
+},
+{
+"id": 87,
+"code": "BPS301 · Lectures 1–11 · Question 87",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In a BPMS architecture, how does the Execution Engine interact with external systems such as a CRM, database connector, or email notification service?",
+"options": {
+"A": "Through manual paper printouts",
+"B": "Via External Services / API endpoints exposed to the engine",
+"C": "Through the Worklist Handler's human inbox",
+"D": "By editing the Process Model Repository manually"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Các hệ thống ngoài (rules engine, email/notification, DB connector, CRM connector) cung cấp giao diện dịch vụ (API endpoints) để Execution Engine gọi và truyền dữ liệu cho từng case. Loại trừ: A, C, D không phải cơ chế tích hợp hệ thống của BPMS.",
+"tip": "BPMS nói chuyện với CRM/Email/DB ngoài qua External Services / API endpoints.",
+"source_image": "Lecture 10 – Process Automation"
+},
+{
+"id": 88,
+"code": "BPS301 · Lectures 1–11 · Question 88",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which BPMS component is used to configure access to system components, manage automation solutions, and monitor participant availability and case performance?",
+"options": {
+"A": "Administration & Monitoring Tools",
+"B": "Process Modeling Tool",
+"C": "Worklist Handler",
+"D": "Data Object"
+},
+"answer": "A",
+"answers_list": [
+"A"
+],
+"explanation": "Administration & Monitoring Tools dùng để quản trị giải pháp tự động hóa, cấu hình quyền truy cập và theo dõi tình trạng sẵn sàng của nhân sự cũng như hiệu năng các case. Loại trừ: B dùng để vẽ/chỉnh sửa mô hình; C là inbox nhận việc; D là ký pháp dữ liệu.",
+"tip": "Quản trị & theo dõi hiệu năng = Administration & Monitoring Tools.",
+"source_image": "Lecture 10 – Process Automation"
+},
+{
+"id": 89,
+"code": "BPS301 · Lectures 1–11 · Question 89",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What are the four core capabilities of Process Mining summarized in Lecture 11?",
+"options": {
+"A": "Process Identification, Modeling, Simulation, and Automation",
+"B": "Automated Process Discovery, Conformance Checking, Variant Analysis, and Performance Mining",
+"C": "Value-Added Analysis, Waste Analysis, Fishbone, and Five Why's",
+"D": "Triage, Task Elimination, Parallelism, and Re-sequencing"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "4 năng lực cốt lõi của Process Mining từ event log là: (1) Automated Process Discovery, (2) Conformance Checking, (3) Variant Analysis, và (4) Performance Mining. Loại trừ: A là vòng đời BPM; C là phân tích định tính; D là heuristics tái thiết kế.",
+"tip": "4 năng lực Process Mining: Discovery (Vẽ ra) – Conformance (So chuẩn) – Variant (So biến thể) – Performance (Đo hiệu năng).",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 90,
+"code": "BPS301 · Lectures 1–11 · Question 90",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What is the primary input required by any Process Mining technique?",
+"options": {
+"A": "A handwritten interview transcript",
+"B": "An Event Log extracted from information systems (containing case ID, activity, timestamp, etc.)",
+"C": "A theoretical APQC reference chart",
+"D": "A future To-Be BPMN diagram only"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Tất cả các kỹ thuật Process Mining đều bắt đầu từ dữ liệu thực tế ghi lại trong Event Log (nhật ký sự kiện trích xuất từ hệ thống thông tin). Loại trừ: A dùng cho Process Discovery thủ công; C và D không chứa dữ liệu thực thi thực tế.",
+"tip": "Không có Event Log = Không có Process Mining.",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 91,
+"code": "BPS301 · Lectures 1–11 · Question 91",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What is a major limitation of raw Process Maps (Directly-Follows Graphs) discovered from event logs?",
+"options": {
+"A": "They cannot show activity frequencies",
+"B": "They over-generalize (allowing paths that don't exist in the log) and struggle to distinguish conditional branching, parallelism, and loops",
+"C": "They automatically convert every task into a sub-process",
+"D": "They only work for 2 activities"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Process Map có hạn chế là tổng quát hóa quá mức (over-generalize: tạo ra đường đi không có thật trong log) và không phân biệt rõ rẽ nhánh điều kiện (XOR), song song (AND) hay vòng lặp (Loop) — ví dụ log [abcd, acbd]. Loại trừ: A sai vì Process Map hiển thị tần suất rất tốt; C và D sai.",
+"tip": "Process Map hay bị rối (spaghetti) và không phân biệt được XOR vs. AND vs. Loop.",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 92,
+"code": "BPS301 · Lectures 1–11 · Question 92",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "How do process mining tools like Apromore overcome the ambiguity of raw Process Maps between branching, parallelism, and loops?",
+"options": {
+"A": "By deleting 90% of the event log",
+"B": "By using automated BPMN process discovery (e.g., the Split Miner algorithm) to turn process maps into structured BPMN models",
+"C": "By replacing timestamps with random numbers",
+"D": "By using Fishbone diagrams"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Giải pháp là Automated BPMN Process Discovery (như thuật toán Split Miner trong Apromore), chuyển đổi Process Map thành mô hình BPMN có các cổng XOR, AND, OR rõ ràng để phân biệt rẽ nhánh, song song và vòng lặp. Loại trừ: A, C, D không giải quyết được vấn đề ngữ nghĩa BPMN.",
+"tip": "Khắc phục nhược điểm Process Map = Dùng Split Miner khám phá ra BPMN!",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 93,
+"code": "BPS301 · Lectures 1–11 · Question 93",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Given an event log containing only the two traces [abcd, acbd], what BPMN structure best captures activities b and c?",
+"options": {
+"A": "An XOR-split between b and c",
+"B": "A Parallel (AND) block between b and c",
+"C": "A rework loop between b and c",
+"D": "A Terminate end event after b"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Trong log [abcd, acbd], cả b và c đều xuất hiện trong mỗi case nhưng theo cả hai thứ tự (b trước c hoặc c trước b) → đây là dấu hiệu đặc trưng của thực thi song song (AND). Loại trừ: A (XOR) chỉ cho phép hoặc b hoặc c ([abd, acd]); C (Loop) sẽ tạo dấu vết lặp như abcbcd; D sai.",
+"tip": "[abcd, acbd] = Cả hai đều chạy, đảo thứ tự được = Song song (AND).",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 94,
+"code": "BPS301 · Lectures 1–11 · Question 94",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Given an event log containing [abc, abd], what BPMN structure best captures activities c and d?",
+"options": {
+"A": "A Parallel (AND) block",
+"B": "An Exclusive choice (XOR-split) between c and d",
+"C": "A Multi-instance loop",
+"D": "A Sequence flow from c to d"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Trong [abc, abd], mỗi case chỉ chọn c hoặc d (không bao giờ có cả hai) → đây là rẽ nhánh loại trừ (XOR-split). Loại trừ: A phải có cả c và d; C và D không khớp dấu vết log.",
+"tip": "[abc, abd] = Có c thì mất d = Rẽ nhánh chọn 1 (XOR).",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 95,
+"code": "BPS301 · Lectures 1–11 · Question 95",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "What does 'Conformance Checking' do in Process Mining?",
+"options": {
+"A": "It estimates future employee salaries",
+"B": "It compares actual process behavior in the event log against a target process model or compliance rules to detect deviations",
+"C": "It replaces the BPMS Execution Engine",
+"D": "It creates a PICK chart for new ideas"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Conformance Checking đối chiếu dữ liệu thực thi thực tế (event log) với mô hình chuẩn (target process model) hoặc tập quy tắc tuân thủ (compliance rules) để phát hiện sai lệch và vi phạm. Loại trừ: A, C, D không phải chức năng của Conformance Checking.",
+"tip": "Conformance = So thực tế (Log) với chuẩn mực (Model/Rules) để bắt lỗi lệch chuẩn.",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 96,
+"code": "BPS301 · Lectures 1–11 · Question 96",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In rule-based Conformance Checking, what does the 'four-eyes principle' rule state?",
+"options": {
+"A": "Every task must be executed four times",
+"B": "Two specific tasks A and B CANNOT be executed by the same person",
+"C": "A process map must have four gateways",
+"D": "Only four managers can view the dashboard"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Nguyên tắc 'four-eyes principle' (tách biệt nhiệm vụ để kiểm soát gian lận) quy định hai tác vụ nhạy cảm A và B (ví dụ: tạo đơn thanh toán và duyệt chi) KHÔNG được thực hiện bởi cùng một người. Loại trừ: A, C, D hiểu sai nghĩa thuật ngữ kiểm soát nội bộ này.",
+"tip": "Four-eyes principle = 2 cặp mắt (2 người khác nhau) làm 2 bước nhạy cảm A và B.",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 97,
+"code": "BPS301 · Lectures 1–11 · Question 97",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "How is 'Variant Analysis' typically performed in process mining tools such as Apromore?",
+"options": {
+"A": "By deleting timestamps from the event log",
+"B": "By filtering/slicing the event log into sub-logs (one per variant) and comparing their process maps/models, dashboards, or animations side by side",
+"C": "By running M/M/1 queueing equations manually",
+"D": "By merging all companies into one Pool"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Variant Analysis thực hiện bằng cách lọc (slice) event log thành nhiều log con theo từng biến thể (ví dụ: Simple vs. Complex, hoặc 2011 vs. 2012), sau đó so sánh song song bản đồ quy trình, dashboard hiệu năng hoặc animation. Loại trừ: A, C, D không phải cách làm Variant Analysis.",
+"tip": "Variant Analysis = Cắt log theo nhóm (Filter) → Đặt cạnh nhau so sánh (Side-by-side).",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 98,
+"code": "BPS301 · Lectures 1–11 · Question 98",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In Performance Mining, how do process mining tools visually highlight bottlenecks in a discovered process map or BPMN model?",
+"options": {
+"A": "By hiding all activities with low cost",
+"B": "By color-coding nodes and arcs based on waiting times, durations, or cycle times (e.g., thick red arcs for high waiting times)",
+"C": "By removing all gateways",
+"D": "By converting the diagram into a Fishbone chart"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Performance Mining phủ lớp thông tin hiệu năng lên mô hình/bản đồ quy trình (ví dụ tô màu đậm/đỏ các cung có thời gian chờ lớn như 2.7 ngày) để nhận diện ngay điểm nghẽn (bottlenecks). Loại trừ: A, C, D không phải kỹ thuật trực quan hóa của Performance Mining.",
+"tip": "Performance Mining = Tô màu thời gian chờ/xử lý lên sơ đồ để bắt điểm nghẽn.",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 99,
+"code": "BPS301 · Lectures 1–11 · Question 99",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "In a process performance dashboard, what does an N-dimensional widget typically display?",
+"options": {
+"A": "Only a single scalar KPI number",
+"B": "A table combining a cross-sectional variable (e.g., customer or case ID) with multiple performance measures",
+"C": "A static organizational chart",
+"D": "Source code of the BPMS"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Theo Lecture 11, N-dimensional widgets thường ở dạng bảng (tables), hiển thị kết hợp một biến phân tổ (như khách hàng, case ID) cùng nhiều chỉ số hiệu năng (performance measures). Loại trừ: A là 1-dimensional/KPI card; C và D không phải dashboard widget.",
+"tip": "N-dimensional widget = Dạng bảng (Table) nhiều cột chỉ số.",
+"source_image": "Lecture 11 – Process Mining"
+},
+{
+"id": 100,
+"code": "BPS301 · Lectures 1–11 · Question 100",
+"type": "SINGLECHOICE",
+"instruction": "Chọn một phương án.",
+"question": "Which of the following is an example of rework waste detectable via Process Mining on a purchase-to-pay event log?",
+"options": {
+"A": "'Create Purchase Requisition' occurring once per case",
+"B": "Repeated back-and-forth loops between 'Analyze Request for Quotation' and 'Amend Request for Quotation'",
+"C": "A single 'Archive Order' task at the end",
+"D": "Parallel execution of shipping and invoicing"
+},
+"answer": "B",
+"answers_list": [
+"B"
+],
+"explanation": "Trong ví dụ log Purchase-to-Pay ở Lecture 11, các vòng lặp qua lại tần suất cao giữa 'Analyze Request for Quotation' và 'Amend Request for Quotation' chính là lãng phí làm lại (rework waste) gây kéo dài cycle time. Loại trừ: A và C là bước bình thường một lần; D là song song giúp tăng tốc.",
+"tip": "Nhìn mũi tên quay ngược đi quay lại nhiều lần trên Process Map = Rework waste.",
+"source_image": "Lecture 11 – Process Mining"
+}
+]
+}

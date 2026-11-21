@@ -165,7 +165,7 @@ export function parseMaterial(value: unknown): Material {
   return { id: id(entry.id), title: str(entry.title), kind, file, preview, pages }
 }
 
-export async function loadSubjects(): Promise<Subject[]> {
+export async function loadSubjects(reportExamError?: (error: string) => void): Promise<Subject[]> {
   const catalog = record(await read('data/catalog.json'))
   if (catalog.version !== 1) throw new Error('Phiên bản danh mục chưa được hỗ trợ')
   const subjects = await Promise.all(list(catalog.subjects).map(async (path) => {
@@ -177,7 +177,12 @@ export async function loadSubjects(): Promise<Subject[]> {
       Promise.all(list(subject.exams).map(async (file) => {
         const path = str(file)
         try { return parseBank(await read(path), subjectId, false, path) }
-        catch (error) { throw new Error(path + ' · ' + message(error)) }
+        catch (error) {
+          const detail = path + ' · ' + message(error)
+          if (!reportExamError) throw new Error(detail)
+          reportExamError(detail)
+          return []
+        }
       })),
     ])
     const bank = unique(exams.flat(), (exam) => exam.id, 'ID bộ đề')

@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { Flag, Timer } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { Check, ClipboardCheck, Flag, Timer } from 'lucide-react'
+import { Progress } from '../components/Progress'
 import { Choices, Feedback, Rich } from '../components/Question'
 import { entireBank, examScope, isCorrect, shuffle, uniqueQuestions, type Exam as ExamData, type Session } from '../data/model'
 
@@ -16,6 +17,8 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
   const [mixOptions, setMixOptions] = useState(true)
   const [active, setActive] = useState(sessions[0]?.id ?? '')
   const [review, setReview] = useState(sessions[0]?.id ?? '')
+  const [matrixFilter, setMatrixFilter] = useState<'all' | 'unanswered' | 'flagged'>('all')
+  const submitDialog = useRef<HTMLDialogElement>(null)
   const session = sessions.find((item) => item.id === active)
   const selectedExam = exams.find((item) => item.id === source)
   const pending = sessions.find((item) => examScope(item, exams) === (selectedExam?.id ?? null))
@@ -27,6 +30,7 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
     const flagged = session.flags.includes(question.id)
     const answered = session.questions.filter((q) => session.selections[q.id]?.length).length
     const elapsed = seconds === 0
+    const warning = seconds <= 300
     return <>
       <div className="row spread"><h1>Thi thử · {session.title}</h1>
         <button onClick={() => { setActive(''); setReview('') }}>Chọn bộ đề khác</button></div>
@@ -49,23 +53,59 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
           </div>
         </section>
         <aside className="panel exam-side">
-          <div className="row"><Timer size={18} /> <span>Thời gian còn lại</span></div>
-          <strong className="timer">{String(Math.floor(seconds / 60)).padStart(2, '0')}:{String(seconds % 60).padStart(2, '0')}</strong>
-          <p>{answered}/{session.questions.length} đã trả lời</p>
+          <div className={'timer-box' + (warning ? ' timer-warning' : '')}>
+            <div className="row"><Timer size={18} /> <span>Thời gian còn lại</span></div>
+            <strong className="timer">{String(Math.floor(seconds / 60)).padStart(2, '0')}:{String(seconds % 60).padStart(2, '0')}</strong>
+            {warning && <span className="timer-message" role="status">{elapsed ? 'Đã hết giờ' : 'Sắp hết giờ'}</span>}
+          </div>
+          <p className="mono">{answered}/{session.questions.length} đã trả lời</p>
+          <Progress value={answered} total={session.questions.length} label="Số câu đã trả lời" />
+          <div className="matrix-filters" role="group" aria-label="Lọc bảng câu hỏi">
+            <button aria-pressed={matrixFilter === 'all'} onClick={() => setMatrixFilter('all')}>Tất cả</button>
+            <button aria-pressed={matrixFilter === 'unanswered'} onClick={() => setMatrixFilter('unanswered')}>Chưa làm</button>
+            <button aria-pressed={matrixFilter === 'flagged'} onClick={() => setMatrixFilter('flagged')}>Gắn cờ</button>
+          </div>
           <div className="palette">
             {session.questions.map((q, index) => {
-              const state = session.flags.includes(q.id) ? 'Đánh dấu xem lại' : session.selections[q.id]?.length ? 'Đã trả lời' : 'Chưa trả lời'
+              const marked = session.flags.includes(q.id)
+              const done = Boolean(session.selections[q.id]?.length)
+              if ((matrixFilter === 'unanswered' && done) || (matrixFilter === 'flagged' && !marked)) return null
+              const state = [done ? 'Đã trả lời' : 'Chưa trả lời', marked && 'Đánh dấu xem lại'].filter(Boolean).join(' · ')
               return <button key={q.id} disabled={elapsed} aria-label={'Câu ' + (index + 1) + ' · ' + state} title={state}
                 aria-current={index === session.index ? 'step' : undefined}
-                className={session.flags.includes(q.id) ? 'flagged' : session.selections[q.id]?.length ? 'picked' : ''}
-                onClick={() => save({ ...session, index })}>{index + 1}</button>
+                className={[done && 'picked', marked && 'flagged'].filter(Boolean).join(' ')}
+                onClick={() => save({ ...session, index })}>{index + 1}
+                {done && <Check className="palette-check" size={11} aria-hidden="true" />}
+                {marked && <Flag className="palette-flag" size={11} aria-hidden="true" />}
+              </button>
             })}
           </div>
+          {matrixFilter === 'unanswered' && answered === session.questions.length && <p className="muted">Đã trả lời tất cả các câu.</p>}
+          {matrixFilter === 'flagged' && !session.flags.length && <p className="muted">Chưa có câu gắn cờ.</p>}
+          <div className="palette-legend muted">
+            <span><i className="legend-current" /> Đang xem</span><span><Check size={13} /> Đã trả lời</span>
+            <span><Flag size={13} /> Xem lại</span><span><i /> Chưa trả lời</span>
+          </div>
           <button className="primary full" onClick={() => {
-            if (elapsed || window.confirm('Nộp bài và xem kết quả?')) { if (submit(session.id)) setReview(session.id) }
+            if (!elapsed) submitDialog.current?.showModal()
+            else if (submit(session.id)) setReview(session.id)
           }}>Nộp bài</button>
         </aside>
       </div>
+      <dialog ref={submitDialog} className="submit-dialog" aria-labelledby="submit-heading">
+        <div className="task">
+          <div className="row"><span className="stat-icon purple"><ClipboardCheck size={20} /></span><h2 id="submit-heading">Xác nhận nộp bài</h2></div>
+          <p className="muted">Bạn đã trả lời {answered}/{session.questions.length} câu
+            {session.flags.length > 0 ? ' và gắn cờ ' + session.flags.length + ' câu' : ''}.</p>
+          <div className="row submit-actions">
+            <button autoFocus onClick={() => submitDialog.current?.close()}>Tiếp tục làm bài</button>
+            <button className="primary" onClick={() => {
+              submitDialog.current?.close()
+              if (submit(session.id)) setReview(session.id)
+            }}>Nộp bài ngay</button>
+          </div>
+        </div>
+      </dialog>
     </>
   }
   if (result) {
