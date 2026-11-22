@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/img/logo.jpg" alt="Logo BPMS" width="1889">
+<img src="public/img/logo.jpg" alt="Logo BPMS" width="1089">
 
 <h1>BPMS</h1>
 
