@@ -48,7 +48,7 @@
       "code": "BPS301 · FA26 · Question 3",
       "type": "SINGLECHOICE",
       "instruction": "Chọn một phương án.",
-      "question": "BPS301_FA26_FE_805603 | Multiple Choice Question 3 In BPMN collaboration diagrams, how are resource classes typically represented when modeling interactions between different independent organizations or business parties?",
+      "question": "In BPMN collaboration diagrams, how are resource classes typically represented when modeling interactions between different independent organizations or business parties?",
       "options": {
         "A": "Using lanes within a single organizational pool",
         "B": "Using separate pools for each business party",
@@ -229,7 +229,7 @@
       "code": "BPS301 · FA26 · Question 12",
       "type": "SINGLECHOICE",
       "instruction": "Chọn một phương án.",
-      "question": "BPS301_FA26_FE_805603 | Multiple Choice Question 12 What is a Non-Value Adding (NVA) process?",
+      "question": "What is a Non-Value Adding (NVA) process?",
       "options": {
         "A": "This step produces value or satisfaction with regard to the customer. (helpful to ask, would a customer be willing to pay for this?)",
         "B": "The step is necessary or useful for the business to run smoothly, or it is required due to the regulatory environment of the business.",
@@ -873,7 +873,7 @@
       "code": "BPS301 · FA26 · Question 44",
       "type": "SINGLECHOICE",
       "instruction": "Chọn một phương án.",
-      "question": "BPS301_FA26_FE_805603 | Multiple Choice Question 44 Basic queueing theory often assumes that the inter-arrival times of process instances follow a Poisson process. What is the specific mathematical implication of this assumption regarding the distribution of the time between two consecutive arrivals?",
+      "question": "Basic queueing theory often assumes that the inter-arrival times of process instances follow a Poisson process. What is the specific mathematical implication of this assumption regarding the distribution of the time between two consecutive arrivals?",
       "options": {
         "A": "The inter-arrival times follow a Normal distribution.",
         "B": "The inter-arrival times follow an Exponential distribution.",
