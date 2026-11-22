@@ -11,8 +11,8 @@ import { learningStats, practiceReturn } from '../data/review'
 
 type Props = {
   subject: Subject; exams: Exam[]; materials: Material[]; study: Study
-  update: (change: (study: Study) => Study) => boolean
-  upload: (material: Material) => boolean; practice: (chapterId: string) => void
+  update: (change: (study: Study) => Study) => Promise<boolean>
+  upload: (material: Material) => Promise<boolean>; practice: (chapterId: string) => void
 }
 
 function Reader({ lecture, lesson, keyword }: { lecture: Lecture; lesson: Lesson; keyword: string }) {

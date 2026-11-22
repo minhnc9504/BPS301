@@ -1,12 +1,14 @@
 {
   "name": "bpms",
+  "version": "1.0.0-rc.1",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:release": "npm test && npm run build && node --experimental-strip-types scripts/check-release.mjs"
   },
   "dependencies": {
     "dompurify": "^3",

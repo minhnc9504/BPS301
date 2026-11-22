@@ -17,35 +17,22 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    outputs:
-      source_ref: ${{ steps.commit.outputs.sha }}
     steps:
       - uses: actions/checkout@v6
         with:
           ref: main
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           cache: npm
       - run: npm ci
       - name: Validate and register exam
         env:
           EXAM_JSON: ${{ inputs.exam_json }}
         run: node scripts/publish-exam.mjs
+      - run: npm run check:release
       - name: Commit exam and catalog together
-        id: commit
         run: |
           git add -- public/data/bps301/subject.json public/data/bps301/exams/
           git -c user.name=github-actions -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -m "Publish BPS301 exam"
           git push origin HEAD:refs/heads/main
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-
-  pages:
-    needs: publish
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    uses: ./.github/workflows/pages.yml
-    with:
-      source_ref: ${{ needs.publish.outputs.source_ref }}

@@ -1,6 +1,7 @@
-import type { Content, Exam, Material, Question, Save, Session, SourceLink, Study, Subject } from './model'
-import { examCategories, type ExamCategory } from './model'
-import { practiceReturn } from './review'
+import { answerReviewStates, type AcademicReview } from './academicReview.ts'
+import type { Content, Exam, Material, Question, Save, Session, SourceLink, Study, Subject } from './model.ts'
+import { examCategories, type ExamCategory } from './model.ts'
+import { practiceReturn } from './review.ts'
 
 export const storageKey = 'smart-exam-v1'
 
@@ -332,6 +333,23 @@ function parseCurriculumProgress(value: unknown): NonNullable<Study['curriculum'
     last: last && { lectureId: id(last.lectureId), sectionId: id(last.sectionId) },
   }
 }
+function parseAcademicReview(value: unknown): AcademicReview {
+  const entry = record(value)
+  const { decision, answer } = entry
+  if (decision !== 'pending' && decision !== 'accepted' && decision !== 'rejected') throw new Error('Quyết định kiểm định không hợp lệ.')
+  if (!answerReviewStates.some((value) => value === answer)) throw new Error('Trạng thái kiểm định không hợp lệ.')
+  const slide = entry.slide === undefined ? undefined : record(entry.slide)
+  const note = entry.note === undefined ? undefined : str(entry.note)
+  const answerKey = entry.answerKey === undefined ? undefined : str(entry.answerKey)
+  if (answer === 'verified' && (!note || !answerKey)) throw new Error('Thiếu căn cứ kiểm định thủ công.')
+  return { decision, answer: answer as AcademicReview['answer'], note, answerKey,
+    chapterId: entry.chapterId === undefined ? undefined : id(entry.chapterId),
+    topics: entry.topics === undefined ? undefined : unique(list(entry.topics).map(id), (topic) => topic, 'chủ đề kiểm định'),
+    tip: entry.tip === undefined ? undefined : str(entry.tip),
+    slide: slide && { materialId: id(slide.materialId), page: number(slide.page, 1) },
+  }
+}
+
 export function parseSave(value: unknown): Save {
   const root = record(value)
   if (root.version !== 1) throw new Error('Phiên bản sao lưu chưa được hỗ trợ')
@@ -342,7 +360,7 @@ export function parseSave(value: unknown): Save {
       ? (study.session === undefined ? [] : [parseSession(study.session)])
       : list(study.sessions).map(parseSession)
     unique([...history, ...sessions], (session) => session.id, 'ID bài thi')
-    if (history.some((item) => item.ended === undefined) || sessions.some((item) => item.ended !== undefined)) {
+    if (sessions.some((item) => item.ended !== undefined || item.completion !== undefined)) {
       throw new Error('Trạng thái phiên thi không hợp lệ')
     }
     const practice = Object.fromEntries(Object.entries(record(study.practice ?? {})).map(([key, value]) => {
@@ -375,6 +393,8 @@ export function parseSave(value: unknown): Save {
       curriculum: study.curriculum === undefined ? undefined : parseCurriculumProgress(study.curriculum),
       bookmarks: list(study.bookmarks).map(id),
       materials: unique(list(study.materials).map(parseMaterial), (material) => material.id, 'ID giáo trình'),
+      academicReviews: study.academicReviews === undefined ? undefined : Object.fromEntries(
+        Object.entries(record(study.academicReviews)).map(([key, review]) => [id(key), parseAcademicReview(review)])),
       sourceLinks: study.sourceLinks === undefined ? undefined : list(study.sourceLinks).map(parseSourceLink),
       attempts: list(study.attempts).map((value) => {
         const attempt = record(value)

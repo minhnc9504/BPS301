@@ -1,138 +1,196 @@
-# BPMS - Business Process Management System
+<div align="center">
 
-[![Live Demo](https://shields.io)](https://minhnc9504.github.io/BPS301/home)
-![React](https://shields.io)
-![Vite](https://shields.io)
+<img src="public/img/logo.jpg" alt="Logo BPMS" width="88">
 
-**BPMS** là ứng dụng web ôn tập và thi thử trắc nghiệm được xây dựng bằng **React**, **TypeScript** và **Vite**. Ứng dụng sử dụng giao diện tiếng Việt, giữ nguyên ngôn ngữ gốc của câu hỏi và tài liệu, đọc dữ liệu từ các tệp JSON tĩnh và lưu toàn bộ tiến độ học tập trên `localStorage` của trình duyệt.
+<h1>BPMS</h1>
 
-> **Trải nghiệm trực tuyến:** [https://minhnc9504.github.io/BPS301/home](https://minhnc9504.github.io/BPS301/home)
+<strong>Business Process Management System</strong>
 
----
+BPS301 Learning &amp; Exam Preparation Platform
 
-## Chạy dự án trên máy (Local)
+Nền tảng học tập và luyện thi BPS301, tích hợp giáo trình, tài liệu PDF, ngân hàng câu hỏi, ôn tập thông minh, thi thử và phân tích kết quả.
 
-**Yêu cầu:** Node.js `22.12+` và `npm`.
+![React 19](https://img.shields.io/badge/React-19-149ECA)
+![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6)
+![Vite 7](https://img.shields.io/badge/Vite-7-646CFF)
+![Version 1.0.0-rc.1](https://img.shields.io/badge/version-1.0.0--rc.1-6356C6)
+[Workflow kiểm tra RC](.github/workflows/release-check.yml)
+
+[Live Demo](https://minhnc9504.github.io/BPS301/) · [Cài đặt](#cài-đặt) · [Tính năng](#tính-năng) · [Tài liệu](#tài-liệu)
+
+</div>
+
+> **Release Candidate · 1.0.0-rc.1.** Bản trong repository đã qua kiểm tra staging cục bộ. Live Demo là phiên bản Pages đang phục vụ trước đợt RC này. Xem [báo cáo phát hành](PHASE7-RELEASE-REPORT.md).
+
+## Mục lục
+
+- [Tổng quan](#tổng-quan) · [Tính năng](#tính-năng) · [Dữ liệu đi kèm](#dữ-liệu-đi-kèm)
+- [Ảnh giao diện](#ảnh-giao-diện) · [Công nghệ](#công-nghệ) · [Cài đặt](#cài-đặt)
+- [Cấu trúc dự án](#cấu-trúc-dự-án) · [Sử dụng](#sử-dụng) · [Lưu trữ và quyền riêng tư](#lưu-trữ-và-quyền-riêng-tư)
+- [Kiểm thử](#kiểm-thử) · [Phát hành](#phát-hành) · [Giới hạn](#giới-hạn)
+- [Bản quyền](#bản-quyền) · [Lộ trình](#lộ-trình) · [Tài liệu](#tài-liệu)
+
+## Tổng quan
+
+BPMS dành cho người học BPS301 muốn đọc giáo trình Business Process Management & Process Mining, luyện câu hỏi theo từng phần và tự đánh giá trước kỳ thi. Giao diện dùng tiếng Việt, còn câu hỏi và tài liệu giữ nguyên ngôn ngữ nguồn.
+
+*BPMS is a local-first learning and exam preparation app for the BPS301 Business Process Management and Process Mining course.*
+
+## Tính năng
+
+| Mô-đun | Chức năng |
+| --- | --- |
+| Tổng quan | Xem tiến độ theo chương, hoạt động gần đây và tiếp tục từ nội dung đang học. |
+| Giáo trình | Đọc và tìm kiếm theo Lecture, đánh dấu đã học và mở phiên ôn từ những câu liên quan. |
+| PDF Slide Viewer | Mở đúng trang nguồn, chuyển trang, thu phóng, đổi kiểu vừa khung và xem toàn màn hình. |
+| Ôn tập | Lọc theo đề, chương, chủ đề hoặc trạng thái. Hỗ trợ câu một và nhiều đáp án, phản hồi, giải thích và mẹo nếu có. |
+| Ôn lặp lại | Theo dõi câu đến hạn dựa trên lịch sử trả lời, đánh dấu khó hoặc chọn ôn lại sau. |
+| Thi thử | Chọn đề, số câu, thời gian và thứ tự trộn. Lưu bài đang làm khi tải lại, hỗ trợ đánh dấu và tự nộp theo cấu hình. |
+| Phân tích kết quả | Xem đúng, sai, bỏ trống và phân tích theo Lecture hoặc chủ đề khi có dữ liệu. So sánh lịch sử và mở phiên ôn từ bài đã nộp. |
+| Ngân hàng câu hỏi | Tìm, nhập và xuất đề JSON, chỉnh sửa câu hỏi và quản lý liên kết slide. |
+| Sao lưu và khôi phục | Xuất toàn bộ hoặc chỉ tiến độ, xem trước tệp và chọn gộp hoặc ghi đè theo phạm vi. |
+| Cài đặt | Chỉnh giao diện sáng/tối, cỡ chữ, phím tắt, phản hồi và cấu hình thi mặc định. |
+
+## Dữ liệu đi kèm
+
+| Bộ đề | Câu hỏi | Lecture | Mục chính | Mục bổ sung | PDF | Trang PDF | Tham chiếu slide |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 6 | 310 | 11 | 48 | 32 | 11 | 485 | 343 |
+
+Số liệu lấy từ [danh mục môn](public/data/bps301/subject.json), [giáo trình](public/data/bps301/theory.json) và PDF đã đối chiếu bằng `npm run check:release`. Tên đề trong giao diện lấy từ JSON. Chẳng hạn, tệp `FA26.json` có tên hiển thị **FA25**.
+
+## Ảnh giao diện
+
+Ảnh chụp bản RC chạy cục bộ trên Chrome bằng hồ sơ kiểm thử riêng. Các lựa chọn và kết quả trong ảnh được tạo khi thao tác với bộ đề có sẵn.
+
+![Tổng quan BPMS với lộ trình học và các chỉ số tiến độ](docs/screenshots/dashboard.png)
+
+<details>
+<summary>Giáo trình và trình xem slide</summary>
+
+![Giáo trình Lecture 1 với mục lục và các liên kết slide](docs/screenshots/curriculum.png)
+
+![Trình xem PDF hiển thị slide 5 của Lecture 1](docs/screenshots/slide-viewer.png)
+
+</details>
+
+<details>
+<summary>Ôn tập và Ngân hàng câu hỏi</summary>
+
+![Ôn tập với các lựa chọn và phản hồi sau khi trả lời](docs/screenshots/practice.png)
+
+![Ngân hàng câu hỏi lọc theo từ khóa BPMN](docs/screenshots/question-bank.png)
+
+</details>
+
+<details>
+<summary>Thi thử và phân tích kết quả</summary>
+
+![Phiên thi thử với đồng hồ và bảng điều hướng câu hỏi](docs/screenshots/mock-exam.png)
+
+![Báo cáo thi thử với điểm số và phân tích theo Lecture](docs/screenshots/exam-analytics.png)
+
+</details>
+
+## Công nghệ
+
+- **React 19 · TypeScript 5 · Vite 7** cho giao diện, kiểu dữ liệu và bản build tĩnh.
+- **CSS tùy chỉnh · Lucide** cho bố cục, giao diện sáng/tối và biểu tượng.
+- **PDF.js** để hiển thị trang PDF với worker tải khi cần. **DOMPurify** lọc HTML trước khi hiển thị.
+- **localStorage · IndexedDB · Web Locks** lưu dữ liệu và điều phối ghi giữa các tab cùng origin.
+
+## Cài đặt
+
+Yêu cầu Git, npm và **Node.js 22.13+**. CI dùng Node.js 24.
 
 ```bash
-# Cài đặt thư viện
-npm ci
-
-# Chạy môi trường phát triển
+git clone https://github.com/minhnc9504/BPS301.git
+cd BPS301
+npm install
 npm run dev
 ```
 
-Mở địa chỉ hiển thị trên terminal (thường là `http://localhost:5173`).
-
-**Kiểm tra bản đóng gói (Production):**
+Mở địa chỉ Vite báo, thường là `http://localhost:5173/`. Dùng `npm ci` nếu cần cài đúng các phiên bản đã khóa.
 
 ```bash
-npm run build   # Kiểm tra TypeScript và xuất tệp ra thư mục dist/
-npm run preview # Xem trước bản build trên máy
+npm run build
+npm run preview
 ```
 
----
+Bản tối ưu nằm trong `dist/`. Khi chạy preview, mở đường dẫn dưới `/BPS301/` tại địa chỉ Vite báo.
 
-## Tính năng chính
-
-| Mục | Chức năng |
-| :--- | :--- |
-| **Tổng quan** | Xem thống kê tiến độ, lịch sử học tập và tiếp tục nhanh tại vị trí đang làm dở. |
-| **Ôn tập** | Lọc câu hỏi theo đề, chương, chủ đề hoặc danh sách câu cần ôn lại. Tự động lưu đáp án và phản hồi khi chuyển câu/tải lại trang. Hỗ trợ **Làm lại** từng câu hoặc **Reset tiến độ** theo bộ lọc (vẫn giữ dấu câu khó). |
-| **Thi thử** | Tùy chỉnh đề thi, số lượng câu, thời gian làm bài và chế độ trộn câu hỏi/đáp án. Đồng hồ đếm ngược chạy ngầm ngay cả khi chuyển đề hoặc đóng tab; tự động nộp bài nếu hết giờ khi mở lại ứng dụng. |
-| **Giáo trình** | Đọc lý thuyết, tìm kiếm theo tiêu đề hoặc nội dung trang đã khai báo; hỗ trợ xem PDF, ảnh slide (tệp `.pptx` sử dụng PDF hoặc bộ ảnh đi kèm để xem trước). |
-| **Ngân hàng** | Nhập một hoặc nhiều tệp JSON, tự động kiểm tra lỗi cú pháp và trùng lặp ID (cho phép bỏ qua, cập nhật hoặc tạo bản sao). Hỗ trợ chỉnh sửa trực tiếp câu hỏi, gắn trang giáo trình và xuất dữ liệu. |
-
-### Tiện ích & Sao lưu dữ liệu
-
-Đề nhập và tiến độ được lưu theo từng hồ sơ trình duyệt và địa chỉ website, lần lượt trong `bps301_custom_exams_v1` và `bps301_user_progress_v1`. Ứng dụng tự đọc dữ liệu cũ từ `smart-exam-v1` và chuyển sang cấu trúc mới khi đủ dung lượng. Dùng **Sao lưu tất cả dữ liệu** để chuyển đề riêng sang máy khác. Việc dọn dữ liệu website hoặc dùng phiên duyệt riêng tư có thể làm mất dữ liệu cục bộ.
-
-Để công khai một đề, vào **Cài đặt → Bộ đề đã tự tải lên → Sao chép JSON công khai**. Mở workflow [Publish a public BPS301 exam](.github/workflows/publish-exam.yml), chọn **Run workflow** trên `main`, dán nội dung vào `exam_json` và chạy bằng tài khoản có quyền ghi repo. Workflow kiểm tra mã trùng, ghi tệp đề và danh mục trong một commit rồi build và triển khai Pages từ commit đó. Đáp án đi kèm đề công khai. Với tệp vượt giới hạn nhập, tải JSON xuống, thêm vào `public/data/bps301/exams/` và khai báo đường dẫn trong `subject.json` trước khi commit.
-* **Phím tắt & Giao diện:** Nhấn **Tìm nhanh** hoặc `Ctrl + K` (`⌘ + K` trên macOS) để mở nhanh màn hình/chương; chuyển đổi giao diện Sáng/Tối ở góc thanh điều hướng.
-* **Sao lưu & Khôi phục:** Xuất toàn bộ dữ liệu hoặc chỉ tiến độ. Mở bản xem trước rồi chọn gộp hoặc ghi đè theo phạm vi tệp. Khi gộp, ứng dụng ưu tiên dữ liệu trên máy ở các ID trùng và hợp nhất lịch sử. **Xuất ngân hàng** tải riêng bộ đề BPS301.
-* **Đặt lại & tùy chọn:** Có thể đặt lại lượt ôn và thi, xóa riêng dấu câu khó hoặc khôi phục gốc qua hai lần xác nhận. Tùy chọn tự nộp áp dụng khi tạo phiên thi. Khi tắt tự nộp, bài bị khóa lúc hết giờ và người học nộp thủ công. Dùng `Shift+B` để đánh dấu câu khó và `B` để chọn đáp án B.
-
----
-
-## Dữ liệu BPS301 đi kèm
-
-Hệ thống tích hợp sẵn **11 chương lý thuyết** và **260 câu hỏi** thuộc 5 bộ đề:
-
-| Tên đề hiển thị | Tệp JSON | Số câu | Ghi chú |
-| :--- | :--- | :---: | :--- |
-| FA25 | `FA26.json` | 59 | |
-| Đề 2 · SU26 FE | `SU26.json` | 48 | |
-| FE Mock | `FE_Mock.json` | 3 | |
-| BPS301 — FA26 FINAL EXAM 805603 | `BPS301_FA26_FE_805603.json` | 50 | Đáp án, phân tích & mẹo mang tính suy luận tham khảo |
-| Ngân hàng 100 câu hỏi ôn tập | `bonus_100c.json` | 100 | |
-
-*(Tên đề hiển thị được lấy từ trường `title` hoặc `exam_title` trong tệp JSON).*
-
----
-
-## Cấu trúc thư mục
+## Cấu trúc dự án
 
 ```text
-public/
-├── data/
-│   ├── catalog.json          # Danh mục môn học và đường dẫn tới từng subject.json
-│   └── bps301/
-│       ├── subject.json      # Khai báo danh sách đề, lý thuyết, chủ đề và giáo trình
-│       ├── theory.json       # Nội dung lý thuyết các chương
-│       └── exams/            # Các tệp JSON chứa bộ đề trắc nghiệm
-├── materials/                # Tài liệu PDF, PPTX và ảnh slide đi kèm dự án
-└── img/logo.jpg              # Logo và favicon, sao chép từ img/logo.jpg
-
 src/
-├── components/               # Các component hiển thị câu hỏi và nội dung
-├── data/                     # Định nghĩa kiểu dữ liệu, kiểm tra JSON và quản lý localStorage
-└── features/                 # Các màn hình chức năng chính
+├── App.tsx                     # Điều phối giao diện và trạng thái
+├── routes.ts                   # Định tuyến và đường dẫn trực tiếp
+├── components/                 # Hiển thị câu hỏi, nội dung và tiến độ
+├── features/                   # Các màn hình học, thi và quản lý
+└── data/                       # Schema, lưu trữ, lịch ôn và phân tích
+public/
+├── data/bps301/                # Danh mục môn, lý thuyết, đề JSON
+├── materials/bps301/           # PDF đóng gói
+├── img/logo.jpg                # Logo và favicon
+└── 404.html                    # Fallback deep link trên Pages
+scripts/                        # Manifest, kiểm tra bản build, công cụ nội dung
+tests/                          # Unit test và E2E
+docs/                           # Hướng dẫn và ảnh giao diện
+.github/workflows/              # CI, đăng đề và phát hành thủ công
 ```
 
----
+## Sử dụng
 
-## Hướng dẫn mở rộng dữ liệu
+1. Vào **Giáo trình**, chọn Lecture và mục cần đọc. Mở slide liên quan ngay tại mục đang học.
+2. Chọn **Luyện tập ngay** hoặc vào **Ôn tập** để lọc theo đề, chương, chủ đề hoặc lịch đến hạn. Trả lời rồi xem phản hồi, lời giải và nguồn nếu có.
+3. Vào **Thi thử**, chọn đề và cấu hình phiên. Nộp bài để mở báo cáo, sau đó chọn **Ôn lại câu sai** hoặc **Ôn câu sai và bỏ trống**.
+4. Vào **Cài đặt & Dữ liệu** để tải bản sao lưu. Khi đổi máy hoặc địa chỉ truy cập, khôi phục JSON rồi gắn lại tệp tài liệu cá nhân nếu cần.
 
-### 1. Thêm bộ đề mới
-* **Dành riêng cho trình duyệt cá nhân:** Vào mục **Ngân hàng** trên giao diện web và nhập tệp JSON.
-* **Tích hợp mặc định cho mọi người dùng:**
-  1. Đặt tệp JSON vào thư mục `public/data/<ma-mon>/exams/`.
-  2. Khai báo đường dẫn `"data/<ma-mon>/exams/<ten-de>.json"` vào mảng `exams` trong tệp `subject.json`.
-  3. Tải lại trang (nếu đang chạy `dev`) hoặc `commit` & `push` lên GitHub để cập nhật bản build.
+[Hướng dẫn sử dụng chi tiết](docs/USER_GUIDE.md)
 
-**Quy chuẩn định dạng JSON:**
-* **Cấu trúc chuẩn:** Gồm `version: 1`, `subjectId` và mảng `exams`. Mỗi đề chứa `id`, `title`, `questions` (tùy chọn `note`). Mỗi câu hỏi gồm `id`, `type` (`single` hoặc `multiple`), `prompt`, `options` (`id`, `content`) và `answers` (mảng ID đáp án đúng); có thể bổ sung `chapterId`, `topics`, `explanation`, `tip`, `formulas` và `slides`.
-* **Hỗ trợ HTML:** Các trường nội dung chấp nhận chuỗi thuần hoặc đối tượng `{ "format": "html", "value": "..." }` (HTML được làm sạch tự động trước khi hiển thị). Có thể dùng tính năng **Xuất ngân hàng** để lấy tệp mẫu đầy đủ.
-* **Định dạng tương thích cũ:** Hỗ trợ cấu trúc `exam_title` với `options` dạng object và `type` là `SINGLECHOICE` / `MULTIPLECHOICE` (ID câu được ghép từ tên tệp và ID gốc). *Lưu ý giữ nguyên tên tệp và ID câu hỏi khi cập nhật để không làm mất tiến độ cũ của người dùng.*
+## Lưu trữ và quyền riêng tư
 
-### 2. Thêm giáo trình hoặc liên kết slide
-1. Đặt tài liệu vào `public/materials/<ma-mon>/<ten-tai-lieu>/`.
-2. Khai báo trong mảng `materials` của `subject.json` với các trường: `id`, `title`, `kind` (`pdf`, `pptx` hoặc `images`), `file` (tệp gốc), `preview` (PDF xem trước) và `pages` (`page` bắt đầu từ `1`, `image`, `text` dùng để tìm kiếm từ khóa).
-3. Trong câu hỏi JSON, gắn liên kết tới trang tài liệu bằng cú pháp:
-   ```json
-   "slides": [{ "materialId": "bpm-slides", "page": 1 }]
-   ```
+BPMS dùng mô hình **local-first**. Tiến độ, lịch thi, đề tự thêm và trạng thái xác minh nằm trong localStorage. PDF và ảnh do người học nhập nằm trong IndexedDB. Web Locks tuần tự hóa lượt ghi giữa các tab cùng origin, còn sự kiện `storage` giúp cập nhật trạng thái trên các tab khác.
 
-> [!NOTE]
-> * Cấu hình Vite dùng `/` khi chạy dev và `/BPS301/` khi build.
-> * Vì ứng dụng chạy hoàn toàn phía client, toàn bộ tệp JSON trong `public/` (bao gồm cả đáp án) đều được phục vụ công khai trên mạng; chế độ **Thi thử** chỉ ẩn đáp án trên giao diện cho đến khi nộp bài.
+Mỗi tổ hợp giao thức, tên miền và cổng có kho riêng. Để chuyển máy hoặc origin, xuất JSON và giữ tài liệu nhập riêng. Trình duyệt thiếu Web Locks mở ứng dụng ở chế độ chỉ đọc. [Chi tiết dữ liệu và khôi phục](docs/DATA_AND_BACKUP.md)
 
-## Xem slide và xác minh nguồn
+## Kiểm thử
 
-- Vào **Giáo trình → Tệp giáo trình** để nhập một PDF, một PPTX hoặc một nhóm ảnh PNG/JPG. Mỗi tệp tối đa 100 MB. Đặt tên ảnh theo thứ tự như `slide-01.png`, `slide-02.png`. Trình xem chỉ hiển thị ảnh của trang đang mở và hỗ trợ phím ←/→ khi đang ở trong trình xem.
-- Với PPTX, xuất bản PDF trên máy bằng PowerPoint hoặc LibreOffice Impress rồi chọn **Gắn bản xem trước PDF** dưới tài liệu PPTX. Trên Windows có PowerPoint Desktop, có thể chạy lệnh sau. Lệnh đọc PPTX gốc và từ chối ghi đè một PDF có sẵn.
+```bash
+npm test
+npm run build
+npm run check:release
+```
 
-  ```powershell
-  powershell -ExecutionPolicy Bypass -File .\scripts\convert-pptx.ps1 -InputPath '.\bai-giang.pptx' -OutputPath '.\bai-giang.pdf'
-  ```
+`check:release` chạy unit test, TypeScript, build và kiểm tra dữ liệu, manifest PDF, asset, deep link và kích thước gói. Workflow CI đã được cấu hình trong repository. Trạng thái badge trên GitHub sẽ có sau khi workflow được đưa lên và chạy. Có E2E bằng Playwright Core cho đồng bộ nhiều tab và nâng cấp cùng origin. Phase 7 xác nhận trên Chrome và Edge. Firefox và Safari còn trong phạm vi kiểm thử tiếp theo. [Hướng dẫn chạy E2E](docs/ARCHITECTURE.md#kiểm-thử)
 
-  Kiểm tra lại trang, font và bố cục sau khi xuất. Bản PDF chỉ thể hiện nội dung tĩnh của slide.
+## Phát hành
 
-- Trong một mục **Giáo trình** hoặc **Ngân hàng → Xem chi tiết**, chọn tài liệu và số slide trong **Thêm liên kết nguồn**. Mở slide, kiểm tra nội dung, đóng trình xem rồi bấm **Lưu liên kết đã xác minh**. Có thể lưu gợi ý, từ chối gợi ý hoặc đổi/xóa liên kết. Sau khi kiểm tra đáp án trong **Ôn tập**, đóng trình xem để quay lại câu đang làm.
-- Tài liệu đóng gói có thể đặt trong `public/materials/` và khai báo trong cấu hình môn. Tệp nhập từ giao diện nằm trong IndexedDB của trình duyệt. Sao lưu toàn bộ JSON giữ thông tin tài liệu, liên kết và trạng thái xác minh. Dùng các nút **Tải tệp gốc**, **Tải PDF xem trước** và **Tải ảnh trang** để giữ tệp riêng. Khi chuyển máy, khôi phục JSON rồi chọn **Gắn lại tệp gốc** hoặc **Gắn bản xem trước PDF**. Với nhóm ảnh, chọn lại đủ ảnh theo đúng thứ tự ban đầu. Tệp nhập mới có mã SHA-256 để đối chiếu với bản gốc khi gắn lại.
+GitHub Pages dùng base `/BPS301/`. Workflow **Validate BPMS release candidate** kiểm tra build. Sau khi chủ dự án duyệt quyền công khai tài liệu và SHA, chạy **Publish approved BPMS build to GitHub Pages** từ `main`, nhập SHA và bật `materials_approved`. Khi cần rollback, đưa bản đã duyệt trở lại cùng URL và origin theo hướng dẫn phát hành. [Quy trình phát hành và rollback](docs/DEPLOYMENT.md)
 
-### PDF giáo trình BPS301
+## Giới hạn
 
-Đặt PDF vào `public/materials/bps301/`. Ưu tiên tên trùng với `sourceFile` trong `public/data/bps301/theory.json`, đổi đuôi từ `.pptx` thành `.pdf`. Ví dụ `Lecture1-Introduction.pdf`. Ứng dụng cũng nhận tên bắt đầu bằng `Lecture <số>` nếu Lecture đó chỉ có một PDF phù hợp. Nếu thiếu tệp hoặc có nhiều tên thay thế, ứng dụng hiển thị trạng thái chưa có PDF.
+- Đồng bộ hiện tại diễn ra giữa các tab cùng origin. Việc chuyển thiết bị dùng sao lưu và khôi phục thủ công.
+- Kho dữ liệu phụ thuộc dung lượng và vòng đời hồ sơ trình duyệt. Bản sao JSON chứa metadata tài liệu, còn nội dung nhị phân IndexedDB cần tải riêng.
+- Đề công khai có đáp án trong JSON. Thi thử che đáp án trên giao diện đến khi nộp bài.
+- Phạm vi tương thích đã xác nhận và các giới hạn kiểm thử được ghi trong [báo cáo Phase 7](PHASE7-RELEASE-REPORT.md).
 
-Vite tạo `data/bps301/materials.json` khi chạy dev và ghi manifest vào `dist/` khi build. Trên localhost, tải lại sau khi thêm PDF. Với bản build tĩnh, chạy lại `npm run build` để cập nhật manifest. ID tài liệu lấy từ tên nguồn trong giáo trình để giữ liên kết theo số trang.
+## Bản quyền
+
+Chưa xác minh giấy phép phân phối **mã nguồn** cho repository này. **Bộ câu hỏi**, **PDF giáo trình** và **nội dung bên thứ ba** có thể chịu các quyền riêng. Quyền dùng để học và quyền đăng lại công khai cần được xác nhận riêng. PDF trong thư mục `public/` có thể tải trực tiếp nếu phát hành lên Pages công khai. Chủ dự án cần xác nhận quyền và rà nội dung nhạy cảm trước khi phê duyệt phát hành.
+
+## Lộ trình
+
+| Trạng thái | Phạm vi |
+| --- | --- |
+| Đã hoàn thành | Các luồng học, xem PDF, ôn, thi, sao lưu và hệ thống kiểm tra RC. |
+| Đang xác nhận | Quyền công khai tài liệu và phê duyệt phát hành thử. |
+| Tiếp theo | Mở rộng kiểm thử Firefox, Safari và đánh giá khả năng tiếp cận. |
+
+## Tài liệu
+
+- [Hướng dẫn sử dụng](docs/USER_GUIDE.md)
+- [Kiến trúc và kiểm thử](docs/ARCHITECTURE.md)
+- [Dữ liệu và sao lưu](docs/DATA_AND_BACKUP.md)
+- [Phát hành và rollback](docs/DEPLOYMENT.md)
+- [QA Phase 6](PHASE6-QA-REPORT.md) · [Release Candidate Phase 7](PHASE7-RELEASE-REPORT.md)

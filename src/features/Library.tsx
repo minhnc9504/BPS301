@@ -21,7 +21,7 @@ function headingSlug(text: string) {
 }
 
 export function Library({ subject, materials, upload, practice }: {
-  subject: Subject; materials: Material[]; upload: (material: Material) => boolean; practice: (chapterId: string) => void
+  subject: Subject; materials: Material[]; upload: (material: Material) => Promise<boolean>; practice: (chapterId: string) => void
 }) {
   const route = useRoute()
   const [view, chapterId] = route.segments

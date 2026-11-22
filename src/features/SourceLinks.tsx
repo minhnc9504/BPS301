@@ -7,8 +7,8 @@ export const SourceContext = createContext<{
   materials: Material[]
   links: SourceLink[]
   open: (id: string, page: number, ready?: (page: number) => void) => void
-  save: (link: SourceLink, previous?: SourceLink) => boolean
-  remove: (link: SourceLink) => boolean
+  save: (link: SourceLink, previous?: SourceLink) => Promise<boolean>
+  remove: (link: SourceLink) => Promise<boolean>
 } | null>(null)
 
 const labels = { verified: 'Đã xác minh', suggested: 'Gợi ý · chưa xác minh', rejected: 'Đã từ chối', unavailable: 'Chưa có tệp xem trước' }
@@ -102,11 +102,11 @@ export function SourceLinks({ target, suggestions = [], manage = false, onOpen, 
         <label>Số slide<input type="number" min={1} value={number} onChange={(event) => { setNumber(event.target.value); setViewed('') }} /></label>
         <div className="row">
           <button disabled={!valid || !canPreview(materials.find((item) => item.id === documentId), slideNumber)} onClick={() => view(candidate)}>Xem slide để xác minh</button>
-          <button disabled={!valid} onClick={() => {
-            if (save({ ...candidate, verificationStatus: 'suggested' }, editing)) clear()
+          <button disabled={!valid} onClick={async () => {
+            if (await save({ ...candidate, verificationStatus: 'suggested' }, editing)) clear()
           }}>Lưu gợi ý</button>
-          <button disabled={!valid || viewed !== sourceKey(candidate)} onClick={() => {
-            if (save(candidate, editing)) clear()
+          <button disabled={!valid || viewed !== sourceKey(candidate)} onClick={async () => {
+            if (await save(candidate, editing)) clear()
           }}>Lưu liên kết đã xác minh</button>
           {editing && <button onClick={clear}>Hủy đổi</button>}
         </div>

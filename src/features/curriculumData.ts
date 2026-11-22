@@ -123,7 +123,7 @@ export function relatedQuestions(lecture: Lecture, lesson: Lesson, questions: Qu
       const material = slide.verified ? findMaterial(slide, materials) : undefined
       return question.slides?.some((item) => slide.verified && (slide.materialId ?? material?.id) === item.materialId && slide.page === item.page)
     })) return [{ question, rank: 3, label: 'Liên kết slide đã xác minh' }]
-    if (question.chapterId === lecture.id && question.topics?.some((topic) => terms.includes(slug(topic)))) {
+    if (question.chapterId === lecture.id && question.topics?.some((topic) => topic === lesson.id || terms.includes(slug(topic)))) {
       return [{ question, rank: 2, label: 'Khớp chương và chủ đề' }]
     }
     if (sectionLinks?.length) return [{ question, rank: 1.9, label: 'Liên kết section · chưa xác minh' }]

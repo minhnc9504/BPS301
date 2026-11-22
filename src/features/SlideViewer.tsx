@@ -55,7 +55,12 @@ export function MaterialViewer({ material, start, query = '', onReady }: {
         const library = await import('pdfjs-dist')
         library.GlobalWorkerOptions.workerSrc = worker
         const blob = pdfKey ? await getDocumentFile(pdfKey) : undefined
-        if (pdfKey && !blob) throw new Error('Thiếu tệp PDF. Hãy gắn lại tệp trong Kho tài liệu.')
+        if (canceled) return
+        if (pdfKey && !blob) {
+          setError('Thiếu tệp PDF. Hãy gắn lại tệp trong Kho tài liệu.')
+          setLoading(false)
+          return
+        }
         const source = blob ? new Uint8Array(await blob.arrayBuffer()) : asset(pdfPath!)
         if (canceled) return
         const task = library.getDocument({ ...(typeof source === 'string' ? { url: source } : { data: source }) })
@@ -64,9 +69,12 @@ export function MaterialViewer({ material, start, query = '', onReady }: {
         if (!canceled) setPdf(document)
       } catch (cause) {
         if (!canceled) {
-          setError(cause instanceof Error && (cause.name === 'ResponseException' && 'missing' in cause && cause.missing)
-            ? 'Chưa có tài liệu PDF tại đường dẫn đã khai báo.'
-            : cause instanceof Error ? cause.message : 'Không mở được PDF.')
+          const failure = cause instanceof Error ? cause : undefined
+          const missing = failure?.name === 'ResponseException' && 'missing' in failure && failure.missing
+          setError(missing ? 'Chưa có tài liệu PDF tại đường dẫn đã khai báo.'
+            : failure?.name === 'InvalidPDFException' ? 'Tệp PDF bị hỏng hoặc không đúng định dạng.'
+              : failure?.name === 'PasswordException' ? 'Tệp PDF được bảo vệ bằng mật khẩu. Hãy mở một bản có thể xem.'
+                : 'Không mở được PDF. Hãy kiểm tra kết nối hoặc thử gắn lại tệp gốc.')
           setLoading(false)
         }
       }

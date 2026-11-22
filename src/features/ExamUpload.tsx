@@ -1,3 +1,4 @@
+import { readJsonFile } from '../data/jsonFile'
 import { useRef, useState } from 'react'
 import { Copy, Download, Plus, Trash2, Upload } from 'lucide-react'
 import { type Exam, type ExamCategory } from '../data/model'
@@ -31,7 +32,7 @@ const prompt = [
 ].join('\n\n')
 
 export function ExamUpload({ subjectId, exams, localExams, add, remove }: {
-  subjectId: string; exams: Exam[]; localExams: Exam[]; add: (exam: Exam) => boolean; remove: (id: string) => boolean
+  subjectId: string; exams: Exam[]; localExams: Exam[]; add: (exam: Exam) => Promise<boolean>; remove: (id: string) => Promise<boolean>
 }) {
   const [title, setTitle] = useState('')
   const [examId, setExamId] = useState('')
@@ -82,10 +83,7 @@ export function ExamUpload({ subjectId, exams, localExams, add, remove }: {
     setNotice('')
     setReading(true)
     try {
-      if (!/\.json$/i.test(file.name)) throw new Error('Hãy chọn tệp có đuôi .json.')
-      const text = await file.text()
-      let value: unknown
-      try { value = JSON.parse(text) } catch { throw new Error('Tệp sai cú pháp JSON. Hãy kiểm tra dấu ngoặc, dấu phẩy và dấu nháy kép.') }
+      const value = await readJsonFile(file)
       if (request === sequence.current) setSource({ name: file.name, value })
     } catch (cause) {
       if (request === sequence.current) setFileError(message(cause))
@@ -97,10 +95,10 @@ export function ExamUpload({ subjectId, exams, localExams, add, remove }: {
   return <section className="panel task">
     <h2>Tải lên bộ đề mới (JSON)</h2>
     <div className="exam-upload-grid">
-      <form className="task" onSubmit={(event) => {
+      <form className="task" onSubmit={async (event) => {
         event.preventDefault()
         if (!exam || error || reading) return
-        if (add(exam)) {
+        if (await add(exam)) {
           setNotice('Đã thêm ' + exam.title + ' · ' + exam.questions.length + ' câu.')
           setSource(undefined); setTitle(''); setExamId(''); setCategory('')
         }
@@ -160,8 +158,8 @@ export function ExamUpload({ subjectId, exams, localExams, add, remove }: {
       </div>
       <div className="row">
       <button onClick={() => void preparePublic(item)}><Copy size={16} /> Sao chép JSON công khai</button>
-      <button onClick={() => {
-        if (window.confirm('Xóa đề «' + item.title + '» và phiên đang làm của đề này? Các bài thi đã nộp vẫn còn trong lịch sử.') && remove(item.id)) {
+      <button onClick={async () => {
+        if (window.confirm('Xóa đề «' + item.title + '» và phiên đang làm của đề này? Các bài thi đã nộp vẫn còn trong lịch sử.') && await remove(item.id)) {
           setNotice('Đã xóa ' + item.title + '.')
         }
       }}><Trash2 size={16} /> Xóa đề này</button>

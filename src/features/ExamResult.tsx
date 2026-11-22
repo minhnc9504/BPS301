@@ -1,3 +1,4 @@
+import { academicCatalog } from '../data/academicReview'
 import { ChartNoAxesColumn, ClipboardCheck, Clock3, Target } from 'lucide-react'
 import { Choices, Feedback, Rich } from '../components/Question'
 import { Progress } from '../components/Progress'
@@ -19,7 +20,7 @@ export function ExamResult({ session, path, subject, exams, study, materials }: 
 }) {
   const route = useRoute()
   const chapters = new Map(subject.theory.map((item) => [item.id, item.title]))
-  const topics = new Map(subject.topics.map((item) => [item.id, item.title]))
+  const topics = academicCatalog(subject).labelByTopic
   const name = (key: string, mode: 'chapter' | 'topic') => mode === 'chapter'
     ? chapters.get(key) ?? 'Chưa phân loại' : topics.get(key) ?? key
   const data = examAnalytics(session, new Set(chapters.keys()))

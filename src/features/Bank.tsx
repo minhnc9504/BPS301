@@ -1,3 +1,5 @@
+import { ContentQuality } from './ContentQuality'
+import { maxJsonBytes, readJsonFile } from '../data/jsonFile'
 import { SourceLinks } from './SourceLinks'
 import { useState } from 'react'
 import { Download, Upload, Pencil } from 'lucide-react'
@@ -7,8 +9,9 @@ import { findQuestion, useRoute } from '../routes'
 import { Choices, Feedback, Rich } from '../components/Question'
 
 export function Bank({ subject, exams, study, save }: {
-  subject: Subject; exams: Exam[]; study: Study; save: (state: Study) => boolean
+  subject: Subject; exams: Exam[]; study: Study; save: (change: (current: Study) => Study) => Promise<boolean>
 }) {
+  const [limit, setLimit] = useState(30)
   const [pending, setPending] = useState<Exam[]>([])
   const [status, setStatus] = useState('')
   const [strategy, setStrategy] = useState<'skip' | 'update' | 'new'>('skip')
@@ -21,6 +24,7 @@ export function Bank({ subject, exams, study, save }: {
   const detail = route.segments[0] === 'detail'
   const detailQuestion = findQuestion(uniqueQuestions(exams), route.segments[1])
   function filter(key: string, value: string) {
+    setLimit(30)
     const query = new URLSearchParams(route.query)
     if (value) query.set(key, value)
     else query.delete(key)
@@ -37,32 +41,36 @@ export function Bank({ subject, exams, study, save }: {
       (!statusFilter || (statusFilter === 'hard' ? study.bookmarks.includes(q.id) : status === statusFilter)) &&
       (q.id + ' ' + (q.code ?? '') + ' ' + q.prompt.value).toLowerCase().includes(query.trim().toLowerCase())
   })
+  const rawQuestionById = new Map([...subject.exams, ...study.exams].flatMap((exam) => exam.questions.map((item) => [item.id, item] as const)))
   const known = new Set(uniqueQuestions(exams).map((q) => q.id))
   const incoming = pending.flatMap((e) => e.questions)
   const matches = incoming.filter((q) => known.has(q.id)).length
-  function commit() {
-    let next = [...study.exams]
-    const ids = new Set(known)
-    const edits = { ...study.edits }
-    for (const exam of pending) {
-      const incoming: Question[] = []
-      for (const q of exam.questions) {
-        if (!ids.has(q.id)) { ids.add(q.id); incoming.push(q); continue }
-        if (strategy === 'update') edits[q.id] = q
-        if (strategy !== 'new') continue
-        let suffix = 2
-        while (ids.has(q.id + '-' + suffix)) suffix++
-        const id = q.id + '-' + suffix
-        ids.add(id)
-        incoming.push({ ...q, id })
+  async function commit() {
+    const saved = await save((current) => {
+      let next = [...current.exams]
+      const ids = new Set(uniqueQuestions([...subject.exams, ...current.exams]).map((q) => q.id))
+      const edits = { ...current.edits }
+      for (const exam of pending) {
+        const incoming: Question[] = []
+        for (const q of exam.questions) {
+          if (!ids.has(q.id)) { ids.add(q.id); incoming.push(q); continue }
+          if (strategy === 'update') edits[q.id] = q
+          if (strategy !== 'new') continue
+          let suffix = 2
+          while (ids.has(q.id + '-' + suffix)) suffix++
+          const id = q.id + '-' + suffix
+          ids.add(id)
+          incoming.push({ ...q, id })
+        }
+        if (!incoming.length) continue
+        const previous = next.find((item) => item.id === exam.id)
+        next = [...next.filter((item) => item.id !== exam.id), {
+          ...exam, questions: [...(previous?.questions ?? []), ...incoming],
+        }]
       }
-      if (!incoming.length) continue
-      const previous = next.find((item) => item.id === exam.id)
-      next = [...next.filter((item) => item.id !== exam.id), {
-        ...exam, questions: [...(previous?.questions ?? []), ...incoming],
-      }]
-    }
-    if (save({ ...study, exams: next, edits })) {
+      return { ...current, exams: next, edits }
+    })
+    if (saved) {
       setPending([])
       setStatus('Đã lưu ngân hàng câu hỏi.')
     }
@@ -71,11 +79,12 @@ export function Bank({ subject, exams, study, save }: {
     setStatus('')
     setPending([])
     try {
+      if (files.reduce((total, file) => total + file.size, 0) > maxJsonBytes) throw new Error('Tổng dung lượng JSON vượt 10 MB.')
       const merged = new Map<string, Exam>()
       const ids = new Set<string>()
       for (const file of files) {
         try {
-          for (const exam of parseBank(JSON.parse(await file.text()), subject.id, true, file.name)) {
+          for (const exam of parseBank(await readJsonFile(file), subject.id, true, file.name)) {
             for (const q of exam.questions) {
               if (ids.has(q.id)) throw new Error('Trùng ID giữa các tệp: ' + q.id)
               ids.add(q.id)
@@ -89,6 +98,7 @@ export function Bank({ subject, exams, study, save }: {
       setPending([...merged.values()])
     } catch (error) { setStatus(message(error)) }
   }
+  if (route.segments[0] === 'quality') return <ContentQuality subject={subject} exams={exams} study={study} save={save} />
   if (detail) return <section className="panel task">
     <h1>Chi tiết câu hỏi</h1><button onClick={() => route.go('/question_bank')}>Về ngân hàng</button>
     {detailQuestion ? <>
@@ -105,7 +115,7 @@ export function Bank({ subject, exams, study, save }: {
     </> : <p>Không tìm thấy câu hỏi.</p>}
   </section>
   return <>
-    <h1>Ngân hàng câu hỏi</h1>
+    <div className="row spread"><h1>Ngân hàng câu hỏi</h1><button onClick={() => route.go('/question_bank/quality')}>Kiểm định nội dung</button></div>
     <section className="panel task">
       <div className="row spread"><h2>Nhập và xuất bộ đề</h2>
         <button onClick={() => downloadJson(subject.id + '-bo-de.json', { version: 1, subjectId: subject.id, exams })}><Download size={16} /> Xuất ngân hàng</button>
@@ -128,11 +138,11 @@ export function Bank({ subject, exams, study, save }: {
     </section>
     {edit && <section className="panel task">
       <div className="row spread"><h2>Sửa {edit.id}</h2><button onClick={() => setEdit(undefined)}>Đóng</button></div>
-      <form className="task" onSubmit={(event) => {
+      <form className="task" onSubmit={async (event) => {
         event.preventDefault()
         try {
           const q = parseQuestion(edit)
-          if (save({ ...study, edits: { ...study.edits, [q.id]: q } })) {
+          if (await save((current) => ({ ...current, edits: { ...current.edits, [q.id]: q } }))) {
             setEdit(undefined)
             setStatus('Đã lưu chỉnh sửa.')
           }
@@ -187,10 +197,12 @@ export function Bank({ subject, exams, study, save }: {
         </select></label>
       </div>
       {matchingQuestions.length === 0 && <p className="muted">Không tìm thấy câu hỏi phù hợp.</p>}
-      {matchingQuestions.map((q) =>
+      {matchingQuestions.slice(0, limit).map((q) =>
         <div className="bank-row" key={q.id}><div><span className="muted">{q.id}</span><p>{q.prompt.format === 'html' ? q.id : q.prompt.value}</p></div>
           <div className="row"><button onClick={() => route.go('/question_bank/detail/' + encodeURIComponent(q.id))}>Xem chi tiết</button>
-            <button onClick={() => { setEdit(q); setStatus(''); window.scrollTo({ top: 0, behavior: 'smooth' }) }}><Pencil size={15} /> Sửa</button></div></div>)}
+            <button onClick={() => { setEdit(study.edits[q.id] ?? rawQuestionById.get(q.id) ?? q); setStatus(''); window.scrollTo({ top: 0, behavior: 'smooth' }) }}><Pencil size={15} /> Sửa</button></div></div>)}
+      {matchingQuestions.length > limit && <button onClick={() => setLimit((current) => current + 30)}>
+        Hiện thêm câu hỏi ({Math.min(limit, matchingQuestions.length)}/{matchingQuestions.length})</button>}
     </section>
   </>
 }

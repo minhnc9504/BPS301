@@ -1,23 +1,26 @@
+import { academicCatalog, applyAcademicReview, validateAcademicMetadata } from './data/academicReview'
+import { readJsonFile } from './data/jsonFile'
 import { SourceContext } from './features/SourceLinks'
 import { hasDocumentFile } from './data/documentFiles'
 import { sourceKey } from './data/slides'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { BookOpen, ClipboardList, Database, Download, GraduationCap, LayoutDashboard, Menu, Moon, Search, Settings, Sun, Upload, X, Zap } from 'lucide-react'
-import { Bank } from './features/Bank'
-import { Exam } from './features/Exam'
 import { MaterialViewer } from './features/SlideViewer'
 import { CurriculumPage } from './features/CurriculumPage'
 import { Overview } from './features/Overview'
 import { Practice } from './features/Practice'
 import { emptyStudy, examScope, type Exam as ExamData, type Save, type Session, type Study, type Subject } from './data/model'
 import { downloadJson, loadSubjects, message, storageKey } from './data/storage'
-import { customExamsKey, progressKey, readLocalStudy, studyKeys, writeLocalStudy } from './data/localStudy'
+import { customExamsKey, progressKey, readLocalStudy, studyKeys, withStudyLock, writeLocalStudy } from './data/localStudy'
 import { href, paths, readRoute, RouteContext, type Section } from './routes'
 import { LearningReport } from './features/LearningReport'
 import { SettingsPage, type ResetScope } from './features/Settings'
 import { ExamUpload } from './features/ExamUpload'
 import { makeBackup, readBackup, restoreBackup, storageEstimate, type Backup, type BackupScope, type RestoreMode } from './data/backup'
 import { defaultPreferences, preferencesKey, readPreferences, type Preferences } from './data/preferences'
+
+import { Bank } from './features/Bank'
+const Exam = lazy(() => import('./features/Exam').then((module) => ({ default: module.Exam })))
 
 const sections = [
   { id: 'overview', label: 'Tổng quan', icon: LayoutDashboard },
@@ -86,15 +89,6 @@ export function App() {
   const [slide, setSlide] = useState<{ id: string; page: number; onReady?: (page: number) => void }>()
   const dialog = useRef<HTMLDialogElement>(null)
   useEffect(() => {
-    if (initial.error) return
-    try {
-      if (localStorage.getItem(progressKey) === null && localStorage.getItem(storageKey) !== null) {
-        writeLocalStudy(initial.data)
-      }
-    } catch { /* Keep the previous snapshot readable if migration exceeds storage quota. */ }
-  }, [initial])
-
-  useEffect(() => {
     void loadSubjects((error) => setExamLoadErrors((errors) => [...errors, error])).then((subjects) => {
       const entry = subjects.find((item) => item.id === subjectId)
       if (!entry) throw new Error('Không tìm thấy cấu hình BPS301.')
@@ -102,18 +96,31 @@ export function App() {
     }).catch((error) => setLoadError(message(error)))
   }, [])
   useEffect(() => {
-    const sync = (event: StorageEvent) => {
-      if (event.key === preferencesKey || event.key === null) setPreferences(readPreferences())
-      if (event.key !== null && !studyKeys.includes(event.key)) return
-      try {
+    let active = true
+    function reload(migrate = false) {
+      const read = () => {
         const next = readLocalStudy()
+        if (migrate && localStorage.getItem(progressKey) === null && localStorage.getItem(storageKey) !== null) {
+          try { writeLocalStudy(next) } catch { /* Keep legacy data if migration cannot write. */ }
+        }
+        return next
+      }
+      const request = navigator.locks ? withStudyLock(read) : Promise.resolve().then(() => readLocalStudy())
+      void request.then((next) => {
+        if (!active) return
         dataRef.current = next
         setData(next)
         setReadError('')
-      } catch (error) { setReadError(message(error)) }
+      }).catch((error) => { if (active) setReadError(message(error)) })
+    }
+    const sync = (event: StorageEvent) => {
+      if (event.key === preferencesKey || event.key === null) setPreferences(readPreferences())
+      if (event.key !== null && !studyKeys.includes(event.key)) return
+      reload()
     }
     window.addEventListener('storage', sync)
-    return () => window.removeEventListener('storage', sync)
+    reload(true)
+    return () => { active = false; window.removeEventListener('storage', sync) }
   }, [])
   useEffect(() => {
     if (!slide || !dialog.current || dialog.current.open) return
@@ -146,15 +153,19 @@ export function App() {
     return () => window.removeEventListener('keydown', handleShortcut)
   }, [preferences.shortcuts])
 
-  function persist(next: Save, restore = false) {
+  async function persist(change: (current: Save) => Save | undefined, replace = false) {
     try {
-      if (readError && !restore) throw new Error('Hãy khôi phục một bản sao lưu hợp lệ trước khi tiếp tục ghi dữ liệu.')
-      writeLocalStudy(next)
-      dataRef.current = next
-      setData(next)
-      setStorageError('')
-      setReadError('')
-      return true
+      return await withStudyLock(() => {
+        const current = replace ? dataRef.current : readLocalStudy()
+        const next = change(current)
+        if (!next) return false
+        if (next !== current) writeLocalStudy(next)
+        dataRef.current = next
+        setData(next)
+        setStorageError('')
+        setReadError('')
+        return true
+      })
     } catch (error) {
       setStorageError(error instanceof DOMException && error.name === 'QuotaExceededError'
         ? 'Bộ nhớ trình duyệt đã đầy. Hãy sao lưu dữ liệu trước khi giải phóng dung lượng.' : message(error))
@@ -164,47 +175,57 @@ export function App() {
 
   useEffect(() => {
     if (!Object.values(data.subjects).some((item) => item.sessions.some((session) => !session.unlimited))) return
+    const expiredAt = (session: Session, time: number) => !session.unlimited && session.autoSubmit !== false && time >= session.deadline
     function tick() {
       const time = Date.now()
       setNow(time)
-      const current = dataRef.current
-      const subjects = { ...current.subjects }
-      let changed = false
-      for (const [key, item] of Object.entries(current.subjects)) {
-        const expired = item.sessions.filter((session) => !session.unlimited && session.autoSubmit !== false && time >= session.deadline)
-        if (!expired.length) continue
-        subjects[key] = finish(item, expired, time, 'timeout')
-        changed = true
-      }
-      if (changed) {
-        if (persist({ ...current, subjects })) setNotice('Đã tự nộp bài hết giờ. Bạn có thể xem bài trong lịch sử thi.')
-      }
+      if (!Object.values(dataRef.current.subjects).some((item) => item.sessions.some((session) => expiredAt(session, time)))) return
+      void persist((current) => {
+        const subjects = { ...current.subjects }
+        let changed = false
+        for (const [key, item] of Object.entries(current.subjects)) {
+          const expired = item.sessions.filter((session) => expiredAt(session, time))
+          if (!expired.length) continue
+          subjects[key] = finish(item, expired, time, 'timeout')
+          changed = true
+        }
+        return changed ? { ...current, subjects } : undefined
+      }).then((saved) => { if (saved) setNotice('Đã tự nộp bài hết giờ. Bạn có thể xem bài trong lịch sử thi.') })
     }
     tick()
     const timer = window.setInterval(tick, 1000)
     window.addEventListener('focus', tick)
     return () => { window.clearInterval(timer); window.removeEventListener('focus', tick) }
-  }, [data, readError])
+  }, [data])
 
   const study = subject ? data.subjects[subject.id] ?? emptyStudy : emptyStudy
-  const examsById = new Map((subject?.exams ?? []).map((exam) => [exam.id, exam] as const))
-  for (const exam of study.exams) {
-    const original = examsById.get(exam.id)
-    const questions = [...new Map([...(original?.questions ?? []), ...exam.questions].map((item) => [item.id, item])).values()]
-    examsById.set(exam.id, { ...exam, title: original?.title ?? exam.title, uploaded: !original && exam.uploaded, questions })
-  }
-  const exams: ExamData[] = [...examsById.values()].map((exam) => ({
-    ...exam, questions: exam.questions.map((q) => study.edits[q.id] ?? q),
-  }))
+  const exams = useMemo(() => {
+    const catalog = subject && academicCatalog(subject)
+    const examsById = new Map((subject?.exams ?? []).map((exam) => [exam.id, exam] as const))
+    for (const exam of study.exams) {
+      const original = examsById.get(exam.id)
+      const questions = [...new Map([...(original?.questions ?? []), ...exam.questions].map((item) => [item.id, item])).values()]
+      examsById.set(exam.id, { ...exam, title: original?.title ?? exam.title, uploaded: !original && exam.uploaded, questions })
+    }
+    return [...examsById.values()].map((exam): ExamData => ({
+      ...exam, questions: exam.questions.map((q) => {
+        const review = study.academicReviews?.[q.id]
+        return applyAcademicReview(study.edits[q.id] ?? q, review && catalog &&
+          !validateAcademicMetadata(review, catalog.chapters, catalog.topics, catalog.pages) ? review : undefined)
+      }),
+    }))
+  }, [subject, study.exams, study.edits, study.academicReviews])
   const materials = useMemo(() => [...new Map([...(subject?.materials ?? []), ...study.materials].map((item) => [item.id, item])).values()], [subject?.materials, study.materials])
   const activeMaterial = materials.find((material) => material.id === slide?.id)
 
-  function update(change: Study | ((current: Study) => Study)) {
+  async function update(change: (current: Study) => Study | undefined) {
     if (!subject) return false
-    const latest = dataRef.current
-    const current = latest.subjects[subject.id] ?? emptyStudy
-    const next = typeof change === 'function' ? change(current) : change
-    return next === current || persist({ ...latest, subjects: { ...latest.subjects, [subject.id]: next } })
+    return persist((latest) => {
+      const current = latest.subjects[subject.id] ?? emptyStudy
+      const next = change(current)
+      if (!next) return undefined
+      return next === current ? latest : { ...latest, subjects: { ...latest.subjects, [subject.id]: next } }
+    })
   }
   function navigate(path: string, replace = false) {
     const url = href(path)
@@ -223,21 +244,30 @@ export function App() {
     go('practice')
     if (chapterId || wrong) navigate(chapterId ? '/trainning/chapter/' + encodeURIComponent(chapterId) : '/trainning?review=needed', true)
   }
-  function savePreferences(next: Preferences) {
+  async function savePreferences(patch: Partial<Preferences>) {
     try {
-      localStorage.setItem(preferencesKey, JSON.stringify(next))
-      setPreferences(next)
+      await withStudyLock(() => {
+        const next = { ...readPreferences(), ...patch }
+        localStorage.setItem(preferencesKey, JSON.stringify(next))
+        setPreferences(next)
+      })
       return true
     } catch (error) {
       setStorageError('Không lưu được tùy chọn: ' + message(error))
       return false
     }
   }
-  function exportData(scope: BackupScope) {
+  async function exportData(scope: BackupScope) {
     const date = new Date()
     const timestamp = date.toLocaleString('sv-SE', { timeZone: 'Asia/Ho_Chi_Minh' }).replace(' ', '-').replaceAll(':', '')
-    const name = 'bpms-bps301-' + timestamp + (readError ? '-du-lieu-tho' : scope === 'progress' ? '-tien-do' : '') + '.json'
-    downloadJson(name, readError ? safeRawBackup() : makeBackup(dataRef.current, scope, preferences, date))
+    const name = 'bpms-bps301-' + timestamp
+    try {
+      const snapshot = navigator.locks ? await withStudyLock(readLocalStudy) : readLocalStudy()
+      downloadJson(name + (scope === 'progress' ? '-tien-do' : '') + '.json',
+        makeBackup(snapshot, scope, readPreferences(), date))
+    } catch {
+      downloadJson(name + '-du-lieu-tho.json', safeRawBackup())
+    }
   }
   async function applyBackup(mode: RestoreMode) {
     if (!backup) return
@@ -245,9 +275,9 @@ export function App() {
       setStorageError('Dữ liệu hiện tại không đọc được. Hãy chọn ghi đè để khôi phục.')
       return
     }
-    const next = restoreBackup(dataRef.current, backup, mode, subjectId)
-    if (!persist(next, true)) return
-    const preferencesSaved = mode !== 'replace' || !backup.preferences || savePreferences(backup.preferences)
+    if (mode === 'replace' && !window.confirm('Ghi đè dữ liệu hiện tại theo phạm vi bản sao lưu?')) return
+    if (!await persist((current) => restoreBackup(current, backup, mode, subjectId), mode === 'replace' && backup.scope === 'full')) return
+    const preferencesSaved = mode !== 'replace' || !backup.preferences || await savePreferences(backup.preferences)
     setBackup(undefined)
     const restoredFiles = backup.scope === 'full' ? Object.values(backup.data.subjects).flatMap((item) =>
       item.materials.flatMap((material) => [material.localFile, material.localPreview, ...(material.pages ?? []).map((page) => page.localImage)]),
@@ -257,7 +287,7 @@ export function App() {
     if (status.some((file) => !file)) notices.push('Thiếu tệp giáo trình. Hãy gắn lại tại Tệp giáo trình.')
     setNotice(notices.join(' '))
   }
-  function resetData(scope: ResetScope) {
+  async function resetData(scope: ResetScope) {
     const descriptions = {
       activity: 'Xóa lượt ôn, các phiên đang làm và lịch sử thi? Dấu câu khó vẫn được giữ.',
       bookmarks: 'Xóa toàn bộ dấu câu khó?',
@@ -266,14 +296,14 @@ export function App() {
     if (!window.confirm(descriptions[scope])) return
     if (scope === 'all') {
       if (!window.confirm('Xác nhận lần cuối: tiến độ và dữ liệu tự thêm trên trình duyệt này sẽ bị xóa.')) return
-      if (persist({ version: 1, subjects: {} }, true)) {
-        const preferencesSaved = savePreferences({ ...defaultPreferences })
+      if (await persist(() => ({ version: 1, subjects: {} }), true)) {
+        const preferencesSaved = await savePreferences({ ...defaultPreferences })
         setBackup(undefined)
         setNotice(preferencesSaved ? 'Đã khôi phục gốc BPMS.' : 'Đã xóa dữ liệu học. Tùy chọn chưa được đặt lại.')
       }
       return
     }
-    if (update((current) => scope === 'bookmarks' ? { ...current, bookmarks: [] } : {
+    if (await update((current) => scope === 'bookmarks' ? { ...current, bookmarks: [] } : {
       ...current, attempts: [], practice: {}, sessions: [], history: [], resume: undefined, practiceFilters: undefined,
       practiceRoute: undefined, reviewLater: undefined,
     })) setNotice(scope === 'bookmarks' ? 'Đã xóa dấu câu khó.' : 'Đã đặt lại lượt ôn và thi.')
@@ -338,9 +368,9 @@ export function App() {
             if (!file) return
             const request = ++restoreRead.current
             try {
-              const text = await file.text()
+              const value = await readJsonFile(file)
               if (request !== restoreRead.current) return
-              setBackup(readBackup(JSON.parse(text)))
+              setBackup(readBackup(value))
               setStorageError('')
             } catch (error) {
               if (request !== restoreRead.current) return
@@ -357,13 +387,14 @@ export function App() {
         <div className="studio-actions">
           <span className="tag context-subject">BPS301 · BPM &amp; Process Mining</span>
           <button onClick={() => { setMenuOpen(false); command.current?.showModal() }} aria-label="Tìm nhanh"><Search size={17} /><span>Tìm nhanh</span><kbd>Ctrl K</kbd></button>
-          <button onClick={() => savePreferences({ ...preferences, theme: dark ? 'light' : 'dark' })} aria-label={dark ? 'Bật giao diện sáng' : 'Bật giao diện tối'}>
+          <button onClick={() => savePreferences({ theme: dark ? 'light' : 'dark' })} aria-label={dark ? 'Bật giao diện sáng' : 'Bật giao diện tối'}>
             {dark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
         </div>
       </header>
       <main className="main" key={subject?.id}>
       <div className="main-content">
+        {!navigator.locks && <div className="notice" role="status">Chế độ chỉ đọc. Trình duyệt chưa hỗ trợ lưu an toàn giữa các tab. Hãy mở BPMS qua HTTPS hoặc localhost bằng trình duyệt có Web Locks. Bạn vẫn có thể đọc học liệu và sao lưu dữ liệu.</div>}
         {readError && <div className="alert" role="alert">Dữ liệu trình duyệt không đọc được. {readError}</div>}
         {storageError && <div className="alert" role="alert">{storageError}<button onClick={() => setStorageError('')} aria-label="Đóng lỗi"><X size={16} /></button></div>}
         {notice && <div className="notice" role="status">{notice}<button onClick={() => setNotice('')} aria-label="Đóng thông báo"><X size={16} /></button></div>}
@@ -378,21 +409,25 @@ export function App() {
             ? <LearningReport subject={subject} exams={exams} study={study} />
             : <Overview subject={subject} exams={exams} study={study} now={Date.now()} />)}
           {section === 'practice' && <Practice subject={subject} exams={exams} study={study} setStudy={update} preferences={preferences} />}
-          {section === 'exam' && <Exam exams={exams} sessions={study.sessions} history={study.history} now={now} preferences={preferences} subject={subject} study={study} materials={materials}
-            save={(session, starting) => {
+          {section === 'exam' && <Suspense fallback={<p role="status">Đang tải trang Thi thử…</p>}><Exam exams={exams} sessions={study.sessions} history={study.history} now={now} preferences={preferences} subject={subject} study={study} materials={materials}
+            save={(session, change) => update((current) => {
+              const stored = current.sessions.find((item) => item.id === session.id)
               const time = Date.now()
               setNow(time)
-              if (!session.unlimited && session.deadline <= time) return false
-              const sessions = dataRef.current.subjects[subject.id]?.sessions ?? []
-              if (starting ? sessions.some((item) => examScope(item, exams) === session.examId) :
-                !sessions.some((item) => item.id === session.id)) return false
-              return update((current) => ({ ...current, sessions: [session, ...current.sessions.filter((item) => item.id !== session.id)] }))
-            }}
-            submit={(id) => update((current) => finish(current, current.sessions.filter((item) => item.id === id), Date.now(), 'manual'))}
+              if (!session.unlimited && session.deadline <= time) return undefined
+              if (!change && current.sessions.some((item) => examScope(item, exams) === session.examId)) return undefined
+              if (change && !stored) return undefined
+              const next = stored && change ? change(stored) : session
+              return { ...current, sessions: [next, ...current.sessions.filter((item) => item.id !== session.id)] }
+            })}
+            submit={(id) => update((current) => {
+              const item = current.sessions.find((session) => session.id === id)
+              return item ? finish(current, [item], Date.now(), 'manual') : undefined
+            })}
             reset={(scope, kind) => update((current) => ({
               ...current,
               [kind]: current[kind].filter((item) => examScope(item, exams) !== scope),
-            }))} />}
+            }))} /></Suspense>}
           {section === 'library' && <CurriculumPage subject={subject} materials={materials} exams={exams} study={study} update={update}
             upload={(material) => update((current) => ({ ...current, materials: [...current.materials.filter((item) => item.id !== material.id), material] }))}
             practice={openPractice} />}
@@ -404,12 +439,18 @@ export function App() {
               <p>Chưa có tài liệu {slide.id} trong thư viện.</p>)}
           </dialog>
         </>}
-        {section === 'settings' && <SettingsPage preferences={preferences} change={(patch) => savePreferences({ ...preferences, ...patch })}
+        {section === 'settings' && <SettingsPage preferences={preferences} change={(patch) => { void savePreferences(patch) }}
           backup={backup} dismiss={() => setBackup(undefined)} bytes={bytes}
           load={() => restoreInput.current?.click()} exportData={exportData} restore={applyBackup} reset={resetData}
-          examUpload={subject && <ExamUpload subjectId={subject.id} exams={exams} localExams={study.exams} add={(exam) => update((current) => ({
-            ...current, exams: [...current.exams, exam],
-          }))} remove={(id) => update((current) => ({
+          examUpload={subject && <ExamUpload subjectId={subject.id} exams={exams} localExams={study.exams} add={(exam) => update((current) => {
+            const existing = [...subject.exams, ...current.exams]
+            const ids = new Set(existing.flatMap((item) => item.questions.map((question) => question.id)))
+            if (existing.some((item) => item.id === exam.id) || exam.questions.some((question) => ids.has(question.id))) {
+              throw new Error('Bộ đề hoặc ID câu hỏi đã được thêm ở tab khác.')
+            }
+            return {
+            ...current, exams: [...current.exams, exam] }
+          })} remove={(id) => update((current) => ({
             ...current, exams: current.exams.filter((exam) => exam.id !== id || !exam.uploaded),
             sessions: subject.exams.some((exam) => exam.id === id) ? current.sessions : current.sessions.filter((session) => session.examId !== id),
           }))} />} />}

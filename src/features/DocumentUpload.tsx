@@ -4,7 +4,7 @@ import type { Material } from '../data/model'
 import { asset, message } from '../data/storage'
 
 export function DocumentUpload({ save, open, material, preview = false }: {
-  save: (material: Material) => boolean; open: (id: string) => void; material?: Material; preview?: boolean
+  save: (material: Material) => Promise<boolean>; open: (id: string) => void; material?: Material; preview?: boolean
 }) {
   const [error, setError] = useState('')
   const [pending, setPending] = useState(false)
@@ -13,6 +13,7 @@ export function DocumentUpload({ save, open, material, preview = false }: {
     setPending(true)
     setError('')
     try {
+      if (!navigator.locks) throw new Error('Chế độ chỉ đọc. Hãy dùng trình duyệt có Web Locks để nhập tài liệu.')
       const kinds = await Promise.all(files.map(fileKind))
       const kind = kinds[0]
       if (kinds.some((value) => value !== kind) || (kind !== 'images' && files.length !== 1)) {
@@ -51,7 +52,7 @@ export function DocumentUpload({ save, open, material, preview = false }: {
       }
       next.localFingerprints = fingerprints
       await putDocumentFiles(entries)
-      if (!save(next)) {
+      if (!await save(next)) {
         await removeDocumentFiles(newKeys)
         throw new Error('Không lưu được thông tin tài liệu.')
       }

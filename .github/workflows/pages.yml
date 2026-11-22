@@ -1,35 +1,47 @@
-name: Build and deploy GitHub Pages
+﻿name: Publish approved BPMS build to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
-  workflow_call:
     inputs:
-      source_ref:
-        type: string
+      materials_approved:
+        description: "Confirm rights and privacy review for all public materials"
         required: true
+        type: boolean
+        default: false
+      source_sha:
+        description: "Reviewed commit SHA on main, or leave empty to use this run's main SHA"
+        required: false
+        type: string
 
 permissions:
   contents: read
 
 concurrency:
   group: github-pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
+    if: github.ref == 'refs/heads/main' && inputs.materials_approved
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ inputs.source_ref || github.sha }}
+          ref: main
+          fetch-depth: 0
+      - name: Verify reviewed source
+        env:
+          SOURCE_SHA: ${{ inputs.source_sha || github.sha }}
+        run: |
+          [[ "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          git merge-base --is-ancestor "$SOURCE_SHA" origin/main
+          git checkout --detach "$SOURCE_SHA"
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: npm run check:release
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist

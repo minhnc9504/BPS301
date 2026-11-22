@@ -374,8 +374,8 @@ mark { color: #412b03; background: #ffe38a; padding-inline: .08em; border-radius
 .settings-reset .row { gap: .55rem 1rem; }
 .settings-reset .danger-button { color: #9f1239; border-color: #dc96a7; }
 .app[data-theme="dark"] .settings-reset .danger-button { color: #ffc3d0; }
-.app[data-text-size="small"] :is(.prompt, .choices .rich, .feedback .rich) { font-size: .88rem; }
-.app[data-text-size="large"] :is(.prompt, .choices .rich, .feedback .rich) { font-size: 1.22rem; }
+.app[data-text-size="small"] :is(.prompt, .choices .rich, .feedback .rich, .practice-explanation .rich) { font-size: .88rem; }
+.app[data-text-size="large"] :is(.prompt, .choices .rich, .feedback .rich, .practice-explanation .rich) { font-size: 1.22rem; }
 .exam-upload-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.2rem; }
 .prompt-box { min-width: 0; border: 1px solid var(--border); border-radius: 12px; padding: .8rem; background: var(--subtle); }
 .prompt-box h3, .uploaded-exam p, .upload-valid p { margin: 0; }
@@ -542,3 +542,20 @@ mark { color: #412b03; background: #ffe38a; padding-inline: .08em; border-radius
   .result-columns, .result-hero { grid-template-columns: minmax(0, 1fr); }
   .result-score { justify-self: start; }
 }
+
+.practice-explanation, .practice-sources, .practice-review-record {
+  min-width: 0;
+  padding: .85rem 0;
+  border-top: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+.practice-explanation :is(h3, h4, p), .practice-sources :is(h3, p), .practice-review-record p { margin: 0; }
+.practice-verdict { border: 1px solid var(--border); border-radius: 10px; padding: .65rem .8rem; }
+.explanation-option { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: .65rem; padding: .55rem 0; }
+.explanation-option .rich + .rich { margin-top: .35rem; color: var(--ink); }
+.practice-review-record { background: var(--subtle); border: 1px solid var(--border); border-radius: 12px; padding: .8rem; }
+
+.quality-row { padding: .65rem 0; border-top: 1px solid var(--border); overflow-wrap: anywhere; }
+.quality-row > div { flex: 1 1 240px; min-width: 0; }
+#academic-review-editor { scroll-margin-top: 5rem; }
+#academic-review-editor select[multiple] { min-height: 8rem; }

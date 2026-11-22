@@ -1,17 +1,20 @@
+import { academicCatalog, approvedAnswer } from '../data/academicReview'
 import { examAnalytics, reviewIds } from '../data/examAnalytics'
 import { SourceLinks } from './SourceLinks'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Bookmark, Clock3, RotateCcw } from 'lucide-react'
-import { Choices, Feedback, Rich } from '../components/Question'
-import { isCorrect, uniqueQuestions, type Exam, type PracticeFilters, type Study, type Subject } from '../data/model'
+import { Choices, Rich } from '../components/Question'
+import { isCorrect, toggleOption, uniqueQuestions, type Exam, type PracticeFilters, type Study, type Subject } from '../data/model'
 import { examReportReturn, examSlug, findExam, findQuestion, position, useRoute } from '../routes'
 import type { Preferences } from '../data/preferences'
 import { curriculum, lessonPath, relatedQuestions } from './curriculumData'
 import { learningStats, reviewModes, tomorrow, type ReviewMode } from '../data/review'
-import { PracticeFeedback } from './PracticeFeedback'
+import { PracticeFeedback, QuestionNotebook } from './PracticeFeedback'
+import { StructuredExplanation } from './StructuredExplanation'
+import { formatExplanation } from '../data/explanationFormatter'
 
 export function Practice({ subject, exams, study, setStudy, preferences }: {
-  subject: Subject; exams: Exam[]; study: Study; setStudy: (change: (study: Study) => Study) => boolean
+  subject: Subject; exams: Exam[]; study: Study; setStudy: (change: (study: Study) => Study) => Promise<boolean>
   preferences: Preferences
 }) {
   const route = useRoute()
@@ -141,17 +144,20 @@ export function Practice({ subject, exams, study, setStudy, preferences }: {
     window.addEventListener('keydown', shortcut)
     return () => window.removeEventListener('keydown', shortcut)
   })
-  function saveAnswer(selected: string[], check: boolean) {
+  async function saveAnswer(selected: string[], check: boolean, option?: string) {
     if (!question) return
     window.clearTimeout(advanceTimer.current)
     const id = question.id
-    const correct = check ? isCorrect(question, selected) : undefined
+    let correct: boolean | undefined
     let counted = false
     const path = filterPath(filters, id)
-    const saved = setStudy((current) => {
+    const saved = await setStudy((current) => {
       if (selected.length && current.practice[id]?.correct !== undefined) return current
+      const latest = current.practice[id]?.selected ?? []
+      const choices = question.type === 'single' ? selected : option ? toggleOption(latest, option) : check ? latest : selected
+      correct = check && choices.length ? isCorrect(question, choices) : undefined
       const practice = { ...current.practice }
-      if (selected.length) practice[id] = { selected, correct }
+      if (choices.length) practice[id] = { selected: choices, correct }
       else delete practice[id]
       counted = correct !== undefined
       const reviewLater = { ...current.reviewLater }
@@ -165,12 +171,12 @@ export function Practice({ subject, exams, study, setStudy, preferences }: {
       advanceTimer.current = window.setTimeout(() => move(nextQuestion.id), preferences.delay * 1000)
     }
   }
-  function resetScope() {
+  async function resetScope() {
     const label = [selectedExam?.title, chapter && 'chương ' + chapter, topic && 'chủ đề ' + topic]
       .filter(Boolean).join(' · ')
     if (!window.confirm('Xóa đáp án và lượt ôn trong phạm vi đang chọn' + (label ? ' (' + label + ')' : '') + '?')) return
     window.clearTimeout(advanceTimer.current)
-    if (setStudy((current) => ({
+    if (await setStudy((current) => ({
       ...current,
       practice: Object.fromEntries(Object.entries(current.practice).filter(([id]) => !scopeIds.has(id))),
       attempts: current.attempts.filter((attempt) => !scopeIds.has(attempt.questionId)),
@@ -181,8 +187,10 @@ export function Practice({ subject, exams, study, setStudy, preferences }: {
     }))) route.go(filterPath({ ...filters, onlyWrong: false }))
   }
   const chapters = Array.from(new Set([...subject.theory.map((item) => item.id), ...uniqueQuestions(exams).flatMap((q) => q.chapterId ? [q.chapterId] : [])]))
+  const topicNames = useMemo(() => academicCatalog(subject).labelByTopic, [subject])
   const topics = Array.from(new Set([...subject.topics.map((item) => item.id), ...uniqueQuestions(exams).flatMap((q) => q.topics ?? [])]))
   const totals = stats.forQuestions(scope)
+  const explanation = question && graded ? formatExplanation(question) : undefined
   const lessonLink = question && graded ? course.flatMap((item) => item.lessons.flatMap((section) => {
     const relation = relatedQuestions(item, section, [question], materials)[0]
     return relation ? [{ item, section, ...relation }] : []
@@ -224,7 +232,7 @@ export function Practice({ subject, exams, study, setStudy, preferences }: {
       <label>Chương<select value={chapter} onChange={(event) => changeFilter({ chapter: event.target.value })}><option value="">Tất cả chương</option>
         {chapters.map((id) => <option key={id} value={id}>{subject.theory.find((item) => item.id === id)?.title ?? id}</option>)}</select></label>
       <label>Chủ đề<select value={topic} onChange={(event) => changeFilter({ topic: event.target.value })}><option value="">Tất cả chủ đề</option>
-        {topics.map((id) => <option key={id} value={id}>{subject.topics.find((item) => item.id === id)?.title ?? id}</option>)}</select></label>
+        {topics.map((id) => <option key={id} value={id}>{topicNames.get(id) ?? id}</option>)}</select></label>
       <label>Chế độ ôn<select value={review} onChange={(event) => {
         const nextMode = reviewModes.find(([key]) => key === event.target.value)?.[0] ?? 'all'
         const next = { ...filters, onlyWrong: nextMode !== 'all' }
@@ -259,18 +267,25 @@ export function Practice({ subject, exams, study, setStudy, preferences }: {
           (question.chapterId ? 'Chương ' + question.chapterId : 'Chưa phân chương')}</p>}
         <div className="prompt"><Rich content={question.prompt} /></div>
         <p className="muted">{question.type === 'single' ? 'Chọn một đáp án.' : 'Chọn tất cả đáp án đúng.'}</p>
-        <Choices question={question} selected={draft} reveal={graded} change={(answers) => saveAnswer(answers, question.type === 'single')} />
+        <Choices question={question} selected={draft} reveal={graded} change={(answers, option) => saveAnswer(answers, question.type === 'single', option)} />
         {preferences.shortcuts && <p className="muted shortcut-hint"><kbd>1</kbd>–<kbd>4</kbd> hoặc <kbd>A</kbd>–<kbd>D</kbd> chọn đáp án · <kbd>←</kbd> <kbd>→</kbd> chuyển câu · <kbd>Shift+B</kbd> đánh dấu khó</p>}
-        {graded && <>
-          <PracticeFeedback question={question} selected={draft} record={stats.records.get(question.id)} explanations={preferences.explanations} />
-          <Feedback question={question} selected={draft} correct={response?.correct}
+        {graded && explanation && <>
+          <PracticeFeedback question={question} selected={draft} reviewed={approvedAnswer(question, study.academicReviews?.[question.id])} />
+          <StructuredExplanation question={question} formatted={explanation} correct={response?.correct === true}
             explanations={preferences.explanations} tips={preferences.tips} />
-          <SourceLinks key={question.id} target={{ courseId: subject.id, questionId: question.id }}
-            onOpen={() => window.clearTimeout(advanceTimer.current)}
-            suggestions={question.slides?.map((ref) => ({
-              courseId: subject.id, questionId: question.id, documentId: ref.materialId, slideNumber: ref.page,
-              verificationStatus: 'suggested', matchingMethod: 'metadata',
-            }))} />
+          <section className="task practice-sources">
+            <h3>Nguồn tham khảo</h3>
+            <p className="muted">{subject.theory.find((item) => item.id === question.chapterId)?.title ?? 'Chưa có Lecture xác định'}</p>
+            {explanation.source && <div><span className="tag">Nguồn ghi trong lời giải · chưa xác minh</span>
+              <Rich content={explanation.source} /></div>}
+            {!!question.sourceSlides?.length && <p className="muted">Slide ghi trong dữ liệu: {question.sourceSlides.join(', ')}.</p>}
+            <SourceLinks key={question.id} resultLabels target={{ courseId: subject.id, questionId: question.id }}
+              onOpen={() => window.clearTimeout(advanceTimer.current)}
+              suggestions={question.slides?.map((ref) => ({
+                courseId: subject.id, questionId: question.id, documentId: ref.materialId, slideNumber: ref.page,
+                verificationStatus: 'suggested', matchingMethod: 'metadata',
+              }))} />
+          </section>
           <div className="task practice-actions">
             {lessonLink ? <div className="row">
               <button onClick={() => {
@@ -280,7 +295,9 @@ export function Practice({ subject, exams, study, setStudy, preferences }: {
               }}>Xem lý thuyết liên quan</button>
               <span className="muted">{lessonLink.rank >= 3 ? lessonLink.label : 'Bài học gợi ý'} · {lessonLink.section.title}</span>
             </div> : <p className="muted">Chưa có mục lý thuyết liên quan.</p>}
-            <div className="row">
+          </div>
+          <QuestionNotebook record={stats.records.get(question.id)} />
+          <div className="row practice-actions">
               <button aria-pressed={study.bookmarks.includes(question.id)} onClick={toggleBookmark}>
                 {study.bookmarks.includes(question.id) ? 'Đã đánh dấu khó' : 'Đánh dấu khó'}</button>
               <button onClick={() => {
@@ -288,8 +305,6 @@ export function Practice({ subject, exams, study, setStudy, preferences }: {
                 const at = tomorrow(Date.now())
                 setStudy((current) => ({ ...current, reviewLater: { ...current.reviewLater, [question.id]: at } }))
               }}><Clock3 size={16} /> Ôn lại sau</button>
-              {nextQuestion && <button className="primary" onClick={() => move(nextQuestion.id)}>Câu tiếp theo</button>}
-            </div>
           </div>
         </>}
         <div className="row spread"><div className="row">

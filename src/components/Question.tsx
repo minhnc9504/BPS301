@@ -57,7 +57,7 @@ export function Rich({ content, query = '', theory = false }: { content: Content
 }
 export function Choices({ question, selected, reveal, change, disabled = false }: {
   question: Question; selected: string[]; reveal: boolean
-  change: (answers: string[]) => void
+  change: (answers: string[], optionId: string) => void
   disabled?: boolean
 }) {
   return <fieldset className="choices" disabled={reveal || disabled}>
@@ -70,7 +70,7 @@ export function Choices({ question, selected, reveal, change, disabled = false }
       return <label key={option.id} className={'option ' + (right ? 'right' : reveal && checked ? 'wrong' : checked ? 'picked' : '')}>
         <input type={question.type === 'single' ? 'radio' : 'checkbox'} name={'answer-' + question.id}
           checked={checked} onChange={() => change(question.type === 'single' ? [option.id] :
-            checked ? selected.filter((id) => id !== option.id) : [...selected, option.id])} />
+            checked ? selected.filter((id) => id !== option.id) : [...selected, option.id], option.id)} />
         <span className="option-badge">{badge}</span>
         <Rich content={hasLetterId && option.content.format === 'text' &&
           option.content.value.startsWith(option.id + '. ') ? { ...option.content, value: option.content.value.slice(3) } : option.content} />

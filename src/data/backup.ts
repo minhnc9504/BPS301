@@ -1,14 +1,14 @@
-import { sourceKey } from './slides'
-import { emptyStudy, type Save, type Study } from './model'
-import { parsePreferences, type Preferences } from './preferences'
-import { parseSave } from './storage'
+import { sourceKey } from './slides.ts'
+import { emptyStudy, type Save, type Study } from './model.ts'
+import { parsePreferences, type Preferences } from './preferences.ts'
+import { parseSave } from './storage.ts'
 
 export type BackupScope = 'full' | 'progress'
 export type RestoreMode = 'replace' | 'merge'
 export type Backup = { data: Save; scope: BackupScope; createdAt?: string; preferences?: Preferences }
 
 function progressOnly(study: Study): Study {
-  return { ...study, exams: [], edits: {}, materials: [], sourceLinks: undefined }
+  return { ...study, exams: [], edits: {}, materials: [], sourceLinks: undefined, academicReviews: undefined }
 }
 
 export function makeBackup(data: Save, scope: BackupScope, preferences: Preferences, date: Date) {
@@ -60,6 +60,7 @@ function mergeStudy(current: Study, incoming: Study): Study {
     bookmarks: [...new Set([...current.bookmarks, ...incoming.bookmarks])],
     exams: [...examMap.values()],
     edits: { ...incoming.edits, ...current.edits },
+    academicReviews: current.academicReviews || incoming.academicReviews ? { ...incoming.academicReviews, ...current.academicReviews } : undefined,
     sourceLinks: union(current.sourceLinks ?? [], incoming.sourceLinks ?? [], sourceKey),
     materials: union(current.materials, incoming.materials, (item) => item.id),
     sessions: union(current.sessions, incoming.sessions, (item) => item.id)
@@ -87,7 +88,7 @@ export function restoreBackup(current: Save, backup: Backup, mode: RestoreMode, 
     const previous = subjects[id] ?? emptyStudy
     subjects[id] = mode === 'merge'
       ? mergeStudy(previous, backup.scope === 'progress' ? progressOnly(incoming) : incoming)
-      : { ...progressOnly(incoming), exams: previous.exams, edits: previous.edits, materials: previous.materials, sourceLinks: previous.sourceLinks }
+      : { ...progressOnly(incoming), exams: previous.exams, edits: previous.edits, materials: previous.materials, sourceLinks: previous.sourceLinks, academicReviews: previous.academicReviews }
   }
   return { version: 1, subjects }
 }

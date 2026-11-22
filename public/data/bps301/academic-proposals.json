@@ -1,0 +1,1916 @@
+{
+  "version": 1,
+  "proposals": {
+    "FA25_01": {
+      "topics": [
+        "2.3"
+      ],
+      "tip": "Landscape = bản đồ toàn cảnh; Level 1 = nhìn từ trên cao.",
+      "slide": {
+        "materialId": "Lecture2-Identification.pptx",
+        "page": 24
+      },
+      "evidence": "Trang phân biệt Level 1 Process Landscape với mô hình quy trình và tác vụ ở các tầng dưới. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "medium"
+    },
+    "FA25_02": {
+      "tip": "Event = đứng đợi; Flow condition = kiểm tra tại ngã rẽ.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_03": {
+      "tip": "C trong CRM = Customer; có lead/khách hàng → CRM.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_04": {
+      "topics": [
+        "6.1"
+      ],
+      "tip": "Cycle time là thời gian chờ kết quả: giao chậm → khách không hài lòng.",
+      "evidence": "Ứng viên tra cứu từ mục Process performance measures. Cụm có trong PDF và câu/đáp án: cycle time. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_05": {
+      "tip": "Có WIP và arrival rate → chia WIP cho rate.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_06": {
+      "tip": "Discovery = khám phá 'đang làm thế nào' → As-Is.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_07": {
+      "topics": [
+        "11.4"
+      ],
+      "tip": "Conformance = tuân thủ; đối chiếu quy định với thực tế.",
+      "evidence": "Ứng viên tra cứu từ mục Conformance checking. Cụm có trong PDF và câu/đáp án: conformance checking, Conformance checking. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_08": {
+      "tip": "Insurance claim → nhiều luật và quyết định → validation.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_09": {
+      "topics": [
+        "1.1"
+      ],
+      "tip": "Process = kết quả hữu ích cho Customer, không chỉ chi phí nội bộ.",
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: business process, Business process. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_10": {
+      "topics": [
+        "6.1"
+      ],
+      "tip": "Strategic thấy 'đèn đỏ'; Tactical tìm 'tại sao'.",
+      "evidence": "Ứng viên tra cứu từ mục Process performance measures. Cụm có trong PDF và câu/đáp án: cycle time. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_11": {
+      "tip": "Asset = tài sản → Financial; đừng nhầm Internal.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_12": {
+      "topics": [
+        "1.1"
+      ],
+      "tip": "Ai tham gia – ai cung cấp – ai nhận kết quả: 1,3,4.",
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: business process, Business process. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_13": {
+      "tip": "Historical = Offline; running right now = Online.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_14": {
+      "tip": "Model Deviation = thứ tự thực tế khác sơ đồ chuẩn.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_15": {
+      "topics": [
+        "11.3"
+      ],
+      "tip": "No model + logs → Discovery; có model + logs → Conformance.",
+      "evidence": "Ứng viên tra cứu từ mục Automated process discovery. Cụm có trong PDF và câu/đáp án: automated process discovery, Automated process discovery. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_16": {
+      "tip": "Demand 300 > Capacity 200: giảm 300 hoặc nâng 200.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_18": {
+      "tip": "3S? Thực ra Syntactic – Semantic – Pragmatic (2S + 1P).",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_19": {
+      "topics": [
+        "4.2"
+      ],
+      "tip": "Một người về đích chưa đủ nếu còn người đang chạy.",
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: sub-process. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_20": {
+      "topics": [
+        "8.1"
+      ],
+      "tip": "Alert ngay khi trễ = BAM / Online.",
+      "evidence": "Ứng viên tra cứu từ mục As-Is and To-Be. Cụm có trong PDF và câu/đáp án: to be. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_21": {
+      "topics": [
+        "1.1"
+      ],
+      "tip": "Quote → Order → Cash.",
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: order-to-cash. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_22": {
+      "tip": "Compensation = 'hoàn tác nghiệp vụ', không phải Ctrl+Z kỹ thuật.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_23": {
+      "tip": "ERP gắn các chức năng doanh nghiệp; BPMS là bộ máy quy trình chung.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_24": {
+      "tip": "Past 6 months + time trends → Tactical, không phải Operational.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_25": {
+      "tip": "XOR = 1, OR = ≥1, AND = ALL.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_26": {
+      "tip": "Evidence = tài liệu, quan sát, logs; Talk = interview/workshop.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_27": {
+      "tip": "BPM = vòng đời; BPR = redesign/reengineering.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_28": {
+      "tip": "Start chỉ đi ra; End chỉ đi vào.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_29": {
+      "tip": "TOC = tìm cổ chai trước khi tối ưu phần còn lại.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_30": {
+      "tip": "Store = Database = hình trụ; Object = tờ giấy.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_31": {
+      "tip": "Start = khai sinh instance; Receive Task = công việc nhận tin.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_32": {
+      "tip": "Chờ việc = Waiting, không phải cứ xe tải là Transportation.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_33": {
+      "topics": [
+        "1.1"
+      ],
+      "tip": "Decision = which path?",
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: business process, Business process. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_34": {
+      "topics": [
+        "6.1"
+      ],
+      "tip": "XOR = xác suất nhánh; CT = tổng p × T.",
+      "evidence": "Ứng viên tra cứu từ mục Process performance measures. Cụm có trong PDF và câu/đáp án: cycle time. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_35": {
+      "tip": "Importance = quan trọng; Health = khỏe; Feasibility = làm được.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_36": {
+      "tip": "Qualitative = vấn đề gì; Quantitative = lớn bao nhiêu.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_37": {
+      "tip": "Domain expert giỏi nghiệp vụ chưa chắc giỏi 'ngôn ngữ sơ đồ'.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_38": {
+      "tip": "Importance cao mà Feasibility thấp → cân nhắc rủi ro.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_39": {
+      "tip": "Thêm check → ít lỗi hơn, nhưng nhiều phút hơn.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_40": {
+      "topics": [
+        "1.1"
+      ],
+      "tip": "Motion = thao tác/di chuyển thừa; ở đây là 'nhảy app'.",
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: business process, Business process. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_41": {
+      "tip": "Automation ≠ chỉ có IT; phải quản trị thay đổi con người.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_42": {
+      "tip": "LEAN = Less Waste, More Customer Value.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_43": {
+      "topics": [
+        "2.3"
+      ],
+      "tip": "Trước khi vẽ chi tiết, cần bản đồ Level 1.",
+      "evidence": "Ứng viên tra cứu từ mục Process architecture. Cụm có trong PDF và câu/đáp án: process architecture, Process architecture, process landscape. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_44": {
+      "topics": [
+        "2.1"
+      ],
+      "tip": "Không biết 'bắt đầu/đến đâu' → Process Scope.",
+      "evidence": "Ứng viên tra cứu từ mục Process identification. Cụm có trong PDF và câu/đáp án: process identification, Process identification. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_45": {
+      "topics": [
+        "5.3"
+      ],
+      "tip": "Why? Why? Why? → Root cause.",
+      "evidence": "Ứng viên tra cứu từ mục Root-cause analysis. Cụm có trong PDF và câu/đáp án: root cause analysis, Root-cause analysis. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_46": {
+      "tip": "External = đến từ bên ngoài; có thể làm gián đoạn task.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_47": {
+      "tip": "Cycle = thời gian từ Start đến End.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_48": {
+      "tip": "Events + Activities + Decisions = Process.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_49": {
+      "tip": "Noisy logs → Heuristics; không có thuật toán nào lọc hoàn hảo.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_50": {
+      "topics": [
+        "11.5"
+      ],
+      "tip": "Why slow? → Performance; Is it compliant? → Conformance.",
+      "evidence": "Ứng viên tra cứu từ mục Performance mining. Cụm có trong PDF và câu/đáp án: performance mining, Performance mining. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_51": {
+      "topics": [
+        "4.2"
+      ],
+      "tip": "Boundary = bám cạnh một activity; Event Subprocess = phạm vi rộng.",
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: sub-process. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_52": {
+      "tip": "Department = WHO; Process = HOW & VALUE.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_53": {
+      "topics": [
+        "11.1"
+      ],
+      "tip": "Strategy không tách Customer Value.",
+      "evidence": "Ứng viên tra cứu từ mục Performance dashboards. Cụm có trong PDF và câu/đáp án: balanced scorecard. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_54": {
+      "tip": "Local optimum ≠ global optimum.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_55": {
+      "topics": [
+        "1.1"
+      ],
+      "tip": "Không tạo value / không cần cho compliance → xem xét NVA.",
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: business process, Business process. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_56": {
+      "tip": "Boundary trước, tasks sau.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_57": {
+      "tip": "3F: Fragmented – Focused on cases – Foreign notation.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "FA25_58": {
+      "topics": [
+        "1.1"
+      ],
+      "tip": "Timer = đồng hồ, không phải message hay error.",
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: order-to-cash. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_59": {
+      "topics": [
+        "1.3"
+      ],
+      "tip": "I-D-A-R-I-M: Identification dẫn đầu.",
+      "evidence": "Ứng viên tra cứu từ mục BPM lifecycle. Cụm có trong PDF và câu/đáp án: bpm lifecycle, BPM lifecycle. Cần đối chiếu ngữ nghĩa. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FA25_60": {
+      "tip": "Workshop = nhiều góc nhìn nhưng nhiều người phải cùng rảnh.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_01": {
+      "topics": [
+        "5.4"
+      ],
+      "tip": "Tiền có số = Quantitative; uy tín, quan hệ = Qualitative.",
+      "evidence": "Ứng viên tra cứu từ mục Issue register and Pareto. Cụm có trong PDF và câu/đáp án: issue register, qualitative impact. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_02": {
+      "tip": "Loopback dùng XOR-join; AND-join đợi đủ nên có thể kẹt.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_03": {
+      "topics": [
+        "2.4"
+      ],
+      "tip": "Health chưa có số → hỏi người trực tiếp làm, rồi kiểm chứng.",
+      "evidence": "Ứng viên tra cứu từ mục Process selection. Cụm có trong PDF và câu/đáp án: process selection, Process selection. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_04": {
+      "topics": [
+        "7.3"
+      ],
+      "tip": "M/M/c: chữ c = số server, không phải số queue hay số task.",
+      "evidence": "Ứng viên tra cứu từ mục Queueing models. Cụm có trong PDF và câu/đáp án: m/m/1. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_05": {
+      "tip": "Product Life → PLM.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_06": {
+      "tip": "First BPM = Quick win có ý nghĩa, không phải 'hardest first'.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_07": {
+      "tip": "Long-running request → Send now, Receive later; đừng giữ synchronous call.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_08": {
+      "tip": "IF stock < threshold → Conditional Event.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_09": {
+      "topics": [
+        "11.2"
+      ],
+      "tip": "Fitness = replay log; Precision = không cho phép quá nhiều hành vi thừa.",
+      "evidence": "Ứng viên tra cứu từ mục Event logs. Cụm có trong PDF và câu/đáp án: event log. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_10": {
+      "tip": "Lambda = arrivals; Mu = service.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_11": {
+      "topics": [
+        "5.1"
+      ],
+      "tip": "Required by regulation → BVA; không tự động là NVA.",
+      "evidence": "Ứng viên tra cứu từ mục Value-added analysis. Cụm có trong PDF và câu/đáp án: value added analysis, Value-added analysis, value adding, business value adding. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_12": {
+      "tip": "Why slow? Why wrong? → Analysis.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_13": {
+      "tip": "XOR-join = merge không đợi.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_14": {
+      "topics": [
+        "6.1"
+      ],
+      "tip": "Parallel AND = MAX, không phải cộng.",
+      "evidence": "Ứng viên tra cứu từ mục Process performance measures. Cụm có trong PDF và câu/đáp án: cycle time. Cần đối chiếu ngữ nghĩa. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_16": {
+      "tip": "XOR = exactly ONE.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_17": {
+      "topics": [
+        "5.3"
+      ],
+      "tip": "Milieu = môi trường (môi trường xung quanh).",
+      "slide": {
+        "materialId": "Lecture5-QualitativeAnalysis.pptx",
+        "page": 39
+      },
+      "evidence": "Six Ms mô tả Milieu là yếu tố ngoài phạm vi quy trình, ví dụ chậm trễ từ tác nhân bên ngoài. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "medium"
+    },
+    "SU26_FE_18": {
+      "topics": [
+        "2.2"
+      ],
+      "tip": "Core = create value; Support = enable Core.",
+      "evidence": "Ứng viên tra cứu từ mục Core, support and management processes. Cụm có trong PDF và câu/đáp án: core processes, support processes. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_19": {
+      "tip": "Two independent internal choices → possible deadlock; receiver follows message.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_20": {
+      "tip": "External decides → Event-based gateway; internal data decides → XOR.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_21": {
+      "topics": [
+        "5.3"
+      ],
+      "tip": "Thông tin đầu vào sai = lỗi input/Material, không vội đổ cho người chọn.",
+      "slide": {
+        "materialId": "Lecture5-QualitativeAnalysis.pptx",
+        "page": 38
+      },
+      "evidence": "Material bao gồm dữ liệu đầu vào thiếu, sai hoặc lỗi thời. Mô tả thiết bị sai trong danh mục là dữ liệu đầu vào sai. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "medium"
+    },
+    "SU26_FE_23": {
+      "tip": "Flow = check at gateway; Event = wait until true.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_24": {
+      "tip": "XOR = SUM(probability × duration).",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_25": {
+      "tip": "PICK: Easy+High = Implement; Hard+High = Challenge.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_26": {
+      "tip": "Bắt đầu ở đích → hỏi: phải có gì trước đó?",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_27": {
+      "topics": [
+        "11.3"
+      ],
+      "tip": "Discovery from LOG = dựa vào dấu vết thực tế, không chỉ lời kể.",
+      "evidence": "Ứng viên tra cứu từ mục Automated process discovery. Cụm có trong PDF và câu/đáp án: automated process discovery, Automated process discovery. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_28": {
+      "tip": "Kể chuyện từng case nhưng không nêu rule → Thinking in Cases.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_29": {
+      "tip": "Deadline, cycle, waiting, on-time → TIME.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_30": {
+      "tip": "OR-join = đợi các nhánh ACTIVE → khó hiểu hơn AND/XOR.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_31": {
+      "tip": "PICK: Easy + High payoff = Implement.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_32": {
+      "tip": "Event bất cứ lúc nào trong process → Event Sub-process.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_33": {
+      "tip": "Cả CASE bị tạo rồi bị loại vì lỗi biết trước → Overproduction; phải SỬA/LÀM LẠI → Defect.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_34": {
+      "topics": [
+        "11.2"
+      ],
+      "tip": "Event Log = WHO case + WHAT activity + WHEN timestamp.",
+      "evidence": "Ứng viên tra cứu từ mục Event logs. Cụm có trong PDF và câu/đáp án: event log, case id, timestamp. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_35": {
+      "tip": "Lean = WASTE; Six Sigma = DEFECT/VARIATION.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_36": {
+      "tip": "Information flows are easier to reroute than physical materials.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_37": {
+      "tip": "Model quá lớn (~30+ flow objects) → cân nhắc sub-process.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_38": {
+      "topics": [
+        "3.6"
+      ],
+      "tip": "Message = BETWEEN pools; Sequence = WITHIN pool.",
+      "slide": {
+        "materialId": "Lecture3-ProcessModeling1.pptx",
+        "page": 42
+      },
+      "evidence": "Quy tắc cú pháp trên slide cho phép Message Flow đi qua ranh giới Pool và cấm Sequence Flow đi qua ranh giới đó. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "medium"
+    },
+    "SU26_FE_39": {
+      "tip": "Future wall → Outward-looking. Hướng tương lai ≠ công việc hiện tại.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_40": {
+      "tip": "Request + Response ngay trong lời gọi → In-Out (synchronous).",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_41": {
+      "tip": "BPM success ≠ number of certificates; phải khớp business strategy.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Chương 12 được viện dẫn trong giải thích cũ. Chưa tìm được bằng chứng trực tiếp trong 11 PDF cho tình huống triển khai Six Sigma khi mục tiêu là đổi mới. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none",
+      "needsReview": true
+    },
+    "SU26_FE_42": {
+      "tip": "OR-join = ALL ACTIVE, không phải ALL POSSIBLE.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_43": {
+      "tip": "Upstream = cung cấp output; Downstream = nhận output.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_44": {
+      "tip": "Submit application → approve/reject → Application-to-Approval.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_45": {
+      "topics": [
+        "2.1"
+      ],
+      "tip": "Identification = WHAT PROCESSES + WHICH FIRST.",
+      "evidence": "Ứng viên tra cứu từ mục Process identification. Cụm có trong PDF và câu/đáp án: process identification, Process identification. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_46": {
+      "topics": [
+        "5.1"
+      ],
+      "tip": "BVA = Necessary but MINIMIZE, không phải MAXIMIZE.",
+      "evidence": "Ứng viên tra cứu từ mục Value-added analysis. Cụm có trong PDF và câu/đáp án: value added analysis, Value-added analysis. Cần đối chiếu ngữ nghĩa. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "SU26_FE_47": {
+      "tip": "Outside organization → Milieu / Environment.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_48": {
+      "tip": "Methodologist = HOW; Steering Committee = DIRECTION.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Chương 12 được viện dẫn trong giải thích cũ. Chưa thấy slide trong 11 PDF phân biệt trực tiếp BPM Methodologist và BPM Steering Committee. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none",
+      "needsReview": true
+    },
+    "SU26_FE_49": {
+      "tip": "Infinite loop no end → soundness → Verification.",
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "none"
+    },
+    "SU26_FE_50": {
+      "topics": [
+        "2.3"
+      ],
+      "tip": "A OUTPUT → B INPUT = Sequence.",
+      "evidence": "Ứng viên tra cứu từ mục Process architecture. Cụm có trong PDF và câu/đáp án: process architecture, Process architecture. Cần đối chiếu ngữ nghĩa. Loại trừ có mẫu lặp chỉ nhắc lại đáp án, cần bổ sung lý do riêng khi có căn cứ. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FE_Mock_01": {
+      "topics": [
+        "1.2"
+      ],
+      "tip": "Strategic dashboard gắn liền với mục tiêu chiến lược và Balanced Scorecard cho cấp lãnh đạo[cite: 11].",
+      "evidence": "Ứng viên tra cứu từ mục Process performance. Cụm có trong PDF và câu/đáp án: process performance, Process performance. Cần đối chiếu ngữ nghĩa. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FE_Mock_02": {
+      "topics": [
+        "11.5"
+      ],
+      "tip": "Performance mining tích hợp thông tin thời gian, chi phí và tần suất (time, cost, frequencies) lên bản đồ quy trình[cite: 11].",
+      "evidence": "Ứng viên tra cứu từ mục Performance mining. Cụm có trong PDF và câu/đáp án: performance mining, Performance mining. Cần đối chiếu ngữ nghĩa. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "FE_Mock_03": {
+      "topics": [
+        "11.2"
+      ],
+      "tip": "Event log bắt buộc cần Case ID, Activity Name, Timestamp; không cần GPS location.",
+      "evidence": "Ứng viên tra cứu từ mục Event logs. Cụm có trong PDF và câu/đáp án: event log. Cần đối chiếu ngữ nghĩa. Mẹo rút từ giải thích sẵn có, cần duyệt.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_1": {
+      "chapterId": "3",
+      "topics": [
+        "3.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục AND gateways. Cụm có trong PDF và câu/đáp án: and join. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_2": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_3": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none",
+      "visualCheck": true
+    },
+    "BPS301_FA26_FE_805603_4": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_5": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_6": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_7": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_8": {
+      "chapterId": "1",
+      "topics": [
+        "1.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process performance. Cụm có trong PDF và câu/đáp án: process performance, Process performance. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_9": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_10": {
+      "chapterId": "2",
+      "topics": [
+        "2.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process identification. Cụm có trong PDF và câu/đáp án: process identification, Process identification. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_11": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_12": {
+      "chapterId": "5",
+      "topics": [
+        "5.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Value-added analysis. Cụm có trong PDF và câu/đáp án: value adding. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_13": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_14": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_15": {
+      "chapterId": "4",
+      "topics": [
+        "4.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: sub-process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_16": {
+      "chapterId": "5",
+      "topics": [
+        "5.3"
+      ],
+      "slide": {
+        "materialId": "Lecture5-QualitativeAnalysis.pptx",
+        "page": 39
+      },
+      "evidence": "Slide định nghĩa Milieu và nêu trực tiếp ví dụ tác nhân bên ngoài.",
+      "confidence": "medium"
+    },
+    "BPS301_FA26_FE_805603_17": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_18": {
+      "chapterId": "6",
+      "topics": [
+        "6.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process performance measures. Cụm có trong PDF và câu/đáp án: cycle time. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_19": {
+      "chapterId": "6",
+      "topics": [
+        "6.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Flow analysis. Cụm có trong PDF và câu/đáp án: flow analysis, Flow analysis. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_20": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_21": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_22": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_23": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_24": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_25": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_26": {
+      "chapterId": "11",
+      "topics": [
+        "11.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Automated process discovery. Cụm có trong PDF và câu/đáp án: automated process discovery, Automated process discovery. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_27": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_28": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_29": {
+      "chapterId": "10",
+      "topics": [
+        "10.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Task types. Cụm có trong PDF và câu/đáp án: manual task, user task. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_30": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_31": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_32": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_33": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_34": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_35": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_36": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_37": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none",
+      "visualCheck": true
+    },
+    "BPS301_FA26_FE_805603_38": {
+      "chapterId": "7",
+      "topics": [
+        "7.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Simulation. Cụm có trong PDF và câu/đáp án: process simulation, Simulation. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_39": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_40": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_41": {
+      "chapterId": "5",
+      "topics": [
+        "5.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Issue register and Pareto. Cụm có trong PDF và câu/đáp án: issue register, qualitative impact. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_42": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_43": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_44": {
+      "chapterId": "7",
+      "topics": [
+        "7.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Arrival and service rates. Cụm có trong PDF và câu/đáp án: inter arrival. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_45": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_46": {
+      "chapterId": "4",
+      "topics": [
+        "4.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: sub-process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_47": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_48": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_FE_805603_49": {
+      "chapterId": "11",
+      "topics": [
+        "11.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Event logs. Cụm có trong PDF và câu/đáp án: event log. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_FE_805603_50": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_1": {
+      "chapterId": "1",
+      "topics": [
+        "1.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: business process, Business process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_2": {
+      "chapterId": "1",
+      "topics": [
+        "1.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục BPM lifecycle. Cụm có trong PDF và câu/đáp án: bpm lifecycle, BPM lifecycle. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_3": {
+      "chapterId": "2",
+      "topics": [
+        "2.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process identification. Cụm có trong PDF và câu/đáp án: process identification, Process identification. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_4": {
+      "chapterId": "2",
+      "topics": [
+        "2.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process identification. Cụm có trong PDF và câu/đáp án: process identification, Process identification. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_5": {
+      "chapterId": "2",
+      "topics": [
+        "2.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Core, support and management processes. Cụm có trong PDF và câu/đáp án: management processes, Core, support and management processes. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_6": {
+      "chapterId": "2",
+      "topics": [
+        "2.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Core, support and management processes. Cụm có trong PDF và câu/đáp án: core processes. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_7": {
+      "chapterId": "2",
+      "topics": [
+        "2.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process architecture. Cụm có trong PDF và câu/đáp án: process architecture, Process architecture. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_8": {
+      "chapterId": "2",
+      "topics": [
+        "2.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process selection. Cụm có trong PDF và câu/đáp án: process selection, Process selection. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_9": {
+      "chapterId": "2",
+      "topics": [
+        "2.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process selection. Cụm có trong PDF và câu/đáp án: process selection, Process selection. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_10": {
+      "chapterId": "2",
+      "topics": [
+        "2.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process selection. Cụm có trong PDF và câu/đáp án: process selection, Process selection. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_11": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_12": {
+      "chapterId": "2",
+      "topics": [
+        "2.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process architecture. Cụm có trong PDF và câu/đáp án: process architecture, Process architecture. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_13": {
+      "chapterId": "2",
+      "topics": [
+        "2.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process architecture. Cụm có trong PDF và câu/đáp án: process architecture, Process architecture. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_14": {
+      "chapterId": "1",
+      "topics": [
+        "1.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: business process, Business process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_15": {
+      "chapterId": "1",
+      "topics": [
+        "1.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục BPM lifecycle. Cụm có trong PDF và câu/đáp án: bpm lifecycle, BPM lifecycle. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_16": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_17": {
+      "chapterId": "3",
+      "topics": [
+        "3.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục AND gateways. Cụm có trong PDF và câu/đáp án: and join. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_18": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_19": {
+      "chapterId": "3",
+      "topics": [
+        "3.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục AND gateways. Cụm có trong PDF và câu/đáp án: and join. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_20": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_21": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_22": {
+      "chapterId": "3",
+      "topics": [
+        "3.6"
+      ],
+      "slide": {
+        "materialId": "Lecture3-ProcessModeling1.pptx",
+        "page": 38
+      },
+      "evidence": "Slide định nghĩa Pool là phân lớp nguồn lực của bên tham gia và Lane là phân lớp bên trong Pool.",
+      "confidence": "medium"
+    },
+    "bonus_100c_23": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_24": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_25": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_26": {
+      "chapterId": "4",
+      "topics": [
+        "4.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: multi-instance, multi instance. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_27": {
+      "chapterId": "4",
+      "topics": [
+        "4.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: multi-instance, multi instance. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_28": {
+      "chapterId": "4",
+      "topics": [
+        "4.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục BPMN execution semantics. Cụm có trong PDF và câu/đáp án: event based gateway. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_29": {
+      "chapterId": "4",
+      "topics": [
+        "4.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục BPMN execution semantics. Cụm có trong PDF và câu/đáp án: event based gateway. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_30": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_31": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_32": {
+      "chapterId": "4",
+      "topics": [
+        "4.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: sub-process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_33": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_34": {
+      "chapterId": "4",
+      "topics": [
+        "4.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: sub-process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_35": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_36": {
+      "chapterId": "3",
+      "topics": [
+        "3.6"
+      ],
+      "slide": {
+        "materialId": "Lecture3-ProcessModeling1.pptx",
+        "page": 42
+      },
+      "evidence": "Slide cấm Sequence Flow đi xuyên Pool và phân biệt Message Flow giữa các bên.",
+      "confidence": "medium"
+    },
+    "bonus_100c_37": {
+      "chapterId": "4",
+      "topics": [
+        "4.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: sub-process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_38": {
+      "chapterId": "4",
+      "topics": [
+        "4.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: sub-process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_39": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_40": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_41": {
+      "chapterId": "5",
+      "topics": [
+        "5.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Value-added analysis. Cụm có trong PDF và câu/đáp án: value added analysis, Value-added analysis, value adding, business value adding. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_42": {
+      "chapterId": "5",
+      "topics": [
+        "5.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Value-added analysis. Cụm có trong PDF và câu/đáp án: value adding, business value adding. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_43": {
+      "chapterId": "5",
+      "topics": [
+        "5.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Value-added analysis. Cụm có trong PDF và câu/đáp án: value added analysis, Value-added analysis. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_44": {
+      "chapterId": "5",
+      "topics": [
+        "5.3"
+      ],
+      "slide": {
+        "materialId": "Lecture5-QualitativeAnalysis.pptx",
+        "page": 38
+      },
+      "evidence": "Trang liệt kê Poor UI design và Lack of integration between systems dưới Machine.",
+      "confidence": "medium"
+    },
+    "bonus_100c_45": {
+      "chapterId": "5",
+      "topics": [
+        "5.3"
+      ],
+      "slide": {
+        "materialId": "Lecture5-QualitativeAnalysis.pptx",
+        "page": 38
+      },
+      "evidence": "Trang 38 liệt kê cả hai ví dụ dưới Method. Trang 39 cũng nêu thiếu đào tạo dưới Man trong bối cảnh lỗi của người thực hiện. Giữ ngữ cảnh của cặp ví dụ khi duyệt lời giải. Lời giải nên giới hạn theo cặp ví dụ ở trang 38. Trang 39 nêu đào tạo trong bối cảnh khác dưới Man. Không đề xuất đổi đáp án. Giới hạn giải thích theo ngữ cảnh của ví dụ trên slide.",
+      "confidence": "medium",
+      "needsReview": true
+    },
+    "bonus_100c_46": {
+      "chapterId": "5",
+      "topics": [
+        "5.3"
+      ],
+      "slide": {
+        "materialId": "Lecture5-QualitativeAnalysis.pptx",
+        "page": 38
+      },
+      "evidence": "Slide xếp dữ liệu đầu vào thiếu, sai hoặc lỗi thời vào Material.",
+      "confidence": "medium"
+    },
+    "bonus_100c_47": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none",
+      "visualCheck": true
+    },
+    "bonus_100c_48": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_49": {
+      "chapterId": "6",
+      "topics": [
+        "6.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Flow analysis. Cụm có trong PDF và câu/đáp án: flow analysis, Flow analysis. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_50": {
+      "chapterId": "6",
+      "topics": [
+        "6.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Flow analysis. Cụm có trong PDF và câu/đáp án: flow analysis, Flow analysis. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_51": {
+      "chapterId": "6",
+      "topics": [
+        "6.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Flow analysis. Cụm có trong PDF và câu/đáp án: flow analysis, Flow analysis. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_52": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_53": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_54": {
+      "chapterId": "6",
+      "topics": [
+        "6.3"
+      ],
+      "slide": {
+        "materialId": "Lecture6-QuantitativeAnalysis1.pptx",
+        "page": 33
+      },
+      "evidence": "Trang ghi Little’s Formula với WIP bằng arrival rate nhân cycle time.",
+      "confidence": "medium"
+    },
+    "bonus_100c_55": {
+      "chapterId": "6",
+      "topics": [
+        "6.3"
+      ],
+      "slide": {
+        "materialId": "Lecture6-QuantitativeAnalysis1.pptx",
+        "page": 33
+      },
+      "evidence": "Dùng công thức của trang, 90 chia 150 cho kết quả 0,6 giờ, tương đương 36 phút.",
+      "confidence": "medium"
+    },
+    "bonus_100c_56": {
+      "chapterId": "6",
+      "topics": [
+        "6.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Flow analysis. Cụm có trong PDF và câu/đáp án: flow analysis, Flow analysis. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_57": {
+      "chapterId": "7",
+      "topics": [
+        "7.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Queueing models. Cụm có trong PDF và câu/đáp án: m/m/c. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_58": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_59": {
+      "chapterId": "7",
+      "topics": [
+        "7.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Queueing and utilization. Cụm có trong PDF và câu/đáp án: resource utilization, utilization. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_60": {
+      "chapterId": "7",
+      "topics": [
+        "7.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Arrival and service rates. Cụm có trong PDF và câu/đáp án: service rate. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_61": {
+      "chapterId": "7",
+      "topics": [
+        "7.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Simulation. Cụm có trong PDF và câu/đáp án: process simulation, simulation model, Simulation. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_62": {
+      "chapterId": "7",
+      "topics": [
+        "7.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Simulation. Cụm có trong PDF và câu/đáp án: process simulation, Simulation. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_63": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_64": {
+      "chapterId": "7",
+      "topics": [
+        "7.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Simulation. Cụm có trong PDF và câu/đáp án: process simulation, Simulation. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_65": {
+      "chapterId": "6",
+      "topics": [
+        "6.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Little’s Law. Cụm có trong PDF và câu/đáp án: work in progress. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_66": {
+      "chapterId": "8",
+      "topics": [
+        "8.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục As-Is and To-Be. Cụm có trong PDF và câu/đáp án: as is, to be. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_67": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_68": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_69": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_70": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_71": {
+      "chapterId": "9",
+      "topics": [
+        "9.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Heuristic redesign. Cụm có trong PDF và câu/đáp án: heuristic process redesign. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_72": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_73": {
+      "chapterId": "9",
+      "topics": [
+        "9.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Heuristic redesign. Cụm có trong PDF và câu/đáp án: heuristic process redesign. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_74": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_75": {
+      "chapterId": "9",
+      "topics": [
+        "9.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Automation and prioritization. Cụm có trong PDF và câu/đáp án: triage. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_76": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_77": {
+      "chapterId": "9",
+      "topics": [
+        "9.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Task and control redesign. Cụm có trong PDF và câu/đáp án: parallelism. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_78": {
+      "chapterId": "9",
+      "topics": [
+        "9.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Resource and communication redesign. Cụm có trong PDF và câu/đáp án: communication optimization. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_79": {
+      "chapterId": "9",
+      "topics": [
+        "9.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Resource and communication redesign. Cụm có trong PDF và câu/đáp án: communication optimization. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_80": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_81": {
+      "chapterId": "1",
+      "topics": [
+        "1.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục BPM lifecycle. Cụm có trong PDF và câu/đáp án: bpm lifecycle, BPM lifecycle. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_82": {
+      "chapterId": "10",
+      "topics": [
+        "10.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Conceptual vs executable model. Cụm có trong PDF và câu/đáp án: conceptual process model. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_83": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_84": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_85": {
+      "chapterId": "1",
+      "topics": [
+        "1.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: business process, Business process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_86": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_87": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_88": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none",
+      "visualCheck": true
+    },
+    "bonus_100c_89": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_90": {
+      "chapterId": "11",
+      "topics": [
+        "11.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Event logs. Cụm có trong PDF và câu/đáp án: event log, case id, timestamp. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_91": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "bonus_100c_92": {
+      "chapterId": "9",
+      "topics": [
+        "9.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Task and control redesign. Cụm có trong PDF và câu/đáp án: parallelism. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_93": {
+      "chapterId": "11",
+      "topics": [
+        "11.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Event logs. Cụm có trong PDF và câu/đáp án: event log. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_94": {
+      "chapterId": "11",
+      "topics": [
+        "11.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Event logs. Cụm có trong PDF và câu/đáp án: event log. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_95": {
+      "chapterId": "11",
+      "topics": [
+        "11.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Conformance checking. Cụm có trong PDF và câu/đáp án: conformance checking, Conformance checking. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_96": {
+      "chapterId": "11",
+      "topics": [
+        "11.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Conformance checking. Cụm có trong PDF và câu/đáp án: conformance checking, Conformance checking. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_97": {
+      "chapterId": "11",
+      "topics": [
+        "11.6"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Variant analysis. Cụm có trong PDF và câu/đáp án: variant analysis, Variant analysis. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_98": {
+      "chapterId": "11",
+      "topics": [
+        "11.5"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Performance mining. Cụm có trong PDF và câu/đáp án: performance mining, Performance mining. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_99": {
+      "chapterId": "1",
+      "topics": [
+        "1.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process performance. Cụm có trong PDF và câu/đáp án: process performance, Process performance. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "bonus_100c_100": {
+      "chapterId": "11",
+      "topics": [
+        "11.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Event logs. Cụm có trong PDF và câu/đáp án: event log. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_1": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_2": {
+      "chapterId": "1",
+      "topics": [
+        "1.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: business process, Business process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_3": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_4": {
+      "chapterId": "1",
+      "topics": [
+        "1.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Business process. Cụm có trong PDF và câu/đáp án: business process, Business process. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_5": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_6": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_7": {
+      "chapterId": "2",
+      "topics": [
+        "2.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Process identification. Cụm có trong PDF và câu/đáp án: process identification, Process identification. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_8": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_9": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_10": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_11": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_12": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_13": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_14": {
+      "chapterId": "3",
+      "topics": [
+        "3.6"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Pools and lanes. Cụm có trong PDF và câu/đáp án: black box. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_15": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_16": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_17": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Câu hỏi viện dẫn quy trình xử lý yêu cầu bồi thường ở phía trên. Bản ghi hiện tại không có đủ bối cảnh để phân loại chắc chắn tất cả lựa chọn là chất lượng hay thời gian. Rà đủ bối cảnh trước khi sửa lời giải.",
+      "confidence": "none",
+      "needsReview": true
+    },
+    "BPS301_FA26_RE_862083_18": {
+      "chapterId": "4",
+      "topics": [
+        "4.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: multi-instance, multi instance. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_19": {
+      "chapterId": "5",
+      "topics": [
+        "5.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Waste analysis. Cụm có trong PDF và câu/đáp án: over production. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_20": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề. Câu bị dừng sau cụm identified business. Cần đối chiếu trọn câu với bản đề gốc trước khi kết luận. Rà đủ bối cảnh trước khi sửa lời giải.",
+      "confidence": "none",
+      "needsReview": true
+    },
+    "BPS301_FA26_RE_862083_21": {
+      "chapterId": "11",
+      "topics": [
+        "11.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Event logs. Cụm có trong PDF và câu/đáp án: event log. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_22": {
+      "chapterId": "3",
+      "topics": [
+        "3.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục BPMN elements. Cụm có trong PDF và câu/đáp án: data objects. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_23": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_24": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_25": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_26": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_27": {
+      "chapterId": "11",
+      "topics": [
+        "11.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Event logs. Cụm có trong PDF và câu/đáp án: event log, case id, timestamp. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_28": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_29": {
+      "chapterId": "6",
+      "topics": [
+        "6.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Flow analysis. Cụm có trong PDF và câu/đáp án: flow analysis, Flow analysis. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_30": {
+      "chapterId": "7",
+      "topics": [
+        "7.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Simulation. Cụm có trong PDF và câu/đáp án: process simulation, Simulation. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_31": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_32": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_33": {
+      "chapterId": "5",
+      "topics": [
+        "5.1"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Value-added analysis. Cụm có trong PDF và câu/đáp án: value added analysis, Value-added analysis. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_34": {
+      "chapterId": "4",
+      "topics": [
+        "4.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Subprocesses. Cụm có trong PDF và câu/đáp án: multi-instance, multi instance. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_35": {
+      "chapterId": "3",
+      "topics": [
+        "3.4"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục AND gateways. Cụm có trong PDF và câu/đáp án: and join. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_36": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_37": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_38": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_39": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_40": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_41": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_42": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_43": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_44": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_45": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_46": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_47": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_48": {
+      "chapterId": "3",
+      "topics": [
+        "3.3"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục XOR gateways. Cụm có trong PDF và câu/đáp án: xor gateway. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    },
+    "BPS301_FA26_RE_862083_49": {
+      "evidence": "Chưa đủ căn cứ để đề xuất Lecture hoặc chủ đề.",
+      "confidence": "none"
+    },
+    "BPS301_FA26_RE_862083_50": {
+      "chapterId": "5",
+      "topics": [
+        "5.2"
+      ],
+      "evidence": "Ứng viên tra cứu từ mục Waste analysis. Cụm có trong PDF và câu/đáp án: waste analysis, Waste analysis. Cần đối chiếu ngữ nghĩa.",
+      "confidence": "low"
+    }
+  }
+}

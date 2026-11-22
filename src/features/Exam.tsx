@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Check, ClipboardCheck, Flag, Timer } from 'lucide-react'
 import { Progress } from '../components/Progress'
 import { Choices, Rich } from '../components/Question'
-import { entireBank, examScope, shuffle, uniqueQuestions, type Exam as ExamData, type Session, type Subject, type Study, type Material } from '../data/model'
+import { entireBank, examScope, shuffle, toggleOption, uniqueQuestions, type Exam as ExamData, type Session, type Subject, type Study, type Material } from '../data/model'
 import type { Preferences } from '../data/preferences'
 import { examSlug, findExam, position, useRoute } from '../routes'
 
@@ -27,8 +27,8 @@ function balancedSample(pool: Session['questions'], count: number) {
 
 export function Exam({ exams, sessions, history, now, save, submit, reset, preferences, subject, study, materials }: {
   exams: ExamData[]; sessions: Session[]; history: Session[]; now: number
-  save: (session: Session, starting?: boolean) => boolean; submit: (id: string) => boolean
-  reset: (scope: string | null, kind: 'sessions' | 'history') => boolean
+  save: (session: Session, change?: (current: Session) => Session) => Promise<boolean>; submit: (id: string) => Promise<boolean>
+  reset: (scope: string | null, kind: 'sessions' | 'history') => Promise<boolean>
   preferences: Preferences
   subject: Subject; study: Study; materials: Material[]
 }) {
@@ -57,12 +57,12 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, prefe
     return '/mock_exam/' + encodeURIComponent(scope ? examSlug(scope) : 'all') +
       (result ? '/result' : '/q/' + (item.index + 1)) + '?session=' + encodeURIComponent(item.id)
   }
-  function move(item: Session, index: number) {
+  async function move(item: Session, index: number) {
     const next = { ...item, index }
-    if (save(next)) route.go(sessionPath(next))
+    if (await save(item, (current) => ({ ...current, index }))) route.go(sessionPath(next))
   }
-  function submitSession(item: Session) {
-    if (submit(item.id)) route.go(sessionPath(item, true), true)
+  async function submitSession(item: Session) {
+    if (await submit(item.id)) route.go(sessionPath(item, true), true)
   }
   useEffect(() => {
     if (!preferences.shortcuts || !session) return
@@ -99,8 +99,8 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, prefe
         <section className="panel task" ref={questionPanel}>
           <div className="row spread">
             <span className="tag">Câu {session.index + 1} / {session.questions.length}</span>
-            <button disabled={elapsed} aria-pressed={flagged} onClick={() => save({ ...session, flags: flagged
-              ? session.flags.filter((id) => id !== question.id) : [...session.flags, question.id] })}>
+            <button disabled={elapsed} aria-pressed={flagged} onClick={() => save(session, (current) => ({ ...current, flags: current.flags.includes(question.id)
+              ? current.flags.filter((id) => id !== question.id) : [...current.flags, question.id] }))}>
               <Flag size={16} /> {flagged ? 'Đã đánh dấu' : 'Xem lại'}
             </button>
           </div>
@@ -109,7 +109,10 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, prefe
           <div className="prompt"><Rich content={question.prompt} /></div>
           <p className="muted">{question.type === 'single' ? 'Chọn một đáp án.' : 'Có thể chọn nhiều đáp án.'}</p>
           <Choices key={question.id} question={question} selected={session.selections[question.id] ?? []} reveal={false} disabled={elapsed}
-            change={(selection) => save({ ...session, selections: { ...session.selections, [question.id]: selection } })} />
+            change={(selection, option) => save(session, (current) => ({
+              ...current, selections: { ...current.selections, [question.id]: question.type === 'multiple'
+                ? toggleOption(current.selections[question.id] ?? [], option) : selection },
+            }))} />
           <div className="row spread">
             <button disabled={elapsed || session.index === 0} onClick={() => move(session, session.index - 1)}>Câu trước</button>
             <button disabled={elapsed || session.index + 1 === session.questions.length} onClick={() => move(session, session.index + 1)}>Câu tiếp</button>
@@ -192,7 +195,7 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, prefe
       <button onClick={() => { setCount(''); route.go('/mock_exam/random_50') }}>Đề ngẫu nhiên · 50 câu / 45 phút</button>
       <button onClick={() => { setCount(''); route.go('/mock_exam/quick_15') }}>Thi nhanh · 15 câu / 15 phút</button>
     </div>
-    <form className="panel task setup" onSubmit={(event) => {
+    <form className="panel task setup" onSubmit={async (event) => {
       event.preventDefault()
       if (pending) { resume(pending); return }
       const wanted = preset ? Math.min(preset.count, pool.length) : count === '' ? pool.length : count
@@ -206,7 +209,7 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, prefe
       const item = { id, examId: scopeId, title: selectedExam?.title ?? (preset ? 'Đề ngẫu nhiên · ' + preset.count + ' câu' : entireBank),
         started, deadline: duration === 'unlimited' ? 8_640_000_000_000_000 : started + duration * 60000,
         unlimited: duration === 'unlimited', autoSubmit: preferences.autoSubmit, index: 0, questions, flags: [], selections: {} }
-      if (save(item, true)) route.go(sessionPath(item))
+      if (await save(item)) route.go(sessionPath(item))
     }}>
       <h2>Cấu hình bài thi</h2>
       <label>Bộ đề<select value={selectedExam?.id ?? (preset ? source : '')} onChange={(event) => {

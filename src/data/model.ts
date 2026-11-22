@@ -1,3 +1,4 @@
+import type { AcademicReview } from './academicReview'
 export type Content = { format: 'text' | 'html'; value: string }
 export type SlideRef = { materialId: string; page: number }
 export type Question = {
@@ -69,6 +70,7 @@ export type Study = {
   edits: Record<string, Question>
   materials: Material[]
   sourceLinks?: SourceLink[]
+  academicReviews?: Record<string, AcademicReview>
   history: Session[]
   sessions: Session[]
   resume?: string
@@ -109,4 +111,8 @@ export function shuffle<T>(items: T[]) {
     ;[result[i], result[j]] = [result[j], result[i]]
   }
   return result
+}
+
+export function toggleOption(choices: string[], option: string) {
+  return choices.includes(option) ? choices.filter((item) => item !== option) : [...choices, option]
 }
