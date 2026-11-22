@@ -1,5 +1,6 @@
-import type { Content, Exam, Material, Question, Save, Session, Study, Subject } from './model'
+import type { Content, Exam, Material, Question, Save, Session, SourceLink, Study, Subject } from './model'
 import { examCategories, type ExamCategory } from './model'
+import { practiceReturn } from './review'
 
 export const storageKey = 'smart-exam-v1'
 
@@ -58,7 +59,19 @@ export function parseQuestion(value: unknown): Question {
       code: q.code === undefined ? undefined : str(q.code),
       chapterId: q.chapterId === undefined ? undefined : id(q.chapterId),
       topics: q.topics === undefined ? undefined : list(q.topics).map(id),
+      relatedSections: q.relatedSections === undefined ? undefined : list(q.relatedSections).map((item) => {
+        if (typeof item === 'string') return str(item)
+        const relation = record(item)
+        return { lectureId: relation.lectureId === undefined ? undefined : id(String(relation.lectureId)),
+          sectionId: id(String(relation.sectionId ?? '')), verified: relation.verified === true }
+      }),
       explanation: q.explanation === undefined ? undefined : content(q.explanation),
+      correctExplanation: q.correctExplanation === undefined ? undefined : content(q.correctExplanation),
+      wrongAnswerExplanations: q.wrongAnswerExplanations === undefined ? undefined : Object.fromEntries(
+        Object.entries(record(q.wrongAnswerExplanations)).map(([option, explanation]) => [id(option), content(explanation)])),
+      answerVerification: q.answerVerification === 'verified' || q.answerVerification === 'unverified' ? q.answerVerification : undefined,
+      sourceSlides: q.sourceSlides === undefined ? undefined : [...new Set(list(q.sourceSlides)
+        .filter((value): value is number => typeof value === 'number' && Number.isSafeInteger(value) && value > 0))],
       tip: q.tip === undefined ? undefined : content(q.tip),
       formulas: q.formulas === undefined ? undefined : list(q.formulas).map(str),
       slides: q.slides === undefined ? undefined : list(q.slides).map((item) => {
@@ -147,7 +160,13 @@ function titledExamDocument(value: unknown, subjectId: string, filename: string,
       options: Object.entries(record(question.options)).map(([id, content]) => ({ id, content })),
       answers,
       explanation: question.explanation,
+      correctExplanation: question.correctExplanation ?? question.correct_explanation,
+      wrongAnswerExplanations: question.wrongAnswerExplanations ?? question.wrong_answer_explanations,
+      answerVerification: question.answerVerification ?? question.answer_verification,
+      sourceSlides: question.sourceSlides ?? question.source_slides,
       tip: question.tip,
+      relatedSections: question.relatedSections,
+      slides: question.slides,
     }
   })
   return { version: 1, subjectId, exams: [{ id: examId, title, note: document.note, questions,
@@ -194,12 +213,49 @@ export function parseMaterial(value: unknown): Material {
   if (kind !== 'pdf' && kind !== 'pptx' && kind !== 'images') throw new Error('Loại giáo trình không hợp lệ')
   const file = entry.file === undefined ? undefined : materialPath(entry.file)
   const preview = entry.preview === undefined ? undefined : materialPath(entry.preview)
+  const localFile = entry.localFile === undefined ? undefined : id(entry.localFile)
+  const localPreview = entry.localPreview === undefined ? undefined : id(entry.localPreview)
+  const localFingerprints = entry.localFingerprints === undefined ? undefined : Object.fromEntries(
+    Object.entries(record(entry.localFingerprints)).map(([key, fingerprint]) => {
+      if (typeof fingerprint !== 'string' || !/^[0-9a-f]{64}$/.test(fingerprint)) throw new Error('Mã đối chiếu tệp không hợp lệ')
+      return [id(key), fingerprint]
+    }),
+  )
   const pages = entry.pages === undefined ? undefined : unique(list(entry.pages).map((item) => {
     const page = record(item)
-    return { page: number(page.page, 1), image: page.image === undefined ? undefined : materialPath(page.image), text: page.text === undefined ? undefined : str(page.text) }
+    return { page: number(page.page, 1), image: page.image === undefined ? undefined : materialPath(page.image),
+      localImage: page.localImage === undefined ? undefined : id(page.localImage), text: page.text === undefined ? undefined : str(page.text) }
   }), (page) => String(page.page), 'số trang')
-  if (!file && !preview && !pages?.some((page) => page.image)) throw new Error('Thiếu tệp giáo trình')
-  return { id: id(entry.id), title: str(entry.title), kind, file, preview, pages }
+  if (!file && !preview && !localFile && !localPreview && !pages?.some((page) => page.image || page.localImage)) throw new Error('Thiếu tệp giáo trình')
+  return { id: id(entry.id), title: str(entry.title), kind, file, preview, localFile, localPreview, localFingerprints, pages }
+}
+
+function parseSourceLink(value: unknown): SourceLink {
+  const entry = record(value)
+  const verificationStatus = entry.verificationStatus
+  const matchingMethod = entry.matchingMethod
+  if (verificationStatus !== 'verified' && verificationStatus !== 'suggested' && verificationStatus !== 'rejected' &&
+    verificationStatus !== 'unavailable') throw new Error('Trạng thái xác minh slide không hợp lệ')
+  if (matchingMethod !== 'manual' && matchingMethod !== 'keyword' && matchingMethod !== 'metadata') {
+    throw new Error('Phương pháp liên kết slide không hợp lệ')
+  }
+  const questionId = entry.questionId === undefined ? undefined : id(entry.questionId)
+  const lectureId = entry.lectureId === undefined ? undefined : id(entry.lectureId)
+  const sectionId = entry.sectionId === undefined ? undefined : id(entry.sectionId)
+  if (questionId ? sectionId !== undefined : !lectureId || !sectionId) throw new Error('Đích liên kết slide không hợp lệ')
+  return { courseId: id(entry.courseId), questionId, lectureId, sectionId, documentId: str(entry.documentId),
+    slideNumber: number(entry.slideNumber, 1), verificationStatus, matchingMethod }
+}
+
+function parseMaterialsManifest(value: unknown): Material[] {
+  const manifest = record(value)
+  if (manifest.version !== 1) throw new Error('Phiên bản danh mục giáo trình chưa được hỗ trợ')
+  return list(manifest.materials).map((value) => {
+    const item = record(value)
+    const sourceFile = str(item.sourceFile)
+    if (item.file === undefined) return { id: id(item.id), title: str(item.title), kind: 'pdf', sourceFile }
+    return { ...parseMaterial(item), sourceFile }
+  })
 }
 
 export async function loadSubjects(reportExamError?: (error: string) => void): Promise<Subject[]> {
@@ -209,7 +265,7 @@ export async function loadSubjects(reportExamError?: (error: string) => void): P
     const subject = record(await read(str(path)))
     if (subject.version !== 1) throw new Error('Phiên bản môn học chưa được hỗ trợ')
     const subjectId = id(subject.id)
-    const [theory, exams] = await Promise.all([
+    const [theory, exams, manifest] = await Promise.all([
       subject.theory === undefined ? [] : read(str(subject.theory)),
       Promise.all(list(subject.exams).map(async (file) => {
         const path = str(file)
@@ -221,20 +277,23 @@ export async function loadSubjects(reportExamError?: (error: string) => void): P
           return []
         }
       })),
+      subject.materialsManifest === undefined ? undefined : read(str(subject.materialsManifest)),
     ])
+    const discovered = manifest === undefined ? [] : parseMaterialsManifest(manifest)
     const bank = unique(exams.flat(), (exam) => exam.id, 'ID bộ đề')
     unique(bank.flatMap((exam) => exam.questions), (q) => q.id, 'ID câu trong môn')
     return {
       id: subjectId, code: str(subject.code), title: str(subject.title), exams: bank,
       theory: unique(list(theory).map((item) => {
         const chapter = record(item)
-        return { id: id(chapter.id), title: str(chapter.title), summary: chapter.summary === undefined ? undefined : str(chapter.summary), content: content(chapter.content) }
+        return { id: id(typeof chapter.id === 'number' ? String(chapter.id) : chapter.id), title: str(chapter.title), summary: chapter.summary === undefined ? undefined : str(chapter.summary),
+          content: chapter.content === undefined ? { format: 'text' as const, value: '' } : content(chapter.content), metadata: chapter }
       }), (chapter) => chapter.id, 'ID chương'),
       topics: unique(list(subject.topics ?? []).map((item) => {
         const topic = record(item)
         return { id: id(topic.id), title: str(topic.title) }
       }), (topic) => topic.id, 'ID chủ đề'),
-      materials: unique(list(subject.materials ?? []).map(parseMaterial), (material) => material.id, 'ID giáo trình'),
+      materials: unique([...list(subject.materials ?? []).map(parseMaterial), ...discovered], (material) => material.id, 'ID giáo trình'),
     }
   }))
   return unique(subjects, (subject) => subject.id, 'ID môn')
@@ -245,6 +304,8 @@ function parseSession(value: unknown): Session {
   const index = number(entry.index)
   const started = number(entry.started)
   const deadline = number(entry.deadline, started + 1)
+  const completion = entry.completion
+  if (completion !== undefined && completion !== 'manual' && completion !== 'timeout') throw new Error('Lý do kết thúc phiên thi không hợp lệ')
   const ended = entry.ended === undefined ? undefined : number(entry.ended, started)
   if (index >= questions.length || (ended !== undefined && ended > deadline)) throw new Error('Phiên thi không hợp lệ')
   const selections = Object.fromEntries(Object.entries(record(entry.selections)).map(([key, value]) => {
@@ -259,8 +320,17 @@ function parseSession(value: unknown): Session {
   const examId = entry.examId == null ? entry.examId : id(entry.examId)
   if ((entry.unlimited !== undefined && typeof entry.unlimited !== 'boolean') ||
       (entry.autoSubmit !== undefined && typeof entry.autoSubmit !== 'boolean')) throw new Error('Cấu hình phiên thi không hợp lệ')
-  return { id: id(entry.id), title: str(entry.title), examId, questions, index, started, deadline, ended, selections, flags,
+  return { id: id(entry.id), title: str(entry.title), examId, questions, index, started, deadline, ended, completion, selections, flags,
     unlimited: entry.unlimited, autoSubmit: entry.autoSubmit }
+}
+function parseCurriculumProgress(value: unknown): NonNullable<Study['curriculum']> {
+  const data = record(value)
+  const last = data.last === undefined ? undefined : record(data.last)
+  return {
+    completed: Object.fromEntries(Object.entries(record(data.completed)).map(([lecture, sections]) =>
+      [id(lecture), [...new Set(list(sections).map(id))]])),
+    last: last && { lectureId: id(last.lectureId), sectionId: id(last.sectionId) },
+  }
 }
 export function parseSave(value: unknown): Save {
   const root = record(value)
@@ -299,8 +369,13 @@ export function parseSave(value: unknown): Save {
         topic: filterId(filters.topic), onlyWrong: filters.onlyWrong === true,
       },
       resume: study.resume === undefined ? undefined : id(study.resume),
+      practiceRoute: typeof study.practiceRoute === 'string' ? practiceReturn(study.practiceRoute) : undefined,
+      reviewLater: study.reviewLater === undefined ? undefined : Object.fromEntries(Object.entries(record(study.reviewLater))
+        .map(([question, at]) => [id(question), number(at)])),
+      curriculum: study.curriculum === undefined ? undefined : parseCurriculumProgress(study.curriculum),
       bookmarks: list(study.bookmarks).map(id),
       materials: unique(list(study.materials).map(parseMaterial), (material) => material.id, 'ID giáo trình'),
+      sourceLinks: study.sourceLinks === undefined ? undefined : list(study.sourceLinks).map(parseSourceLink),
       attempts: list(study.attempts).map((value) => {
         const attempt = record(value)
         if (typeof attempt.correct !== 'boolean') throw new Error('Lượt ôn không hợp lệ')

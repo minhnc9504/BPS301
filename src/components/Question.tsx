@@ -81,7 +81,7 @@ export function Choices({ question, selected, reveal, change, disabled = false }
   </fieldset>
 }
 export function Feedback({ question, selected, slide, correct, explanations = true, tips = true }: {
-  question: Question; selected: string[]; slide: (materialId: string, page: number) => void
+  question: Question; selected: string[]; slide?: (materialId: string, page: number) => void
   correct?: boolean
   explanations?: boolean
   tips?: boolean
@@ -96,7 +96,7 @@ export function Feedback({ question, selected, slide, correct, explanations = tr
       ? <div className="feedback-content memory-tip"><b className="row"><Lightbulb size={16} /> Mẹo ghi nhớ</b><Rich content={question.tip} /></div>
       : <details className="feedback-content memory-tip"><summary>Mẹo ghi nhớ</summary><Rich content={question.tip} /></details>)}
     {question.formulas?.map((formula, index) => <code className="formula" key={index}>{formula}</code>)}
-    {question.slides?.map((ref, index) => <button type="button" key={index} onClick={() => slide(ref.materialId, ref.page)}>
+    {slide && question.slides?.map((ref, index) => <button type="button" key={index} onClick={() => slide(ref.materialId, ref.page)}>
       {ref.materialId} · Trang {ref.page}
     </button>)}
   </div>

@@ -68,8 +68,8 @@ export function SettingsPage({ preferences, change, backup, load, exportData, di
         {bytes === undefined || usage === undefined ? <p>Không đọc được dung lượng lưu trữ.</p> : <>
           <p className="mono">{bytes < 1024 * 1024 ? Math.round(bytes / 1024) + ' KB' : (bytes / 1024 / 1024).toFixed(2) + ' MB'} / khoảng 5 MB</p>
           <Progress value={Math.min(100, usage)} total={100} label="Dung lượng localStorage ước tính" />
-          <p className="muted">Ước tính cho địa chỉ website này. Giới hạn thực tế tùy trình duyệt.</p>
-          {usage >= 75 && <p role="status">Dung lượng gần đầy. Ảnh slide và tài liệu lớn có thể làm lưu trữ vượt giới hạn.</p>}
+          <p className="muted">Ước tính dung lượng localStorage. Tệp giáo trình nhập mới được lưu riêng trong IndexedDB.</p>
+          {usage >= 75 && <p role="status">Dung lượng localStorage gần đầy. Hãy sao lưu dữ liệu học trước khi dọn bộ nhớ.</p>}
         </>}
       </div>
       <div className="settings-reset task">

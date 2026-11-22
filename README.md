@@ -114,6 +114,25 @@ src/
    ```
 
 > [!NOTE]
-> * Tệp tải lên trực tiếp qua giao diện trình duyệt giới hạn tối đa **1,5 MB/tệp** do giới hạn bộ nhớ trình duyệt.
-> * Cấu hình Vite sử dụng `base: './'` để chạy ổn định dưới đường dẫn con trên GitHub Pages (`/BPS301/`).
+> * Cấu hình Vite dùng `/` khi chạy dev và `/BPS301/` khi build.
 > * Vì ứng dụng chạy hoàn toàn phía client, toàn bộ tệp JSON trong `public/` (bao gồm cả đáp án) đều được phục vụ công khai trên mạng; chế độ **Thi thử** chỉ ẩn đáp án trên giao diện cho đến khi nộp bài.
+
+## Xem slide và xác minh nguồn
+
+- Vào **Giáo trình → Tệp giáo trình** để nhập một PDF, một PPTX hoặc một nhóm ảnh PNG/JPG. Mỗi tệp tối đa 100 MB. Đặt tên ảnh theo thứ tự như `slide-01.png`, `slide-02.png`. Trình xem chỉ hiển thị ảnh của trang đang mở và hỗ trợ phím ←/→ khi đang ở trong trình xem.
+- Với PPTX, xuất bản PDF trên máy bằng PowerPoint hoặc LibreOffice Impress rồi chọn **Gắn bản xem trước PDF** dưới tài liệu PPTX. Trên Windows có PowerPoint Desktop, có thể chạy lệnh sau. Lệnh đọc PPTX gốc và từ chối ghi đè một PDF có sẵn.
+
+  ```powershell
+  powershell -ExecutionPolicy Bypass -File .\scripts\convert-pptx.ps1 -InputPath '.\bai-giang.pptx' -OutputPath '.\bai-giang.pdf'
+  ```
+
+  Kiểm tra lại trang, font và bố cục sau khi xuất. Bản PDF chỉ thể hiện nội dung tĩnh của slide.
+
+- Trong một mục **Giáo trình** hoặc **Ngân hàng → Xem chi tiết**, chọn tài liệu và số slide trong **Thêm liên kết nguồn**. Mở slide, kiểm tra nội dung, đóng trình xem rồi bấm **Lưu liên kết đã xác minh**. Có thể lưu gợi ý, từ chối gợi ý hoặc đổi/xóa liên kết. Sau khi kiểm tra đáp án trong **Ôn tập**, đóng trình xem để quay lại câu đang làm.
+- Tài liệu đóng gói có thể đặt trong `public/materials/` và khai báo trong cấu hình môn. Tệp nhập từ giao diện nằm trong IndexedDB của trình duyệt. Sao lưu toàn bộ JSON giữ thông tin tài liệu, liên kết và trạng thái xác minh. Dùng các nút **Tải tệp gốc**, **Tải PDF xem trước** và **Tải ảnh trang** để giữ tệp riêng. Khi chuyển máy, khôi phục JSON rồi chọn **Gắn lại tệp gốc** hoặc **Gắn bản xem trước PDF**. Với nhóm ảnh, chọn lại đủ ảnh theo đúng thứ tự ban đầu. Tệp nhập mới có mã SHA-256 để đối chiếu với bản gốc khi gắn lại.
+
+### PDF giáo trình BPS301
+
+Đặt PDF vào `public/materials/bps301/`. Ưu tiên tên trùng với `sourceFile` trong `public/data/bps301/theory.json`, đổi đuôi từ `.pptx` thành `.pdf`. Ví dụ `Lecture1-Introduction.pdf`. Ứng dụng cũng nhận tên bắt đầu bằng `Lecture <số>` nếu Lecture đó chỉ có một PDF phù hợp. Nếu thiếu tệp hoặc có nhiều tên thay thế, ứng dụng hiển thị trạng thái chưa có PDF.
+
+Vite tạo `data/bps301/materials.json` khi chạy dev và ghi manifest vào `dist/` khi build. Trên localhost, tải lại sau khi thêm PDF. Với bản build tĩnh, chạy lại `npm run build` để cập nhật manifest. ID tài liệu lấy từ tên nguồn trong giáo trình để giữ liên kết theo số trang.

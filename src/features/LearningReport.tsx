@@ -1,4 +1,5 @@
-import { isCorrect, type Exam, type Study, type Subject } from '../data/model'
+import { examAnalytics, formatScore } from '../data/examAnalytics'
+import { examScope, type Exam, type Study, type Subject } from '../data/model'
 import { examSlug, useRoute } from '../routes'
 import { Progress } from '../components/Progress'
 
@@ -8,10 +9,12 @@ export function LearningReport({ subject, exams, study }: { subject: Subject; ex
   const questions = new Map(exams.flatMap((exam) => exam.questions.map((q) => [q.id, q] as const)))
   const byQuestion = new Map(exams.flatMap((exam) => exam.questions.map((q) => [q.id, exam.id] as const)))
   const examTitles = new Map(exams.map((exam) => [exam.id, exam.title]))
+  const chapters = new Set(subject.theory.map((chapter) => chapter.id))
+  const results = study.history.map((item) => ({ item, data: examAnalytics(item, chapters) }))
   const entries = [...study.attempts.map(({ questionId, correct }) => ({
-    correct, chapter: questions.get(questionId)?.chapterId, exam: byQuestion.get(questionId),
-  })), ...study.history.flatMap((item) => item.questions.map((q) => ({
-    correct: isCorrect(q, item.selections[q.id]), chapter: q.chapterId, exam: byQuestion.get(q.id),
+    correct, blank: false, chapter: questions.get(questionId)?.chapterId, exam: byQuestion.get(questionId),
+  })), ...results.flatMap(({ item, data }) => data.rows.filter((row) => row.outcome !== 'unknown').map((row) => ({
+    correct: row.outcome === 'correct', blank: row.outcome === 'blank', chapter: chapters.has(row.chapter) ? row.chapter : undefined, exam: examScope(item, exams) ?? undefined,
   })))]
   function bars(key: 'chapter' | 'exam', rows: Array<{ id: string; title: string }>) {
     const known = new Set(rows.map((row) => row.id))
@@ -19,9 +22,10 @@ export function LearningReport({ subject, exams, study }: { subject: Subject; ex
     return [...rows, ...[...extra].map((id) => ({ id, title: id })), { id: '', title: 'Chưa phân loại' }].map(({ id, title }) => {
       const items = entries.filter((entry) => (entry[key] ?? '') === id)
       const correct = items.filter((entry) => entry.correct).length
+      const blank = items.filter((entry) => entry.blank).length
       if (!id && !items.length) return null
       return <div className="task report-row" key={id}>
-        <div className="row spread"><strong>{title}</strong><span className="mono">{correct} đúng · {items.length - correct} sai</span></div>
+        <div className="row spread"><strong>{title}</strong><span className="mono">{correct} đúng · {items.length - correct - blank} sai · {blank} bỏ trống</span></div>
         <Progress value={correct} total={items.length} label={title + ' · Tỷ lệ đúng'} />
       </div>
     })
@@ -31,9 +35,9 @@ export function LearningReport({ subject, exams, study }: { subject: Subject; ex
       key: 'practice-' + index, at: attempt.at, title: attempt.questionId,
       status: attempt.correct ? 'Đúng' : 'Sai', path: '/trainning/question/' + encodeURIComponent(attempt.questionId),
     })),
-    ...study.history.map((item) => ({
-      key: item.id, at: item.ended ?? item.deadline, title: item.title,
-      status: (item.questions.filter((q) => isCorrect(q, item.selections[q.id])).length * 10 / item.questions.length).toFixed(1) + '/10',
+    ...results.map(({ item, data }) => ({
+      key: item.id, at: item.ended ?? item.started, title: item.title,
+      status: formatScore(data.score),
       path: '/mock_exam/' + encodeURIComponent(item.examId ? examSlug(item.examId) : 'all') + '/result?session=' + encodeURIComponent(item.id),
     })),
   ].sort((a, b) => b.at - a.at)

@@ -9,8 +9,11 @@
     "data/bps301/exams/SU26.json",
     "data/bps301/exams/FE_Mock.json",
     "data/bps301/exams/BPS301_FA26_FE_805603.json",
-    "data/bps301/exams/bonus_100c.json"
+    "data/bps301/exams/bonus_100c.json",
+    "data/bps301/exams/BPS301_FA26_RE_862083.json"
+
   ],
   "topics": [],
-  "materials": []
+  "materials": [],
+  "materialsManifest": "data/bps301/materials.json"
 }

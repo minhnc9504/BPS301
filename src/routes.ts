@@ -43,3 +43,9 @@ export function position(raw: string | null | undefined, total: number) {
   const index = Number(raw) - 1
   return Number.isSafeInteger(index) && index >= 0 && index < total ? index : undefined
 }
+
+export function examReportReturn(value?: string | null) {
+  if (!value || /[\\\u0000-\u001f]/.test(value)) return undefined
+  const path = value.split('?')[0]
+  return /^\/mock_exam\/[\p{L}\p{N}_.%:-]+\/result$/u.test(path) && !/\.{2}|%2e/i.test(path) ? value : undefined
+}

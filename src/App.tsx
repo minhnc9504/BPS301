@@ -1,14 +1,18 @@
+import { SourceContext } from './features/SourceLinks'
+import { hasDocumentFile } from './data/documentFiles'
+import { sourceKey } from './data/slides'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { BookOpen, ClipboardList, Database, Download, GraduationCap, LayoutDashboard, Menu, Moon, Search, Settings, Sun, Upload, X, Zap } from 'lucide-react'
 import { Bank } from './features/Bank'
 import { Exam } from './features/Exam'
-import { Library, MaterialViewer } from './features/Library'
+import { MaterialViewer } from './features/SlideViewer'
+import { CurriculumPage } from './features/CurriculumPage'
 import { Overview } from './features/Overview'
 import { Practice } from './features/Practice'
 import { emptyStudy, examScope, type Exam as ExamData, type Save, type Session, type Study, type Subject } from './data/model'
 import { downloadJson, loadSubjects, message, storageKey } from './data/storage'
 import { customExamsKey, progressKey, readLocalStudy, studyKeys, writeLocalStudy } from './data/localStudy'
-import { examSlug, href, paths, readRoute, RouteContext, type Section } from './routes'
+import { href, paths, readRoute, RouteContext, type Section } from './routes'
 import { LearningReport } from './features/LearningReport'
 import { SettingsPage, type ResetScope } from './features/Settings'
 import { ExamUpload } from './features/ExamUpload'
@@ -44,11 +48,11 @@ function Brand({ openOverview }: { openOverview: () => void }) {
   </button>
 }
 
-function finish(study: Study, sessions: Session[], at: number): Study {
+function finish(study: Study, sessions: Session[], at: number, completion: NonNullable<Session['completion']>): Study {
   const ids = new Set(sessions.map((session) => session.id))
   return { ...study, sessions: study.sessions.filter((session) => !ids.has(session.id)),
     history: [...study.history, ...sessions.map((session) => ({
-      ...session, ended: Math.max(session.started, Math.min(at, session.deadline)),
+      ...session, completion, ended: Math.max(session.started, Math.min(at, session.deadline)),
     }))] }
 }
 
@@ -79,7 +83,7 @@ export function App() {
   const [commandQuery, setCommandQuery] = useState('')
   const command = useRef<HTMLDialogElement>(null)
   const [now, setNow] = useState(Date.now)
-  const [slide, setSlide] = useState<{ id: string; page: number }>()
+  const [slide, setSlide] = useState<{ id: string; page: number; onReady?: (page: number) => void }>()
   const dialog = useRef<HTMLDialogElement>(null)
   useEffect(() => {
     if (initial.error) return
@@ -111,7 +115,11 @@ export function App() {
     window.addEventListener('storage', sync)
     return () => window.removeEventListener('storage', sync)
   }, [])
-  useEffect(() => { if (slide && !dialog.current?.open) dialog.current?.showModal() }, [slide])
+  useEffect(() => {
+    if (!slide || !dialog.current || dialog.current.open) return
+    dialog.current.showModal()
+    dialog.current.querySelector<HTMLElement>('.slide-viewer')?.focus({ preventScroll: true })
+  }, [slide])
   useEffect(() => {
     const sync = () => { setRoute(readRoute()); setMenuOpen(false) }
     window.addEventListener('popstate', sync)
@@ -165,7 +173,7 @@ export function App() {
       for (const [key, item] of Object.entries(current.subjects)) {
         const expired = item.sessions.filter((session) => !session.unlimited && session.autoSubmit !== false && time >= session.deadline)
         if (!expired.length) continue
-        subjects[key] = finish(item, expired, time)
+        subjects[key] = finish(item, expired, time, 'timeout')
         changed = true
       }
       if (changed) {
@@ -188,7 +196,7 @@ export function App() {
   const exams: ExamData[] = [...examsById.values()].map((exam) => ({
     ...exam, questions: exam.questions.map((q) => study.edits[q.id] ?? q),
   }))
-  const materials = [...(subject?.materials ?? []), ...study.materials]
+  const materials = useMemo(() => [...new Map([...(subject?.materials ?? []), ...study.materials].map((item) => [item.id, item])).values()], [subject?.materials, study.materials])
   const activeMaterial = materials.find((material) => material.id === slide?.id)
 
   function update(change: Study | ((current: Study) => Study)) {
@@ -231,7 +239,7 @@ export function App() {
     const name = 'bpms-bps301-' + timestamp + (readError ? '-du-lieu-tho' : scope === 'progress' ? '-tien-do' : '') + '.json'
     downloadJson(name, readError ? safeRawBackup() : makeBackup(dataRef.current, scope, preferences, date))
   }
-  function applyBackup(mode: RestoreMode) {
+  async function applyBackup(mode: RestoreMode) {
     if (!backup) return
     if (readError && mode === 'merge') {
       setStorageError('Dữ liệu hiện tại không đọc được. Hãy chọn ghi đè để khôi phục.')
@@ -241,7 +249,13 @@ export function App() {
     if (!persist(next, true)) return
     const preferencesSaved = mode !== 'replace' || !backup.preferences || savePreferences(backup.preferences)
     setBackup(undefined)
-    setNotice(preferencesSaved ? 'Đã khôi phục dữ liệu.' : 'Đã khôi phục dữ liệu học. Tùy chọn chưa được lưu.')
+    const restoredFiles = backup.scope === 'full' ? Object.values(backup.data.subjects).flatMap((item) =>
+      item.materials.flatMap((material) => [material.localFile, material.localPreview, ...(material.pages ?? []).map((page) => page.localImage)]),
+    ).filter((key): key is string => !!key) : []
+    const status = await Promise.all([...new Set(restoredFiles)].map((key) => hasDocumentFile(key).catch(() => false)))
+    const notices = [preferencesSaved ? 'Đã khôi phục dữ liệu.' : 'Đã khôi phục dữ liệu học. Tùy chọn chưa được lưu.']
+    if (status.some((file) => !file)) notices.push('Thiếu tệp giáo trình. Hãy gắn lại tại Tệp giáo trình.')
+    setNotice(notices.join(' '))
   }
   function resetData(scope: ResetScope) {
     const descriptions = {
@@ -261,9 +275,10 @@ export function App() {
     }
     if (update((current) => scope === 'bookmarks' ? { ...current, bookmarks: [] } : {
       ...current, attempts: [], practice: {}, sessions: [], history: [], resume: undefined, practiceFilters: undefined,
+      practiceRoute: undefined, reviewLater: undefined,
     })) setNotice(scope === 'bookmarks' ? 'Đã xóa dấu câu khó.' : 'Đã đặt lại lượt ôn và thi.')
   }
-  const openSlide = (id: string, page: number) => setSlide({ id, page })
+  const openSlide = (id: string, page: number, onReady?: (page: number) => void) => setSlide({ id, page, onReady })
 
   const commands = [
     ...sections.map(({ id, label }) => ({ key: id, label, action: () => go(id) })),
@@ -279,7 +294,17 @@ export function App() {
     .filter((question) => latestAttempts.get(question.id) === false || study.bookmarks.includes(question.id))
     .map((question) => question.id)).size
 
-  return <RouteContext.Provider value={{ ...route, go: navigate }}><div className="app" data-section={section} data-theme={dark ? 'dark' : 'light'} data-text-size={preferences.textSize}>
+  return <RouteContext.Provider value={{ ...route, go: navigate }}><SourceContext.Provider value={{
+    materials, links: study.sourceLinks ?? [], open: openSlide,
+    save: (link, previous) => update((current) => {
+      const key = sourceKey(link)
+      const previousKey = previous && sourceKey(previous)
+      const links = (current.sourceLinks ?? []).filter((item) => sourceKey(item) !== key && sourceKey(item) !== previousKey)
+      if (previous && previousKey !== key) links.push({ ...previous, verificationStatus: 'rejected' })
+      return { ...current, sourceLinks: [...links, link] }
+    }),
+    remove: (link) => update((current) => ({ ...current, sourceLinks: (current.sourceLinks ?? []).filter((item) => sourceKey(item) !== sourceKey(link)) })),
+  }}><div className="app" data-section={section} data-theme={dark ? 'dark' : 'light'} data-text-size={preferences.textSize}>
     <header className="mobile-header">
       <div className="row"><Brand openOverview={() => go('overview')} /><span className="tag">BPS301</span></div>
       <button ref={menuButton} aria-label={menuOpen ? 'Đóng menu' : 'Mở menu'} aria-expanded={menuOpen}
@@ -349,27 +374,11 @@ export function App() {
         </div>}
         {!loadError && !subject && <p role="status">Đang tải dữ liệu BPS301…</p>}
         {subject && <>
-          {section === 'overview' && (route.segments.length ? <LearningReport subject={subject} exams={exams} study={study} /> : <Overview subject={subject} exams={exams} study={study} materials={materials}
-            resume={() => {
-              const session = study.sessions[0]
-              if (session) {
-                go('exam')
-                navigate('/mock_exam/' + encodeURIComponent(session.examId ? examSlug(session.examId) : 'all') + '/q/' + (session.index + 1) + '?session=' + encodeURIComponent(session.id), true)
-              } else {
-                go('practice')
-                const filters = study.practiceFilters
-                const query = new URLSearchParams()
-                if (filters?.exam) query.set('exam', examSlug(filters.exam))
-                if (filters?.chapter) query.set('chapter', filters.chapter)
-                if (filters?.topic) query.set('topic', filters.topic)
-                if (filters?.onlyWrong) query.set('review', 'needed')
-                if (study.resume) query.set('question', study.resume)
-                if (query.size) navigate('/trainning?' + query, true)
-              }
-            }}
-            practice={openPractice} library={() => go('library')} />)}
-          {section === 'practice' && <Practice subject={subject} exams={exams} study={study} setStudy={update} slide={openSlide} preferences={preferences} />}
-          {section === 'exam' && <Exam exams={exams} sessions={study.sessions} history={study.history} now={now} preferences={preferences} chapters={subject.theory}
+          {section === 'overview' && (route.segments.length
+            ? <LearningReport subject={subject} exams={exams} study={study} />
+            : <Overview subject={subject} exams={exams} study={study} now={Date.now()} />)}
+          {section === 'practice' && <Practice subject={subject} exams={exams} study={study} setStudy={update} preferences={preferences} />}
+          {section === 'exam' && <Exam exams={exams} sessions={study.sessions} history={study.history} now={now} preferences={preferences} subject={subject} study={study} materials={materials}
             save={(session, starting) => {
               const time = Date.now()
               setNow(time)
@@ -379,19 +388,19 @@ export function App() {
                 !sessions.some((item) => item.id === session.id)) return false
               return update((current) => ({ ...current, sessions: [session, ...current.sessions.filter((item) => item.id !== session.id)] }))
             }}
-            submit={(id) => update((current) => finish(current, current.sessions.filter((item) => item.id === id), Date.now()))}
+            submit={(id) => update((current) => finish(current, current.sessions.filter((item) => item.id === id), Date.now(), 'manual'))}
             reset={(scope, kind) => update((current) => ({
               ...current,
               [kind]: current[kind].filter((item) => examScope(item, exams) !== scope),
-            }))} slide={openSlide} />}
-          {section === 'library' && <Library subject={subject} materials={materials}
-            upload={(material) => update((current) => ({ ...current, materials: [...current.materials, material] }))}
+            }))} />}
+          {section === 'library' && <CurriculumPage subject={subject} materials={materials} exams={exams} study={study} update={update}
+            upload={(material) => update((current) => ({ ...current, materials: [...current.materials.filter((item) => item.id !== material.id), material] }))}
             practice={openPractice} />}
           {section === 'bank' && <Bank subject={subject} exams={exams} study={study} save={update} />}
           {!section && <section className="panel task"><h1>Không tìm thấy trang</h1><button onClick={() => go('overview')}>Về tổng quan</button></section>}
-          <dialog ref={dialog} onClose={() => setSlide(undefined)}>
+          <dialog ref={dialog} aria-label="Giáo trình liên quan" onClose={() => setSlide(undefined)}>
             <div className="row spread"><h2>Giáo trình liên quan</h2><button aria-label="Đóng giáo trình" onClick={() => dialog.current?.close()}><X size={18} /></button></div>
-            {slide && (activeMaterial ? <MaterialViewer key={slide.id + ':' + slide.page} material={activeMaterial} start={slide.page} /> :
+            {slide && (activeMaterial ? <MaterialViewer key={slide.id + ':' + slide.page} material={activeMaterial} start={slide.page} onReady={slide.onReady} /> :
               <p>Chưa có tài liệu {slide.id} trong thư viện.</p>)}
           </dialog>
         </>}
@@ -419,7 +428,7 @@ export function App() {
         }}>{label}</button>) : <p className="muted">Không tìm thấy kết quả.</p>}
       </div>
     </dialog>
-  </div></RouteContext.Provider>
+  </div></SourceContext.Provider></RouteContext.Provider>
 }
 
 function safeRawBackup() {

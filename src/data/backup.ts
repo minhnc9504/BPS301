@@ -1,3 +1,4 @@
+import { sourceKey } from './slides'
 import { emptyStudy, type Save, type Study } from './model'
 import { parsePreferences, type Preferences } from './preferences'
 import { parseSave } from './storage'
@@ -7,7 +8,7 @@ export type RestoreMode = 'replace' | 'merge'
 export type Backup = { data: Save; scope: BackupScope; createdAt?: string; preferences?: Preferences }
 
 function progressOnly(study: Study): Study {
-  return { ...study, exams: [], edits: {}, materials: [] }
+  return { ...study, exams: [], edits: {}, materials: [], sourceLinks: undefined }
 }
 
 export function makeBackup(data: Save, scope: BackupScope, preferences: Preferences, date: Date) {
@@ -59,12 +60,21 @@ function mergeStudy(current: Study, incoming: Study): Study {
     bookmarks: [...new Set([...current.bookmarks, ...incoming.bookmarks])],
     exams: [...examMap.values()],
     edits: { ...incoming.edits, ...current.edits },
+    sourceLinks: union(current.sourceLinks ?? [], incoming.sourceLinks ?? [], sourceKey),
     materials: union(current.materials, incoming.materials, (item) => item.id),
     sessions: union(current.sessions, incoming.sessions, (item) => item.id)
       .filter((item) => !finished.has(item.id)).sort((a, b) => b.started - a.started),
     history,
     resume: current.resume ?? incoming.resume,
+    practiceRoute: current.practiceRoute ?? incoming.practiceRoute,
+    reviewLater: { ...incoming.reviewLater, ...current.reviewLater },
     practiceFilters: current.practiceFilters ?? incoming.practiceFilters,
+    curriculum: current.curriculum || incoming.curriculum ? {
+      last: current.curriculum?.last ?? incoming.curriculum?.last,
+      completed: Object.fromEntries([...new Set([
+        ...Object.keys(current.curriculum?.completed ?? {}), ...Object.keys(incoming.curriculum?.completed ?? {}),
+      ])].map((id) => [id, [...new Set([...(current.curriculum?.completed[id] ?? []), ...(incoming.curriculum?.completed[id] ?? [])])]])),
+    } : undefined,
   }
 }
 
@@ -77,7 +87,7 @@ export function restoreBackup(current: Save, backup: Backup, mode: RestoreMode, 
     const previous = subjects[id] ?? emptyStudy
     subjects[id] = mode === 'merge'
       ? mergeStudy(previous, backup.scope === 'progress' ? progressOnly(incoming) : incoming)
-      : { ...progressOnly(incoming), exams: previous.exams, edits: previous.edits, materials: previous.materials }
+      : { ...progressOnly(incoming), exams: previous.exams, edits: previous.edits, materials: previous.materials, sourceLinks: previous.sourceLinks }
   }
   return { version: 1, subjects }
 }

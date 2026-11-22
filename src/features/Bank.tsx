@@ -1,3 +1,4 @@
+import { SourceLinks } from './SourceLinks'
 import { useState } from 'react'
 import { Download, Upload, Pencil } from 'lucide-react'
 import { downloadJson, message, parseBank, parseQuestion } from '../data/storage'
@@ -94,8 +95,13 @@ export function Bank({ subject, exams, study, save }: {
       <span className="tag">{detailQuestion.id}</span>
       <div className="prompt"><Rich content={detailQuestion.prompt} /></div>
       <Choices question={detailQuestion} selected={detailQuestion.answers} reveal change={() => {}} />
-      <Feedback question={detailQuestion} selected={detailQuestion.answers} slide={(id, page) =>
-        route.go('/curriculum?' + new URLSearchParams({ material: id, page: String(page) }))} />
+      <Feedback question={detailQuestion} selected={detailQuestion.answers} />
+      <h2>Nguồn slide</h2>
+      <SourceLinks key={detailQuestion.id} target={{ courseId: subject.id, questionId: detailQuestion.id }} manage
+        suggestions={detailQuestion.slides?.map((ref) => ({
+          courseId: subject.id, questionId: detailQuestion.id, documentId: ref.materialId, slideNumber: ref.page,
+          verificationStatus: 'suggested', matchingMethod: 'metadata',
+        }))} />
     </> : <p>Không tìm thấy câu hỏi.</p>}
   </section>
   return <>

@@ -1,0 +1,1034 @@
+{
+  "exam_title": "BPS301 — FA26 RESIT EXAM 862083",
+  "note": "Đáp án, phân tích và mẹo là phần suy luận tham khảo để học tập. Các câu 17, 24, 47 (đề chọn nhiều đáp án) cần đối chiếu giáo trình đặc biệt.",
+  "total_questions": 50,
+  "questions": [
+    {
+      "id": 1,
+      "code": "BPS301 · FA26 · Question 1",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Following the systematic \"Process Modeling Method,\" which step should a modeler perform immediately after identifying the process activities and intermediate events (Step 2)?",
+      "options": {
+        "A": "Define the full control flow including XOR and AND gateways.",
+        "B": "Identify the resources responsible for activities and their handoffs.",
+        "C": "Add data objects, data stores, and exception handling elements.",
+        "D": "Determine the start and end events to define process boundaries."
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Theo phương pháp mô hình hóa quy trình 5 bước (Process Modeling Method): Bước 1 xác định ranh giới (Start/End events); Bước 2 xác định các hoạt động và sự kiện trung gian; Bước 3 xác định nguồn lực (Pools/Lanes) và sự bàn giao (handoffs); Bước 4 xác định luồng điều khiển (gateways); Bước 5 thêm đối tượng dữ liệu và xử lý ngoại lệ. Loại trừ: D là Bước 1, A là Bước 4, C là Bước 5.",
+      "tip": "Nhớ thứ tự 5 bước: Biên (1) -> Việc (2) -> Người/Bàn giao (3) -> Ngã rẽ (4) -> Dữ liệu/Lỗi (5).",
+      "source_image": "Cau_1.jpg"
+    },
+    {
+      "id": 2,
+      "code": "BPS301 · FA26 · Question 2",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Traditional IT systems often suffered from \"Island Automation\" where separate applications existed independently. How does a BPMS address this issue to provide \"Flexible System Integration\" without touching the underlying application code?",
+      "options": {
+        "A": "By replacing all legacy databases with a single XML file.",
+        "B": "By hard-coding the business logic directly into the user interface.",
+        "C": "By separating business process logic from the application code.",
+        "D": "By requiring all external services to use the same hardware."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "BPMS giải quyết tình trạng 'Island Automation' bằng cách tách rời logic điều phối quy trình (business process logic) ra khỏi mã nguồn ứng dụng (application code), cho phép thay đổi quy trình linh hoạt mà không cần sửa code hệ thống bên dưới. Loại trừ: A, B, D đều sai về kiến trúc tích hợp linh hoạt của BPMS.",
+      "tip": "BPMS = tách Process Logic khỏi Application Code.",
+      "source_image": "Cau_2.jpg"
+    },
+    {
+      "id": 3,
+      "code": "BPS301 · FA26 · Question 3",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "A consultant is evaluating a failed BPMS implementation and discovers that the project team was incapable, the initiative lasted too long, and employees were overwhelmed by excessive work demands. Which framework should the consultant use to categorize these specific success factors?",
+      "options": {
+        "A": "Balanced Scorecard",
+        "B": "Six Sigma",
+        "C": "DICE factors",
+        "D": "Redesign Orbit"
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Các yếu tố được nêu (thời gian kéo dài - Duration, năng lực đội ngũ - Integrity, cam kết/nỗ lực thêm của nhân viên - Effort) là các thành phần của khung DICE (Duration, Integrity, Commitment, Effort) dùng để đánh giá rủi ro triển khai dự án thay đổi/BPMS. Loại trừ: Balanced Scorecard đo hiệu suất chiến lược; Six Sigma kiểm soát chất lượng; Redesign Orbit dùng cho tái thiết kế quy trình.",
+      "tip": "DICE = Duration (thời gian) + Integrity (năng lực team) + Commitment (cam kết) + Effort (tải công việc).",
+      "source_image": "Cau_3.jpg"
+    },
+    {
+      "id": 4,
+      "code": "BPS301 · FA26 · Question 4",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "In the context of capacity analysis, identifying the bottleneck is essential for process improvement. If a process has two resource pools, where Clerks have a theoretical capacity of 10 instances/day and Managers have a theoretical capacity of 5 instances/day, what is the overall theoretical capacity of this specific business process?",
+      "options": {
+        "A": "15 instances per day",
+        "B": "5 instances per day",
+        "C": "7.5 instances per day",
+        "D": "10 instances per day"
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Năng lực lý thuyết (Theoretical Capacity) của toàn quy trình bị giới hạn bởi nút thắt cổ chai (bottleneck) — tức nhóm nguồn lực có năng lực thấp nhất: min(10, 5) = 5 instances/day. Loại trừ: Không cộng dồn (15), không lấy trung bình (7.5), và không lấy mức cao nhất (10).",
+      "tip": "Năng lực toàn quy trình = min(năng lực các trạm) = nút cổ chai.",
+      "source_image": "Cau_4.jpg"
+    },
+    {
+      "id": 5,
+      "code": "BPS301 · FA26 · Question 5",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "What does separation of duties mean?",
+      "options": {
+        "A": "Two processes are not allowed to interact.",
+        "B": "Two tasks are not allowed to be executed by the same participant.",
+        "C": "Two participants are not allowed to view the same data.",
+        "D": "Two data objects are not allowed to be used in the same process."
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Phân tách nhiệm vụ (Separation of duties / Four-eyes principle) là nguyên tắc kiểm soát nội bộ quy định hai tác vụ nhạy cảm (ví dụ: tạo yêu cầu và phê duyệt) không được thực hiện bởi cùng một người tham gia. Loại trừ: A, C, D không đúng định nghĩa về kiểm soát phân quyền thực thi tác vụ.",
+      "tip": "Separation of duties = 2 việc khác nhau -> 2 người khác nhau.",
+      "source_image": "Cau_5.jpg"
+    },
+    {
+      "id": 6,
+      "code": "BPS301 · FA26 · Question 6",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "What is the name of the redesign heuristic that suggests checking the completeness and correctness of incoming materials?",
+      "options": {
+        "A": "Empower",
+        "B": "Control addition",
+        "C": "Buffering",
+        "D": "Centralization",
+        "E": "Exception"
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Control addition là quy tắc heuristic bổ sung bước kiểm tra tính đầy đủ và chính xác của nguyên liệu/tài liệu đầu vào trước khi xử lý sâu hơn để tránh lỗi về sau. Loại trừ: Empower là trao quyền quyết định; Buffering là dự trữ trước thông tin; Centralization là tập trung hóa; Exception là tách luồng ngoại lệ.",
+      "tip": "Check completeness/correctness = thêm kiểm soát = Control addition.",
+      "source_image": "Cau_6.jpg"
+    },
+    {
+      "id": 7,
+      "code": "BPS301 · FA26 · Question 7",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "___ refers to those management activities that systematically define a set of business processes of an organization and establish clear criteria for selecting specific processes for improvement.",
+      "options": {
+        "A": "Process activities",
+        "B": "Process architecture",
+        "C": "Process modeling",
+        "D": "Process identification"
+      },
+      "answer": "D",
+      "answers_list": [
+        "D"
+      ],
+      "explanation": "Process Identification (Xác định quy trình) gồm hai bước: Designation (định danh tập quy trình tạo thành Process Architecture) và Evaluation (đặt tiêu chí ưu tiên chọn quy trình cải tiến). Loại trừ: B chỉ là kết quả kiến trúc quy trình; C là vẽ sơ đồ chi tiết; A là thành phần bên trong quy trình.",
+      "tip": "Define set of processes + criteria for selecting = Process identification.",
+      "source_image": "Cau_7.jpg"
+    },
+    {
+      "id": 8,
+      "code": "BPS301 · FA26 · Question 8",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Why is process redesign generally considered easier to apply to informational products than to physical products?",
+      "options": {
+        "A": "Physical products are always more expensive to transport across regions.",
+        "B": "Informational products have fewer physical and technical layout constraints",
+        "C": "It is impossible to accurately measure the quality of any physical product.",
+        "D": "Labor costs in manufacturing are always lower than in service industries."
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Sản phẩm thông tin (informational products) ít bị ràng buộc bởi bố trí mặt bằng vật lý, máy móc hay dây chuyền kỹ thuật như sản phẩm vật lý, nên dễ tái sắp xếp, song song hóa hoặc tự động hóa quy trình hơn. Loại trừ: A, C, D là các phát biểu sai/tuyệt đối hóa.",
+      "tip": "Sản phẩm thông tin = ít ràng buộc vật lý/kỹ thuật (fewer layout constraints).",
+      "source_image": "Cau_8.jpg"
+    },
+    {
+      "id": 9,
+      "code": "BPS301 · FA26 · Question 9",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "In a process-oriented organization, who is directly accountable for poor performance of a process?",
+      "options": {
+        "A": "The process participants",
+        "B": "The executive management team",
+        "C": "The process owner",
+        "D": "The process analyst"
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Process Owner (Chủ sở hữu quy trình) là người chịu trách nhiệm trực tiếp (accountable) về hiệu quả vận hành và hiệu suất tổng thể của một quy trình từ đầu đến cuối. Loại trừ: Participants chỉ làm tác vụ cụ thể; Analyst phân tích/mô hình hóa; Executive quản trị cấp cao toàn doanh nghiệp.",
+      "tip": "Accountable for process performance = Process owner.",
+      "source_image": "Cau_9.jpg"
+    },
+    {
+      "id": 10,
+      "code": "BPS301 · FA26 · Question 10",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "When transforming a conceptual process model for execution, analysts must ensure the model is \"complete.\" According to the textbook, why is the omission of electronic data objects particularly problematic for the execution engine of a BPMS?",
+      "options": {
+        "A": "It violates the syntactic rules of the BPMN 2.0 standard.",
+        "B": "It makes the model less readable for the senior management.",
+        "C": "The engine cannot pass control or take data-based decisions.",
+        "D": "It prevents the system from generating historical event logs."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Trong tự động hóa quy trình (Lecture 10), nguyên tắc 'no data = no decisions, no tasks handover': thiếu đối tượng dữ liệu điện tử thì execution engine không thể chuyển giao tác vụ hay ra quyết định rẽ nhánh dựa trên dữ liệu. Loại trừ: A sai vì mô hình khái niệm có thể hợp lệ cú pháp mà vẫn thiếu dữ liệu thực thi; B, D không phải lý do cốt lõi của engine.",
+      "tip": "No data = no decisions, no handover -> chọn C.",
+      "source_image": "Cau_10.jpg"
+    },
+    {
+      "id": 11,
+      "code": "BPS301 · FA26 · Question 11",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "A Process-Aware Information System (PAIS) is characterized by its ability to exploit explicit knowledge about the inter-relationships between activities. Within the landscape of enterprise software, which of the following best describes the core distinction between domain-specific PAIS and domain-agnostic PAIS such as a BPMS?",
+      "options": {
+        "A": "Domain-specific systems only support manual tasks while BPMS supports automation.",
+        "B": "Domain-specific systems lack an integrated database for managing operational data.",
+        "C": "Domain-agnostic systems can be used to manage processes in any industry or sector.",
+        "D": "BPMS are designed exclusively for accounting and human resource management."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Domain-agnostic PAIS (như BPMS) không phụ thuộc ngành nghề cụ thể nên có thể quản lý và tự động hóa quy trình ở bất kỳ lĩnh vực/ngành công nghiệp nào, khác với hệ thống domain-specific (như ERP chuyên ngành y tế, ngân hàng). Loại trừ: A, B, D đều mô tả sai bản chất BPMS.",
+      "tip": "Domain-agnostic = dùng cho mọi ngành (any industry or sector).",
+      "source_image": "Cau_11.jpg"
+    },
+    {
+      "id": 12,
+      "code": "BPS301 · FA26 · Question 12",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "In a workshop setting with twelve domain experts, a facilitator uses sticky notes to build a sequence of tasks. However, the participants start arguing about whether a specific task should be \"Check Invoice\" or \"Verify Totals.\" How should the facilitator handle this to maintain progress?",
+      "options": {
+        "A": "Post the tasks as a bundled composite activity for later refinement.",
+        "B": "Halt the workshop until the process owner can provide a definition.",
+        "C": "Draw a complex BPMN gateway to model the disagreement immediately.",
+        "D": "Use a specialized modeling tool to check for syntactic correctness."
+      },
+      "answer": "A",
+      "answers_list": [
+        "A"
+      ],
+      "explanation": "Khi workshop thu thập thông tin bị sa lầy vào tranh luận chi tiết tên/phạm vi tác vụ, người điều phối (facilitator) nên gộp tạm thành một hoạt động tổng hợp (bundled/composite activity) để giữ nhịp độ buổi họp và tinh chỉnh sau. Loại trừ: B làm gián đoạn workshop; C, D sai về kỹ thuật điều phối workshop.",
+      "tip": "Tranh luận chi tiết trong workshop -> gộp lại làm sau (bundled composite activity).",
+      "source_image": "Cau_12.jpg"
+    },
+    {
+      "id": 13,
+      "code": "BPS301 · FA26 · Question 13",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Stakeholder analysis is vital for collecting a diverse set of process issues. If you are interviewing a \"Sponsor\" of a process improvement project, which of the following concerns are they most likely to raise compared to the concerns of a front-line process participant?",
+      "options": {
+        "A": "High resource utilization leading to personal stress.",
+        "B": "Defects occurring during the handoff between two tasks.",
+        "C": "Strategic alignment and the ability to adapt to competition.",
+        "D": "High processing times for a specific clerical activity."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Sponsor (nhà tài trợ/lãnh đạo cấp cao) quan tâm đến tầm nhìn chiến lược, sự phù hợp với mục tiêu tổ chức và khả năng thích ứng cạnh tranh. Loại trừ: A, B, D là các vấn đề vận hành chi tiết mà nhân viên trực tiếp (front-line participant) thường phản ánh.",
+      "tip": "Sponsor = cấp chiến lược (Strategic alignment & competition).",
+      "source_image": "Cau_13.jpg"
+    },
+    {
+      "id": 14,
+      "code": "BPS301 · FA26 · Question 14",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "A process analyst is modeling a collaboration between a Seller and a Customer. The analyst chooses to represent the Customer as a \"black box\" pool. What is the primary implication of this choice?",
+      "options": {
+        "A": "The internal activities of the Customer are hidden.",
+        "B": "The Customer pool cannot send any message flows.",
+        "C": "The Customer process is fully automated by the BPMS.",
+        "D": "The Customer pool must be modeled using lanes."
+      },
+      "answer": "A",
+      "answers_list": [
+        "A"
+      ],
+      "explanation": "Black-box pool (pool đóng/hộp đen) ẩn toàn bộ các hoạt động và luồng xử lý nội bộ bên trong, chỉ thể hiện tương tác qua Message Flows ở đường viền pool. Loại trừ: B sai vì black-box pool vẫn gửi/nhận message flow; C, D sai hoàn toàn.",
+      "tip": "Black box = ẩn bên trong (internal activities are hidden).",
+      "source_image": "Cau_14.jpg"
+    },
+    {
+      "id": 15,
+      "code": "BPS301 · FA26 · Question 15",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "During an interview, a warehouse manager repeatedly states, \"Every order we handle is unique; you cannot generalize our steps into a fixed model.\" The manager is able to describe exactly what happened to 'Order A' yesterday but struggles with the general procedure. This is an example of which challenge?",
+      "options": {
+        "A": "Thinking in cases rather than abstracting general process rules.",
+        "B": "Using outdated documentation to describe current internal operations.",
+        "C": "Fragmented knowledge resulting from excessive organizational silos.",
+        "D": "Technical faults in the systems used to record process execution."
+      },
+      "answer": "A",
+      "answers_list": [
+        "A"
+      ],
+      "explanation": "Người được phỏng vấn chỉ kể được từng trường hợp cụ thể ('Order A hôm qua') mà không khái quát hóa thành quy tắc quy trình chung — đây là thách thức kinh điển 'Thinking in cases' trong Process Discovery. Loại trừ: B, C, D không khớp mô tả trong đề.",
+      "tip": "Kể từng đơn hàng cụ thể, nói mỗi đơn mỗi khác = Thinking in cases.",
+      "source_image": "Cau_15.jpg"
+    },
+    {
+      "id": 16,
+      "code": "BPS301 · FA26 · Question 16",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Which category of processes covers essential value creation for which customers are willing to pay?",
+      "options": {
+        "A": "Management processes",
+        "B": "Support processes",
+        "C": "Core processes",
+        "D": "Administrative processes"
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Theo phân loại trong Lecture 2: Core processes (quy trình cốt lõi) tạo ra giá trị trực tiếp mà khách hàng sẵn sàng trả tiền (ví dụ: Order-to-Cash). Loại trừ: Support processes hỗ trợ nội bộ; Management processes định hướng, giám sát; Administrative không phải nhóm chính của chuỗi giá trị.",
+      "tip": "Khách hàng sẵn sàng trả tiền = Core processes.",
+      "source_image": "Cau_16.jpg"
+    },
+    {
+      "id": 17,
+      "code": "BPS301 · FA26 · Question 17",
+      "type": "MULTIPLECHOICE",
+      "instruction": "Chọn 2 phương án.",
+      "question": "Which of the following statements defines a quality metric in the context of the claims handling process above?",
+      "options": {
+        "A": "Number of monthly claims received",
+        "B": "Percentage of the working time of senior claims handlers spent in claims assessment",
+        "C": "Percentage of claims that give rise to entitlements",
+        "D": "Percentage of claim decisions that are contested by customers",
+        "E": "Percentage of short-term disability claims that take more than 5 work days to be assessed"
+      },
+      "answer": [
+        "D",
+        "E"
+      ],
+      "answers_list": [
+        "D",
+        "E"
+      ],
+      "explanation": "D (tỷ lệ quyết định bị khách hàng khiếu nại) là chỉ số chất lượng bên ngoài (External Quality) chuẩn xác nhất. Nếu đề thi thực tế bắt chọn 2 đáp án, E (tỷ lệ hồ sơ vượt ngưỡng 5 ngày làm việc) thường được ghép cùng vì phản ánh mức độ vi phạm cam kết dịch vụ (SLA), dù theo lý thuyết 3 chiều Time–Cost–Quality thì E thiên về chỉ số Thời gian (Time). Loại trừ: A là khối lượng đầu vào; B là mức độ sử dụng nguồn lực; C là tỷ lệ kết quả.",
+      "tip": "Chất lượng (Quality) = lỗi/khiếu nại của khách hàng (contested by customers) -> chắc chắn có D.",
+      "source_image": "Cau_17.jpg"
+    },
+    {
+      "id": 18,
+      "code": "BPS301 · FA26 · Question 18",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "When modeling a procurement process, an analyst encounters a task where quotes must be obtained from five different suppliers simultaneously. If the number of suppliers is dynamic and the process must continue as soon as any three quotes are received, which construct is most appropriate?",
+      "options": {
+        "A": "A loop activity with a completion condition.",
+        "B": "A parallel gateway with five outgoing branches.",
+        "C": "A multi-instance activity with a completion condition.",
+        "D": "An ad hoc sub-process containing five tasks."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Multi-instance activity (hoạt động đa thực thể) cho phép chạy song song nhiều bản sao của cùng một tác vụ với số lượng động (dynamic) và hỗ trợ điều kiện hoàn thành sớm (completion condition, ví dụ: nhận đủ 3/5 báo giá). Loại trừ: A là lặp tuần tự; B cố định 5 nhánh và phải chờ đủ cả 5; D không kiểm soát điều kiện hoàn thành kiểu này.",
+      "tip": "Số lượng động + chạy song song + đủ K thì đi tiếp = Multi-instance + completion condition.",
+      "source_image": "Cau_18.jpg"
+    },
+    {
+      "id": 19,
+      "code": "BPS301 · FA26 · Question 19",
+      "type": "MULTIPLECHOICE",
+      "instruction": "Chọn 2 phương án.",
+      "question": "A purchase-to-pay process starts when an employee (the \"originator\"), fills in a purchase requisition and attaches one or several quotes. The purchase requisition goes through two approvals: a \"conformance approval\" by a purchasing officer and a financial approval by the owner of the financial account from which the purchase is made. Which of the following items is/are over-production waste(s)?",
+      "options": {
+        "A": "The account owner accepts the purchase requisition but the purchasing officer rejects it",
+        "B": "The purchasing officer accepts the purchase requisition but the account owner rejects it",
+        "C": "Both the account owner and the purchasing officer reject the purchase requisition",
+        "D": "Both the account owner and the purchasing officer accept the purchase requisition but the originator later cancels the purchase",
+        "E": "30% of purchase requisitions are rejected either by the account owner or by the purchasing officer and are not re-submitted (i.e. the purchase requisition is withdrawn)",
+        "F": "The supervisor sends back the purchase requisition to the originator due to an error in the selection of suppliers"
+      },
+      "answer": [
+        "D",
+        "E"
+      ],
+      "answers_list": [
+        "D",
+        "E"
+      ],
+      "explanation": "Theo Lecture 5, Over-production là khi các lượt chạy quy trình được thực hiện nhưng kết quả cuối cùng bị hủy hoặc rút lại, không tạo ra giá trị khi hoàn tất. D (được duyệt cả 2 vòng nhưng người tạo lại hủy mua) và E (30% bị từ chối và rút luôn không nộp lại) đều khớp trực tiếp định nghĩa và ví dụ trong slide. Loại trừ: A, B, C nghiêng về Over-processing (kiểm tra thừa khi bước kia từ chối); F là Defect waste (lỗi phải trả lại sửa).",
+      "tip": "Over-production = làm xong rồi bị HỦY (cancels) hoặc RÚT LẠI (withdrawn).",
+      "source_image": "Cau_19.jpg"
+    },
+    {
+      "id": 20,
+      "code": "BPS301 · FA26 · Question 20",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "___ helps define criteria for assessing the performance of identified business",
+      "options": {
+        "A": "processes.",
+        "B": "Process selection",
+        "C": "Process context",
+        "D": "Process category"
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Process context (bối cảnh quy trình) giúp xác định các tiêu chí đánh giá hiệu suất của các quy trình kinh doanh đã được nhận diện (theo câu hỏi bị lỗi xuống dòng: '...identified business processes.'). Loại trừ: A là phần chữ bị rớt dòng của đề; B, D không phải yếu tố định nghĩa tiêu chí đánh giá. (Lưu ý: chữ \"processes.\" ở cuối câu hỏi bị ngắt dòng rơi xuống thành phương án A.)",
+      "tip": "Define criteria for assessing performance = Process context (đừng bị lừa bởi chữ 'processes.' rớt dòng ở A).",
+      "source_image": "Cau_20.jpg"
+    },
+    {
+      "id": 21,
+      "code": "BPS301 · FA26 · Question 21",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "A bank enforces a \"separation of duties\" constraint where the person who approves a loan must be different from the person who initially assessed it. To verify this rule using an event log, which process mining perspective must the analyst specifically check?",
+      "options": {
+        "A": "Control-flow perspective.",
+        "B": "Data perspective.",
+        "C": "Resource perspective.",
+        "D": "Temporal perspective."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Kiểm tra ai thực hiện tác vụ nào (người phê duyệt khác người thẩm định) thuộc về góc nhìn Nguồn lực (Resource / Organizational perspective) trong Process Mining. Loại trừ: Control-flow xem thứ tự hoạt động; Data xem dữ liệu; Temporal xem thời gian/nút thắt.",
+      "tip": "Ai làm / người khác nhau (separation of duties) = Resource perspective.",
+      "source_image": "Cau_21.jpg"
+    },
+    {
+      "id": 22,
+      "code": "BPS301 · FA26 · Question 22",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "How do input data objects influence the token flow and the execution of a task in a BPMN process model according to the text's semantics?",
+      "options": {
+        "A": "They trigger the start of the process automatically.",
+        "B": "Tasks can start even if objects are not available.",
+        "C": "Tasks must wait for all input objects to be available.",
+        "D": "They only document the flow but don't affect timing."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Theo ngữ nghĩa thực thi chuẩn trong BPMN (Lecture 3), một tác vụ chỉ có thể bắt đầu thực hiện khi tất cả các đối tượng dữ liệu đầu vào (input data objects) cần thiết của nó đã sẵn sàng. Loại trừ: A sai vì data object không tự kích hoạt quy trình; B, D sai ngữ nghĩa.",
+      "tip": "Input data object = điều kiện cần; thiếu input -> tác vụ phải đợi (wait).",
+      "source_image": "Cau_22.jpg"
+    },
+    {
+      "id": 23,
+      "code": "BPS301 · FA26 · Question 23",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "In the \"Green Pattern\" of BPM maturity, which is often observed in heavily unionized or public sector organizations, what is the primary reason for the observed \"slowdown in the delivery of BPM results\"?",
+      "options": {
+        "A": "Lack of sophisticated IT infrastructure and modern database management.",
+        "B": "Excessive reliance on external consultants who do not understand the culture.",
+        "C": "The requirement for widespread consensus across multiple committees.",
+        "D": "Complete absence of any documented process architecture or models."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Trong mô hình trưởng thành BPM kiểu 'Green Pattern' (thường gặp ở khu vực công hoặc tổ chức có công đoàn mạnh), tốc độ triển khai kết quả bị chậm lại chủ yếu do phải đạt được sự đồng thuận rộng rãi qua nhiều ủy ban/hội đồng. Loại trừ: A, B, D không phải đặc trưng cốt lõi của Green Pattern.",
+      "tip": "Green Pattern (khu vực công/công đoàn) = chậm vì phải đồng thuận nhiều hội đồng (consensus across committees).",
+      "source_image": "Cau_23.jpg"
+    },
+    {
+      "id": 24,
+      "code": "BPS301 · FA26 · Question 24",
+      "type": "MULTIPLECHOICE",
+      "instruction": "Chọn 3 phương án.",
+      "question": "What are the sections of information heuristics?",
+      "options": {
+        "A": "Interfacing",
+        "B": "Activity automation",
+        "C": "Control addition",
+        "D": "Buffering",
+        "E": "Outsourcing",
+        "F": "Integral technology"
+      },
+      "answer": [
+        "A",
+        "B",
+        "F"
+      ],
+      "answers_list": [
+        "A",
+        "B",
+        "F"
+      ],
+      "explanation": "File PDF gốc ghi đáp án là ABF, tuy nhiên đáp án này vừa thừa số lượng (3 chữ cái trong khi đề chọn 2) vừa có dấu hiệu nhầm nhóm heuristic: chính Câu 6 trong đề đã xác định Control addition (C) là heuristic kiểm tra thông tin đầu vào, còn Activity automation (B) và Integral technology (F) thuộc nhóm công nghệ/tự động hóa. Bạn nên đối chiếu lại bảng phân nhóm Heuristics trong giáo trình gốc nếu gặp câu này.",
+      "tip": "Cẩn thận với đáp án PDF ABF ở câu này (3 chữ cái, nhầm nhóm công nghệ); nhớ Control addition (C) gắn với kiểm tra thông tin.",
+      "source_image": "Cau_24.jpg"
+    },
+    {
+      "id": 25,
+      "code": "BPS301 · FA26 · Question 25",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "An M/M/1 queueing model is characterized by specific assumptions about inter-arrival times, service times, and the number of servers. Which of the following scenarios best describes an M/M/3 system based on the standardized Kendall's notation discussed in the textbook?",
+      "options": {
+        "A": "Three independent queues each leading to one single server.",
+        "B": "One single queue leading to three parallel servers.",
+        "C": "A process with three tasks performed in a sequential line.",
+        "D": "A system where arrivals happen in fixed batches of three."
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Trong ký hiệu Kendall M/M/c (Lecture 7), tham số c = 3 biểu thị một hàng đợi chung duy nhất dẫn tới 3 máy chủ/nhân viên phục vụ song song (three parallel servers). Loại trừ: A là 3 hệ thống M/M/1 tách rời; C là chuỗi tuần tự; D mô tả batch arrival.",
+      "tip": "M/M/c = 1 hàng đợi chung + c server song song -> M/M/3 = 1 queue, 3 parallel servers.",
+      "source_image": "Cau_25.jpg"
+    },
+    {
+      "id": 26,
+      "code": "BPS301 · FA26 · Question 26",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "In the NESTT redesign method, a dedicated room is utilized where participants visualize different horizons of change. If a group is currently using the \"Future\" wall to brainstorm where the process should be in 20 months and 3 years, what is the primary perspective they are assuming according to the Redesign Orbit?",
+      "options": {
+        "A": "Inward-looking",
+        "B": "Outward-looking",
+        "C": "Transactional",
+        "D": "Analytical"
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Khi brainstorm tầm nhìn tương lai dài hạn (20 tháng đến 3 năm) trên 'Future wall' trong phương pháp NESTT, nhóm đang nhìn ra bên ngoài (Outward-looking) để tìm cảm hứng từ xu hướng thị trường, khách hàng và công nghệ mới thay vì chỉ tối ưu nội bộ (Inward-looking). Loại trừ: C, D thuộc trục phương pháp (Transactional vs Analytical).",
+      "tip": "Future wall (tầm nhìn 20 tháng – 3 năm) = nhìn ra bên ngoài = Outward-looking.",
+      "source_image": "Cau_26.jpg"
+    },
+    {
+      "id": 27,
+      "code": "BPS301 · FA26 · Question 27",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "An analyst is preparing an event log for import into a process mining tool to support model-based monitoring. According to the textbook, what is the minimum set of attributes required for each event record in the log to enable standard mining techniques?",
+      "options": {
+        "A": "Case ID, event class, and timestamp.",
+        "B": "Resource ID, task cost, and case ID.",
+        "C": "Activity name, role, and completion state.",
+        "D": "Start time, end time, and event ID."
+      },
+      "answer": "A",
+      "answers_list": [
+        "A"
+      ],
+      "explanation": "Theo Lecture 11 (Process Mining), mỗi bản ghi sự kiện trong event log tối thiểu phải có 3 thuộc tính: Case ID (mã lượt chạy), Event class / Activity name (tên hoạt động), và Timestamp (dấu thời gian). Loại trừ: B thiếu timestamp & activity; C thiếu Case ID & timestamp; D thiếu Case ID & activity.",
+      "tip": "3 cột tối thiểu của Event Log = Case ID + Event class (Activity) + Timestamp.",
+      "source_image": "Cau_27.jpg"
+    },
+    {
+      "id": 28,
+      "code": "BPS301 · FA26 · Question 28",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Consider a scenario where a university is losing talented students because the admission process takes too long. An analyst identifies that the \"Academic Recognition Agency\" takes 3 weeks to verify degrees. This factor originates from an external actor outside the control of the university. Using the 6 Ms, which category is most appropriate?",
+      "options": {
+        "A": "Milieu",
+        "B": "Method",
+        "C": "Man",
+        "D": "Measurement"
+      },
+      "answer": "A",
+      "answers_list": [
+        "A"
+      ],
+      "explanation": "Trong sơ đồ xương cá 6Ms (Lecture 5), Milieu (môi trường/yếu tố bên ngoài) đại diện cho các tác nhân hoặc điều kiện nằm ngoài tầm kiểm soát trực tiếp của tổ chức (như cơ quan kiểm định bên ngoài). Loại trừ: Method là quy trình/cách làm; Man là con người nội bộ; Measurement là đo lường.",
+      "tip": "External actor outside control = môi trường bên ngoài = Milieu.",
+      "source_image": "Cau_28.jpg"
+    },
+    {
+      "id": 29,
+      "code": "BPS301 · FA26 · Question 29",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Flow analysis has several limitations that may lead process analysts to prefer simulation for more complex scenarios. Which of the following is a fundamental limitation of flow analysis that is specifically addressed by using a process simulator?",
+      "options": {
+        "A": "It cannot calculate the average cost of task execution.",
+        "B": "It does not account for effects of resource contention.",
+        "C": "It cannot handle sequential tasks in a process model.",
+        "D": "It requires the use of standard BPMN 2.0 gateways."
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Theo Lecture 6 & 7, Flow Analysis giả định nguồn lực luôn sẵn sàng (không tính đến tranh chấp nguồn lực và thời gian chờ hàng đợi — resource contention). Process Simulation khắc phục trực tiếp nhược điểm này bằng cách mô phỏng phân bổ nguồn lực và hàng đợi thực tế. Loại trừ: A, C sai vì Flow Analysis vẫn tính được chi phí và chuỗi tuần tự; D không phải nhược điểm của Flow Analysis.",
+      "tip": "Nhược điểm Flow Analysis = bỏ qua tranh chấp nguồn lực & chờ đợi (resource contention).",
+      "source_image": "Cau_29.jpg"
+    },
+    {
+      "id": 30,
+      "code": "BPS301 · FA26 · Question 30",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "When defining the input for a process simulation, an analyst must choose an appropriate probability distribution for task durations. If a task's duration is usually around a mean but occasionally takes much longer due to complexity (e.g., assessing a fraudulent claim), which distribution is most suitable?",
+      "options": {
+        "A": "Fixed distribution",
+        "B": "Exponential distribution",
+        "C": "Normal distribution",
+        "D": "Uniform distribution"
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Theo Lecture 7, phân phối mũ (Exponential distribution) phù hợp cho các tác vụ phức tạp (như điều tra gian lận) có thời gian thường tập trung quanh mức thấp/trung bình nhưng thỉnh thoảng kéo dài rất lâu (đuôi dài bên phải). Loại trừ: Fixed là hằng số; Normal đối xứng hai bên; Uniform dàn đều trong một khoảng.",
+      "tip": "Thường ngắn/quanh mean nhưng thỉnh thoảng kéo dài đột biến -> Exponential.",
+      "source_image": "Cau_30.jpg"
+    },
+    {
+      "id": 31,
+      "code": "BPS301 · FA26 · Question 31",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Organizations evaluate BPMS software based on how they support standards. Which category of BPMS uses a BPMN \"skin\" for the user interface but relies on a different proprietary internal representation to execute the process?",
+      "options": {
+        "A": "Non-BPMN systems",
+        "B": "Pure BPMN systems",
+        "C": "Adapted BPMN systems",
+        "D": "Global call activities"
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Theo Lecture 10, Adapted BPMN systems dùng giao diện BPMN ('BPMN skin') để vẽ nhưng bên dưới lại dịch sang định dạng độc quyền riêng để thực thi. Loại trừ: Pure BPMN thực thi trực tiếp chuẩn BPMN; Non-BPMN không dùng BPMN ngay cả ở giao diện; D là một phần tử BPMN.",
+      "tip": "Vỏ BPMN ('BPMN skin') + ruột độc quyền = Adapted BPMN.",
+      "source_image": "Cau_31.jpg"
+    },
+    {
+      "id": 32,
+      "code": "BPS301 · FA26 · Question 32",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Which of the following is NOT a task?",
+      "options": {
+        "A": "Check insurance policy details",
+        "B": "Insurance policy does not cover the damage",
+        "C": "Calculate settlement amount",
+        "D": "Determine if customer is liable for damage"
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Theo quy tắc đặt tên BPMN (Lecture 3), Task (hoạt động) phải bắt đầu bằng động từ nguyên mẫu + danh từ (Check..., Calculate..., Determine...). Phương án B ('Insurance policy does not cover the damage') là một mệnh đề trạng thái/điều kiện (phù hợp cho Event hoặc nhãn nhánh Gateway), không phải Task.",
+      "tip": "Task = Động từ + Danh từ; không có động từ hành động -> không phải Task (B).",
+      "source_image": "Cau_32.jpg"
+    },
+    {
+      "id": 33,
+      "code": "BPS301 · FA26 · Question 33",
+      "type": "MULTIPLECHOICE",
+      "instruction": "Chọn 2 phương án.",
+      "question": "What are the two stages of Value-Added Analysis?",
+      "options": {
+        "A": "Value-Added Analysis",
+        "B": "Root-Cause Analysis",
+        "C": "Value Classification",
+        "D": "Waste Elimination"
+      },
+      "answer": [
+        "C",
+        "D"
+      ],
+      "answers_list": [
+        "C",
+        "D"
+      ],
+      "explanation": "Theo Lecture 5, Value-Added Analysis gồm 2 giai đoạn chính: (1) Value Classification (phân loại bước thành VA, BVA, NVA) và (2) Waste Elimination (loại bỏ lãng phí/các bước NVA). Loại trừ: A là tên cả phương pháp; B là kỹ thuật phân tích nguyên nhân gốc riêng biệt.",
+      "tip": "Value-Added Analysis = Phân loại (Classification) -> Xóa bỏ lãng phí (Elimination).",
+      "source_image": "Cau_33.jpg"
+    },
+    {
+      "id": 34,
+      "code": "BPS301 · FA26 · Question 34",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "In a multi-instance activity, what happens if an interrupting boundary event (such as a timer timeout) occurs while several instances are still running?",
+      "options": {
+        "A": "Only the oldest instance is interrupted.",
+        "B": "The system waits for all instances to finish first.",
+        "C": "All currently running instances are interrupted.",
+        "D": "A new token is created for each active instance."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Interrupting boundary event (viền liền) gắn trên một hoạt động multi-instance sẽ ngắt toàn bộ các thực thể (instances) đang chạy của hoạt động đó ngay khi sự kiện xảy ra và chuyển luồng sang nhánh xử lý ngoại lệ. Loại trừ: A, B, D sai với ngữ nghĩa ngắt của interrupting boundary event.",
+      "tip": "Interrupting boundary trên multi-instance = ngắt SẠCH tất cả instance đang chạy.",
+      "source_image": "Cau_34.jpg"
+    },
+    {
+      "id": 35,
+      "code": "BPS301 · FA26 · Question 35",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Analyze a scenario where an AND-join is used to merge two branches, but an earlier XOR-split routes control to only one of those branches. What behavioral anomaly will occur?",
+      "options": {
+        "A": "Lack of synchronization",
+        "B": "Deadlock",
+        "C": "Livelock",
+        "D": "Token duplication"
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "XOR-split chỉ gửi 1 token đi theo 1 nhánh, nhưng AND-join lại đứng chờ đủ token từ CẢ HAI nhánh mới cho đi tiếp -> quy trình bị treo vĩnh viễn tại AND-join, gọi là Deadlock (bế tắc). Loại trừ: Lack of synchronization xảy ra khi dùng cặp ngược lại (AND-split + XOR-join).",
+      "tip": "XOR-split + AND-join = Deadlock (chờ mãi); AND-split + XOR-join = Lack of synchronization.",
+      "source_image": "Cau_35.jpg"
+    },
+    {
+      "id": 36,
+      "code": "BPS301 · FA26 · Question 36",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Consider an organization that handles unpredictable cases where the sequence of activities is not strictly defined at design time. They need a system that allows users to create or modify the process definition on-the-fly for a specific instance. Which type of BPMS is most appropriate for this high-flexibility scenario?",
+      "options": {
+        "A": "Production workflow systems",
+        "B": "Groupware systems",
+        "C": "Ad hoc workflow systems",
+        "D": "Administrative workflow systems"
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Ad hoc workflow systems cho phép người dùng tạo mới hoặc chỉnh sửa định nghĩa quy trình ngay trong lúc chạy (on-the-fly) cho các tình huống khó đoán trước. Loại trừ: Production và Administrative dùng cho quy trình có cấu trúc định sẵn; Groupware hỗ trợ cộng tác tự do nhưng không định nghĩa workflow theo instance.",
+      "tip": "Modify on-the-fly / unpredictable cases = Ad hoc workflow.",
+      "source_image": "Cau_36.jpg"
+    },
+    {
+      "id": 37,
+      "code": "BPS301 · FA26 · Question 37",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "An applicant may change their mind about adding a home insurance plan any time before their loan eligibility assessment is completed. To model this without stopping the assessment, what should the analyst use?",
+      "options": {
+        "A": "An interrupting message boundary event on the task.",
+        "B": "A non-interrupting message boundary event on the task.",
+        "C": "A signal end event inside a separate pool.",
+        "D": "An event-based gateway following the assessment."
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Muốn xử lý thông báo thay đổi từ khách hàng mà KHÔNG làm dừng tác vụ thẩm định đang chạy ('without stopping the assessment'), phải dùng Non-interrupting message boundary event (viền nét đứt) gắn trên tác vụ đó. Loại trừ: A làm dừng tác vụ; C, D không bắt được sự kiện xảy ra song song trong lúc tác vụ đang chạy.",
+      "tip": "Without stopping = Non-interrupting boundary event (viền nét đứt).",
+      "source_image": "Cau_37.jpg"
+    },
+    {
+      "id": 38,
+      "code": "BPS301 · FA26 · Question 38",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "When two or more activities are alternative to each other, they are considered ___.",
+      "options": {
+        "A": "concurrent",
+        "B": "mutually exclusive",
+        "C": "independent path",
+        "D": "independent methods"
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Khi hai hay nhiều hoạt động là phương án thay thế cho nhau (chỉ chọn 1 trong các nhánh, như tại XOR-split), chúng có quan hệ loại trừ lẫn nhau (mutually exclusive). Loại trừ: A (concurrent) là chạy song song cùng lúc.",
+      "tip": "Alternative (chọn 1 bỏ kia) = Mutually exclusive.",
+      "source_image": "Cau_38.jpg"
+    },
+    {
+      "id": 39,
+      "code": "BPS301 · FA26 · Question 39",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "An analyst has a process model containing 45 activities, gateways, and events. According to the \"Rule of Thumb\" discussed in the text, what should the analyst do to improve the model's understandability?",
+      "options": {
+        "A": "Combine all gateways into a single complex gateway.",
+        "B": "Decompose the model into multiple sub-processes.",
+        "C": "Remove all data objects to reduce visual clutter.",
+        "D": "Replace all pools with a single lane structure."
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Theo quy tắc hướng dẫn mô hình hóa (Rule of Thumb, Lecture 4), một sơ đồ có hơn ~30–50 phần tử trở nên khó đọc, nên cần phân rã (decompose) thành các sub-processes ở mức chi tiết thấp hơn để tăng tính dễ hiểu. Loại trừ: A, C, D đều làm mất thông tin hoặc sai chuẩn mô hình hóa.",
+      "tip": "Mô hình quá lớn (>30-45 phần tử) -> Decompose into sub-processes.",
+      "source_image": "Cau_39.jpg"
+    },
+    {
+      "id": 40,
+      "code": "BPS301 · FA26 · Question 40",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Evaluate the difference between BPM Maturity and Process Maturity as described in the text. Which statement correctly identifies a limitation of using the Capability Maturity Model Integration (CMMI) for process assessment?",
+      "options": {
+        "A": "It fails to distinguish between core and support processes in an architecture.",
+        "B": "It focuses on what should be implemented rather than how to implement it.",
+        "C": "It requires the mandatory use of BPMN 2.0 for every documented process area.",
+        "D": "It cannot be applied to organizations that have an established BPM Center."
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Hạn chế kinh điển của CMMI khi đánh giá quy trình là nó chỉ ra CẦN triển khai cái gì (what should be implemented) để đạt cấp độ trưởng thành, chứ không hướng dẫn chi tiết CÁCH thực hiện như thế nào (how to implement it). Loại trừ: A, C, D không phải hạn chế của CMMI.",
+      "tip": "Nhược điểm CMMI = nói 'What' (làm gì) chứ không chỉ 'How' (làm thế nào).",
+      "source_image": "Cau_40.jpg"
+    },
+    {
+      "id": 41,
+      "code": "BPS301 · FA26 · Question 41",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Which type of process starts when a supplier receives a Request for Quote and ends when a purchase order is placed?",
+      "options": {
+        "A": "Order-to-cash",
+        "B": "Procure-to-pay",
+        "C": "Quote-to-order",
+        "D": "Issue-to-resolution"
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Quote-to-order bắt đầu khi nhận được yêu cầu báo giá (Request for Quote) và kết thúc khi đơn đặt hàng (Purchase Order) được đặt. Loại trừ: Order-to-cash đi từ nhận đơn đến thu tiền; Procure-to-pay đi từ nhu cầu mua đến thanh toán; Issue-to-resolution xử lý khiếu nại/sự cố.",
+      "tip": "Bắt đầu = Request for Quote, kết thúc = Order placed -> Quote-to-order.",
+      "source_image": "Cau_41.jpg"
+    },
+    {
+      "id": 42,
+      "code": "BPS301 · FA26 · Question 42",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "A company notices that most travel requests are rejected late in the process due to budget issues. Which redesign heuristic suggests moving the budget check to the beginning?",
+      "options": {
+        "A": "Case-based work",
+        "B": "Activity elimination",
+        "C": "Empower",
+        "D": "Triage"
+      },
+      "answer": "D",
+      "answers_list": [
+        "D"
+      ],
+      "explanation": "Triage (phân loại/sàng lọc sớm — hoặc knock-out checks) là heuristic đưa các bước kiểm tra có khả năng loại hồ sơ cao (như kiểm tra ngân sách) lên đầu quy trình để tránh lãng phí công sức ở các bước sau. Loại trừ: A, B, C là các heuristic khác không nói về sắp xếp thứ tự kiểm tra lọc sớm.",
+      "tip": "Đưa bước kiểm tra hay bị reject lên ĐẦU quy trình = Triage (Knock-out).",
+      "source_image": "Cau_42.jpg"
+    },
+    {
+      "id": 43,
+      "code": "BPS301 · FA26 · Question 43",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Based on the historical analysis of the 1990s, what was a major factor in the failure of BPR projects?",
+      "options": {
+        "A": "Too much focus on incremental, slow changes",
+        "B": "Concept misuse where BPR was a label for downsizing",
+        "C": "Lack of interest from the academic community",
+        "D": "Over-reliance on human intuition instead of IT tools"
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Theo Lecture 8, nhiều dự án BPR thập niên 1990 thất bại vì khái niệm BPR bị lạm dụng như một cái cớ để cắt giảm nhân sự (downsizing) thay vì tái thiết kế quy trình thực chất, dẫn đến mất động lực và phản kháng. Loại trừ: A ngược với bản chất đột phá của BPR; C, D sai bối cảnh lịch sử.",
+      "tip": "Thất bại BPR thập niên 90 = gắn mác BPR để sa thải/cắt giảm (downsizing).",
+      "source_image": "Cau_43.jpg"
+    },
+    {
+      "id": 44,
+      "code": "BPS301 · FA26 · Question 44",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "A process owner at Suncorp notices that \"simple claims\" take much longer than \"high-value claims.\" An analyst is tasked with splitting the event log into \"fast cases\" and \"slow cases\" to perform side-by-side dependency graph comparisons and log delta analysis. What is this technique called?",
+      "options": {
+        "A": "Conformance checking.",
+        "B": "Performance mining.",
+        "C": "Variants analysis.",
+        "D": "Process discovery."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Theo Lecture 11, việc chia event log thành các nhóm (như fast cases vs slow cases) để so sánh song song đồ thị phụ thuộc và tìm điểm khác biệt (log delta analysis) chính là Variants analysis (phân tích biến thể). Loại trừ: Conformance checking đối chiếu log với mô hình chuẩn; Process discovery tự dựng mô hình từ log.",
+      "tip": "Chia fast/slow cases + so sánh song song (side-by-side / delta) = Variants analysis.",
+      "source_image": "Cau_44.jpg"
+    },
+    {
+      "id": 45,
+      "code": "BPS301 · FA26 · Question 45",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "In the first step of implementing an executable process, which three task types are distinguished in line with BPMN standards?",
+      "options": {
+        "A": "Script, Service, and Business Rule tasks.",
+        "B": "Internal, External, and Hybrid tasks.",
+        "C": "Automated, manual, and user tasks.",
+        "D": "Synchronous, asynchronous, and parallel tasks."
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "Theo Lecture 10 (Bước 1: Xác định ranh giới tự động hóa), các tác vụ được phân thành 3 loại: Automated tasks (hệ thống tự chạy), Manual tasks (làm tay hoàn toàn ngoài hệ thống), và User tasks (con người thao tác qua giao diện BPMS). Loại trừ: A chỉ là các loại con thuộc nhóm tự động; B, D không phải phân loại bước 1.",
+      "tip": "3 loại task bước 1 tự động hóa = Automated, Manual, User.",
+      "source_image": "Cau_45.jpg"
+    },
+    {
+      "id": 46,
+      "code": "BPS301 · FA26 · Question 46",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Certain sub-processes involve uncontrolled activities where tasks are performed in an ad hoc manner with no predictable order. Which standard notation is complementary to BPMN for implementing these flexible \"case-style\" processes?",
+      "options": {
+        "A": "Decision Model and Notation (DMN)",
+        "B": "Service-Oriented Architecture (SOA)",
+        "C": "Case Management Model and Notation (CMMN)",
+        "D": "XML Path Language (XPath)"
+      },
+      "answer": "C",
+      "answers_list": [
+        "C"
+      ],
+      "explanation": "CMMN (Case Management Model and Notation) là chuẩn bổ trợ cho BPMN để mô hình hóa và thực thi các quy trình linh hoạt kiểu case-style không có trình tự cố định trước. Loại trừ: DMN mô hình hóa bảng quyết định; SOA là kiến trúc dịch vụ; XPath là ngôn ngữ truy vấn XML.",
+      "tip": "Ad hoc / case-style processes = CMMN (Case Management Model and Notation).",
+      "source_image": "Cau_46.jpg"
+    },
+    {
+      "id": 47,
+      "code": "BPS301 · FA26 · Question 47",
+      "type": "MULTIPLECHOICE",
+      "instruction": "Chọn 2 phương án.",
+      "question": "Which of the following statements is true about a process map?",
+      "options": {
+        "A": "It provides insight into the various steps that are taken within a process",
+        "B": "It shows which steps are alternatives of each other",
+        "C": "It describes the data that is being processed in a process",
+        "D": "It shows the organizational units that are involved in a process"
+      },
+      "answer": [
+        "A",
+        "B"
+      ],
+      "answers_list": [
+        "A",
+        "B"
+      ],
+      "explanation": "A chắc chắn đúng vì Process Map (được khám phá từ event log trong Lecture 11) thể hiện các bước/hoạt động diễn ra và luồng chuyển tiếp giữa chúng. Nếu đề yêu cầu chọn 2 đáp án, B là lựa chọn phù hợp nhất để đi cùng A (vì đồ thị phân nhánh cho thấy các bước rẽ nhánh thay thế nhau), trong khi Process Map cơ bản không thể hiện dữ liệu (C) hay đơn vị tổ chức (D) như Pool/Lane và Data Object trong BPMN.",
+      "tip": "Process map = nhìn thấy các bước (steps) + luồng rẽ nhánh -> chắc chắn có A (ghép B nếu chọn 2).",
+      "source_image": "Cau_47.jpg"
+    },
+    {
+      "id": 48,
+      "code": "BPS301 · FA26 · Question 48",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "When an Event-based XOR gateway is used, what specific type of modeling elements are permitted to immediately follow the gateway to ensure the model remains syntactically and behaviorally correct?",
+      "options": {
+        "A": "Only decision activities and automated script tasks.",
+        "B": "Intermediate catching events or receiving activities.",
+        "C": "Any activity that does not have a boundary event.",
+        "D": "Only throwing events that signal to external pools."
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Ngay sau Event-based XOR gateway bắt buộc phải là các sự kiện chờ bắt (intermediate catching events như Timer, Message catching) hoặc tác vụ nhận (receiving tasks) — sự kiện nào xảy ra trước sẽ kích hoạt nhánh đó. Loại trừ: A, C, D đều sai cú pháp BPMN.",
+      "tip": "Sau Event-based gateway = đứng CHỜ -> chỉ có Catching events hoặc Receiving activities.",
+      "source_image": "Cau_48.jpg"
+    },
+    {
+      "id": 49,
+      "code": "BPS301 · FA26 · Question 49",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "Name the quantitative sub-sections beneath quality",
+      "options": {
+        "A": "Fixed and variable.",
+        "B": "Internal and external.",
+        "C": "the ability to adapt."
+      },
+      "answer": "B",
+      "answers_list": [
+        "B"
+      ],
+      "explanation": "Trong khung đánh giá hiệu suất Devil's Quadrangle (Lecture 1 & 9), chiều Chất lượng (Quality) được chia thành 2 nhóm con: Internal quality (chất lượng nội bộ, góc nhìn nhân viên/quy trình) và External quality (chất lượng bên ngoài, mức độ hài lòng của khách hàng). Loại trừ: A thuộc Cost; C thuộc Flexibility.",
+      "tip": "Quality = Internal & External; Cost = Fixed & Variable; Flexibility = Ability to adapt.",
+      "source_image": "Cau_49.jpg"
+    },
+    {
+      "id": 50,
+      "code": "BPS301 · FA26 · Question 50",
+      "type": "SINGLECHOICE",
+      "instruction": "Chọn một phương án.",
+      "question": "In the context of Waste Analysis (Muda), an organization notices that its credit application process is slowed down because files are frequently sent back from the supervisor to the clerk due to missing signatures or incorrect data entries. According to the seven types of waste classification, which category does this repetitive correction of work belong to?",
+      "options": {
+        "A": "Overprocessing waste",
+        "B": "Transportation waste",
+        "C": "Inventory waste",
+        "D": "Defect waste"
+      },
+      "answer": "D",
+      "answers_list": [
+        "D"
+      ],
+      "explanation": "Theo Lecture 5, hồ sơ bị trả lại do thiếu chữ ký hoặc nhập sai dữ liệu dẫn đến phải sửa chữa, làm lại (rework loop) thuộc nhóm Defect waste (lãng phí do sai sót/khuyết tật). Loại trừ: A là làm thừa tính năng/kiểm tra không cần thiết; B là di chuyển vật lý/dữ liệu; C là tồn đọng hồ sơ chờ xử lý.",
+      "tip": "Sai sót + trả lại sửa (missing signatures, incorrect entries, rework) = Defect waste.",
+      "source_image": "Cau_50.jpg"
+    }
+  ]
+}

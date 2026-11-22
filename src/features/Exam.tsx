@@ -1,8 +1,10 @@
+import { ExamResult } from './ExamResult'
+import { ExamHistory } from './ExamHistory'
 import { useEffect, useRef, useState } from 'react'
 import { Check, ClipboardCheck, Flag, Timer } from 'lucide-react'
 import { Progress } from '../components/Progress'
-import { Choices, Feedback, Rich } from '../components/Question'
-import { entireBank, examScope, isCorrect, shuffle, uniqueQuestions, type Exam as ExamData, type Session, type Theory } from '../data/model'
+import { Choices, Rich } from '../components/Question'
+import { entireBank, examScope, shuffle, uniqueQuestions, type Exam as ExamData, type Session, type Subject, type Study, type Material } from '../data/model'
 import type { Preferences } from '../data/preferences'
 import { examSlug, findExam, position, useRoute } from '../routes'
 
@@ -23,15 +25,15 @@ function balancedSample(pool: Session['questions'], count: number) {
   return shuffle([...picked, ...shuffle(pool.filter((q) => !included.has(q.id))).slice(0, count - picked.length)])
 }
 
-export function Exam({ exams, sessions, history, now, save, submit, reset, slide, preferences, chapters }: {
+export function Exam({ exams, sessions, history, now, save, submit, reset, preferences, subject, study, materials }: {
   exams: ExamData[]; sessions: Session[]; history: Session[]; now: number
   save: (session: Session, starting?: boolean) => boolean; submit: (id: string) => boolean
   reset: (scope: string | null, kind: 'sessions' | 'history') => boolean
-  slide: (id: string, page: number) => void
   preferences: Preferences
-  chapters: Theory[]
+  subject: Subject; study: Study; materials: Material[]
 }) {
   const route = useRoute()
+  const chapters = subject.theory
   const [source, phase, questionNumber] = route.segments
   const preset = source === 'random_50' ? { count: 50, minutes: 45 } : source === 'quick_15' ? { count: 15, minutes: 15 } : undefined
   const [count, setCount] = useState<number | ''>('')
@@ -170,34 +172,7 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
       </dialog>
     </>
   }
-  if (result) {
-    const correct = result.questions.filter((q) => isCorrect(q, result.selections[q.id])).length
-    const byChapter = new Map<string | undefined, Session['questions']>()
-    for (const q of result.questions) {
-      const items = byChapter.get(q.chapterId) ?? []
-      items.push(q)
-      byChapter.set(q.chapterId, items)
-    }
-    const onlyWrong = route.query.get('filter') === 'wrong'
-    return <>
-      <h1>Kết quả thi thử</h1>
-      <section className="panel row spread"><div><h2>{result.title}</h2><p>{(correct * 10 / result.questions.length).toFixed(1)} / 10 · {correct}/{result.questions.length} câu đúng</p></div>
-        <button onClick={() => route.go('/mock_exam')}>Thi bài mới</button></section>
-      <section className="panel task"><h2>Kết quả theo chương</h2>
-        <p>Thời gian làm bài: {Math.floor(((result.ended ?? result.deadline) - result.started) / 1000)} giây</p>
-        {[...byChapter].map(([chapter, items]) => <p key={chapter ?? ''}>{chapter ? 'Chương ' + chapter : 'Chưa phân chương'} · {items.filter((q) => isCorrect(q, result.selections[q.id])).length}/{items.length} câu đúng</p>)}
-        <div className="row"><button aria-pressed={!onlyWrong} onClick={() => route.go(sessionPath(result, true))}>Tất cả câu</button>
-          <button aria-pressed={onlyWrong} onClick={() => route.go(sessionPath(result, true) + '&filter=wrong')}>Câu sai</button></div>
-      </section>
-      {onlyWrong && correct === result.questions.length && <p>Không có câu sai.</p>}
-      {result.questions.map((q, index) => onlyWrong && isCorrect(q, result.selections[q.id]) ? null : <section className="panel task" key={q.id}>
-        <span className="tag">Câu {index + 1}</span>
-        <div className="prompt"><Rich content={q.prompt} /></div>
-        <Choices question={q} selected={result.selections[q.id] ?? []} reveal change={() => {}} />
-        <Feedback question={q} selected={result.selections[q.id] ?? []} slide={slide} />
-      </section>)}
-    </>
-  }
+  if (result) return <ExamResult session={result} path={sessionPath(result, true)} subject={subject} exams={exams} study={study} materials={materials} />
   if (phase === 'result' || (phase === 'q' && !session) || (source && !selectedExam && !preset && source !== 'all')) {
     return <section className="panel task"><h1>Chưa có bài thi tại đường dẫn này</h1><p>Phiên thi và kết quả được lưu trong trình duyệt đã làm bài.</p><button onClick={() => route.go('/mock_exam')}>Về sảnh thi</button></section>
   }
@@ -208,13 +183,9 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
     const what = kind === 'sessions' ? 'lượt thi đang làm' : 'lịch sử và kết quả thi'
     if (window.confirm('Xóa ' + what + ' của «' + item.title + '»?')) reset(examScope(item, exams), kind)
   }
-  const historyByScope = new Map<string | null, Session[]>()
-  for (const item of history.slice().reverse()) {
-    const scope = examScope(item, exams)
-    const group = historyByScope.get(scope) ?? []
-    group.push(item)
-    historyByScope.set(scope, group)
-  }
+  const historyPanel = <ExamHistory history={history} chapters={new Set(chapters.map((chapter) => chapter.id))}
+    path={(item) => sessionPath(item, true)} remove={(item) => confirmReset(item, 'history')} />
+  if (route.query.get('view') === 'history') return historyPanel
   return <>
     <h1>Thi thử</h1>
     <div className="row route-links">
@@ -269,14 +240,6 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
           <button onClick={() => confirmReset(item, 'sessions')}>Reset tiến độ thi</button></div>
       </div>)}
     </section>}
-    {history.length > 0 && <section className="panel task"><h2>Lịch sử thi</h2>
-      {[...historyByScope].map(([scope, items]) => <div key={scope ?? ''}>
-        <div className="row spread"><strong>{items[0].title}</strong>
-          <button onClick={() => confirmReset(items[0], 'history')}>Xóa lịch sử đề này</button></div>
-        {items.map((item) => <button className="history-item" key={item.id} onClick={() => route.go(sessionPath(item, true))}>
-          {new Date(item.ended ?? item.deadline).toLocaleString('vi-VN')}
-        </button>)}
-      </div>)}
-    </section>}
+    {history.length > 0 && historyPanel}
   </>
 }

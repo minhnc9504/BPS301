@@ -13,18 +13,33 @@ export type Question = {
   tip?: Content
   formulas?: string[]
   slides?: SlideRef[]
+  sourceSlides?: number[]
+  relatedSections?: Array<string | { lectureId?: string; sectionId: string; verified?: boolean }>
+  correctExplanation?: Content
+  wrongAnswerExplanations?: Record<string, Content>
+  answerVerification?: 'verified' | 'unverified'
 }
 export const examCategories = ['FE', 'PT', 'MOCK', 'PRACTICE'] as const
 export type ExamCategory = typeof examCategories[number]
 export type Exam = { id: string; title: string; note?: string; uploaded?: boolean; category?: ExamCategory; questions: Question[] }
-export type Theory = { id: string; title: string; summary?: string; content: Content }
+export type Theory = { id: string; title: string; summary?: string; content: Content; metadata?: Record<string, unknown> }
 export type Material = {
   id: string
   title: string
   kind: 'pdf' | 'pptx' | 'images'
+  sourceFile?: string
   file?: string
   preview?: string
-  pages?: { page: number; image?: string; text?: string }[]
+  localFile?: string
+  localPreview?: string
+  localFingerprints?: Record<string, string>
+  pages?: { page: number; image?: string; text?: string; localImage?: string }[]
+}
+export type SourceTarget = { courseId: string; lectureId?: string; sectionId?: string; questionId?: string }
+export type SourceLink = SourceTarget & {
+  documentId: string; slideNumber: number
+  verificationStatus: 'verified' | 'suggested' | 'rejected' | 'unavailable'
+  matchingMethod: 'manual' | 'keyword' | 'metadata'
 }
 export type Subject = {
   id: string; code: string; title: string
@@ -43,6 +58,7 @@ export type Session = {
   autoSubmit?: boolean
   questions: Question[]; selections: Record<string, string[]>; flags: string[]
   ended?: number
+  completion?: 'manual' | 'timeout'
 }
 export type Study = {
   attempts: Attempt[]
@@ -52,9 +68,13 @@ export type Study = {
   exams: Exam[]
   edits: Record<string, Question>
   materials: Material[]
+  sourceLinks?: SourceLink[]
   history: Session[]
   sessions: Session[]
   resume?: string
+  reviewLater?: Record<string, number>
+  practiceRoute?: string
+  curriculum?: { completed: Record<string, string[]>; last?: { lectureId: string; sectionId: string } }
 }
 export type Save = { version: 1; subjects: Record<string, Study> }
 
