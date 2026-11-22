@@ -44,6 +44,10 @@ npm run preview # Xem trước bản build trên máy
 | **Ngân hàng** | Nhập một hoặc nhiều tệp JSON, tự động kiểm tra lỗi cú pháp và trùng lặp ID (cho phép bỏ qua, cập nhật hoặc tạo bản sao). Hỗ trợ chỉnh sửa trực tiếp câu hỏi, gắn trang giáo trình và xuất dữ liệu. |
 
 ### Tiện ích & Sao lưu dữ liệu
+
+Đề nhập và tiến độ được lưu theo từng hồ sơ trình duyệt và địa chỉ website, lần lượt trong `bps301_custom_exams_v1` và `bps301_user_progress_v1`. Ứng dụng tự đọc dữ liệu cũ từ `smart-exam-v1` và chuyển sang cấu trúc mới khi đủ dung lượng. Dùng **Sao lưu tất cả dữ liệu** để chuyển đề riêng sang máy khác. Việc dọn dữ liệu website hoặc dùng phiên duyệt riêng tư có thể làm mất dữ liệu cục bộ.
+
+Để công khai một đề, vào **Cài đặt → Bộ đề đã tự tải lên → Sao chép JSON công khai**. Mở workflow [Publish a public BPS301 exam](.github/workflows/publish-exam.yml), chọn **Run workflow** trên `main`, dán nội dung vào `exam_json` và chạy bằng tài khoản có quyền ghi repo. Workflow kiểm tra mã trùng, ghi tệp đề và danh mục trong một commit rồi build và triển khai Pages từ commit đó. Đáp án đi kèm đề công khai. Với tệp vượt giới hạn nhập, tải JSON xuống, thêm vào `public/data/bps301/exams/` và khai báo đường dẫn trong `subject.json` trước khi commit.
 * **Phím tắt & Giao diện:** Nhấn **Tìm nhanh** hoặc `Ctrl + K` (`⌘ + K` trên macOS) để mở nhanh màn hình/chương; chuyển đổi giao diện Sáng/Tối ở góc thanh điều hướng.
 * **Sao lưu & Khôi phục:** Xuất toàn bộ dữ liệu hoặc chỉ tiến độ. Mở bản xem trước rồi chọn gộp hoặc ghi đè theo phạm vi tệp. Khi gộp, ứng dụng ưu tiên dữ liệu trên máy ở các ID trùng và hợp nhất lịch sử. **Xuất ngân hàng** tải riêng bộ đề BPS301.
 * **Đặt lại & tùy chọn:** Có thể đặt lại lượt ôn và thi, xóa riêng dấu câu khó hoặc khôi phục gốc qua hai lần xác nhận. Tùy chọn tự nộp áp dụng khi tạo phiên thi. Khi tắt tự nộp, bài bị khóa lúc hết giờ và người học nộp thủ công. Dùng `Shift+B` để đánh dấu câu khó và `B` để chọn đáp án B.

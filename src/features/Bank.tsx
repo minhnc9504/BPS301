@@ -16,6 +16,7 @@ export function Bank({ subject, exams, study, save }: {
   const query = route.query.get('search') ?? ''
   const chapter = route.query.get('chapter') ?? ''
   const statusFilter = route.query.get('status') ?? ''
+  const examFilter = route.query.get('exam') ?? ''
   const detail = route.segments[0] === 'detail'
   const detailQuestion = findQuestion(uniqueQuestions(exams), route.segments[1])
   function filter(key: string, value: string) {
@@ -26,13 +27,14 @@ export function Bank({ subject, exams, study, save }: {
   }
   const latest = new Map(study.attempts.map((attempt) => [attempt.questionId, attempt.correct]))
   const questions = uniqueQuestions(exams)
+  const examQuestions = new Set(exams.find((item) => item.id === examFilter)?.questions.map((question) => question.id))
   const chapters = Array.from(new Set([...subject.theory.map((item) => item.id), ...questions.flatMap((q) => q.chapterId ? [q.chapterId] : [])]))
   const matchingQuestions = questions.filter((q) => {
     const result = latest.get(q.id)
     const status = result === undefined ? 'unanswered' : result ? 'correct' : 'wrong'
-    return (!chapter || q.chapterId === chapter) &&
+    return (!examFilter || examQuestions.has(q.id)) && (!chapter || q.chapterId === chapter) &&
       (!statusFilter || (statusFilter === 'hard' ? study.bookmarks.includes(q.id) : status === statusFilter)) &&
-      (q.id + ' ' + q.prompt.value).toLowerCase().includes(query.trim().toLowerCase())
+      (q.id + ' ' + (q.code ?? '') + ' ' + q.prompt.value).toLowerCase().includes(query.trim().toLowerCase())
   })
   const known = new Set(uniqueQuestions(exams).map((q) => q.id))
   const incoming = pending.flatMap((e) => e.questions)
@@ -172,6 +174,10 @@ export function Bank({ subject, exams, study, save }: {
         <label>Trạng thái<select value={statusFilter} onChange={(event) => filter('status', event.target.value)}>
           <option value="">Tất cả trạng thái</option><option value="unanswered">Chưa làm</option>
           <option value="correct">Trả lời đúng</option><option value="wrong">Trả lời sai</option><option value="hard">Đánh dấu khó</option>
+        </select></label>
+        <label>Bộ đề<select value={examFilter} onChange={(event) => filter('exam', event.target.value)}>
+          <option value="">Tất cả bộ đề</option>
+          {exams.map((item) => <option key={item.id} value={item.id}>{item.title}{item.uploaded ? ' · Tự tải lên' : ''}</option>)}
         </select></label>
       </div>
       {matchingQuestions.length === 0 && <p className="muted">Không tìm thấy câu hỏi phù hợp.</p>}

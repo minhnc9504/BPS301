@@ -243,7 +243,7 @@ export function Exam({ exams, sessions, history, now, save, submit, reset, slide
         setCount('')
         route.go('/mock_exam' + (value ? '/' + encodeURIComponent(examSlug(value)) : ''))
       }}>
-        <option value="">{entireBank}</option>{exams.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}
+        <option value="">{entireBank}</option>{exams.map((item) => <option key={item.id} value={item.id}>{item.title}{item.uploaded ? ' · Tự tải lên' : ''}</option>)}
         <option value="random_50">Đề ngẫu nhiên · 50 câu</option><option value="quick_15">Thi nhanh · 15 câu</option>
       </select></label>
       {selectedExam?.note && <p className="muted">{selectedExam.note}</p>}

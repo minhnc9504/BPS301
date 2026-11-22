@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Download, RotateCcw, Upload } from 'lucide-react'
 import { type Backup, type BackupScope, type RestoreMode } from '../data/backup'
 import { emptyStudy } from '../data/model'
@@ -7,7 +7,7 @@ import { Progress } from '../components/Progress'
 
 export type ResetScope = 'activity' | 'bookmarks' | 'all'
 
-export function SettingsPage({ preferences, change, backup, load, exportData, dismiss, restore, reset, bytes }: {
+export function SettingsPage({ preferences, change, backup, load, exportData, dismiss, restore, reset, bytes, examUpload }: {
   preferences: Preferences
   change: (change: Partial<Preferences>) => void
   backup?: Backup
@@ -17,6 +17,7 @@ export function SettingsPage({ preferences, change, backup, load, exportData, di
   restore: (mode: RestoreMode) => void
   reset: (scope: ResetScope) => void
   bytes?: number
+  examUpload?: ReactNode
 }) {
   const [scope, setScope] = useState<BackupScope>('full')
   const [selection, setSelection] = useState<{ backup?: Backup; mode: RestoreMode }>({ mode: 'merge' })
@@ -78,6 +79,7 @@ export function SettingsPage({ preferences, change, backup, load, exportData, di
         <div className="row spread"><span>Xóa tiến độ, dữ liệu tự thêm và tùy chọn trên trình duyệt.</span><button className="danger-button" onClick={() => reset('all')}>Khôi phục gốc</button></div>
       </div>
     </section>
+    {examUpload}
     <section className="panel task">
       <h2>Ôn tập &amp; Thi thử</h2>
       <div className="settings-grid settings-selects">

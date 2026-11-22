@@ -19,7 +19,7 @@ export function Overview({ subject, exams, study, materials, resume, practice, l
     { label: 'Tổng câu hỏi', value: questions.length, icon: Layers, color: 'blue' },
     { label: 'Bộ đề', value: exams.length, icon: ClipboardList, color: 'purple' },
     { label: 'Giáo trình', value: materials.length, icon: BookOpen, color: 'aqua' },
-    { label: 'Câu đã ôn', value: marks.size, icon: GraduationCap, color: 'blue' },
+    { label: 'Câu đã ôn', value: completed, icon: GraduationCap, color: 'blue' },
     { label: 'Tỷ lệ đúng khi ôn', value: rate, icon: Target, color: 'aqua' },
     { label: 'Điểm thi trung bình', value: scores.length ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1) + '/10' : '—', icon: Bookmark, color: 'purple' },
   ]

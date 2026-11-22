@@ -145,7 +145,7 @@ export function Practice({ subject, exams, study, setStudy, slide, preferences }
     {unavailablePosition && <p className="panel muted">Vị trí câu trong liên kết không có trong bộ lọc này. Đang hiển thị câu đầu tiên.</p>}
     <div className="panel filters">
       <label>Bộ đề<select value={exam} onChange={(event) => changeFilter({ exam: event.target.value })}><option value="">Tất cả bộ đề</option>
-        {exams.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+        {exams.map((item) => <option key={item.id} value={item.id}>{item.title}{item.uploaded ? ' · Tự tải lên' : ''}</option>)}</select></label>
       <label>Chương<select value={chapter} onChange={(event) => changeFilter({ chapter: event.target.value })}><option value="">Tất cả chương</option>
         {chapters.map((id) => <option key={id} value={id}>{subject.theory.find((item) => item.id === id)?.title ?? id}</option>)}</select></label>
       <label>Chủ đề<select value={topic} onChange={(event) => changeFilter({ topic: event.target.value })}><option value="">Tất cả chủ đề</option>

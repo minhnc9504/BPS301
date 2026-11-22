@@ -1,4 +1,5 @@
 import type { Content, Exam, Material, Question, Save, Session, Study, Subject } from './model'
+import { examCategories, type ExamCategory } from './model'
 
 export const storageKey = 'smart-exam-v1'
 
@@ -54,6 +55,7 @@ export function parseQuestion(value: unknown): Question {
     }
     return {
       id: key, type: q.type, prompt: content(q.prompt), options, answers,
+      code: q.code === undefined ? undefined : str(q.code),
       chapterId: q.chapterId === undefined ? undefined : id(q.chapterId),
       topics: q.topics === undefined ? undefined : list(q.topics).map(id),
       explanation: q.explanation === undefined ? undefined : content(q.explanation),
@@ -73,7 +75,10 @@ function parseExams(value: unknown): Exam[] {
     const exam = record(item)
     const questions = unique(list(exam.questions).map(parseQuestion), (q) => q.id, 'ID câu')
     if (!questions.length) throw new Error('Bộ đề phải có ít nhất một câu')
-    return { id: id(exam.id), title: str(exam.title), note: exam.note === undefined ? undefined : str(exam.note), questions }
+    const category = examCategories.find((item) => item === exam.category)
+    if (exam.category !== undefined && !category) throw new Error('Phân loại đề không hợp lệ')
+    return { id: id(exam.id), title: str(exam.title), note: exam.note === undefined ? undefined : str(exam.note), questions,
+      uploaded: exam.uploaded === true ? true : undefined, category }
   }), (exam) => exam.id, 'ID bộ đề')
 }
 function legacyDocument(value: unknown, subjectId: string) {
@@ -99,26 +104,58 @@ function legacyDocument(value: unknown, subjectId: string) {
   }
   return { version: 1, subjectId, exams: Array.from(grouped, ([id, questions]) => ({ id, title: id, questions })) }
 }
-function titledExamDocument(value: unknown, subjectId: string, filename: string) {
+export function normalizeExamId(value: string) {
+  return value.trim().normalize('NFD').replace(/\p{M}/gu, '').replace(/đ/gi, 'd')
+    .toUpperCase().replace(/[^A-Z0-9]+/g, '_').replace(/^_+|_+$/g, '')
+}
+function titledExamDocument(value: unknown, subjectId: string, filename: string, overrides?: { id: string; title: string; category?: ExamCategory }) {
   const document = record(value)
-  const examId = id(filename.split('/').at(-1)?.replace(/\.json$/i, ''))
+  const stem = filename.split('/').at(-1)?.replace(/\.json$/i, '') ?? ''
+  const examId = id(overrides ? normalizeExamId(overrides.id || String(document.exam_id ?? stem)) : stem)
+  const title = overrides?.title.trim() || document.exam_title || document.title || stem
   const questions = list(document.questions).map((item) => {
     const question = record(item)
     const questionId = examId + '_' + (typeof question.id === 'number' ? number(question.id, 1) : id(question.id))
+    if (overrides) {
+      if (typeof question.question !== 'string' || !question.question.trim()) throw new Error(questionId + ' · Thiếu nội dung question')
+      if (!question.options || typeof question.options !== 'object' || Array.isArray(question.options)) throw new Error(questionId + ' · options phải là đối tượng lựa chọn')
+      if (question.answer === undefined && question.answers_list === undefined) throw new Error(questionId + ' · Thiếu answer hoặc answers_list')
+      if (question.chapter !== undefined && !/^(?:[1-9]|10|11)$/.test(String(question.chapter))) throw new Error(questionId + ' · chapter phải từ 1 đến 11')
+    }
     if (question.type !== 'SINGLECHOICE' && question.type !== 'MULTIPLECHOICE') {
       throw new Error(questionId + ' · Loại câu hỏi không được hỗ trợ')
     }
+    const fromAnswer = typeof question.answer === 'string' ? question.answer.split(',').map((part) => part.trim()) : question.answer
+    const answers = question.answers_list ?? fromAnswer
+    if (overrides) {
+      const keys = list(answers).map(str)
+      if (question.type === 'MULTIPLECHOICE' && keys.length < 2) throw new Error(questionId + ' · Câu chọn nhiều cần ít nhất hai đáp án')
+      if (question.answers_list !== undefined && fromAnswer !== undefined) {
+        const alternate = list(fromAnswer).map(str)
+        if (alternate.length !== keys.length || [...alternate].sort().join(',') !== [...keys].sort().join(',')) {
+          throw new Error(questionId + ' · answer và answers_list không khớp')
+        }
+      }
+    }
     return {
       id: questionId,
+      code: question.code,
+      chapterId: question.chapter === undefined && question.chapterId === undefined ? undefined :
+        String(question.chapter ?? question.chapterId),
       type: question.type === 'SINGLECHOICE' ? 'single' : 'multiple',
       prompt: question.question,
       options: Object.entries(record(question.options)).map(([id, content]) => ({ id, content })),
-      answers: question.answers_list ?? (Array.isArray(question.answer) ? question.answer : [question.answer]),
+      answers,
       explanation: question.explanation,
       tip: question.tip,
     }
   })
-  return { version: 1, subjectId, exams: [{ id: examId, title: document.exam_title, note: document.note, questions }] }
+  return { version: 1, subjectId, exams: [{ id: examId, title, note: document.note, questions,
+    uploaded: overrides ? true : undefined, category: overrides?.category }] }
+}
+export function parseUploadedExam(value: unknown, subjectId: string, filename: string, overrides: { id: string; title: string; category?: ExamCategory }) {
+  const doc = titledExamDocument(value, subjectId, filename, overrides)
+  return parseBank(doc, subjectId)[0]
 }
 export function parseBank(value: unknown, subjectId: string, allowLegacy = false, filename = '') {
   const supported = filename && value && typeof value === 'object' && 'exam_title' in value

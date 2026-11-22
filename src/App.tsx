@@ -6,10 +6,12 @@ import { Library, MaterialViewer } from './features/Library'
 import { Overview } from './features/Overview'
 import { Practice } from './features/Practice'
 import { emptyStudy, examScope, type Exam as ExamData, type Save, type Session, type Study, type Subject } from './data/model'
-import { downloadJson, loadSubjects, message, parseSave, storageKey } from './data/storage'
+import { downloadJson, loadSubjects, message, storageKey } from './data/storage'
+import { customExamsKey, progressKey, readLocalStudy, studyKeys, writeLocalStudy } from './data/localStudy'
 import { examSlug, href, paths, readRoute, RouteContext, type Section } from './routes'
 import { LearningReport } from './features/LearningReport'
 import { SettingsPage, type ResetScope } from './features/Settings'
+import { ExamUpload } from './features/ExamUpload'
 import { makeBackup, readBackup, restoreBackup, storageEstimate, type Backup, type BackupScope, type RestoreMode } from './data/backup'
 import { defaultPreferences, preferencesKey, readPreferences, type Preferences } from './data/preferences'
 
@@ -42,10 +44,6 @@ function Brand({ openOverview }: { openOverview: () => void }) {
   </button>
 }
 
-function readSave(): Save {
-  const value = localStorage.getItem(storageKey)
-  return value ? parseSave(JSON.parse(value)) : { version: 1, subjects: {} }
-}
 function finish(study: Study, sessions: Session[], at: number): Study {
   const ids = new Set(sessions.map((session) => session.id))
   return { ...study, sessions: study.sessions.filter((session) => !ids.has(session.id)),
@@ -61,7 +59,7 @@ export function App() {
   const [storageError, setStorageError] = useState('')
   const [notice, setNotice] = useState('')
   const [initial] = useState(() => {
-    try { return { data: readSave(), error: '' } }
+    try { return { data: readLocalStudy(), error: '' } }
     catch (error) { return { data: { version: 1, subjects: {} } as Save, error: message(error) } }
   })
   const [data, setData] = useState(initial.data)
@@ -83,6 +81,14 @@ export function App() {
   const [now, setNow] = useState(Date.now)
   const [slide, setSlide] = useState<{ id: string; page: number }>()
   const dialog = useRef<HTMLDialogElement>(null)
+  useEffect(() => {
+    if (initial.error) return
+    try {
+      if (localStorage.getItem(progressKey) === null && localStorage.getItem(storageKey) !== null) {
+        writeLocalStudy(initial.data)
+      }
+    } catch { /* Keep the previous snapshot readable if migration exceeds storage quota. */ }
+  }, [initial])
 
   useEffect(() => {
     void loadSubjects((error) => setExamLoadErrors((errors) => [...errors, error])).then((subjects) => {
@@ -94,9 +100,9 @@ export function App() {
   useEffect(() => {
     const sync = (event: StorageEvent) => {
       if (event.key === preferencesKey || event.key === null) setPreferences(readPreferences())
-      if (event.key !== storageKey && event.key !== null) return
+      if (event.key !== null && !studyKeys.includes(event.key)) return
       try {
-        const next = readSave()
+        const next = readLocalStudy()
         dataRef.current = next
         setData(next)
         setReadError('')
@@ -135,7 +141,7 @@ export function App() {
   function persist(next: Save, restore = false) {
     try {
       if (readError && !restore) throw new Error('Hãy khôi phục một bản sao lưu hợp lệ trước khi tiếp tục ghi dữ liệu.')
-      localStorage.setItem(storageKey, JSON.stringify(next))
+      writeLocalStudy(next)
       dataRef.current = next
       setData(next)
       setStorageError('')
@@ -176,7 +182,8 @@ export function App() {
   const examsById = new Map((subject?.exams ?? []).map((exam) => [exam.id, exam] as const))
   for (const exam of study.exams) {
     const original = examsById.get(exam.id)
-    examsById.set(exam.id, { ...exam, title: original?.title ?? exam.title, questions: [...(original?.questions ?? []), ...exam.questions] })
+    const questions = [...new Map([...(original?.questions ?? []), ...exam.questions].map((item) => [item.id, item])).values()]
+    examsById.set(exam.id, { ...exam, title: original?.title ?? exam.title, uploaded: !original && exam.uploaded, questions })
   }
   const exams: ExamData[] = [...examsById.values()].map((exam) => ({
     ...exam, questions: exam.questions.map((q) => study.edits[q.id] ?? q),
@@ -390,7 +397,13 @@ export function App() {
         </>}
         {section === 'settings' && <SettingsPage preferences={preferences} change={(patch) => savePreferences({ ...preferences, ...patch })}
           backup={backup} dismiss={() => setBackup(undefined)} bytes={bytes}
-          load={() => restoreInput.current?.click()} exportData={exportData} restore={applyBackup} reset={resetData} />}
+          load={() => restoreInput.current?.click()} exportData={exportData} restore={applyBackup} reset={resetData}
+          examUpload={subject && <ExamUpload subjectId={subject.id} exams={exams} localExams={study.exams} add={(exam) => update((current) => ({
+            ...current, exams: [...current.exams, exam],
+          }))} remove={(id) => update((current) => ({
+            ...current, exams: current.exams.filter((exam) => exam.id !== id || !exam.uploaded),
+            sessions: subject.exams.some((exam) => exam.id === id) ? current.sessions : current.sessions.filter((session) => session.examId !== id),
+          }))} />} />}
       </div>
       </main>
     </div>
@@ -410,6 +423,6 @@ export function App() {
 }
 
 function safeRawBackup() {
-  try { return { raw: localStorage.getItem(storageKey) } }
+  try { return { raw: Object.fromEntries([storageKey, customExamsKey, progressKey].map((key) => [key, localStorage.getItem(key)])) } }
   catch { return { raw: null } }
 }

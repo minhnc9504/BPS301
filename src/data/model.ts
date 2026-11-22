@@ -2,6 +2,7 @@ export type Content = { format: 'text' | 'html'; value: string }
 export type SlideRef = { materialId: string; page: number }
 export type Question = {
   id: string
+  code?: string
   chapterId?: string
   topics?: string[]
   type: 'single' | 'multiple'
@@ -13,7 +14,9 @@ export type Question = {
   formulas?: string[]
   slides?: SlideRef[]
 }
-export type Exam = { id: string; title: string; note?: string; questions: Question[] }
+export const examCategories = ['FE', 'PT', 'MOCK', 'PRACTICE'] as const
+export type ExamCategory = typeof examCategories[number]
+export type Exam = { id: string; title: string; note?: string; uploaded?: boolean; category?: ExamCategory; questions: Question[] }
 export type Theory = { id: string; title: string; summary?: string; content: Content }
 export type Material = {
   id: string

@@ -376,3 +376,15 @@ mark { color: #412b03; background: #ffe38a; padding-inline: .08em; border-radius
 .app[data-theme="dark"] .settings-reset .danger-button { color: #ffc3d0; }
 .app[data-text-size="small"] :is(.prompt, .choices .rich, .feedback .rich) { font-size: .88rem; }
 .app[data-text-size="large"] :is(.prompt, .choices .rich, .feedback .rich) { font-size: 1.22rem; }
+.exam-upload-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.2rem; }
+.prompt-box { min-width: 0; border: 1px solid var(--border); border-radius: 12px; padding: .8rem; background: var(--subtle); }
+.prompt-box h3, .uploaded-exam p, .upload-valid p { margin: 0; }
+.prompt-box textarea { font: .82rem/1.55 var(--mono); resize: vertical; }
+.exam-drop[data-dragging="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.upload-valid, .upload-error { border-radius: 10px; padding: .65rem .75rem; overflow-wrap: anywhere; }
+.upload-valid { background: #e0f5ea; color: #15543d; }
+.upload-error { background: #ffe9ea; color: #941f37; }
+.app[data-theme="dark"] .upload-valid { background: #16382d; color: #b6ebd4; }
+.app[data-theme="dark"] .upload-error { background: #48262e; color: #ffd1d5; }
+.uploaded-exam { border-top: 1px solid var(--border); padding-top: .65rem; }
+@media (max-width: 720px) { .exam-upload-grid { grid-template-columns: minmax(0, 1fr); } }
