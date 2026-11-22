@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       exam_json:
-        description: "JSON chuẩn lấy từ nút Sao chép JSON công khai trong Smart Exam"
+        description: "JSON chuẩn lấy từ nút Sao chép JSON công khai trong BPMS"
         required: true
         type: string
 

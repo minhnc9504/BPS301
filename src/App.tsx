@@ -27,20 +27,20 @@ const subjectId = 'bps301'
 
 function Brand({ openOverview }: { openOverview: () => void }) {
   const [state, setState] = useState<'loading' | 'ready' | 'failed'>('loading')
-  return <button className="brand" aria-label="Smart Exam" onClick={openOverview}>
+  return <button className="brand" aria-label="BPMS" onClick={openOverview}>
     <span className="brand-icon">
       {state !== 'ready' && <GraduationCap size={24} aria-hidden="true" />}
       {state !== 'failed' && <img
         className={state === 'ready' ? 'brand-image ready' : 'brand-image'}
-        src={import.meta.env.BASE_URL + 'smartexam.png'}
-        alt="Smart Exam"
+        src={import.meta.env.BASE_URL + 'img/logo.jpg'}
+        alt="BPMS"
         width={39}
         height={39}
         onLoad={() => setState('ready')}
         onError={() => setState('failed')}
       />}
     </span>
-    <span>Smart Exam</span>
+    <span>BPMS</span>
   </button>
 }
 
@@ -228,7 +228,7 @@ export function App() {
   function exportData(scope: BackupScope) {
     const date = new Date()
     const timestamp = date.toLocaleString('sv-SE', { timeZone: 'Asia/Ho_Chi_Minh' }).replace(' ', '-').replaceAll(':', '')
-    const name = 'smart-exam-bps301-' + timestamp + (readError ? '-du-lieu-tho' : scope === 'progress' ? '-tien-do' : '') + '.json'
+    const name = 'bpms-bps301-' + timestamp + (readError ? '-du-lieu-tho' : scope === 'progress' ? '-tien-do' : '') + '.json'
     downloadJson(name, readError ? safeRawBackup() : makeBackup(dataRef.current, scope, preferences, date))
   }
   function applyBackup(mode: RestoreMode) {
@@ -255,7 +255,7 @@ export function App() {
       if (persist({ version: 1, subjects: {} }, true)) {
         const preferencesSaved = savePreferences({ ...defaultPreferences })
         setBackup(undefined)
-        setNotice(preferencesSaved ? 'Đã khôi phục gốc Smart Exam.' : 'Đã xóa dữ liệu học. Tùy chọn chưa được đặt lại.')
+        setNotice(preferencesSaved ? 'Đã khôi phục gốc BPMS.' : 'Đã xóa dữ liệu học. Tùy chọn chưa được đặt lại.')
       }
       return
     }

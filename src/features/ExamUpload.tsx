@@ -20,7 +20,7 @@ const example = {
   }],
 }
 const prompt = [
-  'Hãy chuyển toàn bộ câu hỏi trắc nghiệm tôi cung cấp thành JSON để nhập vào Smart Exam BPS301.',
+  'Hãy chuyển toàn bộ câu hỏi trắc nghiệm tôi cung cấp thành JSON để nhập vào BPMS BPS301.',
   '1. Chỉ trả về JSON hợp lệ, không có lời dẫn hoặc hàng rào Markdown.',
   '2. Giữ nguyên tiếng Anh gốc của câu hỏi và các phương án A, B, C, D. Giữ các lựa chọn khác nếu đề gốc có.',
   '3. Viết explanation (giải thích và lý do loại trừ) và tip (mẹo ghi nhớ) bằng tiếng Việt.',
@@ -147,7 +147,7 @@ export function ExamUpload({ subjectId, exams, localExams, add, remove }: {
             try { await navigator.clipboard.writeText(prompt); setNotice('Đã sao chép prompt.') }
             catch { setNotice('Không sao chép tự động được. Hãy chọn nội dung trong ô prompt để sao chép.') }
           }}><Copy size={16} /> Sao chép Prompt</button>
-          <button onClick={() => downloadJson('smart-exam-bps301-de-mau.json', example)}><Download size={16} /> Tải file mẫu (.json)</button>
+          <button onClick={() => downloadJson('bpms-bps301-de-mau.json', example)}><Download size={16} /> Tải file mẫu (.json)</button>
         </div>
       </div>
     </div>

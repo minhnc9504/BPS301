@@ -1,10 +1,10 @@
-# Smart Exam Preparation System
+# BPMS - Business Process Management System
 
 [![Live Demo](https://shields.io)](https://minhnc9504.github.io/BPS301/home)
 ![React](https://shields.io)
 ![Vite](https://shields.io)
 
-**Smart Exam** là ứng dụng web ôn tập và thi thử trắc nghiệm được xây dựng bằng **React**, **TypeScript** và **Vite**. Ứng dụng sử dụng giao diện tiếng Việt, giữ nguyên ngôn ngữ gốc của câu hỏi và tài liệu, đọc dữ liệu từ các tệp JSON tĩnh và lưu toàn bộ tiến độ học tập trên `localStorage` của trình duyệt.
+**BPMS** là ứng dụng web ôn tập và thi thử trắc nghiệm được xây dựng bằng **React**, **TypeScript** và **Vite**. Ứng dụng sử dụng giao diện tiếng Việt, giữ nguyên ngôn ngữ gốc của câu hỏi và tài liệu, đọc dữ liệu từ các tệp JSON tĩnh và lưu toàn bộ tiến độ học tập trên `localStorage` của trình duyệt.
 
 > **Trải nghiệm trực tuyến:** [https://minhnc9504.github.io/BPS301/home](https://minhnc9504.github.io/BPS301/home)
 
@@ -81,7 +81,7 @@ public/
 │       ├── theory.json       # Nội dung lý thuyết các chương
 │       └── exams/            # Các tệp JSON chứa bộ đề trắc nghiệm
 ├── materials/                # Tài liệu PDF, PPTX và ảnh slide đi kèm dự án
-└── smartexam.png             # Logo và favicon
+└── img/logo.jpg              # Logo và favicon, sao chép từ img/logo.jpg
 
 src/
 ├── components/               # Các component hiển thị câu hỏi và nội dung
